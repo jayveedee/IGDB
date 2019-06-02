@@ -1,4 +1,4 @@
-package Data.Game.GameCompany;
+package Data.Game.Development;
 
 import Data.Game.GameDTO;
 import Data.Game.SoundtrackDTO;

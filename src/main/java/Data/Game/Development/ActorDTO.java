@@ -1,4 +1,4 @@
-package Data.Game.GameCompany;
+package Data.Game.Development;
 
 import Data.Game.Character.CharacterDTO;
 import Data.Game.DateDTO;

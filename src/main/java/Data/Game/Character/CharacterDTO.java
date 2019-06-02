@@ -1,6 +1,6 @@
 package Data.Game.Character;
 
-import Data.Game.GameCompany.ActorDTO;
+import Data.Game.Development.ActorDTO;
 import Data.Game.DateDTO;
 import Data.Game.GameDTO;
 

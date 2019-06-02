@@ -1,7 +1,8 @@
 package Data.Game;
 
 import Data.Game.Character.CharacterDTO;
-import Data.Game.GameCompany.*;
+import Data.Game.Development.*;
+import Data.Game.Development.Company.DeveloperDTO;
 
 import java.util.List;
 
@@ -16,32 +17,32 @@ public class GameDTO {
     //private List<String> trivia;
     //private List<String> language;
     //private List<String> quotes;
-    private Developer developer;
-    private Publisher publisher;
+    private DeveloperDTO developerDTO;
+    private PublisherDTO publisherDTO;
     private SoundtrackDTO soundtrackDTO;
     private ComposerDTO composerDTO;
     private WriterDTO writerDTO;
     private List<CharacterDTO> characterDTOS;
     private List<ActorDTO> actorDTOS;
-    private List<Genre> genres;
-    private List<GameMode> gameModes;
+    private List<GenreDTO> genreDTOS;
+    private List<GameModeDTO> gameModeDTOS;
 
-    public GameDTO(int gameid, int ageRating, String name, String biography, DateDTO releaseDate, List<RatingDTO> ratingDTO, Developer developer, Publisher publisher, SoundtrackDTO soundtrackDTO, ComposerDTO composerDTO, WriterDTO writerDTO, List<CharacterDTO> characterDTOS, List<ActorDTO> actorDTOS, List<Genre> genres, List<GameMode> gameModes) {
+    public GameDTO(int gameid, int ageRating, String name, String biography, DateDTO releaseDate, List<RatingDTO> ratingDTO, DeveloperDTO developerDTO, PublisherDTO publisherDTO, SoundtrackDTO soundtrackDTO, ComposerDTO composerDTO, WriterDTO writerDTO, List<CharacterDTO> characterDTOS, List<ActorDTO> actorDTOS, List<GenreDTO> genreDTOS, List<GameModeDTO> gameModeDTOS) {
         this.gameid = gameid;
         this.ageRating = ageRating;
         this.name = name;
         this.biography = biography;
         this.releaseDate = releaseDate;
         this.ratingDTO = ratingDTO;
-        this.developer = developer;
-        this.publisher = publisher;
+        this.developerDTO = developerDTO;
+        this.publisherDTO = publisherDTO;
         this.soundtrackDTO = soundtrackDTO;
         this.composerDTO = composerDTO;
         this.writerDTO = writerDTO;
         this.characterDTOS = characterDTOS;
         this.actorDTOS = actorDTOS;
-        this.genres = genres;
-        this.gameModes = gameModes;
+        this.genreDTOS = genreDTOS;
+        this.gameModeDTOS = gameModeDTOS;
     }
 
     public GameDTO() {
@@ -95,20 +96,20 @@ public class GameDTO {
         this.ratingDTO = ratingDTO;
     }
 
-    public Developer getDeveloper() {
-        return developer;
+    public DeveloperDTO getDeveloperDTO() {
+        return developerDTO;
     }
 
-    public void setDeveloper(Developer developer) {
-        this.developer = developer;
+    public void setDeveloperDTO(DeveloperDTO developerDTO) {
+        this.developerDTO = developerDTO;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public PublisherDTO getPublisherDTO() {
+        return publisherDTO;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setPublisherDTO(PublisherDTO publisherDTO) {
+        this.publisherDTO = publisherDTO;
     }
 
     public SoundtrackDTO getSoundtrackDTO() {
@@ -151,19 +152,19 @@ public class GameDTO {
         this.actorDTOS = actorDTOS;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
+    public List<GenreDTO> getGenreDTOS() {
+        return genreDTOS;
     }
 
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
+    public void setGenreDTOS(List<GenreDTO> genreDTOS) {
+        this.genreDTOS = genreDTOS;
     }
 
-    public List<GameMode> getGameModes() {
-        return gameModes;
+    public List<GameModeDTO> getGameModeDTOS() {
+        return gameModeDTOS;
     }
 
-    public void setGameModes(List<GameMode> gameModes) {
-        this.gameModes = gameModes;
+    public void setGameModeDTOS(List<GameModeDTO> gameModeDTOS) {
+        this.gameModeDTOS = gameModeDTOS;
     }
 }
