@@ -11,10 +11,11 @@ public class CharacterDTO {
     private int characterid;
     private String firstName;
     private String lastName;
-    private String biography;
     private DateDTO birthday;
     private List<ActorDTO> actorsPlayed;
     private List<GameDTO> gamesStarredin;
+
+    private String biography;
 
     public CharacterDTO(int characterid, String firstName, String lastName, String biography, DateDTO birthday, List<ActorDTO> actorsPlayed, List<GameDTO> gamesStarredin) {
         this.characterid = characterid;
