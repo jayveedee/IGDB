@@ -1,41 +1,65 @@
 package Data;
 
+import Data.Game.Game;
+
 import java.util.List;
 
-public class User implements IUserData {
+public class User {
 
-    @Override
-    public User getUser(int userID) {
-        return null;
+    private int userid;
+    private String username;
+    private String password;
+    private List<Game> gamelist;
+    private List<Roles> roleList;
+
+    public User(int userid, String username, String password, List<Game> gamelist, List<Roles> roleList) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.gamelist = gamelist;
+        this.roleList = roleList;
     }
 
-    @Override
-    public List<User> getUserList() {
-        return null;
+    public User() {
     }
 
-    @Override
-    public boolean createUser(User user) {
-        return false;
+    public int getUserid() {
+        return userid;
     }
 
-    @Override
-    public boolean updateUser(User user) {
-        return false;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    @Override
-    public void deleteUser(int userID) {
-
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public void createConnection() {
-
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @Override
-    public void closeConnection() {
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Game> getGamelist() {
+        return gamelist;
+    }
+
+    public void setGamelist(List<Game> gamelist) {
+        this.gamelist = gamelist;
+    }
+
+    public List<Roles> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Roles> roleList) {
+        this.roleList = roleList;
     }
 }

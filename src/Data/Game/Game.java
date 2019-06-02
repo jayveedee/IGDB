@@ -1,4 +1,4 @@
-package Data;
+package Data.Game;
 
 public class Game {
 

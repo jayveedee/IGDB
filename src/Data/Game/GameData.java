@@ -1,4 +1,4 @@
-package Data;
+package Data.Game;
 
 import java.util.List;
 
