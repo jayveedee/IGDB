@@ -1,8 +1,8 @@
-package Data.Game.Development;
+package Data.GameDTO.Development;
 
-import Data.Game.Character.CharacterDTO;
-import Data.Game.Info.DateDTO;
-import Data.Game.GameDTO;
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Info.DateDTO;
+import Data.GameDTO.GameDTO;
 
 import java.util.List;
 

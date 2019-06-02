@@ -1,4 +1,4 @@
-package Data.Game.Info;
+package Data.GameDTO.Info;
 
 public class RatingDTO {
 
