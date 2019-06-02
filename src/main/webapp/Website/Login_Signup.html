@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <title>IGDB - Login and Signup</title>
     <link rel="stylesheet" type="text/css" href="RegistrerStyle.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="Main.js"></script>
 </head>
 <body>
 <div class="Login-Page">
     <div class="form">
         <!--- Registrer form start--->
         <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class ="Registrer-form">
-            <div>
+            <div id="username_field">
                 <input type="text" name="username" placeholder="Username">
-                <div id="name_error" class="val_error"> </div>
+                <div id="name_error"> </div>
             </div>
-            <div>
+            <div id="email_field">
                 <input type="email" name="email" placeholder="Email">
-                <div id="email_error" class="val_error"> </div>
+                <div id="email_error"> </div>
             </div>
-            <div>
+            <div id="password_field">
                 <input type="password" name="password" placeholder="Password">
             </div>
-            <div>
-                <input type="password" name="password_confirmation" placeholder="Password">
-                <div id="password_error" class="val_error"> </div>
+            <div id="password_checker">
+                <input type="password" name="password_confirm" placeholder="Password Confirmation">
+                <div id="password_error"></div>
             </div>
             <div>
-                <input type="submit" value="registrer" class="button" name="registrer">
+                <input type="submit" value="Registrer" class="button" name="Registrer">
             </div>
             <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
         </form>
@@ -43,5 +41,7 @@
         <!--- Login form END --->
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="Main.js"></script>
 </body>
 </html>
