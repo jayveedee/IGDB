@@ -4,22 +4,44 @@
     <meta charset="UTF-8">
     <title>IGDB - Login and Signup</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="Main.js"></script>
-
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5">
-
-        </div>
-        <div class="col-sm-5">
-
-        </div>
+<div class="Login-Page">
+    <div class="form">
+        <!--- Registrer form start--->
+        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class ="Registrer-form">
+            <div>
+                <input type="text" name="username" placeholder="Username">
+                <div id="name_error" class="val_error"> </div>
+            </div>
+            <div>
+                <input type="email" name="email" placeholder="Email">
+                <div id="email_error" class="val_error"> </div>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <div>
+                <input type="password" name="password_confirmation" placeholder="Password">
+                <div id="password_error" class="val_error"> </div>
+            </div>
+            <div>
+                <input type="submit" value="registrer" class="button" name="registrer">
+            </div>
+            <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
+        </form>
+        <!--- Registrer form END --->
+        <!--- Login form start--->
+        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class="Login-form">
+            <input type="text" placeholder="Username" required>
+            <input type="text" placeholder="Password" required>
+            <button onclick="location.href='index.html'" type="button">Login</button>
+            <p class="information">Dont already have a User? <a href="#" id="Registrer">Registrer</a></p>
+        </form>
+        <!--- Login form END --->
     </div>
-</div>
-<div style="left: 0px;top: 0px;height: 100%;position: fixed;">
-    <img src="backgrounds/1.jpg" style="position: absolute; z-index: -999999; left: 0px; top: -320px;">
 </div>
 </body>
 </html>
