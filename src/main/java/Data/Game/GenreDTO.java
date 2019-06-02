@@ -1,7 +1,5 @@
 package Data.Game;
 
-import Data.Game.GameDTO;
-
 import java.util.List;
 
 public class GenreDTO {
