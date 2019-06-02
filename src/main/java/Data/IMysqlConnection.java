@@ -15,4 +15,7 @@ public interface IMysqlConnection {
 
     PreparedStatement getPrepStatement();
     void setPrepStatment(PreparedStatement prepStatement);
+
+    Connection getConnection();
+    void setConnection(Connection connection);
 }
