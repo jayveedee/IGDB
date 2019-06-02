@@ -1,8 +1,11 @@
 package Data.Game;
 
 import Data.Game.Character.CharacterDTO;
-import Data.Game.Development.*;
+import Data.Game.Development.ActorDTO;
 import Data.Game.Development.Company.DeveloperDTO;
+import Data.Game.Development.Company.PublisherDTO;
+import Data.Game.Development.ComposerDTO;
+import Data.Game.Development.WriterDTO;
 import Data.Game.Info.*;
 
 import java.util.List;
