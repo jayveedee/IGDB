@@ -1,12 +1,12 @@
-package Data.Game;
+package Data.GameDTO;
 
-import Data.Game.Character.CharacterDTO;
-import Data.Game.Development.ActorDTO;
-import Data.Game.Development.Company.DeveloperDTO;
-import Data.Game.Development.Company.PublisherDTO;
-import Data.Game.Development.ComposerDTO;
-import Data.Game.Development.WriterDTO;
-import Data.Game.Info.*;
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Development.ActorDTO;
+import Data.GameDTO.Development.Company.DeveloperDTO;
+import Data.GameDTO.Development.Company.PublisherDTO;
+import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.WriterDTO;
+import Data.GameDTO.Info.*;
 
 import java.util.List;
 

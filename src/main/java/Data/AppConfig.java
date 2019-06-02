@@ -1,4 +1,4 @@
-package Presentation;
+package Data;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

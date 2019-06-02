@@ -1,4 +1,4 @@
-package Presentation;
+package Data;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

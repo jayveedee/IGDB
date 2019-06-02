@@ -1,8 +1,8 @@
-package Data.Game.Info;
+package Data.GameDTO.Info;
 
-import Data.Game.Development.ComposerDTO;
-import Data.Game.Development.MusicArtistDTO;
-import Data.Game.GameDTO;
+import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.MusicArtistDTO;
+import Data.GameDTO.GameDTO;
 
 import java.util.List;
 

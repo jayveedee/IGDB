@@ -1,6 +1,6 @@
-package Data.Game.Development;
+package Data.GameDTO.Development;
 
-import Data.Game.GameDTO;
+import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
