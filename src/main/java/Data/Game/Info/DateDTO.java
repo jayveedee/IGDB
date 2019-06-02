@@ -1,18 +1,18 @@
-package Data.Game;
+package Data.Game.Info;
 
-public class ReleaseDate {
+public class DateDTO {
 
     private int day;
     private int month;
     private int yaer;
 
-    public ReleaseDate(int day, int month, int yaer) {
+    public DateDTO(int day, int month, int yaer) {
         this.day = day;
         this.month = month;
         this.yaer = yaer;
     }
 
-    public ReleaseDate() {
+    public DateDTO() {
     }
 
     public int getDay() {

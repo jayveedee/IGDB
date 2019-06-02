@@ -1,18 +1,18 @@
 package Data;
 
-import Data.Game.Game;
+import Data.Game.GameDTO;
 
 import java.util.List;
 
-public class User {
+public class UserDTO {
 
     private int userid;
     private String username;
     private String password;
-    private List<Game> gamelist;
-    private List<Roles> roleList;
+    private List<GameDTO> gamelist;
+    private List<RolesDTO> roleList;
 
-    public User(int userid, String username, String password, List<Game> gamelist, List<Roles> roleList) {
+    public UserDTO(int userid, String username, String password, List<GameDTO> gamelist, List<RolesDTO> roleList) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -20,7 +20,7 @@ public class User {
         this.roleList = roleList;
     }
 
-    public User() {
+    public UserDTO() {
     }
 
     public int getUserid() {
@@ -47,19 +47,19 @@ public class User {
         this.password = password;
     }
 
-    public List<Game> getGamelist() {
+    public List<GameDTO> getGamelist() {
         return gamelist;
     }
 
-    public void setGamelist(List<Game> gamelist) {
+    public void setGamelist(List<GameDTO> gamelist) {
         this.gamelist = gamelist;
     }
 
-    public List<Roles> getRoleList() {
+    public List<RolesDTO> getRoleList() {
         return roleList;
     }
 
-    public void setRoleList(List<Roles> roleList) {
+    public void setRoleList(List<RolesDTO> roleList) {
         this.roleList = roleList;
     }
 }
