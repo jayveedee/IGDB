@@ -1,16 +1,16 @@
 package Data;
 
-public class Roles {
+public class RolesDTO {
 
     private int roleid;
     private String rolename;
 
-    public Roles(int roleid, String rolename) {
+    public RolesDTO(int roleid, String rolename) {
         this.roleid = roleid;
         this.rolename = rolename;
     }
 
-    public Roles() {
+    public RolesDTO() {
     }
 
     public int getRoleid() {

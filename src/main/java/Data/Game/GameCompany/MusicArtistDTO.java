@@ -1,16 +1,19 @@
-package Data.Game;
+package Data.Game.GameCompany;
+
+import Data.Game.GameDTO;
+import Data.Game.SoundtrackDTO;
 
 import java.util.List;
 
-public class MusicArtists {
+public class MusicArtistDTO {
 
     private int artistid;
     private String firstName;
     private String lastName;
-    private List<Game> gamesStarredin;
-    private List<Soundtrack> soundtracksStarredin;
+    private List<GameDTO> gamesStarredin;
+    private List<SoundtrackDTO> soundtracksStarredin;
 
-    public MusicArtists(int artistid, String firstName, String lastName, List<Game> gamesStarredin, List<Soundtrack> soundtracksStarredin) {
+    public MusicArtistDTO(int artistid, String firstName, String lastName, List<GameDTO> gamesStarredin, List<SoundtrackDTO> soundtracksStarredin) {
         this.artistid = artistid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,7 +21,7 @@ public class MusicArtists {
         this.soundtracksStarredin = soundtracksStarredin;
     }
 
-    public MusicArtists() {
+    public MusicArtistDTO() {
     }
 
     public int getArtistid() {
@@ -45,19 +48,19 @@ public class MusicArtists {
         this.lastName = lastName;
     }
 
-    public List<Game> getGamesStarredin() {
+    public List<GameDTO> getGamesStarredin() {
         return gamesStarredin;
     }
 
-    public void setGamesStarredin(List<Game> gamesStarredin) {
+    public void setGamesStarredin(List<GameDTO> gamesStarredin) {
         this.gamesStarredin = gamesStarredin;
     }
 
-    public List<Soundtrack> getSoundtracksStarredin() {
+    public List<SoundtrackDTO> getSoundtracksStarredin() {
         return soundtracksStarredin;
     }
 
-    public void setSoundtracksStarredin(List<Soundtrack> soundtracksStarredin) {
+    public void setSoundtracksStarredin(List<SoundtrackDTO> soundtracksStarredin) {
         this.soundtracksStarredin = soundtracksStarredin;
     }
 }

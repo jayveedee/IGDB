@@ -1,24 +1,30 @@
-package Data.Game;
+package Data.Game.GameCompany;
+
+import Data.Game.Character.CharacterDTO;
+import Data.Game.DateDTO;
+import Data.Game.GameDTO;
 
 import java.util.List;
 
-public class Actor {
+public class ActorDTO {
 
     private int actorid;
     private String fisrtName;
     private String lastName;
-    private List<Character> charactersPlayed;
-    private List<Game> gamesStarredIn;
+    private DateDTO birthday;
+    private List<CharacterDTO> charactersPlayed;
+    private List<GameDTO> gamesStarredIn;
 
-    public Actor(int actorid, String firstName, String lastName, List<Character> charactersPlayed, List<Game> gamesStarredIn) {
+    public ActorDTO(int actorid, String firstName, String lastName, DateDTO birthday, List<CharacterDTO> charactersPlayed, List<GameDTO> gamesStarredIn) {
         this.actorid = actorid;
         this.fisrtName = firstName;
         this.lastName = lastName;
+        this.birthday = birthday;
         this.charactersPlayed = charactersPlayed;
         this.gamesStarredIn = gamesStarredIn;
     }
 
-    public Actor() {
+    public ActorDTO() {
     }
 
     public int getActorid() {
@@ -53,19 +59,27 @@ public class Actor {
         this.lastName = lastName;
     }
 
-    public List<Character> getCharactersPlayed() {
+    public DateDTO getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(DateDTO birthday) {
+        this.birthday = birthday;
+    }
+
+    public List<CharacterDTO> getCharactersPlayed() {
         return charactersPlayed;
     }
 
-    public void setCharactersPlayed(List<Character> charactersPlayed) {
+    public void setCharactersPlayed(List<CharacterDTO> charactersPlayed) {
         this.charactersPlayed = charactersPlayed;
     }
 
-    public List<Game> getGamesStarredIn() {
+    public List<GameDTO> getGamesStarredIn() {
         return gamesStarredIn;
     }
 
-    public void setGamesStarredIn(List<Game> gamesStarredIn) {
+    public void setGamesStarredIn(List<GameDTO> gamesStarredIn) {
         this.gamesStarredIn = gamesStarredIn;
     }
 }
