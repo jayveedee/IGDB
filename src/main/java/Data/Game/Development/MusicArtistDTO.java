@@ -8,15 +8,13 @@ import java.util.List;
 public class MusicArtistDTO {
 
     private int artistid;
-    private String firstName;
-    private String lastName;
+    private String name;
     private List<GameDTO> gamesStarredin;
     private List<SoundtrackDTO> soundtracksStarredin;
 
-    public MusicArtistDTO(int artistid, String firstName, String lastName, List<GameDTO> gamesStarredin, List<SoundtrackDTO> soundtracksStarredin) {
+    public MusicArtistDTO(int artistid, String name, List<GameDTO> gamesStarredin, List<SoundtrackDTO> soundtracksStarredin) {
         this.artistid = artistid;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.gamesStarredin = gamesStarredin;
         this.soundtracksStarredin = soundtracksStarredin;
     }
@@ -32,20 +30,12 @@ public class MusicArtistDTO {
         this.artistid = artistid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public List<GameDTO> getGamesStarredin() {

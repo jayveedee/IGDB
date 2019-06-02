@@ -9,18 +9,16 @@ import java.util.List;
 public class CharacterDTO {
 
     private int characterid;
-    private String firstName;
-    private String lastName;
+    private String name;
     private DateDTO birthday;
     private List<ActorDTO> actorsPlayed;
     private List<GameDTO> gamesStarredin;
 
     private String biography;
 
-    public CharacterDTO(int characterid, String firstName, String lastName, String biography, DateDTO birthday, List<ActorDTO> actorsPlayed, List<GameDTO> gamesStarredin) {
+    public CharacterDTO(int characterid, String name, String biography, DateDTO birthday, List<ActorDTO> actorsPlayed, List<GameDTO> gamesStarredin) {
         this.characterid = characterid;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.biography = biography;
         this.birthday = birthday;
         this.actorsPlayed = actorsPlayed;
@@ -38,20 +36,12 @@ public class CharacterDTO {
         this.characterid = characterid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public String getBiography() {
