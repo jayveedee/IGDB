@@ -1,7 +1,7 @@
 package Data.Game.Development;
 
 import Data.Game.GameDTO;
-import Data.Game.SoundtrackDTO;
+import Data.Game.Info.SoundtrackDTO;
 
 import java.util.List;
 

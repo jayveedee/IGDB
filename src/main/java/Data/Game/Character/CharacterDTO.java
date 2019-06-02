@@ -1,7 +1,7 @@
 package Data.Game.Character;
 
 import Data.Game.Development.ActorDTO;
-import Data.Game.DateDTO;
+import Data.Game.Info.DateDTO;
 import Data.Game.GameDTO;
 
 import java.util.List;
