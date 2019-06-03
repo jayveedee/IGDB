@@ -18,13 +18,14 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void createUser(UserDTO user) {
-        String query1 = "INSERT INTO Users (userid, username, password) VALUES (?, ?, ?)";
+        String query1 = "INSERT INTO Users (userid, username, email, password) VALUES (?, ?, ?, ?)";
         String query2 = "INSERT INTO UserRoles (roleid, userid) VALUES (?, ?)";
         String query3 = "INSERT INTO GameList (gameid, userid) VALUES (?, ?)";
 
         int userid              = user.getUserid();
         String username         = user.getUsername();
         String password         = user.getPassword();
+        String email            = user.getEmail();
         List<GameDTO> gameList  = user.getGamelist();
         List<RolesDTO> roleList = user.getRoleList();
 
@@ -33,7 +34,8 @@ public class UserDAO implements IUserDAO {
             mySql.getConnection().prepareStatement(query1);
             mySql.getPrepStatement().setInt(1,userid);
             mySql.getPrepStatement().setString(2,username);
-            mySql.getPrepStatement().setString(3,password);
+            mySql.getPrepStatement().setString(3,email);
+            mySql.getPrepStatement().setString(4,password);
             mySql.getPrepStatement().executeUpdate();
 
             mySql.getConnection().prepareStatement(query2);
