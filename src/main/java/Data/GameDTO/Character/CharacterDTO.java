@@ -8,71 +8,71 @@ import java.util.List;
 
 public class CharacterDTO {
 
-    private int characterid;
-    private String name;
-    private DateDTO birthday;
-    private List<ActorDTO> actorsPlayed;
-    private List<GameDTO> gamesStarredin;
+    private int                 chID;
+    private String              chNAME;
+    private DateDTO             chBDAY;
+    private List<ActorDTO>      chVAs;
+    private List<GameDTO>       chGAMEs;
 
-    private String biography;
+    private String              chBIO;
 
-    public CharacterDTO(int characterid, String name, String biography, DateDTO birthday, List<ActorDTO> actorsPlayed, List<GameDTO> gamesStarredin) {
-        this.characterid = characterid;
-        this.name = name;
-        this.biography = biography;
-        this.birthday = birthday;
-        this.actorsPlayed = actorsPlayed;
-        this.gamesStarredin = gamesStarredin;
+    public CharacterDTO(int chID, String chNAME, String chBIO, DateDTO chBDAY, List<ActorDTO> chVAs, List<GameDTO> chGAMEs) {
+        this.chID = chID;
+        this.chNAME = chNAME;
+        this.chBIO = chBIO;
+        this.chBDAY = chBDAY;
+        this.chVAs = chVAs;
+        this.chGAMEs = chGAMEs;
     }
 
     public CharacterDTO() {
     }
 
-    public int getCharacterid() {
-        return characterid;
+    public int getChID() {
+        return chID;
     }
 
-    public void setCharacterid(int characterid) {
-        this.characterid = characterid;
+    public void setChID(int chID) {
+        this.chID = chID;
     }
 
-    public String getName() {
-        return name;
+    public String getChNAME() {
+        return chNAME;
     }
 
-    public void setName(String firstName) {
-        this.name = firstName;
+    public void setChNAME(String firstName) {
+        this.chNAME = firstName;
     }
 
-    public String getBiography() {
-        return biography;
+    public String getChBIO() {
+        return chBIO;
     }
 
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setChBIO(String chBIO) {
+        this.chBIO = chBIO;
     }
 
-    public DateDTO getBirthday() {
-        return birthday;
+    public DateDTO getChBDAY() {
+        return chBDAY;
     }
 
-    public void setBirthday(DateDTO birthday) {
-        this.birthday = birthday;
+    public void setChBDAY(DateDTO chBDAY) {
+        this.chBDAY = chBDAY;
     }
 
-    public List<ActorDTO> getActorsPlayed() {
-        return actorsPlayed;
+    public List<ActorDTO> getChVAs() {
+        return chVAs;
     }
 
-    public void setActorsPlayed(List<ActorDTO> actorsPlayed) {
-        this.actorsPlayed = actorsPlayed;
+    public void setChVAs(List<ActorDTO> chVAs) {
+        this.chVAs = chVAs;
     }
 
-    public List<GameDTO> getGamesStarredin() {
-        return gamesStarredin;
+    public List<GameDTO> getChGAMEs() {
+        return chGAMEs;
     }
 
-    public void setGamesStarredin(List<GameDTO> gamesStarredin) {
-        this.gamesStarredin = gamesStarredin;
+    public void setChGAMEs(List<GameDTO> chGAMEs) {
+        this.chGAMEs = chGAMEs;
     }
 }

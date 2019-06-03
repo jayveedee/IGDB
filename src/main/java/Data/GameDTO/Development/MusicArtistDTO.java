@@ -7,50 +7,50 @@ import java.util.List;
 
 public class MusicArtistDTO {
 
-    private int artistid;
-    private String name;
-    private List<GameDTO> gamesStarredin;
-    private List<SoundtrackDTO> soundtracksStarredin;
+    private int                     artID;
+    private String                  artNAME;
+    private List<GameDTO>           artGAMEs;
+    private List<SoundtrackDTO>     artOSTs;
 
-    public MusicArtistDTO(int artistid, String name, List<GameDTO> gamesStarredin, List<SoundtrackDTO> soundtracksStarredin) {
-        this.artistid = artistid;
-        this.name = name;
-        this.gamesStarredin = gamesStarredin;
-        this.soundtracksStarredin = soundtracksStarredin;
+    public MusicArtistDTO(int artID, String artNAME, List<GameDTO> artGAMEs, List<SoundtrackDTO> artOSTs) {
+        this.artID = artID;
+        this.artNAME = artNAME;
+        this.artGAMEs = artGAMEs;
+        this.artOSTs = artOSTs;
     }
 
     public MusicArtistDTO() {
     }
 
-    public int getArtistid() {
-        return artistid;
+    public int getArtID() {
+        return artID;
     }
 
-    public void setArtistid(int artistid) {
-        this.artistid = artistid;
+    public void setArtID(int artID) {
+        this.artID = artID;
     }
 
-    public String getName() {
-        return name;
+    public String getArtNAME() {
+        return artNAME;
     }
 
-    public void setName(String firstName) {
-        this.name = firstName;
+    public void setArtNAME(String firstName) {
+        this.artNAME = firstName;
     }
 
-    public List<GameDTO> getGamesStarredin() {
-        return gamesStarredin;
+    public List<GameDTO> getArtGAMEs() {
+        return artGAMEs;
     }
 
-    public void setGamesStarredin(List<GameDTO> gamesStarredin) {
-        this.gamesStarredin = gamesStarredin;
+    public void setArtGAMEs(List<GameDTO> artGAMEs) {
+        this.artGAMEs = artGAMEs;
     }
 
-    public List<SoundtrackDTO> getSoundtracksStarredin() {
-        return soundtracksStarredin;
+    public List<SoundtrackDTO> getArtOSTs() {
+        return artOSTs;
     }
 
-    public void setSoundtracksStarredin(List<SoundtrackDTO> soundtracksStarredin) {
-        this.soundtracksStarredin = soundtracksStarredin;
+    public void setArtOSTs(List<SoundtrackDTO> artOSTs) {
+        this.artOSTs = artOSTs;
     }
 }

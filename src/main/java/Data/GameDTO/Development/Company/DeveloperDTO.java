@@ -7,84 +7,84 @@ import java.util.List;
 
 public class DeveloperDTO {
 
-    private int developerid;
-    private String name;
-    private DateDTO established;
-    private boolean status;
-    private String country;
-    private PublisherDTO parentCompany;
-    private List<GameDTO> gameList;
+    private int                 devID;
+    private String              devNAME;
+    private DateDTO             devESTABLISHED;
+    private boolean             devSTATUS;
+    private String              devCOUNTRY;
+    private PublisherDTO        devPCOMPANY;
+    private List<GameDTO>       devGAMEs;
 
     private String biography;
 
-    public DeveloperDTO(int developerid, String name, DateDTO established, boolean status, String country, PublisherDTO parentCompany, List<GameDTO> gameList, String biography) {
-        this.developerid = developerid;
-        this.name = name;
-        this.established = established;
-        this.status = status;
-        this.country = country;
-        this.parentCompany = parentCompany;
-        this.gameList = gameList;
+    public DeveloperDTO(int devID, String devNAME, DateDTO devESTABLISHED, boolean devSTATUS, String devCOUNTRY, PublisherDTO devPCOMPANY, List<GameDTO> devGAMEs, String biography) {
+        this.devID = devID;
+        this.devNAME = devNAME;
+        this.devESTABLISHED = devESTABLISHED;
+        this.devSTATUS = devSTATUS;
+        this.devCOUNTRY = devCOUNTRY;
+        this.devPCOMPANY = devPCOMPANY;
+        this.devGAMEs = devGAMEs;
         this.biography = biography;
     }
 
     public DeveloperDTO() {
     }
 
-    public int getDeveloperid() {
-        return developerid;
+    public int getDevID() {
+        return devID;
     }
 
-    public void setDeveloperid(int developerid) {
-        this.developerid = developerid;
+    public void setDevID(int devID) {
+        this.devID = devID;
     }
 
-    public String getName() {
-        return name;
+    public String getDevNAME() {
+        return devNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDevNAME(String devNAME) {
+        this.devNAME = devNAME;
     }
 
-    public DateDTO getEstablished() {
-        return established;
+    public DateDTO getDevESTABLISHED() {
+        return devESTABLISHED;
     }
 
-    public void setEstablished(DateDTO established) {
-        this.established = established;
+    public void setDevESTABLISHED(DateDTO devESTABLISHED) {
+        this.devESTABLISHED = devESTABLISHED;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isDevSTATUS() {
+        return devSTATUS;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDevSTATUS(boolean devSTATUS) {
+        this.devSTATUS = devSTATUS;
     }
 
-    public String getCountry() {
-        return country;
+    public String getDevCOUNTRY() {
+        return devCOUNTRY;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setDevCOUNTRY(String devCOUNTRY) {
+        this.devCOUNTRY = devCOUNTRY;
     }
 
-    public PublisherDTO getParentCompany() {
-        return parentCompany;
+    public PublisherDTO getDevPCOMPANY() {
+        return devPCOMPANY;
     }
 
-    public void setParentCompany(PublisherDTO parentCompany) {
-        this.parentCompany = parentCompany;
+    public void setDevPCOMPANY(PublisherDTO devPCOMPANY) {
+        this.devPCOMPANY = devPCOMPANY;
     }
 
-    public List<GameDTO> getGameList() {
-        return gameList;
+    public List<GameDTO> getDevGAMEs() {
+        return devGAMEs;
     }
 
-    public void setGameList(List<GameDTO> gameList) {
-        this.gameList = gameList;
+    public void setDevGAMEs(List<GameDTO> devGAMEs) {
+        this.devGAMEs = devGAMEs;
     }
 
     public String getBiography() {

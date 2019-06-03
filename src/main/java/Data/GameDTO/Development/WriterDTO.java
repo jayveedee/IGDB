@@ -6,50 +6,50 @@ import java.util.List;
 
 public class WriterDTO {
 
-    private int writerid;
-    private String firstName;
-    private String lastName;
-    private List<GameDTO> gamesStarredin;
+    private int             wriID;
+    private String          wriFN;
+    private String          wriLN;
+    private List<GameDTO>   wriGAMEs;
 
-    public WriterDTO(int writerid, String firstName, String lastName, List<GameDTO> gamesStarredin) {
-        this.writerid = writerid;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gamesStarredin = gamesStarredin;
+    public WriterDTO(int wriID, String wriFN, String wriLN, List<GameDTO> wriGAMEs) {
+        this.wriID = wriID;
+        this.wriFN = wriFN;
+        this.wriLN = wriLN;
+        this.wriGAMEs = wriGAMEs;
     }
 
     public WriterDTO() {
     }
 
-    public int getWriterid() {
-        return writerid;
+    public int getWriID() {
+        return wriID;
     }
 
-    public void setWriterid(int writerid) {
-        this.writerid = writerid;
+    public void setWriID(int wriID) {
+        this.wriID = wriID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getWriFN() {
+        return wriFN;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setWriFN(String wriFN) {
+        this.wriFN = wriFN;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getWriLN() {
+        return wriLN;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setWriLN(String wriLN) {
+        this.wriLN = wriLN;
     }
 
-    public List<GameDTO> getGamesStarredin() {
-        return gamesStarredin;
+    public List<GameDTO> getWriGAMEs() {
+        return wriGAMEs;
     }
 
-    public void setGamesStarredin(List<GameDTO> gamesStarredin) {
-        this.gamesStarredin = gamesStarredin;
+    public void setWriGAMEs(List<GameDTO> wriGAMEs) {
+        this.wriGAMEs = wriGAMEs;
     }
 }

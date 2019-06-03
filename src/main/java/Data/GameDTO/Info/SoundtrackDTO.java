@@ -8,60 +8,60 @@ import java.util.List;
 
 public class SoundtrackDTO {
 
-    private int soundtrackid;
-    private String name;
-    private ComposerDTO composerDTO;
-    private List<MusicArtistDTO> musicArtistDTOStarred;
-    private List<GameDTO> gameDTOSoundtracksUsed;
+    private int ostID;
+    private String ostNAME;
+    private ComposerDTO ostCOMP;
+    private List<MusicArtistDTO> ostMA;
+    private List<GameDTO> ostGAMEs;
 
-    public SoundtrackDTO(int soundtrackid, String name, ComposerDTO composerDTO, List<MusicArtistDTO> musicArtistDTOStarred, List<GameDTO> gameDTOSoundtracksUsed) {
-        this.soundtrackid = soundtrackid;
-        this.name = name;
-        this.composerDTO = composerDTO;
-        this.musicArtistDTOStarred = musicArtistDTOStarred;
-        this.gameDTOSoundtracksUsed = gameDTOSoundtracksUsed;
+    public SoundtrackDTO(int ostID, String ostNAME, ComposerDTO ostCOMP, List<MusicArtistDTO> ostMA, List<GameDTO> ostGAMEs) {
+        this.ostID = ostID;
+        this.ostNAME = ostNAME;
+        this.ostCOMP = ostCOMP;
+        this.ostMA = ostMA;
+        this.ostGAMEs = ostGAMEs;
     }
 
     public SoundtrackDTO() {
     }
 
-    public int getSoundtrackid() {
-        return soundtrackid;
+    public int getOstID() {
+        return ostID;
     }
 
-    public void setSoundtrackid(int soundtrackid) {
-        this.soundtrackid = soundtrackid;
+    public void setOstID(int ostID) {
+        this.ostID = ostID;
     }
 
-    public String getName() {
-        return name;
+    public String getOstNAME() {
+        return ostNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOstNAME(String ostNAME) {
+        this.ostNAME = ostNAME;
     }
 
-    public ComposerDTO getComposerDTO() {
-        return composerDTO;
+    public ComposerDTO getOstCOMP() {
+        return ostCOMP;
     }
 
-    public void setComposerDTO(ComposerDTO composerDTO) {
-        this.composerDTO = composerDTO;
+    public void setOstCOMP(ComposerDTO ostCOMP) {
+        this.ostCOMP = ostCOMP;
     }
 
-    public List<MusicArtistDTO> getMusicArtistDTOStarred() {
-        return musicArtistDTOStarred;
+    public List<MusicArtistDTO> getOstMA() {
+        return ostMA;
     }
 
-    public void setMusicArtistDTOStarred(List<MusicArtistDTO> musicArtistDTOStarred) {
-        this.musicArtistDTOStarred = musicArtistDTOStarred;
+    public void setOstMA(List<MusicArtistDTO> ostMA) {
+        this.ostMA = ostMA;
     }
 
-    public List<GameDTO> getGameDTOSoundtracksUsed() {
-        return gameDTOSoundtracksUsed;
+    public List<GameDTO> getOstGAMEs() {
+        return ostGAMEs;
     }
 
-    public void setGameDTOSoundtracksUsed(List<GameDTO> gameDTOSoundtracksUsed) {
-        this.gameDTOSoundtracksUsed = gameDTOSoundtracksUsed;
+    public void setOstGAMEs(List<GameDTO> ostGAMEs) {
+        this.ostGAMEs = ostGAMEs;
     }
 }

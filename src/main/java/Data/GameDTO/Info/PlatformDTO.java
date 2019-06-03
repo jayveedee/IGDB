@@ -6,40 +6,40 @@ import java.util.List;
 
 public class PlatformDTO {
 
-    private int platformid;
-    private String name;
-    private List<GameDTO> gameList;
+    private int                 platID;
+    private String              platNAME;
+    private List<GameDTO>       platGAMEs;
 
-    public PlatformDTO(int platformid, String name, List<GameDTO> gameList) {
-        this.platformid = platformid;
-        this.name = name;
-        this.gameList = gameList;
+    public PlatformDTO(int platID, String platNAME, List<GameDTO> platGAMEs) {
+        this.platID = platID;
+        this.platNAME = platNAME;
+        this.platGAMEs = platGAMEs;
     }
 
     public PlatformDTO() {
     }
 
-    public int getPlatformid() {
-        return platformid;
+    public int getPlatID() {
+        return platID;
     }
 
-    public void setPlatformid(int platformid) {
-        this.platformid = platformid;
+    public void setPlatID(int platID) {
+        this.platID = platID;
     }
 
-    public String getName() {
-        return name;
+    public String getPlatNAME() {
+        return platNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlatNAME(String platNAME) {
+        this.platNAME = platNAME;
     }
 
-    public List<GameDTO> getGameList() {
-        return gameList;
+    public List<GameDTO> getPlatGAMEs() {
+        return platGAMEs;
     }
 
-    public void setGameList(List<GameDTO> gameList) {
-        this.gameList = gameList;
+    public void setPlatGAMEs(List<GameDTO> platGAMEs) {
+        this.platGAMEs = platGAMEs;
     }
 }
