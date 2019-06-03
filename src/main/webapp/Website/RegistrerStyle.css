@@ -42,10 +42,7 @@
 
 .submit-txt {
     color: white;
-}
-
-.submit-txt:hover{
-    color: #888888;
+    text-decoration: none;
 }
 
 .button {
@@ -64,3 +61,23 @@
     background-color: #1E90FF !important;
 }
 
+.tab{
+    font-size: 31px;
+    list-style-type: none;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+}
+
+.tab a {
+    color: white;
+    text-decoration: none;
+}
+
+.login-active{
+    background: #1E90FF;
+}
+
+.tab:hover{
+    background: #1E90FF;
+}
