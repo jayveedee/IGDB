@@ -13,7 +13,7 @@ body{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background: #59adff91;
+    background: rgba(0,0,0,0.5);
     border-radius: 15px;
 }
 
@@ -26,10 +26,14 @@ body{
 .navigation-list li{
     list-style-type: none;
     display: inline-block;
-    padding: 20px;
 }
-.navigation-list li:hover{
-    background: #8AC3D8;
+
+.not-active {
+    padding: 20px;
+    border-radius: 14px;
+}
+.not-active:hover{
+    background: #59adff91;
 }
 .navigation-list li a{
     color: #fff;
@@ -37,9 +41,20 @@ body{
 }
 
 .logo{
-    padding: 0px 100px;
+    padding: 0px 50px;
     color: #FFFFFF;
     font-size: 22px;
+}
+
+.nav-active{
+    background: #59adff91;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.nav-login{
+    float:right;
+    margin-right: 20px;
 }
 
 .slideshow-container{
