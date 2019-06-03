@@ -20,7 +20,7 @@ $(function () {
         var password = $("#pass_txt").val();
         var confirmPassword = $("#confirm_txt").val();
         if (password != confirmPassword) {
-            alert("Passwords do not match.");
+            alert("Password is not the same");
             return false;
         }
         return true;

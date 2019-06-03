@@ -13,7 +13,8 @@ nav{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background: rgba(30,144,255,0.6);
+    background: #59adff91;
+    border-radius: 15px;
 }
 
 ul{

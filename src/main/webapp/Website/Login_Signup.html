@@ -6,22 +6,35 @@
     <link rel="stylesheet" type="text/css" href="RegistrerStyle.css">
 </head>
 <body>
+    <nav class="standart-nav">
+        <div class="logo">
+            <h1><a href="Index.html">IGDb</a></h1>
+        </div>
+        <ul class="navigation-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Game List</a></li>
+        </ul>
+    </nav>
 <div class="Login-Page">
     <div class="form">
         <!--- Registrer form start--->
         <form method="POST" action="Index.html" class="Registrer-form"> 
+            <h1 class="form-header">Registrer</h1>
             <input type="text" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password" required>
+            <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
             <div id="password_length"></div>
-            <input type="submit" value="Login" id="regi_submit" class="button" name="login"> 
+            <input type="submit" value="Login" id="regi_submit" class="button" name="login">
+            <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
         <form method="POST" action="Index.html" class="Login-form">
+            <h1 class="form-header">Login</h1>
             <input type="text" placeholder="Username" required>
-            <input type="password" onkeyup="passLength(); return false;" placeholder="Password" required>
+            <input type="password" placeholder="Password" required>
             <input type="submit" value="Login" class="button" name="login">
             <p class="information">Dont already have a User? <a href="#" id="Registrer">Registrer</a></p>
         </form>
