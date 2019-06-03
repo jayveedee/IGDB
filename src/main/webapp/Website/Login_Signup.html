@@ -9,39 +9,26 @@
 <div class="Login-Page">
     <div class="form">
         <!--- Registrer form start--->
-        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class ="Registrer-form">
-            <div id="username_field">
-                <input type="text" name="username" placeholder="Username">
-                <div id="name_error"> </div>
-            </div>
-            <div id="email_field">
-                <input type="email" name="email" placeholder="Email">
-                <div id="email_error"> </div>
-            </div>
-            <div id="password_field">
-                <input type="password" name="password" placeholder="Password">
-            </div>
-            <div id="password_checker">
-                <input type="password" name="password_confirm" placeholder="Password Confirmation">
-                <div id="password_error"></div>
-            </div>
-            <div>
-                <input type="submit" value="Registrer" class="button" name="Registrer">
-            </div>
-            <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
+        <form method="POST" action="Index.html" class="Registrer-form"> 
+            <input type="text" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password" required>
+            <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
+            <div id="password_length"></div>
+            <input type="submit" value="Login" id="regi_submit" class="button" name="login"> 
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
-        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class="Login-form">
+        <form method="POST" action="Index.html" class="Login-form">
             <input type="text" placeholder="Username" required>
-            <input type="text" placeholder="Password" required>
-            <button onclick="location.href='index.html'" type="button">Login</button>
+            <input type="password" onkeyup="passLength(); return false;" placeholder="Password" required>
+            <input type="submit" value="Login" class="button" name="login">
             <p class="information">Dont already have a User? <a href="#" id="Registrer">Registrer</a></p>
         </form>
         <!--- Login form END --->
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="Main.js"></script>
 </body>
 </html>
