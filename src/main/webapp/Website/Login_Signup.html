@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>IGDB - Login and Signup</title>
     <link rel="stylesheet" type="text/css" href="RegistrerStyle.css">
+    <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
     <nav class="standart-nav">
         <div class="logo">
-            <h1><a href="Index.html">IGDb</a></h1>
+            <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
         </div>
         <ul class="navigation-list">
             <li><a href="#">Home</a></li>
@@ -27,7 +28,7 @@
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
             <div id="password_length"></div>
             <input type="submit" value="Login" id="regi_submit" class="button" name="login">
-            <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
+            <p class="information">Already have a User? <a href="#" class="submit-txt" id="Login">Login</a></p>
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
@@ -36,7 +37,7 @@
             <input type="text" placeholder="Username" required>
             <input type="password" placeholder="Password" required>
             <input type="submit" value="Login" class="button" name="login">
-            <p class="information">Dont already have a User? <a href="#" id="Registrer">Registrer</a></p>
+            <p class="information">Dont already have a User? <a href="#" class="submit-txt" id="Registrer">Registrer</a></p>
         </form>
         <!--- Login form END --->
     </div>
