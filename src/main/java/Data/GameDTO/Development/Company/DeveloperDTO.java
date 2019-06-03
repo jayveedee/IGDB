@@ -1,7 +1,6 @@
 package Data.GameDTO.Development.Company;
 
 import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
@@ -13,11 +12,11 @@ public class DeveloperDTO {
     private boolean             devSTATUS;
     private String              devCOUNTRY;
     private PublisherDTO        devPCOMPANY;
-    private List<GameDTO>       devGAMEs;
+    private List<Integer>       devGAMEs;
 
     private String biography;
 
-    public DeveloperDTO(int devID, String devNAME, DateDTO devESTABLISHED, boolean devSTATUS, String devCOUNTRY, PublisherDTO devPCOMPANY, List<GameDTO> devGAMEs, String biography) {
+    public DeveloperDTO(int devID, String devNAME, DateDTO devESTABLISHED, boolean devSTATUS, String devCOUNTRY, PublisherDTO devPCOMPANY, List<Integer> devGAMEs, String biography) {
         this.devID = devID;
         this.devNAME = devNAME;
         this.devESTABLISHED = devESTABLISHED;
@@ -79,11 +78,11 @@ public class DeveloperDTO {
         this.devPCOMPANY = devPCOMPANY;
     }
 
-    public List<GameDTO> getDevGAMEs() {
+    public List<Integer> getDevGAMEs() {
         return devGAMEs;
     }
 
-    public void setDevGAMEs(List<GameDTO> devGAMEs) {
+    public void setDevGAMEs(List<Integer> devGAMEs) {
         this.devGAMEs = devGAMEs;
     }
 

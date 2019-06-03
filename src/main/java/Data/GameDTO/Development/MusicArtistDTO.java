@@ -1,18 +1,15 @@
 package Data.GameDTO.Development;
 
-import Data.GameDTO.GameDTO;
-import Data.GameDTO.Info.SoundtrackDTO;
-
 import java.util.List;
 
 public class MusicArtistDTO {
 
     private int                     artID;
     private String                  artNAME;
-    private List<GameDTO>           artGAMEs;
-    private List<SoundtrackDTO>     artOSTs;
+    private List<Integer>           artGAMEs;
+    private List<Integer>           artOSTs;
 
-    public MusicArtistDTO(int artID, String artNAME, List<GameDTO> artGAMEs, List<SoundtrackDTO> artOSTs) {
+    public MusicArtistDTO(int artID, String artNAME, List<Integer> artGAMEs, List<Integer> artOSTs) {
         this.artID = artID;
         this.artNAME = artNAME;
         this.artGAMEs = artGAMEs;
@@ -38,19 +35,19 @@ public class MusicArtistDTO {
         this.artNAME = firstName;
     }
 
-    public List<GameDTO> getArtGAMEs() {
+    public List<Integer> getArtGAMEs() {
         return artGAMEs;
     }
 
-    public void setArtGAMEs(List<GameDTO> artGAMEs) {
+    public void setArtGAMEs(List<Integer> artGAMEs) {
         this.artGAMEs = artGAMEs;
     }
 
-    public List<SoundtrackDTO> getArtOSTs() {
+    public List<Integer> getArtOSTs() {
         return artOSTs;
     }
 
-    public void setArtOSTs(List<SoundtrackDTO> artOSTs) {
+    public void setArtOSTs(List<Integer> artOSTs) {
         this.artOSTs = artOSTs;
     }
 }

@@ -1,8 +1,6 @@
 package Data.GameDTO.Development;
 
-import Data.GameDTO.Character.CharacterDTO;
 import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
@@ -12,10 +10,10 @@ public class ActorDTO {
     private String                  acFN;
     private String                  acLN;
     private DateDTO                 acBDAY;
-    private List<CharacterDTO>      acCHs;
-    private List<GameDTO>           acGAMEs;
+    private List<Integer>           acCHs;
+    private List<Integer>           acGAMEs;
 
-    public ActorDTO(int acID, String firstName, String acLN, DateDTO acBDAY, List<CharacterDTO> acCHs, List<GameDTO> acGAMEs) {
+    public ActorDTO(int acID, String firstName, String acLN, DateDTO acBDAY, List<Integer> acCHs, List<Integer> acGAMEs) {
         this.acID = acID;
         this.acFN = firstName;
         this.acLN = acLN;
@@ -67,19 +65,19 @@ public class ActorDTO {
         this.acBDAY = acBDAY;
     }
 
-    public List<CharacterDTO> getAcCHs() {
+    public List<Integer> getAcCHs() {
         return acCHs;
     }
 
-    public void setAcCHs(List<CharacterDTO> acCHs) {
+    public void setAcCHs(List<Integer> acCHs) {
         this.acCHs = acCHs;
     }
 
-    public List<GameDTO> getAcGAMEs() {
+    public List<Integer> getAcGAMEs() {
         return acGAMEs;
     }
 
-    public void setAcGAMEs(List<GameDTO> acGAMEs) {
+    public void setAcGAMEs(List<Integer> acGAMEs) {
         this.acGAMEs = acGAMEs;
     }
 }
