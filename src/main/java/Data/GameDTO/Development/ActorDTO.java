@@ -8,78 +8,78 @@ import java.util.List;
 
 public class ActorDTO {
 
-    private int actorid;
-    private String fisrtName;
-    private String lastName;
-    private DateDTO birthday;
-    private List<CharacterDTO> charactersPlayed;
-    private List<GameDTO> gamesStarredIn;
+    private int                     acID;
+    private String                  acFN;
+    private String                  acLN;
+    private DateDTO                 acBDAY;
+    private List<CharacterDTO>      acCHs;
+    private List<GameDTO>           acGAMEs;
 
-    public ActorDTO(int actorid, String firstName, String lastName, DateDTO birthday, List<CharacterDTO> charactersPlayed, List<GameDTO> gamesStarredIn) {
-        this.actorid = actorid;
-        this.fisrtName = firstName;
-        this.lastName = lastName;
-        this.birthday = birthday;
-        this.charactersPlayed = charactersPlayed;
-        this.gamesStarredIn = gamesStarredIn;
+    public ActorDTO(int acID, String firstName, String acLN, DateDTO acBDAY, List<CharacterDTO> acCHs, List<GameDTO> acGAMEs) {
+        this.acID = acID;
+        this.acFN = firstName;
+        this.acLN = acLN;
+        this.acBDAY = acBDAY;
+        this.acCHs = acCHs;
+        this.acGAMEs = acGAMEs;
     }
 
     public ActorDTO() {
     }
 
-    public int getActorid() {
-        return actorid;
+    public int getAcID() {
+        return acID;
     }
 
-    public void setActorid(int actorid) {
-        this.actorid = actorid;
+    public void setAcID(int acID) {
+        this.acID = acID;
     }
 
     public String getfisrtName() {
-        return fisrtName;
+        return acFN;
     }
 
     public void setfisrtName(String fisrtName) {
-        this.fisrtName = fisrtName;
+        this.acFN = fisrtName;
     }
 
-    public String getFisrtName() {
-        return fisrtName;
+    public String getAcFN() {
+        return acFN;
     }
 
-    public void setFisrtName(String fisrtName) {
-        this.fisrtName = fisrtName;
+    public void setAcFN(String acFN) {
+        this.acFN = acFN;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAcLN() {
+        return acLN;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAcLN(String acLN) {
+        this.acLN = acLN;
     }
 
-    public DateDTO getBirthday() {
-        return birthday;
+    public DateDTO getAcBDAY() {
+        return acBDAY;
     }
 
-    public void setBirthday(DateDTO birthday) {
-        this.birthday = birthday;
+    public void setAcBDAY(DateDTO acBDAY) {
+        this.acBDAY = acBDAY;
     }
 
-    public List<CharacterDTO> getCharactersPlayed() {
-        return charactersPlayed;
+    public List<CharacterDTO> getAcCHs() {
+        return acCHs;
     }
 
-    public void setCharactersPlayed(List<CharacterDTO> charactersPlayed) {
-        this.charactersPlayed = charactersPlayed;
+    public void setAcCHs(List<CharacterDTO> acCHs) {
+        this.acCHs = acCHs;
     }
 
-    public List<GameDTO> getGamesStarredIn() {
-        return gamesStarredIn;
+    public List<GameDTO> getAcGAMEs() {
+        return acGAMEs;
     }
 
-    public void setGamesStarredIn(List<GameDTO> gamesStarredIn) {
-        this.gamesStarredIn = gamesStarredIn;
+    public void setAcGAMEs(List<GameDTO> acGAMEs) {
+        this.acGAMEs = acGAMEs;
     }
 }

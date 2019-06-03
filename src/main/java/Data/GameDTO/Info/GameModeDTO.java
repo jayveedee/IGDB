@@ -6,40 +6,40 @@ import java.util.List;
 
 public class GameModeDTO {
 
-    private int gameModeid;
-    private String name;
-    private List<GameDTO> gameList;
+    private int                 gmID;
+    private String              gmNAME;
+    private List<GameDTO>       gmGAMEs;
 
-    public GameModeDTO(int gameModeid, String name, List<GameDTO> gameList) {
-        this.gameModeid = gameModeid;
-        this.name = name;
-        this.gameList = gameList;
+    public GameModeDTO(int gmID, String gmNAME, List<GameDTO> gmGAMEs) {
+        this.gmID = gmID;
+        this.gmNAME = gmNAME;
+        this.gmGAMEs = gmGAMEs;
     }
 
     public GameModeDTO() {
     }
 
-    public int getGameModeid() {
-        return gameModeid;
+    public int getGmID() {
+        return gmID;
     }
 
-    public void setGameModeid(int gameModeid) {
-        this.gameModeid = gameModeid;
+    public void setGmID(int gmID) {
+        this.gmID = gmID;
     }
 
-    public String getName() {
-        return name;
+    public String getGmNAME() {
+        return gmNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGmNAME(String gmNAME) {
+        this.gmNAME = gmNAME;
     }
 
-    public List<GameDTO> getGameList() {
-        return gameList;
+    public List<GameDTO> getGmGAMEs() {
+        return gmGAMEs;
     }
 
-    public void setGameList(List<GameDTO> gameList) {
-        this.gameList = gameList;
+    public void setGmGAMEs(List<GameDTO> gmGAMEs) {
+        this.gmGAMEs = gmGAMEs;
     }
 }

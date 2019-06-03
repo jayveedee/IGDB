@@ -9,30 +9,30 @@
 <div class="Login-Page">
     <div class="form">
         <!--- Registrer form start--->
-        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class ="Registrer-form">
+        <form method="POST" action="Index.html" onsubmit="return Validate()" chNAME="vform" class ="Registrer-form">
             <div id="username_field">
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" chNAME="userNAME" placeholder="Username">
                 <div id="name_error"> </div>
             </div>
             <div id="email_field">
-                <input type="email" name="email" placeholder="Email">
+                <input type="userEMAIL" chNAME="userEMAIL" placeholder="Email">
                 <div id="email_error"> </div>
             </div>
             <div id="password_field">
-                <input type="password" name="password" placeholder="Password">
+                <input type="userPASS" chNAME="userPASS" placeholder="Password">
             </div>
             <div id="password_checker">
-                <input type="password" name="password_confirm" placeholder="Password Confirmation">
+                <input type="userPASS" chNAME="password_confirm" placeholder="Password Confirmation">
                 <div id="password_error"></div>
             </div>
             <div>
-                <input type="submit" value="Registrer" class="button" name="Registrer">
+                <input type="submit" value="Registrer" class="button" chNAME="Registrer">
             </div>
             <p class="information">Already have a User? <a href="#" id="Login">Login</a></p>
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
-        <form method="POST" action="Index.html" onsubmit="return Validate()" name="vform" class="Login-form">
+        <form method="POST" action="Index.html" onsubmit="return Validate()" chNAME="vform" class="Login-form">
             <input type="text" placeholder="Username" required>
             <input type="text" placeholder="Password" required>
             <button onclick="location.href='index.html'" type="button">Login</button>

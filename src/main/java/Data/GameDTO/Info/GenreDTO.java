@@ -6,40 +6,40 @@ import java.util.List;
 
 public class GenreDTO {
 
-    private int genreid;
-    private String genreName;
-    private List<GameDTO> gameList;
+    private int                 genID;
+    private String              genNAME;
+    private List<GameDTO>       genGAMEs;
 
-    public GenreDTO(int genreid, String genreName, List<GameDTO> gameList) {
-        this.genreid = genreid;
-        this.genreName = genreName;
-        this.gameList = gameList;
+    public GenreDTO(int genID, String genNAME, List<GameDTO> genGAMEs) {
+        this.genID = genID;
+        this.genNAME = genNAME;
+        this.genGAMEs = genGAMEs;
     }
 
     public GenreDTO() {
     }
 
-    public int getGenreid() {
-        return genreid;
+    public int getGenID() {
+        return genID;
     }
 
-    public void setGenreid(int genreid) {
-        this.genreid = genreid;
+    public void setGenID(int genID) {
+        this.genID = genID;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getGenNAME() {
+        return genNAME;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setGenNAME(String genNAME) {
+        this.genNAME = genNAME;
     }
 
-    public List<GameDTO> getGameList() {
-        return gameList;
+    public List<GameDTO> getGenGAMEs() {
+        return genGAMEs;
     }
 
-    public void setGameList(List<GameDTO> gameList) {
-        this.gameList = gameList;
+    public void setGenGAMEs(List<GameDTO> genGAMEs) {
+        this.genGAMEs = genGAMEs;
     }
 }

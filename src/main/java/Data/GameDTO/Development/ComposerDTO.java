@@ -7,60 +7,60 @@ import java.util.List;
 
 public class ComposerDTO {
 
-    private int composerid;
-    private String firstName;
-    private String lastName;
-    private List<SoundtrackDTO> soundtrackDTOList;
-    private List<GameDTO> starredin;
+    private int                     compID;
+    private String                  compFN;
+    private String                  compLN;
+    private List<SoundtrackDTO>     compOSTs;
+    private List<GameDTO>           compGAMEs;
 
-    public ComposerDTO(int composerid, String firstName, String lastName, List<SoundtrackDTO> soundtrackDTOList, List<GameDTO> starredin) {
-        this.composerid = composerid;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.soundtrackDTOList = soundtrackDTOList;
-        this.starredin = starredin;
+    public ComposerDTO(int compID, String compFN, String compLN, List<SoundtrackDTO> compOSTs, List<GameDTO> compGAMEs) {
+        this.compID = compID;
+        this.compFN = compFN;
+        this.compLN = compLN;
+        this.compOSTs = compOSTs;
+        this.compGAMEs = compGAMEs;
     }
 
     public ComposerDTO() {
     }
 
-    public int getComposerid() {
-        return composerid;
+    public int getCompID() {
+        return compID;
     }
 
-    public void setComposerid(int composerid) {
-        this.composerid = composerid;
+    public void setCompID(int compID) {
+        this.compID = compID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCompFN() {
+        return compFN;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCompFN(String compFN) {
+        this.compFN = compFN;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCompLN() {
+        return compLN;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCompLN(String compLN) {
+        this.compLN = compLN;
     }
 
-    public List<SoundtrackDTO> getSoundtrackDTOList() {
-        return soundtrackDTOList;
+    public List<SoundtrackDTO> getCompOSTs() {
+        return compOSTs;
     }
 
-    public void setSoundtrackDTOList(List<SoundtrackDTO> soundtrackDTOList) {
-        this.soundtrackDTOList = soundtrackDTOList;
+    public void setCompOSTs(List<SoundtrackDTO> compOSTs) {
+        this.compOSTs = compOSTs;
     }
 
-    public List<GameDTO> getStarredin() {
-        return starredin;
+    public List<GameDTO> getCompGAMEs() {
+        return compGAMEs;
     }
 
-    public void setStarredin(List<GameDTO> starredin) {
-        this.starredin = starredin;
+    public void setCompGAMEs(List<GameDTO> compGAMEs) {
+        this.compGAMEs = compGAMEs;
     }
 }

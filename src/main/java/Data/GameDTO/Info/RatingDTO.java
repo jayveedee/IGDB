@@ -2,30 +2,31 @@ package Data.GameDTO.Info;
 
 public class RatingDTO {
 
-    private int ratingid;
-    private int ratings;
+    private int ratingID;
+    private int ratingRATED;
 
-    public RatingDTO(int ratingid, int ratings) {
-        this.ratingid = ratingid;
-        this.ratings = ratings;
+    public RatingDTO(int ratingID, int ratingRATED) {
+        this.ratingID = ratingID;
+        this.ratingRATED = ratingRATED;
     }
 
     public RatingDTO() {
     }
 
-    public int getRatingid() {
-        return ratingid;
+    public int getRatingID() {
+        return ratingID;
     }
 
-    public void setRatingid(int ratingid) {
-        this.ratingid = ratingid;
+    public void setRatingID(int ratingID) {
+        this.ratingID = ratingID;
     }
 
-    public int getRatings() {
-        return ratings;
+    public int getRatingRATED() {
+        return ratingRATED;
     }
 
-    public void setRatings(int ratings) {
-        this.ratings = ratings;
+    public void setRatingRATED(int ratingRATED) {
+        this.ratingRATED = ratingRATED;
     }
+
 }

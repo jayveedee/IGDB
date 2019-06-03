@@ -6,70 +6,70 @@ import java.util.List;
 
 public class UserDTO {
 
-    private int userid;
-    private String username;
-    private String password;
-    private String email;
-    private List<GameDTO> gamelist;
-    private List<RolesDTO> roleList;
+    private int                 userID;
+    private String              userNAME;
+    private String              userPASS;
+    private String              userEMAIL;
+    private List<GameDTO>       userGAMEs;
+    private List<RoleDTO>       userROLEs;
 
-    public UserDTO(int userid, String username, String password, String email, List<GameDTO> gamelist, List<RolesDTO> roleList) {
-        this.userid = userid;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.gamelist = gamelist;
-        this.roleList = roleList;
+    public UserDTO(int userID, String userNAME, String userPASS, String userEMAIL, List<GameDTO> userGAMEs, List<RoleDTO> userROLEs) {
+        this.userID = userID;
+        this.userNAME = userNAME;
+        this.userPASS = userPASS;
+        this.userEMAIL = userEMAIL;
+        this.userGAMEs = userGAMEs;
+        this.userROLEs = userROLEs;
     }
 
     public UserDTO() {
     }
 
-    public int getUserid() {
-        return userid;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserNAME() {
+        return userNAME;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserNAME(String userNAME) {
+        this.userNAME = userNAME;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPASS() {
+        return userPASS;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPASS(String userPASS) {
+        this.userPASS = userPASS;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEMAIL() {
+        return userEMAIL;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserEMAIL(String userEMAIL) {
+        this.userEMAIL = userEMAIL;
     }
 
-    public List<GameDTO> getGamelist() {
-        return gamelist;
+    public List<GameDTO> getUserGAMEs() {
+        return userGAMEs;
     }
 
-    public void setGamelist(List<GameDTO> gamelist) {
-        this.gamelist = gamelist;
+    public void setUserGAMEs(List<GameDTO> userGAMEs) {
+        this.userGAMEs = userGAMEs;
     }
 
-    public List<RolesDTO> getRoleList() {
-        return roleList;
+    public List<RoleDTO> getUserROLEs() {
+        return userROLEs;
     }
 
-    public void setRoleList(List<RolesDTO> roleList) {
-        this.roleList = roleList;
+    public void setUserROLEs(List<RoleDTO> userROLEs) {
+        this.userROLEs = userROLEs;
     }
 }

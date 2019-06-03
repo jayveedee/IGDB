@@ -7,74 +7,74 @@ import java.util.List;
 
 public class PublisherDTO {
 
-    private int companyid;
-    private String name;
-    private DateDTO established;
-    private String country;
-    private boolean status;
-    private List<GameDTO> gameList;
+    private int                 pubID;
+    private String              pubNAME;
+    private DateDTO             pubESTABLISHED;
+    private String              pubCOUNTRY;
+    private boolean             pubSTATUS;
+    private List<GameDTO>       pubGAMEs;
 
     private String biography;
 
-    public PublisherDTO(int companyid, String name, DateDTO established, String country, boolean status, List<GameDTO> gameList, String biography) {
-        this.companyid = companyid;
-        this.name = name;
-        this.established = established;
-        this.country = country;
-        this.status = status;
-        this.gameList = gameList;
+    public PublisherDTO(int pubID, String pubNAME, DateDTO pubESTABLISHED, String pubCOUNTRY, boolean pubSTATUS, List<GameDTO> pubGAMEs, String biography) {
+        this.pubID = pubID;
+        this.pubNAME = pubNAME;
+        this.pubESTABLISHED = pubESTABLISHED;
+        this.pubCOUNTRY = pubCOUNTRY;
+        this.pubSTATUS = pubSTATUS;
+        this.pubGAMEs = pubGAMEs;
         this.biography = biography;
     }
 
     public PublisherDTO() {
     }
 
-    public int getCompanyid() {
-        return companyid;
+    public int getPubID() {
+        return pubID;
     }
 
-    public void setCompanyid(int companyid) {
-        this.companyid = companyid;
+    public void setPubID(int pubID) {
+        this.pubID = pubID;
     }
 
-    public String getName() {
-        return name;
+    public String getPubNAME() {
+        return pubNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPubNAME(String pubNAME) {
+        this.pubNAME = pubNAME;
     }
 
-    public DateDTO getEstablished() {
-        return established;
+    public DateDTO getPubESTABLISHED() {
+        return pubESTABLISHED;
     }
 
-    public void setEstablished(DateDTO established) {
-        this.established = established;
+    public void setPubESTABLISHED(DateDTO pubESTABLISHED) {
+        this.pubESTABLISHED = pubESTABLISHED;
     }
 
-    public String getCountry() {
-        return country;
+    public String getPubCOUNTRY() {
+        return pubCOUNTRY;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setPubCOUNTRY(String pubCOUNTRY) {
+        this.pubCOUNTRY = pubCOUNTRY;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isPubSTATUS() {
+        return pubSTATUS;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setPubSTATUS(boolean pubSTATUS) {
+        this.pubSTATUS = pubSTATUS;
     }
 
-    public List<GameDTO> getGameList() {
-        return gameList;
+    public List<GameDTO> getPubGAMEs() {
+        return pubGAMEs;
     }
 
-    public void setGameList(List<GameDTO> gameList) {
-        this.gameList = gameList;
+    public void setPubGAMEs(List<GameDTO> pubGAMEs) {
+        this.pubGAMEs = pubGAMEs;
     }
 
     public String getBiography() {

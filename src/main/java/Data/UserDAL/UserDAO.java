@@ -2,7 +2,7 @@ package Data.UserDAL;
 
 import Data.GameDTO.GameDTO;
 import Data.IMysqlConnection;
-import Data.UserDTO.RolesDTO;
+import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
 import java.sql.SQLException;
@@ -22,12 +22,12 @@ public class UserDAO implements IUserDAO {
         String query2 = "INSERT INTO UserRoles (roleid, userid) VALUES (?, ?)";
         String query3 = "INSERT INTO GameList (gameid, userid) VALUES (?, ?)";
 
-        int userid              = user.getUserid();
-        String username         = user.getUsername();
-        String password         = user.getPassword();
-        String email            = user.getEmail();
-        List<GameDTO> gameList  = user.getGamelist();
-        List<RolesDTO> roleList = user.getRoleList();
+        int userid              = user.getUserID();
+        String username         = user.getUserNAME();
+        String password         = user.getUserPASS();
+        String email            = user.getUserEMAIL();
+        List<GameDTO> gameList  = user.getUserGAMEs();
+        List<RoleDTO> roleList = user.getUserROLEs();
 
         try {
             mySql.getConnection().setAutoCommit(false);
@@ -40,7 +40,7 @@ public class UserDAO implements IUserDAO {
 
             mySql.getConnection().prepareStatement(query2);
             for (int i = 0; i < roleList.size(); i++) {
-                mySql.getPrepStatement().setInt(1,roleList.get(i).getRoleid());
+                mySql.getPrepStatement().setInt(1,roleList.get(i).getRoleID());
                 mySql.getPrepStatement().setInt(2,userid);
                 mySql.getPrepStatement().addBatch();
             }
