@@ -26,10 +26,13 @@ body{
 .navigation-list li{
     list-style-type: none;
     display: inline-block;
-    padding: 20px;
-    border-radius: 10px;
 }
-.navigation-list li:hover{
+
+.not-active {
+    padding: 20px;
+    border-radius: 14px;
+}
+.not-active:hover{
     background: #59adff91;
 }
 .navigation-list li a{
@@ -45,6 +48,8 @@ body{
 
 .nav-active{
     background: #59adff91;
+    padding: 20px;
+    border-radius: 14px;
 }
 
 .nav-login{
