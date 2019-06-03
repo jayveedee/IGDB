@@ -8,7 +8,7 @@ body{
     top: -320px;
     box-sizing: border-box;
 }
-nav{
+.standart-nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -17,23 +17,21 @@ nav{
     border-radius: 15px;
 }
 
-ul{
+.navigation-list{
     width: 100%;
     margin: 0 auto;
     padding: 0;
 }
 
-ul li{
+.navigation-list li{
     list-style-type: none;
     display: inline-block;
     padding: 20px;
 }
-
-ul li:hover{
+.navigation-list li:hover{
     background: #8AC3D8;
 }
-
-ul li a{
+.navigation-list li a{
     color: #fff;
     text-decoration: none;
 }
