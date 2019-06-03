@@ -29,7 +29,29 @@ public class UserDAO implements IUserDAO {
         List<RolesDTO> roleList = user.getRoleList();
 
         try {
+            mySql.getConnection().setAutoCommit(false);
             mySql.getConnection().prepareStatement(query1);
+            mySql.getPrepStatement().setInt(1,userid);
+            mySql.getPrepStatement().setString(2,username);
+            mySql.getPrepStatement().setString(3,password);
+            mySql.getPrepStatement().executeUpdate();
+
+            mySql.getConnection().prepareStatement(query2);
+            for (int i = 0; i < roleList.size(); i++) {
+                mySql.getPrepStatement().setInt(1,roleList.get(i).getRoleid());
+                mySql.getPrepStatement().setInt(2,userid);
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeBatch();
+
+            mySql.getConnection().prepareStatement(query3);
+            for (int i = 0; i < gameList.size(); i++) {
+                mySql.getPrepStatement().setInt(1,gameList.get(i).getGameid());
+                mySql.getPrepStatement().setInt(2,userid);
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeBatch();
+            mySql.getConnection().commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
