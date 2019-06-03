@@ -9,9 +9,9 @@ public class WriterDTO {
     private int             wriID;
     private String          wriFN;
     private String          wriLN;
-    private List<GameDTO>   wriGAMEs;
+    private List<Integer>   wriGAMEs;
 
-    public WriterDTO(int wriID, String wriFN, String wriLN, List<GameDTO> wriGAMEs) {
+    public WriterDTO(int wriID, String wriFN, String wriLN, List<Integer> wriGAMEs) {
         this.wriID = wriID;
         this.wriFN = wriFN;
         this.wriLN = wriLN;
@@ -45,11 +45,11 @@ public class WriterDTO {
         this.wriLN = wriLN;
     }
 
-    public List<GameDTO> getWriGAMEs() {
+    public List<Integer> getWriGAMEs() {
         return wriGAMEs;
     }
 
-    public void setWriGAMEs(List<GameDTO> wriGAMEs) {
+    public void setWriGAMEs(List<Integer> wriGAMEs) {
         this.wriGAMEs = wriGAMEs;
     }
 }

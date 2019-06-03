@@ -48,7 +48,7 @@ public class UserDAO implements IUserDAO {
 
             mySql.getConnection().prepareStatement(query3);
             for (int i = 0; i < gameList.size(); i++) {
-                mySql.getPrepStatement().setInt(1,gameList.get(i).getGameid());
+                mySql.getPrepStatement().setInt(1,gameList.get(i).getGameID());
                 mySql.getPrepStatement().setInt(2,userid);
                 mySql.getPrepStatement().addBatch();
             }

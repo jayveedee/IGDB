@@ -10,10 +10,10 @@ public class ComposerDTO {
     private int                     compID;
     private String                  compFN;
     private String                  compLN;
-    private List<SoundtrackDTO>     compOSTs;
-    private List<GameDTO>           compGAMEs;
+    private List<Integer>           compOSTs;
+    private List<Integer>           compGAMEs;
 
-    public ComposerDTO(int compID, String compFN, String compLN, List<SoundtrackDTO> compOSTs, List<GameDTO> compGAMEs) {
+    public ComposerDTO(int compID, String compFN, String compLN, List<Integer> compOSTs, List<Integer> compGAMEs) {
         this.compID = compID;
         this.compFN = compFN;
         this.compLN = compLN;
@@ -48,19 +48,19 @@ public class ComposerDTO {
         this.compLN = compLN;
     }
 
-    public List<SoundtrackDTO> getCompOSTs() {
+    public List<Integer> getCompOSTs() {
         return compOSTs;
     }
 
-    public void setCompOSTs(List<SoundtrackDTO> compOSTs) {
+    public void setCompOSTs(List<Integer> compOSTs) {
         this.compOSTs = compOSTs;
     }
 
-    public List<GameDTO> getCompGAMEs() {
+    public List<Integer> getCompGAMEs() {
         return compGAMEs;
     }
 
-    public void setCompGAMEs(List<GameDTO> compGAMEs) {
+    public void setCompGAMEs(List<Integer> compGAMEs) {
         this.compGAMEs = compGAMEs;
     }
 }

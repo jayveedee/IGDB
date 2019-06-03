@@ -1,7 +1,6 @@
 package Data.GameDTO.Development.Company;
 
 import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
@@ -12,11 +11,11 @@ public class PublisherDTO {
     private DateDTO             pubESTABLISHED;
     private String              pubCOUNTRY;
     private boolean             pubSTATUS;
-    private List<GameDTO>       pubGAMEs;
+    private List<Integer>       pubGAMEs;
 
     private String biography;
 
-    public PublisherDTO(int pubID, String pubNAME, DateDTO pubESTABLISHED, String pubCOUNTRY, boolean pubSTATUS, List<GameDTO> pubGAMEs, String biography) {
+    public PublisherDTO(int pubID, String pubNAME, DateDTO pubESTABLISHED, String pubCOUNTRY, boolean pubSTATUS, List<Integer> pubGAMEs, String biography) {
         this.pubID = pubID;
         this.pubNAME = pubNAME;
         this.pubESTABLISHED = pubESTABLISHED;
@@ -69,11 +68,11 @@ public class PublisherDTO {
         this.pubSTATUS = pubSTATUS;
     }
 
-    public List<GameDTO> getPubGAMEs() {
+    public List<Integer> getPubGAMEs() {
         return pubGAMEs;
     }
 
-    public void setPubGAMEs(List<GameDTO> pubGAMEs) {
+    public void setPubGAMEs(List<Integer> pubGAMEs) {
         this.pubGAMEs = pubGAMEs;
     }
 

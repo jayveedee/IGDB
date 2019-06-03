@@ -1,22 +1,20 @@
 package Data.GameDTO.Character;
 
-import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
 public class CharacterDTO {
 
-    private int                 chID;
-    private String              chNAME;
-    private DateDTO             chBDAY;
-    private List<ActorDTO>      chVAs;
-    private List<GameDTO>       chGAMEs;
+    private int                     chID;
+    private String                  chNAME;
+    private DateDTO                 chBDAY;
+    private List<Integer>           chVAs;
+    private List<Integer>           chGAMEs;
 
-    private String              chBIO;
+    private String                  chBIO;
 
-    public CharacterDTO(int chID, String chNAME, String chBIO, DateDTO chBDAY, List<ActorDTO> chVAs, List<GameDTO> chGAMEs) {
+    public CharacterDTO(int chID, String chNAME, String chBIO, DateDTO chBDAY, List<Integer> chVAs, List<Integer> chGAMEs) {
         this.chID = chID;
         this.chNAME = chNAME;
         this.chBIO = chBIO;
@@ -60,19 +58,19 @@ public class CharacterDTO {
         this.chBDAY = chBDAY;
     }
 
-    public List<ActorDTO> getChVAs() {
+    public List<Integer> getChVAs() {
         return chVAs;
     }
 
-    public void setChVAs(List<ActorDTO> chVAs) {
+    public void setChVAs(List<Integer> chVAs) {
         this.chVAs = chVAs;
     }
 
-    public List<GameDTO> getChGAMEs() {
+    public List<Integer> getChGAMEs() {
         return chGAMEs;
     }
 
-    public void setChGAMEs(List<GameDTO> chGAMEs) {
+    public void setChGAMEs(List<Integer> chGAMEs) {
         this.chGAMEs = chGAMEs;
     }
 }

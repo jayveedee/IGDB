@@ -8,13 +8,13 @@ import java.util.List;
 
 public class SoundtrackDTO {
 
-    private int ostID;
-    private String ostNAME;
-    private ComposerDTO ostCOMP;
-    private List<MusicArtistDTO> ostMA;
-    private List<GameDTO> ostGAMEs;
+    private int                 ostID;
+    private String              ostNAME;
+    private ComposerDTO         ostCOMP;
+    private List<Integer>       ostMA;
+    private List<Integer>       ostGAMEs;
 
-    public SoundtrackDTO(int ostID, String ostNAME, ComposerDTO ostCOMP, List<MusicArtistDTO> ostMA, List<GameDTO> ostGAMEs) {
+    public SoundtrackDTO(int ostID, String ostNAME, ComposerDTO ostCOMP, List<Integer> ostMA, List<Integer> ostGAMEs) {
         this.ostID = ostID;
         this.ostNAME = ostNAME;
         this.ostCOMP = ostCOMP;
@@ -49,19 +49,19 @@ public class SoundtrackDTO {
         this.ostCOMP = ostCOMP;
     }
 
-    public List<MusicArtistDTO> getOstMA() {
+    public List<Integer> getOstMA() {
         return ostMA;
     }
 
-    public void setOstMA(List<MusicArtistDTO> ostMA) {
+    public void setOstMA(List<Integer> ostMA) {
         this.ostMA = ostMA;
     }
 
-    public List<GameDTO> getOstGAMEs() {
+    public List<Integer> getOstGAMEs() {
         return ostGAMEs;
     }
 
-    public void setOstGAMEs(List<GameDTO> ostGAMEs) {
+    public void setOstGAMEs(List<Integer> ostGAMEs) {
         this.ostGAMEs = ostGAMEs;
     }
 }

@@ -1,7 +1,5 @@
 package Data.GameDTO;
 
-import Data.GameDTO.Character.CharacterDTO;
-import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
@@ -12,163 +10,161 @@ import java.util.List;
 
 public class GameDTO {
 
-    private int gameid;
-    private int ageRating;
-    private String name;
-    private String biography;
-    private DateDTO releaseDate;
-    private List<RatingDTO> ratingDTO;
-    //private List<String> trivia;
-    //private List<String> language;
-    //private List<String> quotes;
-    private DeveloperDTO developerDTO;
-    private PublisherDTO publisherDTO;
-    private SoundtrackDTO soundtrackDTO;
-    private ComposerDTO composerDTO;
-    private WriterDTO writerDTO;
-    private List<CharacterDTO> characterDTOS;
-    private List<ActorDTO> actorDTOS;
-    private List<GenreDTO> genreDTOS;
-    private List<GameModeDTO> gameModeDTOS;
+    private int                     gameID;
+    private int                     gameAGERATING;
+    private String                  gameNAME;
+    private DateDTO                 gameRELEASEDATE;
+    private List<Integer>           gameRATINGs;
+    private DeveloperDTO            gameDEV;
+    private PublisherDTO            gamePUB;
+    private SoundtrackDTO           gameOST;
+    private ComposerDTO             gameCOMP;
+    private WriterDTO               gameWRI;
+    private List<Integer>           gameCHs;
+    private List<Integer>           gameACs;
+    private List<Integer>           gameGENREs;
+    private List<Integer>           gameGMs;
 
-    public GameDTO(int gameid, int ageRating, String name, String biography, DateDTO releaseDate, List<RatingDTO> ratingDTO, DeveloperDTO developerDTO, PublisherDTO publisherDTO, SoundtrackDTO soundtrackDTO, ComposerDTO composerDTO, WriterDTO writerDTO, List<CharacterDTO> characterDTOS, List<ActorDTO> actorDTOS, List<GenreDTO> genreDTOS, List<GameModeDTO> gameModeDTOS) {
-        this.gameid = gameid;
-        this.ageRating = ageRating;
-        this.name = name;
-        this.biography = biography;
-        this.releaseDate = releaseDate;
-        this.ratingDTO = ratingDTO;
-        this.developerDTO = developerDTO;
-        this.publisherDTO = publisherDTO;
-        this.soundtrackDTO = soundtrackDTO;
-        this.composerDTO = composerDTO;
-        this.writerDTO = writerDTO;
-        this.characterDTOS = characterDTOS;
-        this.actorDTOS = actorDTOS;
-        this.genreDTOS = genreDTOS;
-        this.gameModeDTOS = gameModeDTOS;
+    private String                  gameBIO;
+
+    public GameDTO(int gameID, int gameAGERATING, String gameNAME, String gameBIO, DateDTO gameRELEASEDATE, List<Integer> gameRATINGs, DeveloperDTO gameDEV, PublisherDTO gamePUB, SoundtrackDTO gameOST, ComposerDTO gameCOMP, WriterDTO gameWRI, List<Integer> gameCHs, List<Integer> gameACs, List<Integer> gameGENREs, List<Integer> gameGMs) {
+        this.gameID = gameID;
+        this.gameAGERATING = gameAGERATING;
+        this.gameNAME = gameNAME;
+        this.gameBIO = gameBIO;
+        this.gameRELEASEDATE = gameRELEASEDATE;
+        this.gameRATINGs = gameRATINGs;
+        this.gameDEV = gameDEV;
+        this.gamePUB = gamePUB;
+        this.gameOST = gameOST;
+        this.gameCOMP = gameCOMP;
+        this.gameWRI = gameWRI;
+        this.gameCHs = gameCHs;
+        this.gameACs = gameACs;
+        this.gameGENREs = gameGENREs;
+        this.gameGMs = gameGMs;
     }
 
     public GameDTO() {
     }
 
-    public int getGameid() {
-        return gameid;
+    public int getGameID() {
+        return gameID;
     }
 
-    public void setGameid(int gameid) {
-        this.gameid = gameid;
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
-    public int getAgeRating() {
-        return ageRating;
+    public int getGameAGERATING() {
+        return gameAGERATING;
     }
 
-    public void setAgeRating(int ageRating) {
-        this.ageRating = ageRating;
+    public void setGameAGERATING(int gameAGERATING) {
+        this.gameAGERATING = gameAGERATING;
     }
 
-    public String getName() {
-        return name;
+    public String getGameNAME() {
+        return gameNAME;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGameNAME(String gameNAME) {
+        this.gameNAME = gameNAME;
     }
 
-    public String getBiography() {
-        return biography;
+    public String getGameBIO() {
+        return gameBIO;
     }
 
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setGameBIO(String gameBIO) {
+        this.gameBIO = gameBIO;
     }
 
-    public DateDTO getReleaseDate() {
-        return releaseDate;
+    public DateDTO getGameRELEASEDATE() {
+        return gameRELEASEDATE;
     }
 
-    public void setReleaseDate(DateDTO releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setGameRELEASEDATE(DateDTO gameRELEASEDATE) {
+        this.gameRELEASEDATE = gameRELEASEDATE;
     }
 
-    public List<RatingDTO> getRatingDTO() {
-        return ratingDTO;
+    public List<Integer> getGameRATINGs() {
+        return gameRATINGs;
     }
 
-    public void setRatingDTO(List<RatingDTO> ratingDTO) {
-        this.ratingDTO = ratingDTO;
+    public void setGameRATINGs(List<Integer> gameRATINGs) {
+        this.gameRATINGs = gameRATINGs;
     }
 
-    public DeveloperDTO getDeveloperDTO() {
-        return developerDTO;
+    public DeveloperDTO getGameDEV() {
+        return gameDEV;
     }
 
-    public void setDeveloperDTO(DeveloperDTO developerDTO) {
-        this.developerDTO = developerDTO;
+    public void setGameDEV(DeveloperDTO gameDEV) {
+        this.gameDEV = gameDEV;
     }
 
-    public PublisherDTO getPublisherDTO() {
-        return publisherDTO;
+    public PublisherDTO getGamePUB() {
+        return gamePUB;
     }
 
-    public void setPublisherDTO(PublisherDTO publisherDTO) {
-        this.publisherDTO = publisherDTO;
+    public void setGamePUB(PublisherDTO gamePUB) {
+        this.gamePUB = gamePUB;
     }
 
-    public SoundtrackDTO getSoundtrackDTO() {
-        return soundtrackDTO;
+    public SoundtrackDTO getGameOST() {
+        return gameOST;
     }
 
-    public void setSoundtrackDTO(SoundtrackDTO soundtrackDTO) {
-        this.soundtrackDTO = soundtrackDTO;
+    public void setGameOST(SoundtrackDTO gameOST) {
+        this.gameOST = gameOST;
     }
 
-    public ComposerDTO getComposerDTO() {
-        return composerDTO;
+    public ComposerDTO getGameCOMP() {
+        return gameCOMP;
     }
 
-    public void setComposerDTO(ComposerDTO composerDTO) {
-        this.composerDTO = composerDTO;
+    public void setGameCOMP(ComposerDTO gameCOMP) {
+        this.gameCOMP = gameCOMP;
     }
 
-    public WriterDTO getWriterDTO() {
-        return writerDTO;
+    public WriterDTO getGameWRI() {
+        return gameWRI;
     }
 
-    public void setWriterDTO(WriterDTO writerDTO) {
-        this.writerDTO = writerDTO;
+    public void setGameWRI(WriterDTO gameWRI) {
+        this.gameWRI = gameWRI;
     }
 
-    public List<CharacterDTO> getCharacterDTOS() {
-        return characterDTOS;
+    public List<Integer> getGameCHs() {
+        return gameCHs;
     }
 
-    public void setCharacterDTOS(List<CharacterDTO> characterDTOS) {
-        this.characterDTOS = characterDTOS;
+    public void setGameCHs(List<Integer> gameCHs) {
+        this.gameCHs = gameCHs;
     }
 
-    public List<ActorDTO> getActorDTOS() {
-        return actorDTOS;
+    public List<Integer> getGameACs() {
+        return gameACs;
     }
 
-    public void setActorDTOS(List<ActorDTO> actorDTOS) {
-        this.actorDTOS = actorDTOS;
+    public void setGameACs(List<Integer> gameACs) {
+        this.gameACs = gameACs;
     }
 
-    public List<GenreDTO> getGenreDTOS() {
-        return genreDTOS;
+    public List<Integer> getGameGENREs() {
+        return gameGENREs;
     }
 
-    public void setGenreDTOS(List<GenreDTO> genreDTOS) {
-        this.genreDTOS = genreDTOS;
+    public void setGameGENREs(List<Integer> gameGENREs) {
+        this.gameGENREs = gameGENREs;
     }
 
-    public List<GameModeDTO> getGameModeDTOS() {
-        return gameModeDTOS;
+    public List<Integer> getGameGMs() {
+        return gameGMs;
     }
 
-    public void setGameModeDTOS(List<GameModeDTO> gameModeDTOS) {
-        this.gameModeDTOS = gameModeDTOS;
+    public void setGameGMs(List<Integer> gameGMs) {
+        this.gameGMs = gameGMs;
     }
 }

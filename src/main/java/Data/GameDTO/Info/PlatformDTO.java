@@ -1,16 +1,14 @@
 package Data.GameDTO.Info;
 
-import Data.GameDTO.GameDTO;
-
 import java.util.List;
 
 public class PlatformDTO {
 
     private int                 platID;
     private String              platNAME;
-    private List<GameDTO>       platGAMEs;
+    private List<Integer>       platGAMEs;
 
-    public PlatformDTO(int platID, String platNAME, List<GameDTO> platGAMEs) {
+    public PlatformDTO(int platID, String platNAME, List<Integer> platGAMEs) {
         this.platID = platID;
         this.platNAME = platNAME;
         this.platGAMEs = platGAMEs;
@@ -35,11 +33,11 @@ public class PlatformDTO {
         this.platNAME = platNAME;
     }
 
-    public List<GameDTO> getPlatGAMEs() {
+    public List<Integer> getPlatGAMEs() {
         return platGAMEs;
     }
 
-    public void setPlatGAMEs(List<GameDTO> platGAMEs) {
+    public void setPlatGAMEs(List<Integer> platGAMEs) {
         this.platGAMEs = platGAMEs;
     }
 }
