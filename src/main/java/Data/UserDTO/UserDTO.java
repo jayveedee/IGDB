@@ -1,7 +1,5 @@
 package Data.UserDTO;
 
-import Data.GameDTO.GameDTO;
-
 import java.util.List;
 
 public class UserDTO {
