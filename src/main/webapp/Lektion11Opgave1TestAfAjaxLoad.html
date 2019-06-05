@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lektion11Opgave1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div id="maincontainer">
+    this text needs to change
+</div>
+
+<button id="button" type="button"> tryk her :)</button>
+
+<script>
+    $("#button").click(function () {
+        $("#maincontainer").load("ajaxTestAlternativeText.html")
+    })
+
+</script>
+</body>
+</html>
