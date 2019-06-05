@@ -10,10 +10,10 @@ public class UserDTO {
     private String              userNAME;
     private String              userPASS;
     private String              userEMAIL;
-    private List<GameDTO>       userGAMEs;
+    private List<Integer>       userGAMEs;
     private List<RoleDTO>       userROLEs;
 
-    public UserDTO(int userID, String userNAME, String userPASS, String userEMAIL, List<GameDTO> userGAMEs, List<RoleDTO> userROLEs) {
+    public UserDTO(int userID, String userNAME, String userPASS, String userEMAIL, List<Integer> userGAMEs, List<RoleDTO> userROLEs) {
         this.userID = userID;
         this.userNAME = userNAME;
         this.userPASS = userPASS;
@@ -57,11 +57,11 @@ public class UserDTO {
         this.userEMAIL = userEMAIL;
     }
 
-    public List<GameDTO> getUserGAMEs() {
+    public List<Integer> getUserGAMEs() {
         return userGAMEs;
     }
 
-    public void setUserGAMEs(List<GameDTO> userGAMEs) {
+    public void setUserGAMEs(List<Integer> userGAMEs) {
         this.userGAMEs = userGAMEs;
     }
 
