@@ -59,7 +59,7 @@ public class UserDAO implements IUserDAO {
         String query3 = "SELECT * FROM UGameLIST WHERE userNAME = ?";
         UserDTO user = new UserDTO();
         List<RoleDTO> rlist;
-        List<Integer> gmlist = new ArrayList<>();
+        List<Integer> gmlist;
 
         try {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
@@ -79,13 +79,7 @@ public class UserDAO implements IUserDAO {
             rlist = RoleDAO.handleGetRoleList(rs2);
             user.setUserROLEs(rlist);
 
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
-            mySql.getPrepStatement().setString(1,userNAME);
-
-            ResultSet rs3 = mySql.getPrepStatement().executeQuery();
-            while (rs3.next()){
-                gmlist.add(rs3.getInt("gameID"));
-            }
+            gmlist = handleGetUGameList(userNAME, query3);
             user.setUserGAMEs(gmlist);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,8 +127,27 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public List<Integer> getUGameLIST() {
-        return null;
+    public List<Integer> getUGameLIST(String userNAME) {
+        String query = "SELECT * FROM UGameLIST WHERE userNAME = ?";
+        List<Integer> gmlist = new ArrayList<>();
+        try {
+            gmlist = handleGetUGameList(userNAME, query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gmlist;
+    }
+
+    private List<Integer> handleGetUGameList(String userNAME, String query) throws SQLException {
+        List<Integer> gmlist = new ArrayList<>();
+        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+        mySql.getPrepStatement().setString(1,userNAME);
+        ResultSet rs = mySql.getPrepStatement().executeQuery();
+
+        while (rs.next()){
+            gmlist.add(rs.getInt("gameID"));
+        }
+        return gmlist;
     }
 
     @Override

@@ -74,6 +74,11 @@ public class RoleDAO_TEST {
         rdao.deleteRole(r3.getRoleID());
     }
 
+    @Test
+    public void updateRole() {
+
+    }
+
     @Test //GOOD TO GO
     public void deleteRole() throws SQLException {
         mySql.createConnection();

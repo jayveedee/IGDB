@@ -71,6 +71,11 @@ public class RoleDAO implements IRolesDAO {
         return rlist;
     }
 
+    @Override
+    public void updateRole(int roleid) {
+
+    }
+
     static List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
         List<RoleDTO> rlist = new ArrayList<>();
         while (rs.next()){
