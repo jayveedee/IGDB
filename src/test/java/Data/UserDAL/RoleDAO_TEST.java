@@ -13,8 +13,8 @@ import static org.junit.Assert.*;
 
 public class RoleDAO_TEST {
 
-    IMysqlConnection mySql = new MysqlConnection();
-    IRolesDAO rdao = new RoleDAO(mySql);
+    private IMysqlConnection mySql = new MysqlConnection();
+    private IRolesDAO rdao = new RoleDAO(mySql);
 
     @Test //GOOD TO GO
     public void createRole() throws SQLException {

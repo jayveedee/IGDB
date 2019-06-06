@@ -4,7 +4,9 @@ import Data.IMysqlConnection;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO {
@@ -51,8 +53,44 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public UserDTO getUser(int userid) {
-        return null;
+    public UserDTO getUser(String userNAME) {
+        String query1 = "SELECT * FROM Users WHERE userNAME = ?";
+        String query2 = "SELECT * FROM UserRoles INNER JOIN Roles ON UserRoles.roleID = Roles.roleID WHERE userNAME = ?";
+        String query3 = "SELECT * FROM UGameLIST WHERE userNAME = ?";
+        UserDTO user = new UserDTO();
+        List<RoleDTO> rlist;
+        List<Integer> gmlist = new ArrayList<>();
+
+        try {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            mySql.getPrepStatement().setString(1,userNAME);
+
+            ResultSet rs1 = mySql.getPrepStatement().executeQuery();
+            if (rs1.next()){
+                user.setUserNAME(rs1.getString("userNAME"));
+                user.setUserPASS(rs1.getString("userPASS"));
+                user.setUserEMAIL(rs1.getString("userEMAIL"));
+            }
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            mySql.getPrepStatement().setString(1,userNAME);
+
+            ResultSet rs2 = mySql.getPrepStatement().executeQuery();
+            rlist = RoleDAO.handleGetRoleList(rs2);
+            user.setUserROLEs(rlist);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
+            mySql.getPrepStatement().setString(1,userNAME);
+
+            ResultSet rs3 = mySql.getPrepStatement().executeQuery();
+            while (rs3.next()){
+                gmlist.add(rs3.getInt("gameID"));
+            }
+            user.setUserGAMEs(gmlist);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override
@@ -66,12 +104,12 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void updateUser(int userid) {
+    public void updateUser(String userNAME) {
 
     }
 
     @Override
-    public void deleteUser(int userid) {
+    public void deleteUser(String userNAME) {
 
     }
 }

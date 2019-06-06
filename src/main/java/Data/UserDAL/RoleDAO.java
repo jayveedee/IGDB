@@ -64,14 +64,20 @@ public class RoleDAO implements IRolesDAO {
             mySql.setStatement(mySql.getConnection().createStatement());
 
             ResultSet rs = mySql.getStatement().executeQuery(query);
-            while (rs.next()){
-                RoleDTO role = new RoleDTO();
-                role.setRoleID(rs.getInt("roleID"));
-                role.setRoleNAME(rs.getString("roleNAME"));
-                rlist.add(role);
-            }
+            rlist = handleGetRoleList(rs);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return rlist;
+    }
+
+    static List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
+        List<RoleDTO> rlist = new ArrayList<>();
+        while (rs.next()){
+            RoleDTO role = new RoleDTO();
+            role.setRoleID(rs.getInt("roleID"));
+            role.setRoleNAME(rs.getString("roleNAME"));
+            rlist.add(role);
         }
         return rlist;
     }
