@@ -47,8 +47,10 @@ public class UserDAO_TEST {
         gmlist.add(33);
 
         UserDTO u = new UserDTO("Jakup","Password","email@email.com",gmlist,rlist);
-
         udao.createUser(u);
+
+
+
     }
 
     @org.junit.Test

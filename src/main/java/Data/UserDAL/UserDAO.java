@@ -1,6 +1,5 @@
 package Data.UserDAL;
 
-import Data.GameDTO.GameDTO;
 import Data.IMysqlConnection;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -58,6 +57,11 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<UserDTO> getUserList() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getUGameLIST() {
         return null;
     }
 

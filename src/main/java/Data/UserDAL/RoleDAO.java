@@ -3,7 +3,9 @@ package Data.UserDAL;
 import Data.IMysqlConnection;
 import Data.UserDTO.RoleDTO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoleDAO implements IRolesDAO {
@@ -35,16 +37,63 @@ public class RoleDAO implements IRolesDAO {
 
     @Override
     public RoleDTO getRole(int roleid) {
-        return null;
+        String query = "SELECT * FROM Roles WHERE roleID = ?";
+        RoleDTO role = new RoleDTO();
+
+        try {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setInt(1,roleid);
+
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            if (rs.next()){
+                role.setRoleID(rs.getInt("roleID"));
+                role.setRoleNAME(rs.getString("roleNAME"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return role;
     }
 
     @Override
     public List<RoleDTO> getRoleList() {
-        return null;
+        String query = "SELECT * FROM Roles";
+        List<RoleDTO> rlist = new ArrayList<>();
+
+        try {
+            mySql.setStatement(mySql.getConnection().createStatement());
+
+            ResultSet rs = mySql.getStatement().executeQuery(query);
+            while (rs.next()){
+                RoleDTO role = new RoleDTO();
+                role.setRoleID(rs.getInt("roleID"));
+                role.setRoleNAME(rs.getString("roleNAME"));
+                rlist.add(role);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rlist;
     }
 
     @Override
     public void deleteRole(int roleid) {
+        String query1 = "DELETE FROM UserRoles WHERE roleID = ?";
+        String query2 = "DELETE FROM Roles WHERE roleID = ?";
 
+        try {
+            handleDeleteByID(roleid, query1);
+            handleDeleteByID(roleid, query2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void handleDeleteByID(int roleid, String query2) throws SQLException {
+        mySql.getConnection().setAutoCommit(false);
+        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+        mySql.getPrepStatement().setInt(1,roleid);
+        mySql.getPrepStatement().executeUpdate();
+        mySql.getConnection().commit();
     }
 }
