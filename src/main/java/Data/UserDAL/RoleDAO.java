@@ -73,7 +73,8 @@ public class RoleDAO implements IRolesDAO {
 
     @Override
     public void updateRole(int roleid) {
-
+        String query1 = "DELETE FROM UserRoles WHERE roleid = ?";
+        String query2 = "UPDATE Roles SET roleNAME = ? WHERE roleID = ?";
     }
 
     static List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
