@@ -2,7 +2,6 @@ package Data.UserDAL;
 
 import Data.UserDTO.UserDTO;
 
-import java.sql.Connection;
 import java.util.List;
 
 public interface IUserDAO {

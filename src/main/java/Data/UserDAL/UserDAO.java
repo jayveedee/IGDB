@@ -18,38 +18,29 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void createUser(UserDTO user) {
-        String query1 = "INSERT INTO Users (userid, username, email, password) VALUES (?, ?, ?, ?)";
-        String query2 = "INSERT INTO UserRoles (roleid, userid) VALUES (?, ?)";
-        String query3 = "INSERT INTO GameList (gameid, userid) VALUES (?, ?)";
+        String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL) VALUES (?, ?, ?)";
+        String query2 = "INSERT INTO UserRoles (userNAME, roleID) VALUES (?, ?)";
 
-        int userid              = user.getUserID();
         String username         = user.getUserNAME();
         String password         = user.getUserPASS();
         String email            = user.getUserEMAIL();
-        List<GameDTO> gameList  = user.getUserGAMEs();
-        List<RoleDTO> roleList = user.getUserROLEs();
+        List<Integer> gameList  = user.getUserGAMEs();
+        List<RoleDTO> roleList  = user.getUserROLEs();
 
         try {
             mySql.getConnection().setAutoCommit(false);
-            mySql.getConnection().prepareStatement(query1);
-            mySql.getPrepStatement().setInt(1,userid);
-            mySql.getPrepStatement().setString(2,username);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            mySql.getPrepStatement().setString(1,username);
+            mySql.getPrepStatement().setString(2,password);
             mySql.getPrepStatement().setString(3,email);
-            mySql.getPrepStatement().setString(4,password);
             mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
 
-            mySql.getConnection().prepareStatement(query2);
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
             for (int i = 0; i < roleList.size(); i++) {
-                mySql.getPrepStatement().setInt(1,roleList.get(i).getRoleID());
-                mySql.getPrepStatement().setInt(2,userid);
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-
-            mySql.getConnection().prepareStatement(query3);
-            for (int i = 0; i < gameList.size(); i++) {
-                mySql.getPrepStatement().setInt(1,gameList.get(i).getGameID());
-                mySql.getPrepStatement().setInt(2,userid);
+                mySql.getPrepStatement().setString(1,username);
+                mySql.getPrepStatement().setInt(2,roleList.get(i).getRoleID());
                 mySql.getPrepStatement().addBatch();
             }
             mySql.getPrepStatement().executeBatch();

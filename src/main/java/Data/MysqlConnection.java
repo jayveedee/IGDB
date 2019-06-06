@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class MysqlConnection implements IMysqlConnection {
 
-    private Statement           statement = null;
-    private PreparedStatement   prepStatement = null;
-    private Connection          connection = null;
+    private Statement           statement;
+    private PreparedStatement   prepStatement;
+    private Connection          connection;
 
     private String myURLStart = "jdbc:mysql://";
     private String myURL = "ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s170727?";
