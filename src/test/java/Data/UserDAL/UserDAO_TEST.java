@@ -38,7 +38,8 @@ public class UserDAO_TEST {
     }
 
     @org.junit.Test
-    public void getUser() {
+    public void getUser() throws SQLException {
+        mySql.createConnection();
 
     }
 

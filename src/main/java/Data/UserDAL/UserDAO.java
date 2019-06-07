@@ -157,7 +157,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean updateSpecificUserRole(String userNAME, RoleDTO newRole) {
         String query = "UPDATE UserRoles SET roleID = ? WHERE userNAME = ?";
-        IRoleDAO rdao = new RoleDAO(mySql);
+        RoleDAO rdao = new RoleDAO(mySql);
         return rdao.handleUpdateUserRolesXCreateRole(query,newRole.getRoleID(),userNAME);
     }
 
