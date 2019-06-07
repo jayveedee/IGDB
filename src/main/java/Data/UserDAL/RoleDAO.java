@@ -104,10 +104,10 @@ public class RoleDAO implements IRoleDAO {
         return handleDeleteByID(roleID, query1) && handleDeleteByID(roleID, query2);
     }
 
-    private boolean handleDeleteByID(int roleid, String query2) {
+    private boolean handleDeleteByID(int roleid, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setInt(1,roleid);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();

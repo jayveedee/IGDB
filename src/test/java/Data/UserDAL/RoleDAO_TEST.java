@@ -74,14 +74,25 @@ public class RoleDAO_TEST {
         rdao.deleteRole(r3.getRoleID());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void updateRole() throws SQLException {
         mySql.createConnection();
+        rdao.deleteRole(1);
 
         RoleDTO role = new RoleDTO(1,"Admin");
-        rdao.createRole(role);
+        assertTrue(rdao.createRole(role));
         RoleDTO t1 = rdao.getRole(role.getRoleID());
-        rdao.updateRole(role.getRoleID());
+        System.out.println("t1: roleID = " + t1.getRoleID() + " roleNAME = " + t1.getRoleNAME());
+
+        RoleDTO newRole = new RoleDTO(1,"Moderator");
+        assertTrue(rdao.updateRole(newRole));
+        RoleDTO t2 = rdao.getRole(role.getRoleID());
+        System.out.println("t2: roleID = " + t2.getRoleID() + " roleNAME = " + t2.getRoleNAME());
+
+        assertEquals(newRole.getRoleID(),t2.getRoleID());
+        assertEquals(newRole.getRoleNAME(),t2.getRoleNAME());
+
+        rdao.deleteRole(role.getRoleID());
     }
 
     @Test //GOOD TO GO
