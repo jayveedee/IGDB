@@ -5,6 +5,27 @@
     <title>IGDB - Login and Signup</title>
     <link rel="stylesheet" type="text/css" href="RegistrerStyle.css">
     <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $("#registerForm").submit(function (sendData){
+            sendData.preventDefault()
+            var form = $(this);
+            var action = form.attr("action");
+            var method = form.attr("method");
+            $.ajax({
+                type : method,
+                url : action,
+                data : form.serialize(),
+                success : function (data) {
+                    if(data == "true"){
+                    alert("user created")
+                    }else{
+                        alert("user NOT created, try again")
+                    }
+                }
+                })
+        })
+    </script>
 </head>
 <body>
     <nav class="standart-nav">
@@ -26,7 +47,7 @@
                 </ul>
             </div>
         <!--- Registrer form start--->
-        <form method="POST" action="Index.html" class="Registrer-form"> 
+        <form id = "registerForm" method="POST" action="/rest/services/user/createUser" class="Registrer-form">
             <input type="text" name="username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>

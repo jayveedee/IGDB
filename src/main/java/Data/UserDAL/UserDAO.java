@@ -18,7 +18,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void createUser(UserDTO user) {
+    public String createUser(UserDTO user) {
         String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL) VALUES (?, ?, ?)";
         String query2 = "INSERT INTO UserRoles (userNAME, roleID) VALUES (?, ?)";
 
@@ -49,7 +49,10 @@ public class UserDAO implements IUserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return "false";
         }
+
+        return "true";
     }
 
     @Override

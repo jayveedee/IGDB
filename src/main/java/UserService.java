@@ -1,3 +1,4 @@
+import Data.IMysqlConnection;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
@@ -10,14 +11,14 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 public class UserService {
-    Connection connection;
+    IMysqlConnection mySQL;
 
-    public UserService(Connection connection) {
-        this.connection = connection;
+    public UserService(IMysqlConnection mySQL) {
+        this.mySQL=mySQL;
     }
 
     public String tagImodFormParametre(String username, String email, String password ){
-        IUserDAO userDAO = new UserDAO(connection);
+        IUserDAO userDAO = new UserDAO(mySQL);
         UserDTO user = new UserDTO();
         RoleDTO role = new RoleDTO();
 
@@ -33,8 +34,9 @@ public class UserService {
         user.setUserGAMEs(null);
         user.setUserROLEs(roleList);
 
+        String answer = userDAO.createUser(user);
 
-        return "hey";
+        return answer;
     }
 
 }
