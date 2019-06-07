@@ -12,9 +12,11 @@ import java.util.List;
 public class UserDAO implements IUserDAO {
 
     private IMysqlConnection mySql;
+    private IRoleDAO rdao;
 
-    public UserDAO(IMysqlConnection mySql) {
+    public UserDAO(IMysqlConnection mySql, IRoleDAO rdao) {
         this.mySql = mySql;
+        this.rdao = rdao;
     }
 
     @Override
@@ -26,7 +28,6 @@ public class UserDAO implements IUserDAO {
         String password         = user.getUserPASS();
         String email            = user.getUserEMAIL();
         List<RoleDTO> roleList  = user.getUserROLEs();
-
         try {
             handleUpdateUserXcreateUser(query1, username, password, email);
 
@@ -47,14 +48,20 @@ public class UserDAO implements IUserDAO {
         return true;
     }
 
-    private void handleUpdateUserXcreateUser(String query1, String username, String password, String email) throws SQLException {
-        mySql.getConnection().setAutoCommit(false);
-        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
-        mySql.getPrepStatement().setString(1,username);
-        mySql.getPrepStatement().setString(2,password);
-        mySql.getPrepStatement().setString(3,email);
-        mySql.getPrepStatement().executeUpdate();
-        mySql.getConnection().commit();
+    private boolean handleUpdateUserXcreateUser(String query1, String username, String password, String email) {
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            mySql.getPrepStatement().setString(1,username);
+            mySql.getPrepStatement().setString(2,password);
+            mySql.getPrepStatement().setString(3,email);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -65,7 +72,6 @@ public class UserDAO implements IUserDAO {
         UserDTO user = new UserDTO();
         List<RoleDTO> rlist;
         List<Integer> gmlist;
-
         try {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
             mySql.getPrepStatement().setString(1,userNAME);
@@ -98,7 +104,6 @@ public class UserDAO implements IUserDAO {
         String query2 = "SELECT * FROM UserRoles INNER JOIN Roles ON UserRoles.roleID = Roles.roleID WHERE userNAME = ?";
         String query3 = "SELECT * FROM UGameLIST WHERE userNAME = ?";
         List<UserDTO> ulist = new ArrayList<>();
-
         try {
             mySql.setStatement(mySql.getConnection().createStatement());
 
@@ -131,24 +136,11 @@ public class UserDAO implements IUserDAO {
         return ulist;
     }
 
-    @Override
-    public List<Integer> getUGameLIST(String userNAME) {
-        String query = "SELECT * FROM UGameLIST WHERE userNAME = ?";
-        List<Integer> gmlist = new ArrayList<>();
-        try {
-            gmlist = handleGetUGameList(userNAME, query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return gmlist;
-    }
-
     private List<Integer> handleGetUGameList(String userNAME, String query) throws SQLException {
         List<Integer> gmlist = new ArrayList<>();
         mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
         mySql.getPrepStatement().setString(1,userNAME);
         ResultSet rs = mySql.getPrepStatement().executeQuery();
-
         while (rs.next()){
             gmlist.add(rs.getInt("gameID"));
         }
@@ -157,32 +149,37 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean updateUserInfo(UserDTO newUser) {
-        String query = "UPDATE Users SET Users userPASS = ?, userEMAIL = ? WHERE userNAME = ?";
+        String query1 = "UPDATE Users SET userPASS = ?, userEMAIL = ? WHERE userNAME = ?";
         String userNAME = newUser.getUserNAME();
         String userEMAIL = newUser.getUserEMAIL();
         String userPASS = newUser.getUserPASS();
+        return handleUpdateUserXcreateUser(query1, userPASS, userEMAIL, userNAME);
+    }
 
-        try {
-            handleUpdateUserXcreateUser(query, userPASS, userEMAIL, userNAME);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+    @Override
+    public boolean updateSpecificUserRole(String userNAME, RoleDTO newRole) {
+        String query = "UPDATE UserRoles SET roleID = ? WHERE userNAME = ?";
+        int roleID = newRole.getRoleID();
+        return rdao.handleUpdateUserRolesXCreateRole(query,roleID,userNAME);
     }
 
     @Override
     public boolean deleteUser(String userNAME) {
         String query1 = "DELETE FROM UserRoles WHERE userNAME = ?";
         String query2 = "DELETE FROM Users WHERE userNAME = ?";
-
         return handleDeleteByID(userNAME, query1) && handleDeleteByID(userNAME, query2);
     }
 
-    private boolean handleDeleteByID(String userNAME, String query2) {
+    @Override
+    public boolean deleteAllUserRoles(String userNAME) {
+        String query = "DELETE FROM UserRoles WHERE userNAME = ?";
+        return handleDeleteByID(userNAME, query);
+    }
+
+    private boolean handleDeleteByID(String userNAME, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setString(1,userNAME);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
