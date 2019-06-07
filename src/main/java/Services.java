@@ -12,7 +12,7 @@ public class Services{
 
     @POST
     @Path("user/createUser")
-    public String createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
+    public boolean createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
         IMysqlConnection mySQL = new MysqlConnection();
         try {
             mySQL.setConnection(mySQL.createConnection());
@@ -21,7 +21,7 @@ public class Services{
         }
 
         UserService service = new UserService(mySQL);
-        String answer;
+        boolean answer;
         answer=service.tagImodFormParametre(username, email, password);
         return answer;
     }

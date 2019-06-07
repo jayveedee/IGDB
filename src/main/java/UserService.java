@@ -17,7 +17,7 @@ public class UserService {
         this.mySQL=mySQL;
     }
 
-    public String tagImodFormParametre(String username, String email, String password ){
+    public boolean tagImodFormParametre(String username, String email, String password ){
         IUserDAO userDAO = new UserDAO(mySQL);
         UserDTO user = new UserDTO();
         RoleDTO role = new RoleDTO();
@@ -34,7 +34,7 @@ public class UserService {
         user.setUserGAMEs(null);
         user.setUserROLEs(roleList);
 
-        String answer = userDAO.createUser(user);
+        boolean answer = userDAO.createUser(user);
 
         return answer;
     }

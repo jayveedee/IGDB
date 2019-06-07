@@ -12,11 +12,9 @@ import java.util.List;
 public class UserDAO implements IUserDAO {
 
     private IMysqlConnection mySql;
-    private IRoleDAO rdao;
 
-    public UserDAO(IMysqlConnection mySql, IRoleDAO rdao) {
+    public UserDAO(IMysqlConnection mySql) {
         this.mySql = mySql;
-        this.rdao = rdao;
     }
 
     @Override
@@ -159,8 +157,8 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean updateSpecificUserRole(String userNAME, RoleDTO newRole) {
         String query = "UPDATE UserRoles SET roleID = ? WHERE userNAME = ?";
-        int roleID = newRole.getRoleID();
-        return rdao.handleUpdateUserRolesXCreateRole(query,roleID,userNAME);
+        RoleDAO rdao = new RoleDAO(mySql);
+        return rdao.handleUpdateUserRolesXCreateRole(query,newRole.getRoleID(),userNAME);
     }
 
     @Override
