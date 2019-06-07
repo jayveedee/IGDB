@@ -47,6 +47,12 @@ public class UserDAO implements IUserDAO {
         return true;
     }
 
+    @Override
+    public boolean addToUserGameList(UserDTO user, int gameID) {
+        String query = "INSERT INTO ";
+        return true;
+    }
+
     private boolean handleUpdateUserXcreateUser(String query1, String username, String password, String email, String PFP) {
         try {
             mySql.getConnection().setAutoCommit(false);

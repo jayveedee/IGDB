@@ -8,6 +8,7 @@ import java.util.List;
 public interface IUserDAO {
 
     boolean createUser(UserDTO user);
+    boolean addToUserGameList(UserDTO user, int gameID);
     UserDTO getUser(String userNAME);
     List<UserDTO> getUserList();
     List<RoleDTO> getUserRoleList(String userNAME);

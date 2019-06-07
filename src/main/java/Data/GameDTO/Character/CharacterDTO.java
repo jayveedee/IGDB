@@ -1,24 +1,20 @@
 package Data.GameDTO.Character;
 
-import Data.GameDTO.Info.DateDTO;
-
 import java.util.List;
 
 public class CharacterDTO {
 
     private int                     chID;
     private String                  chNAME;
-    private DateDTO                 chBDAY;
     private List<Integer>           chVAs;
     private List<Integer>           chGAMEs;
 
     private String                  chBIO;
 
-    public CharacterDTO(int chID, String chNAME, String chBIO, DateDTO chBDAY, List<Integer> chVAs, List<Integer> chGAMEs) {
+    public CharacterDTO(int chID, String chNAME, String chBIO, List<Integer> chVAs, List<Integer> chGAMEs) {
         this.chID = chID;
         this.chNAME = chNAME;
         this.chBIO = chBIO;
-        this.chBDAY = chBDAY;
         this.chVAs = chVAs;
         this.chGAMEs = chGAMEs;
     }
@@ -48,14 +44,6 @@ public class CharacterDTO {
 
     public void setChBIO(String chBIO) {
         this.chBIO = chBIO;
-    }
-
-    public DateDTO getChBDAY() {
-        return chBDAY;
-    }
-
-    public void setChBDAY(DateDTO chBDAY) {
-        this.chBDAY = chBDAY;
     }
 
     public List<Integer> getChVAs() {
