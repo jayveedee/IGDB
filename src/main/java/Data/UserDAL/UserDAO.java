@@ -49,7 +49,17 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean addToUserGameList(UserDTO user, int gameID) {
-        String query = "INSERT INTO ";
+        String query = "INSERT INTO UGameLIST (gameID, userNAME) VALUES (?, ?)";
+
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setInt(1,gameID);
+            mySql.getPrepStatement().setString(2,user.getUserNAME());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 
