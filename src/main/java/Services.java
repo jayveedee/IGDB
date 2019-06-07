@@ -29,7 +29,7 @@ public class Services{
     @POST
     @Path("test")
     public String test(){
-        return "hej med dig";
+        return "alert('hej med dig din kashmir');";
     }
 
 
