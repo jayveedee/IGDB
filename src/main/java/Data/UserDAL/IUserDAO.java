@@ -1,15 +1,17 @@
 package Data.UserDAL;
 
+import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
 import java.util.List;
 
 public interface IUserDAO {
 
-    String createUser(UserDTO user);
+    boolean createUser(UserDTO user);
     UserDTO getUser(String userNAME);
     List<UserDTO> getUserList();
-    List<Integer> getUGameLIST(String userNAME);
-    void updateUser(String userNAME);
-    void deleteUser(String userNAME);
+    boolean updateUserInfo(UserDTO newUser);
+    boolean updateSpecificUserRole(String userNAME, RoleDTO newRole);
+    boolean deleteUser(String userNAME);
+    boolean deleteAllUserRoles(String userNAME);
 }

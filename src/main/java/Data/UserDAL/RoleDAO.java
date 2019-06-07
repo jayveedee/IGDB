@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDAO implements IRolesDAO {
+public class RoleDAO implements IRoleDAO {
 
     private IMysqlConnection mySql;
 
@@ -17,33 +17,33 @@ public class RoleDAO implements IRolesDAO {
     }
 
     @Override
-    public void createRole(RoleDTO role) {
+    public boolean createRole(RoleDTO role) {
         String query = "INSERT INTO Roles (roleID, roleNAME) VALUES (?, ?)";
+        return handleUpdateUserRolesXCreateRole(query, role.getRoleID(), role.getRoleNAME());
+    }
 
-        int roleid = role.getRoleID();
-        String rolename = role.getRoleNAME();
-
+    public boolean handleUpdateUserRolesXCreateRole(String query, int roleID, String rolenameORusername) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setInt(1,roleid);
-            mySql.getPrepStatement().setString(2,rolename);
+            mySql.getPrepStatement().setInt(1,roleID);
+            mySql.getPrepStatement().setString(2,rolenameORusername);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
-    public RoleDTO getRole(int roleid) {
+    public RoleDTO getRole(int roleID) {
         String query = "SELECT * FROM Roles WHERE roleID = ?";
         RoleDTO role = new RoleDTO();
-
         try {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setInt(1,roleid);
-
+            mySql.getPrepStatement().setInt(1,roleID);
             ResultSet rs = mySql.getPrepStatement().executeQuery();
             if (rs.next()){
                 role.setRoleID(rs.getInt("roleID"));
@@ -58,53 +58,63 @@ public class RoleDAO implements IRolesDAO {
     @Override
     public List<RoleDTO> getRoleList() {
         String query = "SELECT * FROM Roles";
-        List<RoleDTO> rlist = new ArrayList<>();
-
+        List<RoleDTO> rList = new ArrayList<>();
         try {
             mySql.setStatement(mySql.getConnection().createStatement());
-
             ResultSet rs = mySql.getStatement().executeQuery(query);
-            rlist = handleGetRoleList(rs);
+            rList = handleGetRoleList(rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rlist;
+        return rList;
     }
 
     @Override
-    public void updateRole(int roleid) {
-
+    public boolean updateRole(RoleDTO newRole) {
+        String query = "UPDATE Roles SET roleNAME = ? WHERE roleID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,newRole.getRoleNAME());
+            mySql.getPrepStatement().setInt(2,newRole.getRoleID());
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     static List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
-        List<RoleDTO> rlist = new ArrayList<>();
+        List<RoleDTO> rList = new ArrayList<>();
         while (rs.next()){
             RoleDTO role = new RoleDTO();
             role.setRoleID(rs.getInt("roleID"));
             role.setRoleNAME(rs.getString("roleNAME"));
-            rlist.add(role);
+            rList.add(role);
         }
-        return rlist;
+        return rList;
     }
 
     @Override
-    public void deleteRole(int roleid) {
+    public boolean deleteRole(int roleID) {
         String query1 = "DELETE FROM UserRoles WHERE roleID = ?";
         String query2 = "DELETE FROM Roles WHERE roleID = ?";
-
-        try {
-            handleDeleteByID(roleid, query1);
-            handleDeleteByID(roleid, query2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return handleDeleteByID(roleID, query1) && handleDeleteByID(roleID, query2);
     }
 
-    private void handleDeleteByID(int roleid, String query2) throws SQLException {
-        mySql.getConnection().setAutoCommit(false);
-        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-        mySql.getPrepStatement().setInt(1,roleid);
-        mySql.getPrepStatement().executeUpdate();
-        mySql.getConnection().commit();
+    private boolean handleDeleteByID(int roleid, String query2) {
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            mySql.getPrepStatement().setInt(1,roleid);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
