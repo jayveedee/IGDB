@@ -5,6 +5,50 @@
     <title>IGDB - Login and Signup</title>
     <link rel="stylesheet" type="text/css" href="RegistrerStyle.css">
     <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $("#registerForm").submit(function(e) {
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    alert(data); // show response from the php script.
+                }
+            });
+
+
+        });
+        /*$("#registerForm").submit(function (e) {
+            e.preventDefault();
+            alert("heeeey");
+        });/*(function (sendData){
+            alert("heeeeeeeeeeeey");
+            sendData.preventDefault();
+            var form = $(this);
+            var action = form.attr("action");
+            var method = form.attr("method");
+            $.ajax({
+                type : method,
+                url : action,
+                data : form.serialize(),
+                success : function (data) {
+                    if(data == "true"){
+                    alert("user created")
+                    }else{
+                        alert("user NOT created, try again")
+                    }
+                }
+                })
+        });*/
+    </script>
 </head>
 <body>
     <nav class="standart-nav">
@@ -26,13 +70,13 @@
                 </ul>
             </div>
         <!--- Registrer form start--->
-        <form method="POST" action="Index.html" class="Registrer-form"> 
-            <input type="text" placeholder="Username" required>
+        <form id = "registerForm" method="POST" action="/rest/services/user/createUser" class="Registrer-form">
+            <input type="text" name="username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
             <div id="password_length"></div>
-            <input type="submit" value="Registrer" id="regi_submit" class="button" name="login">
+            <input formaction="Index.html" type="submit" value="Registrer" id="regi_submit" class="button" name="login">
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
