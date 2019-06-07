@@ -1,20 +1,16 @@
 package Data.UserDTO;
 
-import Data.GameDTO.GameDTO;
-
 import java.util.List;
 
 public class UserDTO {
 
-    private int                 userID;
     private String              userNAME;
     private String              userPASS;
     private String              userEMAIL;
     private List<Integer>       userGAMEs;
     private List<RoleDTO>       userROLEs;
 
-    public UserDTO(int userID, String userNAME, String userPASS, String userEMAIL, List<Integer> userGAMEs, List<RoleDTO> userROLEs) {
-        this.userID = userID;
+    public UserDTO(String userNAME, String userPASS, String userEMAIL, List<Integer> userGAMEs, List<RoleDTO> userROLEs) {
         this.userNAME = userNAME;
         this.userPASS = userPASS;
         this.userEMAIL = userEMAIL;
@@ -23,14 +19,6 @@ public class UserDTO {
     }
 
     public UserDTO() {
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public String getUserNAME() {
