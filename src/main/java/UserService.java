@@ -34,6 +34,7 @@ public class UserService {
         user.setUserGAMEs(null);
         user.setUserROLEs(roleList);
 
+        System.out.println("hejsa");
         boolean answer = userDAO.createUser(user);
 
         return answer;

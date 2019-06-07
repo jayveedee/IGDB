@@ -8,28 +8,28 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Path("services")
-public class Services{
+public class Services {
 
     @POST
     @Path("user/createUser")
     public boolean createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
         IMysqlConnection mySQL = new MysqlConnection();
+        boolean answer = true;
         try {
             mySQL.setConnection(mySQL.createConnection());
+            UserService service = new UserService(mySQL);
+            answer=service.tagImodFormParametre(username, email, password);
+            mySQL.closeConnection(mySQL.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        UserService service = new UserService(mySQL);
-        boolean answer;
-        answer=service.tagImodFormParametre(username, email, password);
         return answer;
     }
 
     @POST
     @Path("test")
     public String test(){
-        return "alert('hej med dig din kashmir');";
+        return "hej med dig din kashmir";
     }
 
 

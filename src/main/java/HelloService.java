@@ -1,8 +1,14 @@
 import javax.ws.rs.*;
 
 
-@Path("hello")
+@Path("service")
 public class HelloService {
+
+    @POST
+    @Path("form")
+    public String getFormParameters (@FormParam("name") String name, @FormParam("id") Integer id, @FormParam("amount") int amount ){
+        return ("The chosen input is the following: name= "+ name + " id= " + id + " amount= " + amount);
+    }
 
     @GET
     public String getHello(){
@@ -12,13 +18,6 @@ public class HelloService {
     @POST
     public String customHello(String string){
         return "Hello" + string + "!";
-    }
-
-    @POST
-    @Path("form")
-    public String tagImodFormParametre(@FormParam("name") String name, @FormParam("id") Integer id, @FormParam("amount") int amount ){
-        return ("de indtastede data er følgende: <br>\nname: "+ name + "\nid: " + id + "\namount: " + amount);
-        //return "hey";
     }
 
     @POST
