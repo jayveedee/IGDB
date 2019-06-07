@@ -26,14 +26,14 @@
                 </ul>
             </div>
         <!--- Registrer form start--->
-        <form method="POST" action="Index.html" class="Registrer-form"> 
+        <form method="POST" class="Registrer-form"> 
             <input type="text" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
             <div id="password_length"></div>
-            <input type="submit" value="Registrer" id="regi_submit" class="button" name="login">
-        </form>
+            <input formaction="Index.html" type="submit" value="Registrer" id="regi_submit" class="button" name="login">
+        </form> 
         <!--- Registrer form END --->
         <!--- Login form start--->
         <form method="POST" action="Index.html" class="Login-form">
