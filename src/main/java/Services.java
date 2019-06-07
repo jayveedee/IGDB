@@ -26,6 +26,12 @@ public class Services{
         return answer;
     }
 
+    @POST
+    @Path("test")
+    public String test(){
+        return "hej med dig";
+    }
+
 
 
 

@@ -17,8 +17,8 @@ public class HelloService {
     @POST
     @Path("form")
     public String tagImodFormParametre(@FormParam("name") String name, @FormParam("id") Integer id, @FormParam("amount") int amount ){
-        //return ("de indtastede data er følgende: <br>\nname: "+ name + "\nid: " + id + "\namount: " + amount);
-        return "hey";
+        return ("de indtastede data er følgende: <br>\nname: "+ name + "\nid: " + id + "\namount: " + amount);
+        //return "hey";
     }
 
     @POST

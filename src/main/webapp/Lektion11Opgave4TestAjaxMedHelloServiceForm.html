@@ -3,23 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>lektion11Opgave4</title>
-    <!--<script>function ajaxCall() {
-        $(function() { // Sikrer sig at dokumentet er indlæst,
-        // før click handlers håndteres
-         //Sætter en click handler på knappen
-            $.ajax({				 //Indleder et asynkront ajax kald
-                url : 'rest/hello/form',	 //specificerer endpointet
-                type : 'POST',	       //Typen af HTTP requestet (GET er default)
-                data : $('#myForm').serialize(),
-                contentType : 'text/plain',
-                success : function(data){//Funktion der skal udføres når data er hentet
-                    $('#mydiv').html(data); //Manipulerer #mydiv.
-                }
-            });
-            return false; //for at undgå at knappen poster data (default behavior).
-
-    });
-    }</script>-->
     <script>
         $("#myForm").submit(function (e) {
             e.preventDefault();
@@ -40,14 +23,11 @@
 </head>
 <body>
 <div id="mydiv">hejsa, her kommer der forhåbentligt noget data</div>
-
-
-<form id="myForm" method="post" action="rest/hello/form">
-    <input name="name" type = "text">skrivøøøøøøøøøøø name</input>
-    <input name="id" type = "text">skriv id</input>
-    <input name="amount" type = "text">skriv amount</input>
-    <input name="submit" type = "submit">submit</input>
+<form id="myForm" method="post" action="rest/services/test">
+    <input name="name" type = "text">skrivøøøøøøøøøøø name>
+    <input name="id" type = "text">skriv id>
+    <input name="amount" type = "text">skriv amount>
+    <input name="submit" type = "submit">submit>
 </form>
-
 </body>
 </html>
