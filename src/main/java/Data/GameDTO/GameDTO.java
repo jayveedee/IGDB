@@ -19,9 +19,9 @@ public class GameDTO {
     private DeveloperDTO            gameDEV;        private PublisherDTO            gamePUB;
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
 
-    private String                  gameBIO;
-    private int                     gameAGERATING;
-    private List<MediaDTO> gameMEDIADTO;
+    private int                     gameAGERATING;  private String                  gameCover;
+    private String                  gameBIO;        private String                  gameBG;
+    private List<MediaDTO>          gameMEDIADTO;
 
     public GameDTO
             (
