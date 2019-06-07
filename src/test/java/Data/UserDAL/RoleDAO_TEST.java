@@ -75,8 +75,13 @@ public class RoleDAO_TEST {
     }
 
     @Test
-    public void updateRole() {
+    public void updateRole() throws SQLException {
+        mySql.createConnection();
 
+        RoleDTO role = new RoleDTO(1,"Admin");
+        rdao.createRole(role);
+        RoleDTO t1 = rdao.getRole(role.getRoleID());
+        rdao.updateRole(role.getRoleID());
     }
 
     @Test //GOOD TO GO

@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IRolesDAO {
 
-    void createRole(RoleDTO role);
+    boolean createRole(RoleDTO role);
     RoleDTO getRole(int roleid);
     List<RoleDTO> getRoleList();
-    void updateRole(int roleid);
-    void deleteRole(int roleid);
+    boolean updateRole(RoleDTO newUser);
+    boolean deleteRole(int roleid);
 }
