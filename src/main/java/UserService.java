@@ -1,3 +1,4 @@
+import Data.UserDAL.IUserDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -5,15 +6,18 @@ import Data.UserDTO.UserDTO;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import java.sql.Connection;
 import java.util.ArrayList;
 
-@Path("user")
 public class UserService {
+    Connection connection;
 
-    @POST
-    @Path("form/createUser")
-    public String tagImodFormParametre(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password ){
-        UserDAO userDAO = new UserDAO();
+    public UserService(Connection connection) {
+        this.connection = connection;
+    }
+
+    public String tagImodFormParametre(String username, String email, String password ){
+        IUserDAO userDAO = new UserDAO(connection);
         UserDTO user = new UserDTO();
         RoleDTO role = new RoleDTO();
 
@@ -30,7 +34,6 @@ public class UserService {
         user.setUserROLEs(roleList);
 
 
-        //return ("de indtastede data er følgende: <br>\nname: "+ name + "\nid: " + id + "\namount: " + amount);
         return "hey";
     }
 
