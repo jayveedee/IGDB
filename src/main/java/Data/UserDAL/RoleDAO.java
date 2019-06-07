@@ -12,7 +12,7 @@ public class RoleDAO implements IRoleDAO {
 
     private IMysqlConnection mySql;
 
-    public RoleDAO(IMysqlConnection mySql) {
+    RoleDAO(IMysqlConnection mySql) {
         this.mySql = mySql;
     }
 
@@ -22,7 +22,7 @@ public class RoleDAO implements IRoleDAO {
         return handleUpdateUserRolesXCreateRole(query, role.getRoleID(), role.getRoleNAME());
     }
 
-    public boolean handleUpdateUserRolesXCreateRole(String query, int roleID, String rolenameORusername) {
+    boolean handleUpdateUserRolesXCreateRole(String query, int roleID, String rolenameORusername) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
@@ -86,7 +86,7 @@ public class RoleDAO implements IRoleDAO {
         return true;
     }
 
-    static List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
+    List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
         List<RoleDTO> rList = new ArrayList<>();
         while (rs.next()){
             RoleDTO role = new RoleDTO();
