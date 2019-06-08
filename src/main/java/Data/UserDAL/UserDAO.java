@@ -30,15 +30,17 @@ public class UserDAO implements IUserDAO {
         try {
             handleUpdateUserXcreateUser(query1, username, password, email, PFP);
 
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-            for (RoleDTO roleDTO : roleList) {
-                mySql.getPrepStatement().setString(1, username);
-                mySql.getPrepStatement().setInt(2, roleDTO.getRoleID());
-                mySql.getPrepStatement().addBatch();
+            if (roleList != null) {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+                for (RoleDTO roleDTO : roleList) {
+                    mySql.getPrepStatement().setString(1, username);
+                    mySql.getPrepStatement().setInt(2, roleDTO.getRoleID());
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
             }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,10 +142,9 @@ public class UserDAO implements IUserDAO {
     public List<RoleDTO> getUserRoleList(String userName) {
         String query =
                         "SELECT Users.userNAME, UserRoleList.roleID, Roles.roleNAME FROM Users " +
-                        "INNER JOIN UserRoleList ON Users.userNAME = UserRoleList.userNAME" +
-                        "AND " +
+                        "INNER JOIN UserRoleList ON Users.userNAME = UserRoleList.userNAME " +
                         "INNER JOIN Roles ON UserRoleList.roleID = Roles.roleID " +
-                        "WHERE userNAME = ? " +
+                        "WHERE Users.userNAME = ? " +
                         "ORDER BY roleID ASC";
         List<RoleDTO> rlist = new ArrayList<>();
         RoleDAO rdao = new RoleDAO(mySql);
