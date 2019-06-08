@@ -1,17 +1,16 @@
 package Data.GameDTO.Info;
 
-
 import java.util.List;
 
 public class GenreDTO {
 
     private int                 genID;
-    private String              genNAME;
+    private String              genTITLE;
     private List<Integer>       genGAMEs;
 
-    public GenreDTO(int genID, String genNAME, List<Integer> genGAMEs) {
+    public GenreDTO(int genID, String genTITLE, List<Integer> genGAMEs) {
         this.genID = genID;
-        this.genNAME = genNAME;
+        this.genTITLE = genTITLE;
         this.genGAMEs = genGAMEs;
     }
 
@@ -26,12 +25,12 @@ public class GenreDTO {
         this.genID = genID;
     }
 
-    public String getGenNAME() {
-        return genNAME;
+    public String getGenTITLE() {
+        return genTITLE;
     }
 
-    public void setGenNAME(String genNAME) {
-        this.genNAME = genNAME;
+    public void setGenTITLE(String genTITLE) {
+        this.genTITLE = genTITLE;
     }
 
     public List<Integer> getGenGAMEs() {

@@ -19,8 +19,8 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean createUser(UserDTO user) {
-        String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL, profilPic) VALUES (?, ?, ?, ?)";
-        String query2 = "INSERT INTO UserRoles (userNAME, roleID) VALUES (?, ?)";
+        String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL, userPFP) VALUES (?, ?, ?, ?)";
+        String query2 = "INSERT INTO UserRoleList (userNAME, roleID) VALUES (?, ?)";
 
         String username         = user.getUserNAME();
         String password         = user.getUserPASS();
@@ -48,14 +48,16 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean addToUserGameList(UserDTO user, int gameID) {
-        String query = "INSERT INTO UGameLIST (gameID, userNAME) VALUES (?, ?)";
+    public boolean addToUserGameList(String userName, int gameID) {
+        String query = "INSERT INTO UserGameList (userNAME, gameID) VALUES (?, ?)";
 
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setInt(1,gameID);
-            mySql.getPrepStatement().setString(2,user.getUserNAME());
+            mySql.getPrepStatement().setString(1,userName);
+            mySql.getPrepStatement().setInt(2,gameID);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -106,7 +108,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<UserDTO> getUserList() {
-        String query = "SELECT * FROM Users";
+        String query = "SELECT * FROM Users ORDER BY userNAME ASC";
         List<UserDTO> ulist = new ArrayList<>();
         try {
             mySql.setStatement(mySql.getConnection().createStatement());
@@ -131,17 +133,18 @@ public class UserDAO implements IUserDAO {
         user.setUserNAME(rs.getString("userNAME"));
         user.setUserPASS(rs.getString("userPASS"));
         user.setUserEMAIL(rs.getString("userEMAIL"));
-        user.setUserPFP(rs.getString("profilPic"));
+        user.setUserPFP(rs.getString("userPFP"));
     }
 
     @Override
     public List<RoleDTO> getUserRoleList(String userName) {
         String query =
-                        "SELECT userRoles.userNAME, userRoles.roleID, Roles.roleNAME FROM UserRoles " +
-                        "INNER JOIN Users ON UserRoles.userNAME " +
+                        "SELECT Users.userNAME, UserRoleList.roleID, Roles.roleNAME FROM Users " +
+                        "INNER JOIN UserRoleList ON Users.userNAME = UserRoleList.userNAME" +
                         "AND " +
-                        "INNER JOIN Roles ON UserRoles.roleID = Roles.roleID " +
-                        "WHERE userNAME = ?";
+                        "INNER JOIN Roles ON UserRoleList.roleID = Roles.roleID " +
+                        "WHERE userNAME = ? " +
+                        "ORDER BY roleID ASC";
         List<RoleDTO> rlist = new ArrayList<>();
         RoleDAO rdao = new RoleDAO(mySql);
         try {
@@ -158,7 +161,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<Integer> getUserGameList(String userNAME) {
-        String query = "SELECT * FROM UGameLIST WHERE userNAME = ?";
+        String query = "SELECT * FROM UserGameList WHERE userNAME = ? ORDER BY gameID ASC";
         List<Integer> gmlist = new ArrayList<>();
         try {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
@@ -175,31 +178,31 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean updateUserInfo(UserDTO newUser) {
-        String query1       = "UPDATE Users SET userPASS = ?, userEMAIL = ? WHERE userNAME = ?";
+        String query       = "UPDATE Users SET userPASS = ?, userEMAIL = ?, userPFP = ? WHERE userNAME = ?";
         String userNAME     = newUser.getUserNAME();
         String userEMAIL    = newUser.getUserEMAIL();
         String userPASS     = newUser.getUserPASS();
         String PFP          = newUser.getUserPFP();
-        return handleUpdateUserXcreateUser(query1, userPASS, userEMAIL, userNAME, PFP);
+        return handleUpdateUserXcreateUser(query, userPASS, userEMAIL, userNAME, PFP);
     }
 
     @Override
     public boolean updateSpecificUserRole(String userNAME, RoleDTO newRole) {
-        String query = "UPDATE UserRoles SET roleID = ? WHERE userNAME = ?";
+        String query = "UPDATE UserRoleList SET roleID = ? WHERE userNAME = ?";
         RoleDAO rdao = new RoleDAO(mySql);
         return rdao.handleUpdateUserRolesXCreateRole(query,newRole.getRoleID(),userNAME);
     }
 
     @Override
     public boolean deleteUser(String userNAME) {
-        String query1 = "DELETE FROM UserRoles WHERE userNAME = ?";
+        String query1 = "DELETE FROM UserRoleList WHERE userNAME = ?";
         String query2 = "DELETE FROM Users WHERE userNAME = ?";
         return handleDeleteByID(userNAME, query1) && handleDeleteByID(userNAME, query2);
     }
 
     @Override
     public boolean deleteAllUserRoles(String userNAME) {
-        String query = "DELETE FROM UserRoles WHERE userNAME = ?";
+        String query = "DELETE FROM UserRoleList WHERE userNAME = ?";
         return handleDeleteByID(userNAME, query);
     }
 
@@ -215,5 +218,11 @@ public class UserDAO implements IUserDAO {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean deleteAllUserGameLists(String userNAME) {
+        String query = "DELETE FROM UserGameList WHERE userNAME = ?";
+        return handleDeleteByID(userNAME,query);
     }
 }

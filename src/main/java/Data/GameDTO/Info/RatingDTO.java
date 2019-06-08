@@ -4,13 +4,13 @@ import Data.UserDTO.UserDTO;
 
 public class RatingDTO {
 
-    private int ratingID;
-    private int ratingRATED;
-    private UserDTO ratingUSER;
+    private int         ratingID;
+    private int         ratingGIVEN;
+    private UserDTO     ratingUSER;
 
-    public RatingDTO(int ratingID, int ratingRATED, UserDTO ratingUSER) {
+    public RatingDTO(int ratingID, int ratingGIVEN, UserDTO ratingUSER) {
         this.ratingID = ratingID;
-        this.ratingRATED = ratingRATED;
+        this.ratingGIVEN = ratingGIVEN;
         this.ratingUSER = ratingUSER;
     }
 
@@ -25,12 +25,12 @@ public class RatingDTO {
         this.ratingID = ratingID;
     }
 
-    public int getRatingRATED() {
-        return ratingRATED;
+    public int getRatingGIVEN() {
+        return ratingGIVEN;
     }
 
-    public void setRatingRATED(int ratingRATED) {
-        this.ratingRATED = ratingRATED;
+    public void setRatingGIVEN(int ratingGIVEN) {
+        this.ratingGIVEN = ratingGIVEN;
     }
 
     public UserDTO getRatingUSER() {

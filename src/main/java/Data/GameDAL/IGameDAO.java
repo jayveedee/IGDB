@@ -36,6 +36,6 @@ public interface IGameDAO {
     boolean addDeveloperToGameList      (GameDTO existingGame, DeveloperDTO     existingDeveloper);
     boolean addPublisherToGameList      (GameDTO existingGame, PublisherDTO     existingPublisher);
 
-    boolean addMediaToGameList          (GameDTO existingGame, MediaDTO         existingMedia);
+
 
 }

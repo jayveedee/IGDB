@@ -5,7 +5,6 @@ import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.Info.*;
-import Data.GameDTO.Info.MediaDTO;
 
 import java.util.List;
 
@@ -20,12 +19,18 @@ public class GameDTO {
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
 
     private String                  gameCover;      private String                  gameBG;
-    private String                  gameBIO;        private List<MediaDTO>          gameMEDIADTO;
+    private String                  gameBIO;        private List<Integer>           gameTRAILERs;       private List<Integer>           gamePICs;
 
     public GameDTO() {
     }
 
-    public GameDTO(int gameID, String gameNAME, List<Integer> gameCHs, List<Integer> gameACs, List<Integer> gameGENREs, List<Integer> gameGMs, List<Integer> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<MediaDTO> gameMEDIADTO) {
+    public GameDTO
+        (
+            int gameID, String gameNAME, List<Integer> gameCHs, List<Integer> gameACs, List<Integer> gameGENREs,
+            List<Integer> gameGMs, List<Integer> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI,
+            DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover,
+            String gameBG, String gameBIO, List<Integer> gameTRAILERs, List<Integer> gamePICs
+        ) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -42,7 +47,8 @@ public class GameDTO {
         this.gameCover = gameCover;
         this.gameBG = gameBG;
         this.gameBIO = gameBIO;
-        this.gameMEDIADTO = gameMEDIADTO;
+        this.gameTRAILERs = gameTRAILERs;
+        this.gamePICs = gamePICs;
     }
 
     public int getGameID() {
@@ -173,11 +179,19 @@ public class GameDTO {
         this.gameBIO = gameBIO;
     }
 
-    public List<MediaDTO> getGameMEDIADTO() {
-        return gameMEDIADTO;
+    public List<Integer> getGameTRAILERs() {
+        return gameTRAILERs;
     }
 
-    public void setGameMEDIADTO(List<MediaDTO> gameMEDIADTO) {
-        this.gameMEDIADTO = gameMEDIADTO;
+    public void setGameTRAILERs(List<Integer> gameTRAILERs) {
+        this.gameTRAILERs = gameTRAILERs;
+    }
+
+    public List<Integer> getGamePICs() {
+        return gamePICs;
+    }
+
+    public void setGamePICs(List<Integer> gamePICs) {
+        this.gamePICs = gamePICs;
     }
 }

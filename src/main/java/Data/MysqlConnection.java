@@ -9,11 +9,11 @@ public class MysqlConnection implements IMysqlConnection {
     private Connection          connection;
 
     private String myURLStart = "jdbc:mysql://";
-    private String myURL = "ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s170727?";
+    private String myURL = "ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185095?";
     private String myUserStart = "user=";
-    private String myUser = "s170727&";
+    private String myUser = "s185095&";
     private String myPassStart = "password=";
-    private String myPass = "eUj4Tslz6nToV7wumc3nn";
+    private String myPass = "qSmM4qcR0JF1sAnR6OZss";
 
     @Override
     public Connection createConnection() throws SQLException {

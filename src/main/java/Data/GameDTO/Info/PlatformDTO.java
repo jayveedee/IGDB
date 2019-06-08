@@ -5,12 +5,12 @@ import java.util.List;
 public class PlatformDTO {
 
     private int                 platID;
-    private String              platNAME;
+    private String              platTITLE;
     private List<Integer>       platGAMEs;
 
-    public PlatformDTO(int platID, String platNAME, List<Integer> platGAMEs) {
+    public PlatformDTO(int platID, String platTITLE, List<Integer> platGAMEs) {
         this.platID = platID;
-        this.platNAME = platNAME;
+        this.platTITLE = platTITLE;
         this.platGAMEs = platGAMEs;
     }
 
@@ -25,12 +25,12 @@ public class PlatformDTO {
         this.platID = platID;
     }
 
-    public String getPlatNAME() {
-        return platNAME;
+    public String getPlatTITLE() {
+        return platTITLE;
     }
 
-    public void setPlatNAME(String platNAME) {
-        this.platNAME = platNAME;
+    public void setPlatTITLE(String platTITLE) {
+        this.platTITLE = platTITLE;
     }
 
     public List<Integer> getPlatGAMEs() {

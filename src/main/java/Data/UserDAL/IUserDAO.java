@@ -8,7 +8,7 @@ import java.util.List;
 public interface IUserDAO {
 
     boolean createUser(UserDTO user);
-    boolean addToUserGameList(UserDTO user, int gameID);
+    boolean addToUserGameList(String userID, int gameID);
     UserDTO getUser(String userNAME);
     List<UserDTO> getUserList();
     List<RoleDTO> getUserRoleList(String userNAME);
@@ -17,4 +17,5 @@ public interface IUserDAO {
     boolean updateSpecificUserRole(String userNAME, RoleDTO newRole);
     boolean deleteUser(String userNAME);
     boolean deleteAllUserRoles(String userNAME);
+    boolean deleteAllUserGameLists(String userName);
 }
