@@ -8,17 +8,17 @@ public class PublisherDTO {
 
     private int                 pubID;
     private String              pubNAME;
-    private DateDTO             pubESTABLISHED;
+    private DateDTO             pubCREATED;
     private String              pubCOUNTRY;
     private boolean             pubSTATUS;
     private List<Integer>       pubGAMEs;
 
     private String biography;
 
-    public PublisherDTO(int pubID, String pubNAME, DateDTO pubESTABLISHED, String pubCOUNTRY, boolean pubSTATUS, List<Integer> pubGAMEs, String biography) {
+    public PublisherDTO(int pubID, String pubNAME, DateDTO pubCREATED, String pubCOUNTRY, boolean pubSTATUS, List<Integer> pubGAMEs, String biography) {
         this.pubID = pubID;
         this.pubNAME = pubNAME;
-        this.pubESTABLISHED = pubESTABLISHED;
+        this.pubCREATED = pubCREATED;
         this.pubCOUNTRY = pubCOUNTRY;
         this.pubSTATUS = pubSTATUS;
         this.pubGAMEs = pubGAMEs;
@@ -44,12 +44,12 @@ public class PublisherDTO {
         this.pubNAME = pubNAME;
     }
 
-    public DateDTO getPubESTABLISHED() {
-        return pubESTABLISHED;
+    public DateDTO getPubCREATED() {
+        return pubCREATED;
     }
 
-    public void setPubESTABLISHED(DateDTO pubESTABLISHED) {
-        this.pubESTABLISHED = pubESTABLISHED;
+    public void setPubCREATED(DateDTO pubCREATED) {
+        this.pubCREATED = pubCREATED;
     }
 
     public String getPubCOUNTRY() {

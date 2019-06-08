@@ -1,25 +1,25 @@
 package Data.GameDTO.Info;
 
 import Data.GameDTO.Development.ComposerDTO;
-import Data.GameDTO.Development.MusicArtistDTO;
-import Data.GameDTO.GameDTO;
 
 import java.util.List;
 
 public class SoundtrackDTO {
 
     private int                 ostID;
-    private String              ostNAME;
+    private String              ostTITLE;
     private ComposerDTO         ostCOMP;
     private List<Integer>       ostMA;
     private List<Integer>       ostGAMEs;
+    private String              ostPFP;
 
-    public SoundtrackDTO(int ostID, String ostNAME, ComposerDTO ostCOMP, List<Integer> ostMA, List<Integer> ostGAMEs) {
+    public SoundtrackDTO(int ostID, String ostTITLE, ComposerDTO ostCOMP, List<Integer> ostMA, List<Integer> ostGAMEs, String ostPFP) {
         this.ostID = ostID;
-        this.ostNAME = ostNAME;
+        this.ostTITLE = ostTITLE;
         this.ostCOMP = ostCOMP;
         this.ostMA = ostMA;
         this.ostGAMEs = ostGAMEs;
+        this.ostPFP = ostPFP;
     }
 
     public SoundtrackDTO() {
@@ -33,12 +33,12 @@ public class SoundtrackDTO {
         this.ostID = ostID;
     }
 
-    public String getOstNAME() {
-        return ostNAME;
+    public String getOstTITLE() {
+        return ostTITLE;
     }
 
-    public void setOstNAME(String ostNAME) {
-        this.ostNAME = ostNAME;
+    public void setOstTITLE(String ostTITLE) {
+        this.ostTITLE = ostTITLE;
     }
 
     public ComposerDTO getOstCOMP() {
@@ -63,5 +63,13 @@ public class SoundtrackDTO {
 
     public void setOstGAMEs(List<Integer> ostGAMEs) {
         this.ostGAMEs = ostGAMEs;
+    }
+
+    public String getOstPFP() {
+        return ostPFP;
+    }
+
+    public void setOstPFP(String ostPFP) {
+        this.ostPFP = ostPFP;
     }
 }
