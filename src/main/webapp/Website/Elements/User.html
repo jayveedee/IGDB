@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>IGDB - UserProfile</title>
-        <link rel="stylesheet" type="text/css" href="UserStyle.css">
-        <link rel="stylesheet" type="text/css" href="Style.css">
+        <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
+        <link rel="stylesheet" type="text/css" href="../Stylesheet/UserStyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     </head>
     <body>
@@ -19,12 +19,25 @@
             </ul>
         </nav>
         <div class="container">
+            <div class="profile-container">
+                <ul>
+                    <li><p style="margin: 0;">Username:</p></li>
+                    <input type="text" class="profile-search">
+                    <li><p style="margin: 0;">Email:</p></li>
+                    <input type="text" class="profile-search">
+                    <li><p style="margin: 0;">Password:</p></li>
+                    <input type="password" class="profile-search" id="showAndHide">
+                    <br>
+                    <input type="checkbox" onclick="showPass()">Show Password
+
+
+
+                </ul>
+            </div>  
             <img alt="*" id="uploadedPicture" src="https://imgur.com/y6rRbDc.png">
             <br>
             <button id="modalBtn" class="button">Pick Image</button>
-            <div class="content-container">
-                
-            </div>
+            
             
             <!--This is the Modal. This is where you can pick between different avatar-->
             <div id="simpleModal" class="modal">
@@ -52,6 +65,6 @@
                 </div>
             </div>
         </div>
-        <script src="User.js"></script>
+        <script src="../Functions/User.js"></script>
     </body>
 </html>

@@ -72,3 +72,13 @@ jQuery(document).ready(function($){
         }
     });
     });
+
+    //Switch between show pass and hide pass
+    function showPass() {
+        var x = document.getElementById("showAndHide");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
