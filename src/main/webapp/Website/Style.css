@@ -107,9 +107,7 @@ h2{
 }
 .one h3{
     color: rgba(255,255,255,1);
-    position: absolute;
-    top: 680px;
-    left: 350px;
+    margin: 20px 0px 0px 30px;
 }
 
 .one img{
