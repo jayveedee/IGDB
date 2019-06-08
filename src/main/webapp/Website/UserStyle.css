@@ -4,7 +4,7 @@ img {
     width: 177px;
     margin: 3px;
     padding: 3px;
-    display: block;
+    display: inline;
 }
 
 .button {
@@ -61,11 +61,13 @@ img {
 }
 
 .imageContainer{
-    width: 177px;
-    float: left;
-    margin: 7px;
+    display: inline;
 }
 
-.container{
-    position: 
+.avatar:hover {
+    background-color: rgba(102, 102, 102, 0.5);
+}
+
+.selected{
+    box-shadow:4px 12px 22px 4px #333;
 }

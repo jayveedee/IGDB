@@ -28,24 +28,47 @@ function clickOutSideWindow(e){
         modal.style.display = 'none';
     }
 }
+//This one does so you can see which avatar you have clicked on
+$('img').click(function(){
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
+});
+//This is for when you click on different avatars, and change the one on the site.
+jQuery(document).ready(function($){
 
+    $('.avatarStandard').on({
+         'click': function(){
+             $('#uploadedPicture').attr('src','https://imgur.com/y6rRbDc.png');
+         }
+     });
+     
+    $('.AvatarAnonymous').on({
+         'click': function(){
+             $('#uploadedPicture').attr('src','https://imgur.com/q2fKQdN.png');
+         }
+     });
+     
+    $('.AvatarBombe').on({
+         'click': function(){
+             $('#uploadedPicture').attr('src','https://imgur.com/qFMwjMD.png');
+         }
+     });
+     
+    $('.AvatarNinja').on({
+         'click': function(){
+             $('#uploadedPicture').attr('src','https://imgur.com/QsYFyAM.png');
+         }
+     });
 
-
-/*Skal ikke bruges længere
-$(function() {
-    function readURL(input) {
-        if(input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#uploadedPicture').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-                }
-            };
-            $("#imageUpload").change(function(){
-                readURL(this);
-            });
-            $("#uploadedPicture").click(function() {
-                $("input[id='imageUpload']").click();
+     $('.AvatarWoman').on({
+        'click': function(){
+            $('#uploadedPicture').attr('src','https://imgur.com/CVRt9Ai.png');
+        }
     });
-});*/
+
+    $('.AvatarYouAreAWizardHarry').on({
+        'click': function(){
+            $('#uploadedPicture').attr('src','https://imgur.com/UaXqUR1.png');
+        }
+    });
+    });
