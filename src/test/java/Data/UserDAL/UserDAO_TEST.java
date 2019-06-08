@@ -76,11 +76,11 @@ public class UserDAO_TEST {
         assertEquals(u.getUserPASS(),t1,t1.getUserPASS());
         assertEquals(u.getUserPFP(),t1.getUserPFP());
         for (int i = 0; i < rlist.size(); i++) {
-            assertEquals(rlist.get(i).getRoleID(),);
-            assertEquals(rlist.get(i).getRoleNAME(),);
+            //assertEquals(rlist.get(i).getRoleID(),);
+            //assertEquals(rlist.get(i).getRoleNAME(),);
         }
         for (int i = 0; i < gmlist.size(); i++) {
-            assertEquals(gmlist.get(i),);
+            //assertEquals(gmlist.get(i),);
         }
         udao.deleteUser(u.getUserNAME());
         deleteTestRoles();
