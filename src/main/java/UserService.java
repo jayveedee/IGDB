@@ -15,7 +15,7 @@ public class UserService {
     }
 
     //FIXME husk at gøre så useren bliver tildelt to roller som allerede eksisterer i databsen. nemlig: user og editor. Ved tilfælde af ban, mister useren sin editor-rolle (som står for redigering er artikler) men beholder user-rollen (som består af profil osv.)
-    public boolean tagImodFormParametre(String username, String email, String password ){
+    public boolean createUser(String username, String email, String password ){
         IUserDAO userDAO = new UserDAO(mySQL);
         IRoleDAO roleDAO = new RoleDAO(mySQL);
         UserDTO user = new UserDTO();
@@ -37,6 +37,12 @@ public class UserService {
         boolean answer = userDAO.createUser(user);
 
         return answer;
+    }
+
+    public boolean logIn(String username, String password){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        UserDTO userDTO = userDAO.getUser(username);
+        return true;
     }
 
 }
