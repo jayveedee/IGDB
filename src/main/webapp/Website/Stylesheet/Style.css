@@ -2,7 +2,7 @@ body{
     margin:10px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("Pictures/Background.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../Pictures/Background.jpg");
     z-index: -999999;
     left: 0px;
     top: -320px;
@@ -111,87 +111,72 @@ h2{
 }
 
 .one img{
-    width: 6%;
-    position: absolute;
-    top: 720px;
-    left: 720px;
+    width: 20%;
+    float: right;
+    margin: 20px 20px 0px 0px;
     border-radius: 15px;
 }
 
 .one p{
     color: rgba(255,255,255,0.8);
-    position: absolute;
-    left: 350px;
-    top: 720px;
+    margin: 20px 0px 0px 30px;
     width: 350px;
 }
 
 .two h3{
     color: rgba(255,255,255,1);
-    position: absolute;
-    top: 680px;
-    left: 1080px;
+    margin: 20px 0px 0px 30px;
 }
 
 .two img {
-    width: 6%;
-    position: absolute;
-    top: 720px;
-    right: 360px;
-    margin: auto;
+    width: 20%;
+    float: right;
+    margin: 20px 20px 0px 0px;
     border-radius: 15px;
 }
 
 .two p{
     color: rgba(255,255,255,0.8);
-    position: absolute;
-    left: 1080px;
-    top: 720px;
+    margin: 20px 0px 0px 30px;
     width: 350px;
 }
 
 .three h3{
     color: rgba(255,255,255,1);
-    position: absolute;
-    left: 350px;
+    margin: 20px 0px 0px 30px;
 
 }
 
 .three img{
-    width: 6%;
-    position: absolute;
-    top: 1060px;
-    left: 720px;
+    width: 20%;
+    float: right;
+    margin: 20px 20px 0px 0px;
     border-radius: 15px;
 }
 
 .three p{
     color: rgba(255,255,255,0.8);
-    position: absolute;
-    top: 1060px;
-    left: 350px;
+    margin: 20px 0px 0px 30px;
     width: 350px;
 }
 
 .four h3{
     color: rgba(255,255,255,1);
-    position: absolute;
-    left: 1080px;
+    margin: 20px 0px 0px 30px;
 }
 
 .four img {
-    width: 6%;
-    position: absolute;
-    right: 360px;
-    top: 1060px;
-    margin: auto;
+    width: 20%;
+    float: right;
+    margin: 20px 20px 0px 0px;
     border-radius: 15px;
 }
 
 .four p{
     color: rgba(255,255,255,0.8);
     position: absolute;
-    left: 1080px;
+    margin: 20px 0px 0px 30px;
     width: 350px;
-    top: 1060px;
+
 }
+

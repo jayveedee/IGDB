@@ -1,10 +1,19 @@
-img {
+.container{
+    margin-left: 350px;
+    margin-right: 350px;
+}
+
+#uploadedPicture {
     border: 2px solid #59adff91;
     border-radius: 14px;
     width: 177px;
-    margin: 3px;
+    margin: 3px 3px 3px 50px;
     padding: 3px;
-    display: block;
+    display: inline;
+}
+
+.avatar {
+    margin: 3px !important;
 }
 
 .button {
@@ -12,7 +21,7 @@ img {
     padding: 1em 2em;
     color: white;
     border: 0;
-    margin: 10px 0px 0px 30px;
+    margin: 10px 0px 0px 80px;
     border-radius: 14px;
     cursor: pointer;
 }
@@ -61,11 +70,44 @@ img {
 }
 
 .imageContainer{
-    width: 177px;
-    float: left;
-    margin: 7px;
+    display: inline;
 }
 
-.container{
-    position: 
+.avatar:hover {
+    background-color: rgba(102, 102, 102, 0.5);
+}
+
+.selected{
+    box-shadow:4px 12px 22px 4px #333;
+}
+
+.profileInfo{
+    float: right;
+    position: unset;
+}
+
+.profile-container li{
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.profile-container ul{
+    float: right;
+    list-style-type: none;
+    width: 50%;
+    height: 10px;
+    padding: 0px 0px 0px 15px;
+}
+
+.profile-search{
+    width: 80%;
+    height: 320%;
+    border-radius: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px 0px 0px 15px;
+}
+
+input:focus {
+    outline:none;
 }
