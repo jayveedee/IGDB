@@ -9,13 +9,15 @@ public class UserDTO {
     private String              userEMAIL;
     private List<Integer>       userGAMEs;
     private List<RoleDTO>       userROLEs;
+    private String              userPFP;
 
-    public UserDTO(String userNAME, String userPASS, String userEMAIL, List<Integer> userGAMEs, List<RoleDTO> userROLEs) {
+    public UserDTO(String userNAME, String userPASS, String userEMAIL, List<Integer> userGAMEs, List<RoleDTO> userROLEs, String userPFP) {
         this.userNAME = userNAME;
         this.userPASS = userPASS;
         this.userEMAIL = userEMAIL;
         this.userGAMEs = userGAMEs;
         this.userROLEs = userROLEs;
+        this.userPFP = userPFP;
     }
 
     public UserDTO() {
@@ -59,5 +61,13 @@ public class UserDTO {
 
     public void setUserROLEs(List<RoleDTO> userROLEs) {
         this.userROLEs = userROLEs;
+    }
+
+    public String getUserPFP() {
+        return userPFP;
+    }
+
+    public void setUserPFP(String userPFP) {
+        this.userPFP = userPFP;
     }
 }

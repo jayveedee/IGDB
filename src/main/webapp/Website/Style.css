@@ -6,7 +6,10 @@ body{
     z-index: -999999;
     left: 0px;
     top: -320px;
-    box-sizing: border-box;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .standart-nav{
     display: flex;
@@ -56,24 +59,16 @@ body{
     float:right;
     margin-right: 20px;
 }
-
-.slideshow-container{
-    width: 45%;
-    margin: auto;
-    overflow: auto;
-    border: 3px solid black;
-
-}
-
-.slideshow-slide{
-    display: flex;
-    width: 100%
-
-}
-
 .interactive-logo{
     color:white;
     text-decoration: none;
+}
+
+h2{
+    position: absolute;
+    color: #FFFFFF;
+    left: 275px;
+    margin: 20px;
 }
 
 .container{
@@ -83,4 +78,122 @@ body{
     margin-right: 200px;
     background-color: rgba(255,255,255,0.2);
     border-radius: 14px;
+}
+
+.slideshow-container{
+    width: 60%;
+    margin: auto;
+    position: center;
+    overflow: hidden;
+}
+
+.slideshow-slide{
+    position: center;
+    width: 100%;
+    margin: auto;
+}
+.article-container{
+    display: flex;
+    position: center;
+}
+.article{
+    position: center;
+    background-color: rgba(0,0,0,0.2);
+    width: 550px;
+    height: 250px;
+    margin: 40px auto;
+    border: 5px solid cornflowerblue;
+    border-radius: 15px;
+}
+.one h3{
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 680px;
+    left: 350px;
+}
+
+.one img{
+    width: 6%;
+    position: absolute;
+    top: 720px;
+    left: 720px;
+    border-radius: 15px;
+}
+
+.one p{
+    color: rgba(255,255,255,0.8);
+    position: absolute;
+    left: 350px;
+    top: 720px;
+    width: 350px;
+}
+
+.two h3{
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 680px;
+    left: 1080px;
+}
+
+.two img {
+    width: 6%;
+    position: absolute;
+    top: 720px;
+    right: 360px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.two p{
+    color: rgba(255,255,255,0.8);
+    position: absolute;
+    left: 1080px;
+    top: 720px;
+    width: 350px;
+}
+
+.three h3{
+    color: rgba(255,255,255,1);
+    position: absolute;
+    left: 350px;
+
+}
+
+.three img{
+    width: 6%;
+    position: absolute;
+    top: 1060px;
+    left: 720px;
+    border-radius: 15px;
+}
+
+.three p{
+    color: rgba(255,255,255,0.8);
+    position: absolute;
+    top: 1060px;
+    left: 350px;
+    width: 350px;
+}
+
+.four h3{
+    color: rgba(255,255,255,1);
+    position: absolute;
+    left: 1080px;
+}
+
+.four img {
+    width: 6%;
+    position: absolute;
+    right: 360px;
+    top: 1060px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.four p{
+    color: rgba(255,255,255,0.8);
+    position: absolute;
+    left: 1080px;
+    width: 350px;
+    top: 1060px;
 }

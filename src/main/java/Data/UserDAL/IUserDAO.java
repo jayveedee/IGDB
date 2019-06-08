@@ -10,6 +10,8 @@ public interface IUserDAO {
     boolean createUser(UserDTO user);
     UserDTO getUser(String userNAME);
     List<UserDTO> getUserList();
+    List<RoleDTO> getUserRoleList(String userNAME);
+    List<Integer> getUserGameList(String userNAME);
     boolean updateUserInfo(UserDTO newUser);
     boolean updateSpecificUserRole(String userNAME, RoleDTO newRole);
     boolean deleteUser(String userNAME);

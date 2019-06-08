@@ -19,21 +19,22 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean createUser(UserDTO user) {
-        String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL) VALUES (?, ?, ?)";
+        String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL, profilPic) VALUES (?, ?, ?, ?)";
         String query2 = "INSERT INTO UserRoles (userNAME, roleID) VALUES (?, ?)";
 
         String username         = user.getUserNAME();
         String password         = user.getUserPASS();
         String email            = user.getUserEMAIL();
         List<RoleDTO> roleList  = user.getUserROLEs();
+        String PFP              = user.getUserPFP();
         try {
-            handleUpdateUserXcreateUser(query1, username, password, email);
+            handleUpdateUserXcreateUser(query1, username, password, email, PFP);
 
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-            for (int i = 0; i < roleList.size(); i++) {
-                mySql.getPrepStatement().setString(1,username);
-                mySql.getPrepStatement().setInt(2,roleList.get(i).getRoleID());
+            for (RoleDTO roleDTO : roleList) {
+                mySql.getPrepStatement().setString(1, username);
+                mySql.getPrepStatement().setInt(2, roleDTO.getRoleID());
                 mySql.getPrepStatement().addBatch();
             }
             mySql.getPrepStatement().executeBatch();
@@ -46,13 +47,14 @@ public class UserDAO implements IUserDAO {
         return true;
     }
 
-    private boolean handleUpdateUserXcreateUser(String query1, String username, String password, String email) {
+    private boolean handleUpdateUserXcreateUser(String query1, String username, String password, String email, String PFP) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
             mySql.getPrepStatement().setString(1,username);
             mySql.getPrepStatement().setString(2,password);
             mySql.getPrepStatement().setString(3,email);
+            mySql.getPrepStatement().setString(4,PFP);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
@@ -64,31 +66,21 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public UserDTO getUser(String userNAME) {
-        String query1 = "SELECT * FROM Users WHERE userNAME = ?";
-        String query2 = "SELECT * FROM UserRoles INNER JOIN Roles ON UserRoles.roleID = Roles.roleID WHERE userNAME = ?";
-        String query3 = "SELECT * FROM UGameLIST WHERE userNAME = ?";
+        String query = "SELECT * FROM Users WHERE userNAME = ?";
         UserDTO user = new UserDTO();
         List<RoleDTO> rlist;
         List<Integer> gmlist;
         try {
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setString(1,userNAME);
-
-            ResultSet rs1 = mySql.getPrepStatement().executeQuery();
-            if (rs1.next()){
-                user.setUserNAME(rs1.getString("userNAME"));
-                user.setUserPASS(rs1.getString("userPASS"));
-                user.setUserEMAIL(rs1.getString("userEMAIL"));
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            if (rs.next()){
+                handleGetUser(rs, user);
             }
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-            mySql.getPrepStatement().setString(1,userNAME);
-
-            ResultSet rs2 = mySql.getPrepStatement().executeQuery();
-            rlist = RoleDAO.handleGetRoleList(rs2);
+            rlist = getUserRoleList(userNAME);
             user.setUserROLEs(rlist);
 
-            gmlist = handleGetUGameList(userNAME, query3);
+            gmlist = getUserGameList(userNAME);
             user.setUserGAMEs(gmlist);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,33 +90,18 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<UserDTO> getUserList() {
-        String query1 = "SELECT * FROM Users";
-        String query2 = "SELECT * FROM UserRoles INNER JOIN Roles ON UserRoles.roleID = Roles.roleID WHERE userNAME = ?";
-        String query3 = "SELECT * FROM UGameLIST WHERE userNAME = ?";
+        String query = "SELECT * FROM Users";
         List<UserDTO> ulist = new ArrayList<>();
         try {
             mySql.setStatement(mySql.getConnection().createStatement());
-
-            ResultSet rs1 = mySql.getStatement().executeQuery(query1);
-            while (rs1.next()){
+            ResultSet rs = mySql.getStatement().executeQuery(query);
+            while (rs.next()){
                 UserDTO user = new UserDTO();
-                user.setUserNAME(rs1.getString("userNAME"));
-                user.setUserPASS(rs1.getString("userPASS"));
-                user.setUserEMAIL(rs1.getString("userEMAIL"));
+                handleGetUser(rs, user);
 
-                mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-                mySql.getPrepStatement().setString(1,rs1.getString("userNAME"));
-                ResultSet rs2 = mySql.getPrepStatement().executeQuery();
-                List<RoleDTO> rlist = RoleDAO.handleGetRoleList(rs2);
+                List<RoleDTO> rlist = getUserRoleList(user.getUserNAME());
+                List<Integer> gmlist = getUserGameList(user.getUserNAME());
                 user.setUserROLEs(rlist);
-
-                List<Integer> gmlist = new ArrayList<>();
-                mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
-                mySql.getPrepStatement().setString(1,rs1.getString("userNAME"));
-                ResultSet rs3 = mySql.getPrepStatement().executeQuery();
-                while (rs3.next()) {
-                    gmlist.add(rs3.getInt("gameID"));
-                }
                 user.setUserGAMEs(gmlist);
                 ulist.add(user);
             }
@@ -134,24 +111,60 @@ public class UserDAO implements IUserDAO {
         return ulist;
     }
 
-    private List<Integer> handleGetUGameList(String userNAME, String query) throws SQLException {
+    private void handleGetUser(ResultSet rs, UserDTO user) throws SQLException {
+        user.setUserNAME(rs.getString("userNAME"));
+        user.setUserPASS(rs.getString("userPASS"));
+        user.setUserEMAIL(rs.getString("userEMAIL"));
+        user.setUserPFP(rs.getString("profilPic"));
+    }
+
+    @Override
+    public List<RoleDTO> getUserRoleList(String userName) {
+        String query =
+                        "SELECT userRoles.userNAME, userRoles.roleID, Roles.roleNAME FROM UserRoles " +
+                        "INNER JOIN Users ON UserRoles.userNAME " +
+                        "AND " +
+                        "INNER JOIN Roles ON UserRoles.roleID = Roles.roleID " +
+                        "WHERE userNAME = ?";
+        List<RoleDTO> rlist = new ArrayList<>();
+        RoleDAO rdao = new RoleDAO(mySql);
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,userName);
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            rlist = rdao.handleGetRoleList(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rlist;
+    }
+
+    @Override
+    public List<Integer> getUserGameList(String userNAME) {
+        String query = "SELECT * FROM UGameLIST WHERE userNAME = ?";
         List<Integer> gmlist = new ArrayList<>();
-        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-        mySql.getPrepStatement().setString(1,userNAME);
-        ResultSet rs = mySql.getPrepStatement().executeQuery();
-        while (rs.next()){
-            gmlist.add(rs.getInt("gameID"));
+        try {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,userNAME);
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            while (rs.next()) {
+                gmlist.add(rs.getInt("gameID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return gmlist;
     }
 
     @Override
     public boolean updateUserInfo(UserDTO newUser) {
-        String query1 = "UPDATE Users SET userPASS = ?, userEMAIL = ? WHERE userNAME = ?";
-        String userNAME = newUser.getUserNAME();
-        String userEMAIL = newUser.getUserEMAIL();
-        String userPASS = newUser.getUserPASS();
-        return handleUpdateUserXcreateUser(query1, userPASS, userEMAIL, userNAME);
+        String query1       = "UPDATE Users SET userPASS = ?, userEMAIL = ? WHERE userNAME = ?";
+        String userNAME     = newUser.getUserNAME();
+        String userEMAIL    = newUser.getUserEMAIL();
+        String userPASS     = newUser.getUserPASS();
+        String PFP          = newUser.getUserPFP();
+        return handleUpdateUserXcreateUser(query1, userPASS, userEMAIL, userNAME, PFP);
     }
 
     @Override
