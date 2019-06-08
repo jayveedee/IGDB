@@ -12,14 +12,16 @@ public class ActorDTO {
     private DateDTO                 acBDAY;
     private List<Integer>           acCHs;
     private List<Integer>           acGAMEs;
+    private String                  acPFP;
 
-    public ActorDTO(int acID, String firstName, String acLN, DateDTO acBDAY, List<Integer> acCHs, List<Integer> acGAMEs) {
+    public ActorDTO(int acID, String acFN, String acLN, DateDTO acBDAY, List<Integer> acCHs, List<Integer> acGAMEs, String acPFP) {
         this.acID = acID;
-        this.acFN = firstName;
+        this.acFN = acFN;
         this.acLN = acLN;
         this.acBDAY = acBDAY;
         this.acCHs = acCHs;
         this.acGAMEs = acGAMEs;
+        this.acPFP = acPFP;
     }
 
     public ActorDTO() {
@@ -79,5 +81,13 @@ public class ActorDTO {
 
     public void setAcGAMEs(List<Integer> acGAMEs) {
         this.acGAMEs = acGAMEs;
+    }
+
+    public String getAcPFP() {
+        return acPFP;
+    }
+
+    public void setAcPFP(String acPFP) {
+        this.acPFP = acPFP;
     }
 }

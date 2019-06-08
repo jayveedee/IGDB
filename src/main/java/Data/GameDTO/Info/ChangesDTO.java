@@ -4,19 +4,19 @@ import Data.UserDTO.UserDTO;
 
 public class ChangesDTO {
 
-    private int changeID;
-    private String changeVER;
-    private String changeDATE;
-    private UserDTO changeUSERNAME;
+    private int         changeID;
+    private String      changeVER;
+    private UserDTO     changeUSERNAME;
+    private DateDTO     changeDATE;
 
-    public ChangesDTO() {
-    }
-
-    public ChangesDTO(int changeID, String changeVER, String changeDATE, UserDTO changeUSERNAME) {
+    public ChangesDTO(int changeID, String changeVER, UserDTO changeUSERNAME, DateDTO changeDATE) {
         this.changeID = changeID;
         this.changeVER = changeVER;
-        this.changeDATE = changeDATE;
         this.changeUSERNAME = changeUSERNAME;
+        this.changeDATE = changeDATE;
+    }
+
+    public ChangesDTO() {
     }
 
     public int getChangeID() {
@@ -35,19 +35,19 @@ public class ChangesDTO {
         this.changeVER = changeVER;
     }
 
-    public String getChangeDATE() {
-        return changeDATE;
-    }
-
-    public void setChangeDATE(String changeDATE) {
-        this.changeDATE = changeDATE;
-    }
-
     public UserDTO getChangeUSERNAME() {
         return changeUSERNAME;
     }
 
     public void setChangeUSERNAME(UserDTO changeUSERNAME) {
         this.changeUSERNAME = changeUSERNAME;
+    }
+
+    public DateDTO getChangeDATE() {
+        return changeDATE;
+    }
+
+    public void setChangeDATE(DateDTO changeDATE) {
+        this.changeDATE = changeDATE;
     }
 }

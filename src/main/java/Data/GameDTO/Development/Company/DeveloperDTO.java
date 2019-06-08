@@ -8,23 +8,20 @@ public class DeveloperDTO {
 
     private int                 devID;
     private String              devNAME;
-    private DateDTO             devESTABLISHED;
+    private DateDTO             devCREATED;
     private boolean             devSTATUS;
     private String              devCOUNTRY;
-    private PublisherDTO        devPCOMPANY;
+    private ParentCompanyDTO    devPCOMPANY;
     private List<Integer>       devGAMEs;
 
-    private String biography;
-
-    public DeveloperDTO(int devID, String devNAME, DateDTO devESTABLISHED, boolean devSTATUS, String devCOUNTRY, PublisherDTO devPCOMPANY, List<Integer> devGAMEs, String biography) {
+    public DeveloperDTO(int devID, String devNAME, DateDTO devCREATED, boolean devSTATUS, String devCOUNTRY, ParentCompanyDTO devPCOMPANY, List<Integer> devGAMEs) {
         this.devID = devID;
         this.devNAME = devNAME;
-        this.devESTABLISHED = devESTABLISHED;
+        this.devCREATED = devCREATED;
         this.devSTATUS = devSTATUS;
         this.devCOUNTRY = devCOUNTRY;
         this.devPCOMPANY = devPCOMPANY;
         this.devGAMEs = devGAMEs;
-        this.biography = biography;
     }
 
     public DeveloperDTO() {
@@ -46,12 +43,12 @@ public class DeveloperDTO {
         this.devNAME = devNAME;
     }
 
-    public DateDTO getDevESTABLISHED() {
-        return devESTABLISHED;
+    public DateDTO getDevCREATED() {
+        return devCREATED;
     }
 
-    public void setDevESTABLISHED(DateDTO devESTABLISHED) {
-        this.devESTABLISHED = devESTABLISHED;
+    public void setDevCREATED(DateDTO devCREATED) {
+        this.devCREATED = devCREATED;
     }
 
     public boolean isDevSTATUS() {
@@ -70,11 +67,11 @@ public class DeveloperDTO {
         this.devCOUNTRY = devCOUNTRY;
     }
 
-    public PublisherDTO getDevPCOMPANY() {
+    public ParentCompanyDTO getDevPCOMPANY() {
         return devPCOMPANY;
     }
 
-    public void setDevPCOMPANY(PublisherDTO devPCOMPANY) {
+    public void setDevPCOMPANY(ParentCompanyDTO devPCOMPANY) {
         this.devPCOMPANY = devPCOMPANY;
     }
 
@@ -84,13 +81,5 @@ public class DeveloperDTO {
 
     public void setDevGAMEs(List<Integer> devGAMEs) {
         this.devGAMEs = devGAMEs;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
     }
 }

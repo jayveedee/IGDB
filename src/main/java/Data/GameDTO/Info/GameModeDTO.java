@@ -5,12 +5,12 @@ import java.util.List;
 public class GameModeDTO {
 
     private int                 gmID;
-    private String              gmNAME;
+    private String              gmTITLE;
     private List<Integer>       gmGAMEs;
 
-    public GameModeDTO(int gmID, String gmNAME, List<Integer> gmGAMEs) {
+    public GameModeDTO(int gmID, String gmTITLE, List<Integer> gmGAMEs) {
         this.gmID = gmID;
-        this.gmNAME = gmNAME;
+        this.gmTITLE = gmTITLE;
         this.gmGAMEs = gmGAMEs;
     }
 
@@ -25,12 +25,12 @@ public class GameModeDTO {
         this.gmID = gmID;
     }
 
-    public String getGmNAME() {
-        return gmNAME;
+    public String getGmTITLE() {
+        return gmTITLE;
     }
 
-    public void setGmNAME(String gmNAME) {
-        this.gmNAME = gmNAME;
+    public void setGmTITLE(String gmTITLE) {
+        this.gmTITLE = gmTITLE;
     }
 
     public List<Integer> getGmGAMEs() {

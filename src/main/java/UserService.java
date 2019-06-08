@@ -1,5 +1,7 @@
 import Data.IMysqlConnection;
+import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
+import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -19,6 +21,7 @@ public class UserService {
 
     public boolean tagImodFormParametre(String username, String email, String password ){
         IUserDAO userDAO = new UserDAO(mySQL);
+        IRoleDAO roleDAO = new RoleDAO(mySQL);
         UserDTO user = new UserDTO();
         RoleDTO role = new RoleDTO();
 
@@ -35,6 +38,7 @@ public class UserService {
         user.setUserROLEs(roleList);
 
         System.out.println("hejsa");
+        roleDAO.createRole(role);
         boolean answer = userDAO.createUser(user);
 
         return answer;

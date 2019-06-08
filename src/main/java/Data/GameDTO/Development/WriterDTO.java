@@ -1,55 +1,53 @@
 package Data.GameDTO.Development;
 
-import Data.GameDTO.GameDTO;
-
 import java.util.List;
 
 public class WriterDTO {
 
-    private int             wriID;
-    private String          wriFN;
-    private String          wriLN;
-    private List<Integer>   wriGAMEs;
+    private int             writerID;
+    private String          writerFN;
+    private String          writerLN;
+    private List<Integer>   writerGAMEs;
 
-    public WriterDTO(int wriID, String wriFN, String wriLN, List<Integer> wriGAMEs) {
-        this.wriID = wriID;
-        this.wriFN = wriFN;
-        this.wriLN = wriLN;
-        this.wriGAMEs = wriGAMEs;
+    public WriterDTO(int writerID, String writerFN, String writerLN, List<Integer> writerGAMEs) {
+        this.writerID = writerID;
+        this.writerFN = writerFN;
+        this.writerLN = writerLN;
+        this.writerGAMEs = writerGAMEs;
     }
 
     public WriterDTO() {
     }
 
-    public int getWriID() {
-        return wriID;
+    public int getWriterID() {
+        return writerID;
     }
 
-    public void setWriID(int wriID) {
-        this.wriID = wriID;
+    public void setWriterID(int writerID) {
+        this.writerID = writerID;
     }
 
-    public String getWriFN() {
-        return wriFN;
+    public String getWriterFN() {
+        return writerFN;
     }
 
-    public void setWriFN(String wriFN) {
-        this.wriFN = wriFN;
+    public void setWriterFN(String writerFN) {
+        this.writerFN = writerFN;
     }
 
-    public String getWriLN() {
-        return wriLN;
+    public String getWriterLN() {
+        return writerLN;
     }
 
-    public void setWriLN(String wriLN) {
-        this.wriLN = wriLN;
+    public void setWriterLN(String writerLN) {
+        this.writerLN = writerLN;
     }
 
-    public List<Integer> getWriGAMEs() {
-        return wriGAMEs;
+    public List<Integer> getWriterGAMEs() {
+        return writerGAMEs;
     }
 
-    public void setWriGAMEs(List<Integer> wriGAMEs) {
-        this.wriGAMEs = wriGAMEs;
+    public void setWriterGAMEs(List<Integer> writerGAMEs) {
+        this.writerGAMEs = writerGAMEs;
     }
 }

@@ -12,7 +12,7 @@ public class RoleDAO implements IRoleDAO {
 
     private IMysqlConnection mySql;
 
-    RoleDAO(IMysqlConnection mySql) {
+    public RoleDAO(IMysqlConnection mySql) {
         this.mySql = mySql;
     }
 
@@ -57,7 +57,7 @@ public class RoleDAO implements IRoleDAO {
 
     @Override
     public List<RoleDTO> getRoleList() {
-        String query = "SELECT * FROM Roles";
+        String query = "SELECT * FROM Roles ORDER BY roleID ASC";
         List<RoleDTO> rList = new ArrayList<>();
         try {
             mySql.setStatement(mySql.getConnection().createStatement());
@@ -99,7 +99,7 @@ public class RoleDAO implements IRoleDAO {
 
     @Override
     public boolean deleteRole(int roleID) {
-        String query1 = "DELETE FROM UserRoles WHERE roleID = ?";
+        String query1 = "DELETE FROM UserRoleList WHERE roleID = ?";
         String query2 = "DELETE FROM Roles WHERE roleID = ?";
         return handleDeleteByID(roleID, query1) && handleDeleteByID(roleID, query2);
     }

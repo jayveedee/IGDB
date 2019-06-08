@@ -8,12 +8,14 @@ public class MusicArtistDTO {
     private String                  artNAME;
     private List<Integer>           artGAMEs;
     private List<Integer>           artOSTs;
+    private String                  artPFP;
 
-    public MusicArtistDTO(int artID, String artNAME, List<Integer> artGAMEs, List<Integer> artOSTs) {
+    public MusicArtistDTO(int artID, String artNAME, List<Integer> artGAMEs, List<Integer> artOSTs, String artPFP) {
         this.artID = artID;
         this.artNAME = artNAME;
         this.artGAMEs = artGAMEs;
         this.artOSTs = artOSTs;
+        this.artPFP = artPFP;
     }
 
     public MusicArtistDTO() {
@@ -49,5 +51,13 @@ public class MusicArtistDTO {
 
     public void setArtOSTs(List<Integer> artOSTs) {
         this.artOSTs = artOSTs;
+    }
+
+    public String getArtPFP() {
+        return artPFP;
+    }
+
+    public void setArtPFP(String artPFP) {
+        this.artPFP = artPFP;
     }
 }
