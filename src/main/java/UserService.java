@@ -5,11 +5,6 @@ import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
-
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class UserService {
@@ -19,6 +14,7 @@ public class UserService {
         this.mySQL=mySQL;
     }
 
+    //FIXME husk at gøre så useren bliver tildelt to roller som allerede eksisterer i databsen. nemlig: user og editor. Ved tilfælde af ban, mister useren sin editor-rolle (som står for redigering er artikler) men beholder user-rollen (som består af profil osv.)
     public boolean tagImodFormParametre(String username, String email, String password ){
         IUserDAO userDAO = new UserDAO(mySQL);
         IRoleDAO roleDAO = new RoleDAO(mySQL);
@@ -28,7 +24,7 @@ public class UserService {
         role.setRoleID(2);
         role.setRoleNAME("User");
 
-        ArrayList<RoleDTO> roleList = null;
+        ArrayList<RoleDTO> roleList = new ArrayList<>();
         roleList.add(role);
 
         user.setUserEMAIL(email);
@@ -37,7 +33,6 @@ public class UserService {
         user.setUserGAMEs(null);
         user.setUserROLEs(roleList);
 
-        System.out.println("hejsa");
         roleDAO.createRole(role);
         boolean answer = userDAO.createUser(user);
 

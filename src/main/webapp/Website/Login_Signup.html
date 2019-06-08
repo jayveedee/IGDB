@@ -27,7 +27,7 @@
                 </ul>
             </div>
         <!--- Registrer form start--->
-        <form id = "registerForm" method="POST" action="/rest/services/user/createUser" class="Registrer-form">
+        <form id = "registerForm" method="post" action="/rest/services/user/createUser" class="Registrer-form">
             <input type="text" name="username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
@@ -37,7 +37,7 @@
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
-        <form method="POST" action="Index.html" class="Login-form">
+        <form method="post" action="Index.html" class="Login-form">
             <input type="text" placeholder="Username" required>
             <input type="password" placeholder="Password" required>
             <input type="submit" value="Login" class="button" name="login">
@@ -45,7 +45,7 @@
         <!--- Login form END --->
     </div>
 </div>
-<script src="Main.js"></script>
+<script src="Registrer.js"></script>
     <script>
         $("#registerForm").submit(function (event) {
             event.preventDefault();
@@ -54,7 +54,7 @@
                 url : $(this).attr("action"),
                 data : $(this).serialize(),
                 success : function (data) {
-                    alert(data);
+
                 },
                 error : function () {
                     alert("failed to get data")

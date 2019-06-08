@@ -1,7 +1,9 @@
 import Data.GameDTO.GameDTO;
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
+import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
+import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -19,6 +21,7 @@ public class Main {
             e.printStackTrace();
         }
         IUserDAO userDAO = new UserDAO(mysqlConnection);
+        IRoleDAO roleDAO = new RoleDAO(mysqlConnection);
         UserDTO userDTO = new UserDTO();
 
         ArrayList<RoleDTO> roleList = new ArrayList<>();
@@ -36,7 +39,10 @@ public class Main {
         userDTO.setUserEMAIL("asama@yahoo.dk");
         userDTO.setUserPFP("skerder.dk");
 
-        userDAO.createUser(userDTO);
+        userDAO.deleteAllUserRoles("asamahayder");
+        userDAO.deleteAllUserGameLists("asamahayder");
+        userDAO.deleteUser("asamahayder");
+
 
     }
 }

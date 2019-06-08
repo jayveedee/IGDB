@@ -24,7 +24,7 @@ public class UserDAO_TEST {
     private IMysqlConnection mySql = new MysqlConnection();
     private UserDAO udao = new UserDAO(mySql);
     private RoleDAO rdao = new RoleDAO(mySql);
-    private GameDAO gdao = new GameDAO(mySql);
+   // private GameDAO gdao = new GameDAO(mySql);
 
 
     private List<RoleDTO> addRolesToDB() {
@@ -93,7 +93,7 @@ public class UserDAO_TEST {
         String gameBG;
         String gameBIO;
         List<Integer> gameTRAILER;
-        return
+        return game;
     }
 
     private void deleteTestRoles() {
