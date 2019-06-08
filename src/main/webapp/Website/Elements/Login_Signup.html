@@ -33,7 +33,7 @@
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
             <div id="password_length"></div>
-            <input formaction="Index.html" type="submit" value="Registrer" id="regi_submit" class="button" name="login">
+            <input type="submit" value="Registrer" id="regi_submit" class="button" name="login">
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
@@ -55,10 +55,15 @@
                 data : $(this).serialize(),
                 success : function (data) {
                     alert("hejsa");
-
+                    document.getElementById("regi_submit").onclick = function () {
+                        location.href = "Index.html";
+                    };
                 },
                 error : function () {
                     alert("failed to get data");
+                    document.getElementById("regi_submit").onclick = function () {
+                        location.href = "Login_Signup.html";
+                    };
                 }
             });
         });
