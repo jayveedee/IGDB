@@ -30,3 +30,22 @@ $(function () {
         return true;
     });
 });
+
+$("#registerForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type : $(this).attr("method"),
+        url : $(this).attr("action"),
+        data : $(this).serialize(),
+        success : function (data) {
+            if (data == "true"){
+                location.href = "Index.html";
+            }else{
+                alert("Couldn't create user. This username might be taken. Try again.")
+            }
+        },
+        error : function () {
+            alert("Couldn't create user, try again");
+        }
+    });
+});
