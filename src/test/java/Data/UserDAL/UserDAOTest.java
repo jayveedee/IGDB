@@ -1,13 +1,14 @@
 package Data.UserDAL;
 
 import Data.GameDAL.GameDAO;
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
-import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.Info.SoundtrackDTO;
+import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
 import Data.UserDTO.RoleDTO;
@@ -124,57 +125,6 @@ public class UserDAOTest {
 
     @Test
     public void addToUserGameList() throws SQLException {
-        mySql.createConnection();
-
-        List<Integer> gameList = null;
-        List<RoleDTO> roleList = createRoleList();
-
-        UserDTO user = createUserGameList(gameList, roleList);
-        RoleDTO role = createRoleDB();
-        for (int i = 0; i < gameList.size(); i++) {
-            GameDTO game = createGameDB(gameList.get(i));
-        }
-        rdao.createRole(role);
-        udao.createUser(user);
-    }
-
-    private GameDTO createGameDB(int gameID) {
-        GameDTO game = new GameDTO();
-        DateDTO date = null;
-        WriterDTO writer = null;
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
-
-        List<Integer> gameCHARs = null;
-        List<Integer> gameGENREs = null;
-        List<Integer> gameACTOR = null;
-        List<Integer> gameRATING = null;
-        List<Integer> gameGAMEMODE = null;
-        List<Integer> gameTRAILER = null;
-        List<Integer> gamePics = null;
-
-        game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");
-        game.setGameBIO("INSERT DESCRIPTION HERE");
-        game.setGameNAME("INSERT GAME TITLE HERE");
-        game.setGameCOMP(comp);
-        game.setGameDEV(dev);
-        game.setGameOST(ost);
-        game.setGamePUB(pub);
-        game.setGameRELEASEDATE(date);
-        game.setGameWRI(writer);
-        game.setGameACs(gameACTOR);
-        game.setGameCHs(gameCHARs);
-        game.setGameGENREs(gameGENREs);
-        game.setGameGMs(gameGAMEMODE);
-        game.setGamePICs(gamePics);
-        game.setGameRATINGs(gameRATING);
-        game.setGameTRAILERs(gameTRAILER);
-        gdao.createGame(game);
-
-        return game;
     }
 
     private UserDTO createUserGameList(List<Integer> gameList, List<RoleDTO> roleList) {
@@ -186,7 +136,7 @@ public class UserDAOTest {
         return user;
     }
 
-    @Test
+    @Test // GOOD TO OG
     public void getUserList() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
@@ -267,7 +217,7 @@ public class UserDAOTest {
         rdao.deleteRole(Role2.getRoleID());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void getUserRoleList() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
@@ -306,8 +256,6 @@ public class UserDAOTest {
         udao.deleteUser(user1.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
-
-
     }
 
     @Test
@@ -318,7 +266,7 @@ public class UserDAOTest {
 
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void updateUserInfo() throws SQLException {
 
         mySql.createConnection();
@@ -418,7 +366,7 @@ public class UserDAOTest {
         udao.deleteUser(user1.getUserNAME());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void deleteUser() throws SQLException {
         mySql.createConnection();
 
@@ -463,7 +411,7 @@ public class UserDAOTest {
         rdao.deleteRole(Role2.getRoleID());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void deleteAllUserRoles() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
