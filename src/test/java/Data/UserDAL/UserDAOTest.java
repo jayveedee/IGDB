@@ -282,10 +282,8 @@ public class UserDAOTest {
         RoleLIST.add(Role1);
         RoleLIST.add(Role2);
 
-
         UserDTO user1 = new UserDTO();
-        UserDTO user2 = new UserDTO();
-        UserDTO user3 = new UserDTO();
+
         user1.setUserNAME("Asama");
         user1.setUserPASS("123456Asama");
         user1.setUserEMAIL("aaaaa@derr.com");
@@ -293,13 +291,9 @@ public class UserDAOTest {
         user1.setUserROLEs(RoleLIST);
         user1.setUserPFP("terer");
 
-
         rdao.createRole(Role1);
         rdao.createRole(Role2);
-
         udao.createUser(user1);
-
-
 
         List<RoleDTO> TestRoleLIST = udao.getUserRoleList(user1.getUserNAME());
 
@@ -317,7 +311,9 @@ public class UserDAOTest {
     }
 
     @Test
-    public void getUserGameList() {
+    public void getUserGameList() throws SQLException {
+        mySql.createConnection();
+
 
 
     }
@@ -351,7 +347,7 @@ public class UserDAOTest {
         udao.createUser(user1);
 
         UserDTO newUser = new UserDTO("Asama","asdasdasd","asdasdasd",GameLIST,RoleLIST,"asdasdasd");
-        udao.updateUserInfo(newUser);
+        assertTrue(udao.updateUserInfo(newUser));
         UserDTO updatedUser = udao.getUser(user1.getUserNAME());
 
         assertEquals(newUser.getUserPASS(), updatedUser.getUserPASS());
@@ -373,18 +369,139 @@ public class UserDAOTest {
     }
 
     @Test
-    public void updateSpecificUserRole() {
+    public void updateSpecificUserRole() throws SQLException {
+        mySql.createConnection();
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        RoleDTO newRole = new RoleDTO(520,"kek");
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+        rdao.createRole(newRole);
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        udao.updateSpecificUserRole(user1.getUserNAME(),newRole);
+        RoleDTO testRole = rdao.getRole(newRole.getRoleID());
+        UserDTO testUser = udao.getUser(user1.getUserNAME());
+
+        assertEquals(newRole.getRoleNAME(),testRole.getRoleNAME());
+        assertEquals(newRole.getRoleID(),testRole.getRoleID());
+        assertEquals(2,testUser.getUserROLEs().size());
+        for (int i = 0; i < testUser.getUserROLEs().size(); i++) {
+            System.out.println(testUser.getUserROLEs().get(i).getRoleID());
+            System.out.println(testUser.getUserROLEs().get(i).getRoleNAME());
+        }
+
+        udao.deleteAllUserRoles(user1.getUserNAME());
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
+        rdao.deleteRole(newRole.getRoleID());
+        udao.deleteUser(user1.getUserNAME());
     }
 
     @Test
-    public void deleteUser() {
+    public void deleteUser() throws SQLException {
+        mySql.createConnection();
+
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        assertTrue(udao.deleteUser(user1.getUserNAME()));
+
+        UserDTO testDeleteUser = udao.getUser(user1.getUserNAME());
+        assertNull(testDeleteUser.getUserNAME());
+        assertNull(testDeleteUser.getUserPFP());
+        assertNull(testDeleteUser.getUserEMAIL());
+        assertNull(testDeleteUser.getUserPASS());
+        assertTrue(testDeleteUser.getUserROLEs().isEmpty());
+        assertTrue(testDeleteUser.getUserGAMEs().isEmpty());
+
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
     }
 
     @Test
-    public void deleteAllUserRoles() {
+    public void deleteAllUserRoles() throws SQLException {
+        mySql.createConnection();
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        assertTrue(udao.deleteAllUserRoles(user1.getUserNAME()));
+        assertTrue(udao.deleteUser(user1.getUserNAME()));
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
     }
 
     @Test
-    public void deleteAllUserGameLists() {
+    public void deleteAllUserGameLists() throws SQLException {
+        mySql.createConnection();
+
+
+
     }
 }

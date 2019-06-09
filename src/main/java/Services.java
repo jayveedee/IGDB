@@ -1,5 +1,7 @@
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
+import Data.UserDAL.IUserDAO;
+import Data.UserDAL.UserDAO;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -27,18 +29,18 @@ public class Services {
 
     @POST
     @Path("user/logIn")
-    public boolean logIn(@FormParam("username") String username, @FormParam("password") String password){
+    public String logIn(@FormParam("username") String username, @FormParam("password") String password){
         IMysqlConnection mysqlConnection = new MysqlConnection();
-        boolean answer = true;
+        String answer = "placeHolder";
         try {
             mysqlConnection.setConnection(mysqlConnection.createConnection());
             UserService service = new UserService(mysqlConnection);
-            //answer = service.
+            answer = service.logIn(username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return true;
+        return answer;
     }
 
 
