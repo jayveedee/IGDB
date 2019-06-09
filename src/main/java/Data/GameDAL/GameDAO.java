@@ -51,7 +51,9 @@ public class GameDAO implements IGameDAO {
         handleINSERTWriter                      (gameID, gameWRI);
         handleINSERTComposer                    (gameID, gameCOMP);
         if (gameOST != null){
-            String queryARTIST = "";
+            String queryARTIST =
+                "INSERT INTO MusicalArtistList (artistID, artistNAME, artistsPFP) " +
+                "VALUES (?, ?, ?)";
             String queryOST = "";
         }
 
