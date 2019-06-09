@@ -1,27 +1,29 @@
 $(document).ready(function () {
     var username = localStorage.getItem("username");
-    if (username === null || username.length === 0){
+    if (username === null || username === "null"){
         $("#profileBtn").hide();
-        $("#loginRegisterButton").html("Login/Register");
-    }else if (username !== null || username.length !== 0) {
-        $("#profileBtn").show();
+        document.getElementById("loginRegisterButton").innerHTML = "Login/register";
+    }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#loginRegisterButton").html("Log out");
+        $("#profileBtn").show();
+        document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
 
-$("#loginRegisterButton").onclick(function (event) {
-    event.preventDefault();
-    var username = localStorage.getItem("username");
-    if (username === null || username.length === 0){
-        location.href = "Login_Signup.html"
-    }else if (username !== null || username.length !== 0) {
-        localStorage.setItem("username", null);
-        location.reload();
-    }
+$(document).ready(function () {
+    $("#loginRegisterButton").click(function (event) {
+        event.preventDefault();
+        var username = localStorage.getItem("username");
+        if (username === null || username === "null"){
+            location.href = "Login_Signup.html"
+        }else if (username !== null || username === "null") {
+            localStorage.setItem("username", "null");
+            location.reload();
+        }
+    });
 });
 
-$("#profileBtn").onclick(function (event) {
+$("#profileBtn").click(function (event) {
     event.preventDefault();
     location.href = "User.html";
 });

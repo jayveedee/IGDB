@@ -44,8 +44,12 @@ public class UserService {
         UserDTO userDTO = userDAO.getUser(username);
 
         if (userDTO.getUserNAME()==null){
+            System.out.println("hejsa");
             return "null";
-        }else if (password != userDTO.getUserPASS()){
+        }
+
+        if (!password.equals(userDTO.getUserPASS())){
+            System.out.println("halojsa");
             return "null";
         }
 

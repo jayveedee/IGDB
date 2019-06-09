@@ -39,7 +39,8 @@ $("#registerForm").submit(function (event) {
         data : $(this).serialize(),
         success : function (data) {
             if (data == "true"){
-                location.href = "Index.html";
+                alert("Your new account has been created successfully!");
+                location.href = "Login_Signup.html"
             }else{
                 alert("Couldn't create user. This username might be taken. Try again.")
             }
