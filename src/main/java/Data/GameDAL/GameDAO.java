@@ -52,7 +52,6 @@ public class GameDAO implements IGameDAO {
         handleINSERTWriter                      (gameID, gameWRI);
         handleINSERTComposer                    (gameID, gameCOMP);
         handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
-
         return true;
     }
 
