@@ -1,3 +1,4 @@
+/* General START*/
 body{
     margin:10px;
     padding: 0px;
@@ -9,8 +10,16 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-repeat: no-repeat; /* Do not repeat the image */
-
 }
+
+h2{
+    position: absolute;
+    color: #FFFFFF;
+    left: 275px;
+    margin: 20px;
+}
+/* Body END*/
+/* Nav-bar START*/
 .standart-nav{
     display: flex;
     justify-content: space-around;
@@ -64,12 +73,26 @@ body{
     text-decoration: none;
 }
 
-h2{
-    position: absolute;
-    color: #FFFFFF;
-    left: 275px;
-    margin: 20px;
+.searchBar{
+    font: inherit;
+    color: currentColor;
+    width: 30%;
+    border: 0;
+    height: 1.1875em;
+    padding: 6px 0 7px 10px;
+    margin: 0px 0px 0px 180px;
+    min-width: 0;
+    box-sizing: content-box;
+    background-color: #fafafa;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 4px;
 }
+
+.autocomplete{
+    position: relative;
+    display: inline-block;
+}
+/* Body END*/
 
 .container{
     padding: 20px;

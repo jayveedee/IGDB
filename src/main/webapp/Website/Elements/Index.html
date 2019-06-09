@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>IGDB - Index Page</title>
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -14,6 +15,11 @@
             <ul class="navigation-list">
                 <li><a href="#" class="not-active">Forum</a></li>
                 <li><a href="#" class="not-active">Game List</a></li>
+                <div class="autocomplete" style="display: inline;">
+                    <div style="display: inline;">
+                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="">
+                    </div>
+                </div>
                 <li class="nav-login"><a href="Login_Signup.html" class="not-active">Login/Registrer</a></li>
             </ul>
         </nav>
@@ -73,6 +79,5 @@
     </div>
 </div>
 <script src="../Functions/Index.js"></script>
-
 </body>
 </html>
