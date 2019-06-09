@@ -39,7 +39,6 @@ public class Services {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return answer;
     }
 
