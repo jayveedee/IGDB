@@ -24,7 +24,7 @@ $("#loginRegisterButton").onclick(function (event) {
 $("#profileBtn").onclick(function () {
    location.href = "User.html";
 });
-    
+
 $.ajax({
     type : $(this).attr("method"),
     url : $(this).attr("action"),

@@ -1,16 +1,25 @@
+/* General START*/
 body{
     margin:10px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../Pictures/Background.jpg");
+    background-image: url("../Pictures/Background.jpg");
     z-index: -999999;
-    left: 0px;
-    top: -320px;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-repeat: no-repeat; /* Do not repeat the image */
 }
+
+h2{
+    position: absolute;
+    color: #FFFFFF;
+    left: 275px;
+    margin: 20px;
+}
+/* Body END*/
+/* Nav-bar START*/
 .standart-nav{
     display: flex;
     justify-content: space-around;
@@ -34,13 +43,11 @@ body{
 .not-active {
     padding: 20px;
     border-radius: 14px;
+    color: #fff;
+    text-decoration: none;
 }
 .not-active:hover{
     background: #59adff91;
-}
-.navigation-list li a{
-    color: #fff;
-    text-decoration: none;
 }
 
 .logo{
@@ -58,18 +65,39 @@ body{
 .nav-login{
     float:right;
     margin-right: 20px;
+    margin-top: 6px;
 }
 .interactive-logo{
     color:white;
     text-decoration: none;
 }
 
-h2{
-    position: absolute;
-    color: #FFFFFF;
-    left: 275px;
-    margin: 20px;
+.profileBtn{
+    float: right;
+    display: none;
+    margin-top: 6px;
 }
+
+.searchBar{
+    font: inherit;
+    color: currentColor;
+    width: 30%;
+    border: 0;
+    height: 1.1875em;
+    padding: 6px 0 7px 10px;
+    margin: 0px 0px 0px 180px;
+    min-width: 0;
+    box-sizing: content-box;
+    background-color: #fafafa;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 4px;
+}
+
+.autocomplete{
+    position: relative;
+    display: inline-block;
+}
+/* Body END*/
 
 .container{
     padding: 20px;
