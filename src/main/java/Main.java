@@ -17,10 +17,16 @@ public class Main {
         IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
             mysqlConnection.setConnection(mysqlConnection.createConnection());
+            IUserDAO userDAO = new UserDAO(mysqlConnection);
+            UserDTO userDTO = new UserDTO();
+            userDTO = userDAO.getUser("detteFindesIkke");
+
+            System.out.println(userDTO.getUserNAME());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IUserDAO userDAO = new UserDAO(mysqlConnection);
+
+        /*IUserDAO userDAO = new UserDAO(mysqlConnection);
         IRoleDAO roleDAO = new RoleDAO(mysqlConnection);
         UserDTO userDTO = new UserDTO();
 
@@ -41,7 +47,7 @@ public class Main {
 
         userDAO.deleteAllUserRoles("asamahayder");
         userDAO.deleteAllUserGameLists("asamahayder");
-        userDAO.deleteUser("asamahayder");
+        userDAO.deleteUser("asamahayder");*/
 
 
     }

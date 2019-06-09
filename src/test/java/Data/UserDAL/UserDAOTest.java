@@ -1,13 +1,14 @@
 package Data.UserDAL;
 
 import Data.GameDAL.GameDAO;
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
-import Data.GameDTO.Info.DateDTO;
-import Data.GameDTO.Info.SoundtrackDTO;
+import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
 import Data.UserDTO.RoleDTO;
@@ -124,57 +125,6 @@ public class UserDAOTest {
 
     @Test
     public void addToUserGameList() throws SQLException {
-        mySql.createConnection();
-
-        List<Integer> gameList = null;
-        List<RoleDTO> roleList = createRoleList();
-
-        UserDTO user = createUserGameList(gameList, roleList);
-        RoleDTO role = createRoleDB();
-        for (int i = 0; i < gameList.size(); i++) {
-            GameDTO game = createGameDB(gameList.get(i));
-        }
-        rdao.createRole(role);
-        udao.createUser(user);
-    }
-
-    private GameDTO createGameDB(int gameID) {
-        GameDTO game = new GameDTO();
-        DateDTO date = null;
-        WriterDTO writer = null;
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
-
-        List<Integer> gameCHARs = null;
-        List<Integer> gameGENREs = null;
-        List<Integer> gameACTOR = null;
-        List<Integer> gameRATING = null;
-        List<Integer> gameGAMEMODE = null;
-        List<Integer> gameTRAILER = null;
-        List<Integer> gamePics = null;
-
-        game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");
-        game.setGameBIO("INSERT DESCRIPTION HERE");
-        game.setGameNAME("INSERT GAME TITLE HERE");
-        game.setGameCOMP(comp);
-        game.setGameDEV(dev);
-        game.setGameOST(ost);
-        game.setGamePUB(pub);
-        game.setGameRELEASEDATE(date);
-        game.setGameWRI(writer);
-        game.setGameACs(gameACTOR);
-        game.setGameCHs(gameCHARs);
-        game.setGameGENREs(gameGENREs);
-        game.setGameGMs(gameGAMEMODE);
-        game.setGamePICs(gamePics);
-        game.setGameRATINGs(gameRATING);
-        game.setGameTRAILERs(gameTRAILER);
-        gdao.createGame(game);
-
-        return game;
     }
 
     private UserDTO createUserGameList(List<Integer> gameList, List<RoleDTO> roleList) {
@@ -186,7 +136,7 @@ public class UserDAOTest {
         return user;
     }
 
-    @Test
+    @Test // GOOD TO OG
     public void getUserList() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
@@ -267,7 +217,7 @@ public class UserDAOTest {
         rdao.deleteRole(Role2.getRoleID());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void getUserRoleList() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
@@ -282,10 +232,8 @@ public class UserDAOTest {
         RoleLIST.add(Role1);
         RoleLIST.add(Role2);
 
-
         UserDTO user1 = new UserDTO();
-        UserDTO user2 = new UserDTO();
-        UserDTO user3 = new UserDTO();
+
         user1.setUserNAME("Asama");
         user1.setUserPASS("123456Asama");
         user1.setUserEMAIL("aaaaa@derr.com");
@@ -293,13 +241,9 @@ public class UserDAOTest {
         user1.setUserROLEs(RoleLIST);
         user1.setUserPFP("terer");
 
-
         rdao.createRole(Role1);
         rdao.createRole(Role2);
-
         udao.createUser(user1);
-
-
 
         List<RoleDTO> TestRoleLIST = udao.getUserRoleList(user1.getUserNAME());
 
@@ -312,17 +256,17 @@ public class UserDAOTest {
         udao.deleteUser(user1.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+    }
+
+    @Test
+    public void getUserGameList() throws SQLException {
+        mySql.createConnection();
+
 
 
     }
 
-    @Test
-    public void getUserGameList() {
-
-
-    }
-
-    @Test
+    @Test // GOOD TO GO
     public void updateUserInfo() throws SQLException {
 
         mySql.createConnection();
@@ -351,7 +295,7 @@ public class UserDAOTest {
         udao.createUser(user1);
 
         UserDTO newUser = new UserDTO("Asama","asdasdasd","asdasdasd",GameLIST,RoleLIST,"asdasdasd");
-        udao.updateUserInfo(newUser);
+        assertTrue(udao.updateUserInfo(newUser));
         UserDTO updatedUser = udao.getUser(user1.getUserNAME());
 
         assertEquals(newUser.getUserPASS(), updatedUser.getUserPASS());
@@ -373,18 +317,139 @@ public class UserDAOTest {
     }
 
     @Test
-    public void updateSpecificUserRole() {
+    public void updateSpecificUserRole() throws SQLException {
+        mySql.createConnection();
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        RoleDTO newRole = new RoleDTO(520,"kek");
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+        rdao.createRole(newRole);
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        udao.updateSpecificUserRole(user1.getUserNAME(),newRole);
+        RoleDTO testRole = rdao.getRole(newRole.getRoleID());
+        UserDTO testUser = udao.getUser(user1.getUserNAME());
+
+        assertEquals(newRole.getRoleNAME(),testRole.getRoleNAME());
+        assertEquals(newRole.getRoleID(),testRole.getRoleID());
+        assertEquals(2,testUser.getUserROLEs().size());
+        for (int i = 0; i < testUser.getUserROLEs().size(); i++) {
+            System.out.println(testUser.getUserROLEs().get(i).getRoleID());
+            System.out.println(testUser.getUserROLEs().get(i).getRoleNAME());
+        }
+
+        udao.deleteAllUserRoles(user1.getUserNAME());
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
+        rdao.deleteRole(newRole.getRoleID());
+        udao.deleteUser(user1.getUserNAME());
+    }
+
+    @Test // GOOD TO GO
+    public void deleteUser() throws SQLException {
+        mySql.createConnection();
+
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        assertTrue(udao.deleteUser(user1.getUserNAME()));
+
+        UserDTO testDeleteUser = udao.getUser(user1.getUserNAME());
+        assertNull(testDeleteUser.getUserNAME());
+        assertNull(testDeleteUser.getUserPFP());
+        assertNull(testDeleteUser.getUserEMAIL());
+        assertNull(testDeleteUser.getUserPASS());
+        assertTrue(testDeleteUser.getUserROLEs().isEmpty());
+        assertTrue(testDeleteUser.getUserGAMEs().isEmpty());
+
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
+    }
+
+    @Test // GOOD TO GO
+    public void deleteAllUserRoles() throws SQLException {
+        mySql.createConnection();
+        List<Integer>GameLIST = new ArrayList<>();
+        List<RoleDTO>RoleLIST = new ArrayList<>();
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        Role1.setRoleID(400);
+        Role1.setRoleNAME("WOOOW");
+        Role2.setRoleID(420);
+        Role2.setRoleNAME("WOOOOOOW");
+
+        RoleLIST.add(Role1);
+        RoleLIST.add(Role2);
+
+        UserDTO user1 = new UserDTO();
+
+        user1.setUserNAME("Asama");
+        user1.setUserPASS("123456Asama");
+        user1.setUserEMAIL("aaaaa@derr.com");
+        user1.setUserGAMEs(GameLIST);
+        user1.setUserROLEs(RoleLIST);
+        user1.setUserPFP("terer");
+
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(user1);
+
+        assertTrue(udao.deleteAllUserRoles(user1.getUserNAME()));
+        assertTrue(udao.deleteUser(user1.getUserNAME()));
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
     }
 
     @Test
-    public void deleteUser() {
-    }
+    public void deleteAllUserGameLists() throws SQLException {
+        mySql.createConnection();
 
-    @Test
-    public void deleteAllUserRoles() {
-    }
 
-    @Test
-    public void deleteAllUserGameLists() {
+
     }
 }

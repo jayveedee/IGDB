@@ -22,19 +22,19 @@ public class UserDAO implements IUserDAO {
         String query1 = "INSERT INTO Users (userNAME, userPASS, userEMAIL, userPFP) VALUES (?, ?, ?, ?)";
         String query2 = "INSERT INTO UserRoleList (userNAME, roleID) VALUES (?, ?)";
 
-        String username         = user.getUserNAME();
-        String password         = user.getUserPASS();
-        String email            = user.getUserEMAIL();
+        String firstParam         = user.getUserNAME();
+        String secondParam         = user.getUserPASS();
+        String thirdParam            = user.getUserEMAIL();
         List<RoleDTO> roleList  = user.getUserROLEs();
-        String PFP              = user.getUserPFP();
+        String fourthParam              = user.getUserPFP();
         try {
-            handleUpdateUserXcreateUser(query1, username, password, email, PFP);
+            handleUpdateUserXcreateUser(query1, firstParam, secondParam, thirdParam, fourthParam);
 
             if (roleList != null) {
                 mySql.getConnection().setAutoCommit(false);
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
                 for (RoleDTO roleDTO : roleList) {
-                    mySql.getPrepStatement().setString(1, username);
+                    mySql.getPrepStatement().setString(1, firstParam);
                     mySql.getPrepStatement().setInt(2, roleDTO.getRoleID());
                     mySql.getPrepStatement().addBatch();
                 }
@@ -67,14 +67,14 @@ public class UserDAO implements IUserDAO {
         return true;
     }
 
-    private boolean handleUpdateUserXcreateUser(String query1, String username, String password, String email, String PFP) {
+    private boolean handleUpdateUserXcreateUser(String query, String fisrtParam, String secondParan, String thirdParam, String fourthParam) {
         try {
             mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
-            mySql.getPrepStatement().setString(1,username);
-            mySql.getPrepStatement().setString(2,password);
-            mySql.getPrepStatement().setString(3,email);
-            mySql.getPrepStatement().setString(4,PFP);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,fisrtParam);
+            mySql.getPrepStatement().setString(2,secondParan);
+            mySql.getPrepStatement().setString(3,thirdParam);
+            mySql.getPrepStatement().setString(4,fourthParam);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
@@ -179,12 +179,12 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean updateUserInfo(UserDTO newUser) {
-        String query       = "UPDATE Users SET userPASS = ?, userEMAIL = ?, userPFP = ? WHERE userNAME = ?";
-        String userNAME     = newUser.getUserNAME();
-        String userEMAIL    = newUser.getUserEMAIL();
-        String userPASS     = newUser.getUserPASS();
-        String PFP          = newUser.getUserPFP();
-        return handleUpdateUserXcreateUser(query, userPASS, userEMAIL, userNAME, PFP);
+        String query            = "UPDATE Users SET userPASS = ?, userEMAIL = ?, userPFP = ? WHERE userNAME = ?";
+        String fourthParan      = newUser.getUserNAME();
+        String secondParam      = newUser.getUserEMAIL();
+        String firstParam       = newUser.getUserPASS();
+        String thirdParam       = newUser.getUserPFP();
+        return handleUpdateUserXcreateUser(query, firstParam, secondParam, thirdParam, fourthParan);
     }
 
     @Override

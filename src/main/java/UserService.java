@@ -39,10 +39,21 @@ public class UserService {
         return answer;
     }
 
-    public boolean logIn(String username, String password){
+    public String logIn(String username, String password){
         IUserDAO userDAO = new UserDAO(mySQL);
         UserDTO userDTO = userDAO.getUser(username);
-        return true;
+
+        if (userDTO.getUserNAME()==null){
+            System.out.println("hejsa");
+            return "null";
+        }
+
+        if (!password.equals(userDTO.getUserPASS())){
+            System.out.println("halojsa");
+            return "null";
+        }
+
+        return userDTO.getUserNAME();
     }
 
 }

@@ -1,19 +1,31 @@
+/*Profile part START*/
 .container{
     margin-left: 350px;
     margin-right: 350px;
 }
 
-#uploadedPicture {
-    border: 2px solid #59adff91;
-    border-radius: 14px;
-    width: 177px;
-    margin: 3px 3px 3px 50px;
-    padding: 3px;
-    display: inline;
+.profile-container li{
+    color: white;
+    font-size: 28px;
 }
 
-.avatar {
-    margin: 3px !important;
+.profile-container ul{
+    float: right;
+    list-style-type: none;
+    width: 50%;
+    height: 10px;
+}
+
+.profile-search{
+    width: 80%;
+    height: 320%;
+    border-radius: 14px;
+    padding: 0px 0px 0px 15px;
+    border: 0;
+}
+
+input:focus {
+    outline:none;
 }
 
 .button {
@@ -22,7 +34,7 @@
     color: white;
     border: 0;
     margin: 10px 0px 0px 80px;
-    border-radius: 14px;
+    border-radius: 11px;
     cursor: pointer;
 }
 
@@ -30,6 +42,34 @@
     background: #59adff91;
 }
 
+/*Profile part END*/
+
+/*Avatar/picture START*/
+
+#uploadedPicture, #avatarPicks {
+    width: 177px;
+    margin: 3px 3px 3px 50px;
+    padding: 3px;
+}
+
+.avatar {
+    margin: 3px !important;
+}
+
+.imageContainer{
+    display: inline;
+}
+
+.avatar:hover {
+    background-color: rgba(102, 102, 102, 0.5);
+}
+
+.selected{
+    box-shadow:4px 12px 22px 4px #333;
+}
+/*Avatar/picture END*/
+
+/*Modal START*/
 .modal {
     display: none;
     position: fixed;
@@ -68,46 +108,4 @@
     from{opacity: 0;}
     to {opacity: 1;}
 }
-
-.imageContainer{
-    display: inline;
-}
-
-.avatar:hover {
-    background-color: rgba(102, 102, 102, 0.5);
-}
-
-.selected{
-    box-shadow:4px 12px 22px 4px #333;
-}
-
-.profileInfo{
-    float: right;
-    position: unset;
-}
-
-.profile-container li{
-    color: white;
-    text-decoration: none;
-    font-size: 28px;
-}
-
-.profile-container ul{
-    float: right;
-    list-style-type: none;
-    width: 50%;
-    height: 10px;
-    padding: 0px 0px 0px 15px;
-}
-
-.profile-search{
-    width: 80%;
-    height: 320%;
-    border-radius: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0px 0px 0px 15px;
-}
-
-input:focus {
-    outline:none;
-}
+/*Modal END*/

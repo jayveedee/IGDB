@@ -1,0 +1,30 @@
+$(document).ready(function () {
+    var username = localStorage.getItem("username");
+    if (username === null || username === "null"){
+        $("#profileBtn").hide();
+        document.getElementById("loginRegisterButton").innerHTML = "Login/register";
+    }else if (username !== null || username === "null") {
+        $("#profileBtn").html(username);
+        $("#profileBtn").show();
+        document.getElementById("loginRegisterButton").innerHTML = "Logout";
+    }
+});
+
+$(document).ready(function () {
+    $("#loginRegisterButton").click(function (event) {
+        event.preventDefault();
+        var username = localStorage.getItem("username");
+        if (username === null || username === "null"){
+            location.href = "Login_Signup.html"
+        }else if (username !== null || username === "null") {
+            localStorage.setItem("username", "null");
+            location.reload();
+        }
+    });
+});
+
+$("#profileBtn").click(function (event) {
+    event.preventDefault();
+    location.href = "User.html";
+});
+

@@ -1,19 +1,20 @@
 package Data.GameDTO.Info;
 
 import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.MusicArtistDTO;
 
 import java.util.List;
 
 public class SoundtrackDTO {
 
-    private int                 ostID;
-    private String              ostTITLE;
-    private ComposerDTO         ostCOMP;
-    private List<Integer>       ostMA;
-    private List<Integer>       ostGAMEs;
-    private String              ostPFP;
+    private int                         ostID;
+    private String                      ostTITLE;
+    private ComposerDTO                 ostCOMP;
+    private List<MusicArtistDTO>        ostMA;
+    private List<Integer>               ostGAMEs;
+    private String                      ostPFP;
 
-    public SoundtrackDTO(int ostID, String ostTITLE, ComposerDTO ostCOMP, List<Integer> ostMA, List<Integer> ostGAMEs, String ostPFP) {
+    public SoundtrackDTO(int ostID, String ostTITLE, ComposerDTO ostCOMP, List<MusicArtistDTO> ostMA, List<Integer> ostGAMEs, String ostPFP) {
         this.ostID = ostID;
         this.ostTITLE = ostTITLE;
         this.ostCOMP = ostCOMP;
@@ -49,11 +50,11 @@ public class SoundtrackDTO {
         this.ostCOMP = ostCOMP;
     }
 
-    public List<Integer> getOstMA() {
+    public List<MusicArtistDTO> getOstMA() {
         return ostMA;
     }
 
-    public void setOstMA(List<Integer> ostMA) {
+    public void setOstMA(List<MusicArtistDTO> ostMA) {
         this.ostMA = ostMA;
     }
 

@@ -39,13 +39,34 @@ $("#registerForm").submit(function (event) {
         data : $(this).serialize(),
         success : function (data) {
             if (data == "true"){
-                location.href = "Index.html";
+                alert("Your new account has been created successfully!");
+                location.href = "Login_Signup.html"
             }else{
                 alert("Couldn't create user. This username might be taken. Try again.")
             }
         },
         error : function () {
             alert("Couldn't create user, try again");
+        }
+    });
+});
+
+$("#loginForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type : $(this).attr("method"),
+        url : $(this).attr("action"),
+        data : $(this).serialize(),
+        success : function (data) {
+            if (data == "null"){
+                alert("Could not log in. Something is wrong with the password or the username");
+            }else{
+                localStorage.setItem("username", data);
+                location.href = "Index.html";
+            }
+        },
+        error : function () {
+            alert("Couldn't log in, try again");
         }
     });
 });

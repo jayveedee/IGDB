@@ -1,5 +1,7 @@
 package Data.GameDTO;
 
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
@@ -11,26 +13,18 @@ import java.util.List;
 public class GameDTO {
 
     private int                     gameID;         private String                  gameNAME;
-    private List<Integer>           gameCHs;        private List<Integer>           gameACs;
-    private List<Integer>           gameGENREs;     private List<Integer>           gameGMs;
-    private List<Integer>           gameRATINGs;    private DateDTO                 gameRELEASEDATE;
+    private List<CharacterDTO>      gameCHs;        private List<ActorDTO>          gameACs;
+    private List<GenreDTO>          gameGENREs;     private List<GameModeDTO>       gameGMs;
+    private List<RatingDTO>         gameRATINGs;    private DateDTO                 gameRELEASEDATE;
     private WriterDTO               gameWRI;
     private DeveloperDTO            gameDEV;        private PublisherDTO            gamePUB;
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
 
     private String                  gameCover;      private String                  gameBG;
-    private String                  gameBIO;        private List<Integer>           gameTRAILERs;       private List<Integer>           gamePICs;
+    private String                  gameBIO;        private List<TrailerDTO>        gameTRAILERs;
+    private List<PictureDTO>        gamePICs;
 
-    public GameDTO() {
-    }
-
-    public GameDTO
-        (
-            int gameID, String gameNAME, List<Integer> gameCHs, List<Integer> gameACs, List<Integer> gameGENREs,
-            List<Integer> gameGMs, List<Integer> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI,
-            DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover,
-            String gameBG, String gameBIO, List<Integer> gameTRAILERs, List<Integer> gamePICs
-        ) {
+    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -51,6 +45,9 @@ public class GameDTO {
         this.gamePICs = gamePICs;
     }
 
+    public GameDTO() {
+    }
+
     public int getGameID() {
         return gameID;
     }
@@ -67,43 +64,43 @@ public class GameDTO {
         this.gameNAME = gameNAME;
     }
 
-    public List<Integer> getGameCHs() {
+    public List<CharacterDTO> getGameCHs() {
         return gameCHs;
     }
 
-    public void setGameCHs(List<Integer> gameCHs) {
+    public void setGameCHs(List<CharacterDTO> gameCHs) {
         this.gameCHs = gameCHs;
     }
 
-    public List<Integer> getGameACs() {
+    public List<ActorDTO> getGameACs() {
         return gameACs;
     }
 
-    public void setGameACs(List<Integer> gameACs) {
+    public void setGameACs(List<ActorDTO> gameACs) {
         this.gameACs = gameACs;
     }
 
-    public List<Integer> getGameGENREs() {
+    public List<GenreDTO> getGameGENREs() {
         return gameGENREs;
     }
 
-    public void setGameGENREs(List<Integer> gameGENREs) {
+    public void setGameGENREs(List<GenreDTO> gameGENREs) {
         this.gameGENREs = gameGENREs;
     }
 
-    public List<Integer> getGameGMs() {
+    public List<GameModeDTO> getGameGMs() {
         return gameGMs;
     }
 
-    public void setGameGMs(List<Integer> gameGMs) {
+    public void setGameGMs(List<GameModeDTO> gameGMs) {
         this.gameGMs = gameGMs;
     }
 
-    public List<Integer> getGameRATINGs() {
+    public List<RatingDTO> getGameRATINGs() {
         return gameRATINGs;
     }
 
-    public void setGameRATINGs(List<Integer> gameRATINGs) {
+    public void setGameRATINGs(List<RatingDTO> gameRATINGs) {
         this.gameRATINGs = gameRATINGs;
     }
 
@@ -179,19 +176,19 @@ public class GameDTO {
         this.gameBIO = gameBIO;
     }
 
-    public List<Integer> getGameTRAILERs() {
+    public List<TrailerDTO> getGameTRAILERs() {
         return gameTRAILERs;
     }
 
-    public void setGameTRAILERs(List<Integer> gameTRAILERs) {
+    public void setGameTRAILERs(List<TrailerDTO> gameTRAILERs) {
         this.gameTRAILERs = gameTRAILERs;
     }
 
-    public List<Integer> getGamePICs() {
+    public List<PictureDTO> getGamePICs() {
         return gamePICs;
     }
 
-    public void setGamePICs(List<Integer> gamePICs) {
+    public void setGamePICs(List<PictureDTO> gamePICs) {
         this.gamePICs = gamePICs;
     }
 }

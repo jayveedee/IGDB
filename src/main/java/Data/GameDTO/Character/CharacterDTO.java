@@ -9,13 +9,15 @@ public class CharacterDTO {
     private List<Integer>           chVAs;
     private List<Integer>           chGAMEs;
 
+    private String                  chPFP;
     private String                  chBIO;
 
-    public CharacterDTO(int chID, String chNAME, String chBIO, List<Integer> chVAs, List<Integer> chGAMEs) {
+    public CharacterDTO(int chID, String chNAME, String chBIO, List<Integer> chVAs, String chPFP, List<Integer> chGAMEs) {
         this.chID = chID;
         this.chNAME = chNAME;
         this.chBIO = chBIO;
         this.chVAs = chVAs;
+        this.chPFP = chPFP;
         this.chGAMEs = chGAMEs;
     }
 
@@ -52,6 +54,14 @@ public class CharacterDTO {
 
     public void setChVAs(List<Integer> chVAs) {
         this.chVAs = chVAs;
+    }
+
+    public String getChPFP() {
+        return chPFP;
+    }
+
+    public void setChPFP(String chPFP) {
+        this.chPFP = chPFP;
     }
 
     public List<Integer> getChGAMEs() {
