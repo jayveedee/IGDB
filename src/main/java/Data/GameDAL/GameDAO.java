@@ -23,20 +23,151 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean createGame(GameDTO game) {
-        String query1 = "INSERT INTO Game (gameID, gameTITLE, gameRD, gameDESC, gameCOVER, gameBACKGROUND) VALUES (?, ?, ?, ?, ?, ?)";
-        int gameID = game.getGameID();                          String gameTitle = game.getGameNAME();
-        String gameDESC = game.getGameBIO();                    DateDTO gameRD = game.getGameRELEASEDATE();
-        String gameReleaseString = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYaer();
-        String gameCOV = game.getGameCover();                   String gameBG = game.getGameBG();
+        String query = "INSERT INTO Game (gameID, gameTITLE, gameRD, gameDESC, gameCOVER, gameBACKGROUND) VALUES (?, ?, ?, ?, ?, ?)";
+        int         gameID          = game.getGameID();
+        String      gameTitle       = game.getGameNAME();
+        String      gameDESC        = game.getGameBIO();
+        String      gameCOV         = game.getGameCover();
+        String      gameBG          = game.getGameBG();
+        DateDTO     gameRD          = game.getGameRELEASEDATE();
+        String      gameRDstring    = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYaer();
 
-        List<ActorDTO> gameACTOR = game.getGameACs();            List<CharacterDTO> gameCHAR = game.getGameCHs();
-        List<GenreDTO> gameGENRE = game.getGameGENREs();         List<GameModeDTO> gameGM = game.getGameGMs();
-        List<PictureDTO> gamePIC = game.getGamePICs();           List<RatingDTO> gameRATING = game.getGameRATINGs();
-        List<TrailerDTO> gameTRAILER = game.getGameTRAILERs();
-        DeveloperDTO gameDEV = game.getGameDEV();                PublisherDTO gamePUB = game.getGamePUB();
-        WriterDTO gameWTI = game.getGameWRI();
-        ComposerDTO gameCOMP = game.getGameCOMP();               SoundtrackDTO gameOST = game.getGameOST();
+        List<ActorDTO>      gameACTOR = game.getGameACs();              List<CharacterDTO>  gameCHAR = game.getGameCHs();
+        List<GenreDTO>      gameGENRE = game.getGameGENREs();           List<GameModeDTO>   gameGM = game.getGameGMs();
+        List<PictureDTO>    gamePIC = game.getGamePICs();               List<RatingDTO>     gameRATING = game.getGameRATINGs();
+        List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
+        DeveloperDTO        gameDEV = game.getGameDEV();                PublisherDTO        gamePUB = game.getGamePUB();
+        WriterDTO           gameWTI = game.getGameWRI();
+        ComposerDTO         gameCOMP = game.getGameCOMP();              SoundtrackDTO       gameOST = game.getGameOST();
 
+        handleINSERTGame            (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
+        handleINSERTCharacters      (gameID, gameCHAR);
+        handleINSERTActors          (gameID, gameACTOR, gameCHAR);
+        handleINSERTGenres          (gameID, gameGENRE);
+        handleINSERTGameModes       (gameID, gameGM);
+        handleINSERTPictures        (gameID, gamePIC);
+        handleINSERTTrailers        (gameID, gameTRAILER);
+        if (gameDEV != null) {
+            String queryParent =
+                "INSERT INTO ParentCompany (parentID, parentNAME, parentCREATED, parentCOUNTRY, parentSTATUS) " +
+                "VALUES (?, ?, ?, ?, ?)";
+            int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
+            String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
+            DateDTO     parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
+            String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
+            boolean     pareentSTATUS               = gameDEV.getDevPCOMPANY().isParentSTATUS();
+
+            String queryDEV =
+                "INSERT INTO DeveloperList (devID, devNAME, devCREATED, devCOUNTRY, devSTATUS, decParentID, devGameID) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryParent));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
+    private boolean handleINSERTTrailers(int gameID, List<TrailerDTO> gameTRAILER) {
+        if (!gameTRAILER.isEmpty()){
+            String queryTRAILER =
+                "INSERT INTO TrailerList (trailerID, trailerURL, trailerGameID) " +
+                "VALUES (?, ?, ?)";
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryTRAILER));
+                for (int i = 0; i < gameTRAILER.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,gameTRAILER.get(i).getTrailerID());
+                    mySql.getPrepStatement().setString(2,gameTRAILER.get(i).getTrailerURL());
+                    mySql.getPrepStatement().setInt(3,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean handleINSERTPictures(int gameID, List<PictureDTO> gamePIC) {
+        if (!gamePIC.isEmpty()){
+            String queryPICTURES =
+                "INSERT INTO PictureList (pictureID, pictureURL, pictureGameID) " +
+                "VALUES (?, ?, ?)";
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPICTURES));
+                for (int i = 0; i < gamePIC.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,gamePIC.get(i).getPicID());
+                    mySql.getPrepStatement().setString(2,gamePIC.get(i).getPicURL());
+                    mySql.getPrepStatement().setInt(3,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean handleINSERTGameModes(int gameID, List<GameModeDTO> gameGM) {
+        if (!gameGM.isEmpty()) {
+            String queryGameGM =
+                "INSERT INTO GameModeList (gmID, gmTITLE, gmGameID) " +
+                "VALUES (?, ?, ?)";
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGameGM));
+                for (int i = 0; i < gameGM.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,gameGM.get(i).getGmID());
+                    mySql.getPrepStatement().setString(2,gameGM.get(i).getGmTITLE());
+                    mySql.getPrepStatement().setInt(3,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean handleINSERTGenres(int gameID, List<GenreDTO> gameGENRE) {
+        if (!gameGENRE.isEmpty()) {
+            String queryGENRE =
+                "INSERT INTO GenreList (genreID, genreTITLE, genreGameID) " +
+                "VALUES (?, ?, ?)";
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGENRE));
+                for (int i = 0; i < gameGENRE.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,gameGENRE.get(i).getGenID());
+                    mySql.getPrepStatement().setString(2,gameGENRE.get(i).getGenTITLE());
+                    mySql.getPrepStatement().setInt(3,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
@@ -48,15 +179,12 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setString(6,gameBG);
         } catch (SQLException e) {
             e.printStackTrace();
-            boolean gameInsert = false;
-            return gameInsert;
+            return false;
         }
-        handleINSERTCharacters(gameID, gameCHAR);
-        handleINSERTActors(gameID, gameACTOR, gameCHAR);
-
         return true;
     }
 
+    //FIXME måske kan opstå en fejl ved indsætning af flere spil til denne actor, ikke helt sikker (TEST SENERE)
     private boolean handleINSERTActors(int gameID, List<ActorDTO> gameACTOR, List<CharacterDTO> gameCHAR) {
         if (!gameACTOR.isEmpty() && !gameCHAR.isEmpty()) {
             String queryACTOR =
