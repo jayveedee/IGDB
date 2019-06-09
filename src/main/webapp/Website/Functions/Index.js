@@ -21,24 +21,8 @@ $("#loginRegisterButton").onclick(function (event) {
     }
 });
 
-$("#profileBtn").onclick(function () {
-   location.href = "User.html";
-});
-
-$.ajax({
-    type : $(this).attr("method"),
-    url : $(this).attr("action"),
-    data : $(this).serialize(),
-    success : function (data) {
-        if (data == "null"){
-            alert("Could not log in. Something is wrong with the password or the username");
-        }else{
-            localStorage.setItem("username", data);
-            location.href = "Index.html";
-        }
-    },
-    error : function () {
-        alert("Couldn't log in, try again");
-    }
+$("#profileBtn").onclick(function (event) {
+    event.preventDefault();
+    location.href = "User.html";
 });
 
