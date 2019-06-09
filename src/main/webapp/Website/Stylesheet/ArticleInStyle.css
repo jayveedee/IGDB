@@ -1,0 +1,122 @@
+
+
+/*!--------------------------------Title---------------------------------------------!*/
+#titleInput {
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#headertitle{
+    margin: 0px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#titlefield{
+    border-radius: 14px;
+    padding: 5px 200px 5px 20px;
+    background-color: #cccccc;
+    margin: 0px 0px 0px 100px;
+}
+
+/*!--------------------------------Release date---------------------------------------!*/
+
+#headerRD{
+    margin: 20px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+.release-list {
+    display: flex;
+    list-style-type: none;
+}
+
+
+.dateInput{
+    border-radius: 14px;
+    padding: 5px 200px 5px 20px;
+    background-color: #cccccc;
+    margin: 10px 0px 0px 100px;
+}
+/*!--------------------------------Company details--------------------------------------!*/
+
+#companyInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#headercompany{
+    margin: 20px 0px 30px 20px;
+    color:#FFFFFF;
+}
+
+.headercompanylist{
+    color:#FFFFFF;
+    padding: 0px 0px 0px 0px;
+    margin: 10px 0px 5px 0px;
+}
+
+.companylist{
+    display: inline;
+    list-style-type: none;
+}
+
+.companyText{
+    border-radius: 14px;
+    padding: 5px 200px 5px 20px;
+    background-color: #cccccc;
+    margin: 10px 0px 0px 70px;
+}
+
+
+
+/*!--------------------------------Actor------------------------------------------------!*/
+#actorInput {
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#headeractor{
+    margin: 0px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#actorfields{
+    border-radius: 14px;
+    padding: 5px 200px 5px 20px;
+    background-color: #cccccc;
+}
+
+/*----Buttons----*/
+
+.row{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.btn-add-row{
+    float: right;
+}
+
+.element-wrapper{
+    margin: 0px 0px 0px 0px;
+}
+
+/*!--------------------------------Game Description--------------------------------!*/
+#gamedescInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#headergameDesc{
+    margin: 0px 0px 10px 20px;
+    color:#FFFFFF;
+}
+
+#gameDescfield{
+    resize: none;
+    background-color: #cccccc;
+}
