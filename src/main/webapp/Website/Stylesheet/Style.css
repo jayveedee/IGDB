@@ -43,13 +43,11 @@ h2{
 .not-active {
     padding: 20px;
     border-radius: 14px;
+    color: #fff;
+    text-decoration: none;
 }
 .not-active:hover{
     background: #59adff91;
-}
-.navigation-list li a{
-    color: #fff;
-    text-decoration: none;
 }
 
 .logo{
@@ -67,10 +65,17 @@ h2{
 .nav-login{
     float:right;
     margin-right: 20px;
+    margin-top: 6px;
 }
 .interactive-logo{
     color:white;
     text-decoration: none;
+}
+
+.profileBtn{
+    float: right;
+    display: none;
+    margin-top: 6px;
 }
 
 .searchBar{

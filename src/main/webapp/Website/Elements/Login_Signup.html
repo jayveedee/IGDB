@@ -21,6 +21,9 @@
                 </div>
             </div>
             <li class="nav-login"><a href="#" class="nav-active">Login/Registrer</a></li>
+            <div class="profileBtn">
+                <a id="profileBtn" class="not-active">Profile</a>
+            </div>
         </ul>
     </nav>
 <div class="Login-Page">
@@ -42,7 +45,7 @@
         </form>
         <!--- Registrer form END --->
         <!--- Login form start--->
-        <form method="post" action="Index.html" class="Login-form">
+        <form id = "loginForm" method="post" action="/rest/services/user/login" class="Login-form">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" value="Login" class="button" name="login">
@@ -50,7 +53,7 @@
         <!--- Login form END --->
     </div>
 </div>
-<script src="../Functions/Registrer.js"></script>
+<script src="../Functions/Login_Signup.js"></script>
 <script src="../Functions/Index.js"></script>
 </body>
 </html>
