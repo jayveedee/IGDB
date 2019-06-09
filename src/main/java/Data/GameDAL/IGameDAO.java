@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IGameDAO {
 
-    boolean createGame(GameDTO gmae);
+    boolean createGame(GameDTO game);
     GameDTO getGame(int gameID);
     List<GameDTO> getGameList();
     boolean updateGame(GameDTO newGame);

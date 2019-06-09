@@ -14,8 +14,10 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public boolean createGame(GameDTO gmae) {
-        String query = "";
+    public boolean createGame(GameDTO game) {
+        String query = "INSERT INTO Game (gameID, gameTITLE, gameRD, gameDESC, gameCOVER, gameBACKGROUND) VALUES (?, ?, ?, ?, ?, ?)";
+
+        int gameID = game.getGameID();
 
         return true;
     }
