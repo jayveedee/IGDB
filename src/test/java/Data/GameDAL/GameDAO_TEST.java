@@ -38,11 +38,11 @@ public class GameDAO_TEST {
         ComposerDTO comp = null;
         SoundtrackDTO ost = null;
 
-        List<CharacterDTO>  gameCHARs       = GAME_createCharacterList();
-        List<GenreDTO>      gameGENREs      = new ArrayList<>();
+        List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
+        List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
         List<ActorDTO>      gameACTOR       = new ArrayList<>();
         List<RatingDTO>     gameRATING      = new ArrayList<>();
-        List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();
+        List<GameModeDTO>   gameGAMEMODE    = GAME_createGameModeList(gameID);
         List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
         List<PictureDTO>    gamePics        = new ArrayList<>();
 
@@ -57,24 +57,66 @@ public class GameDAO_TEST {
         return game;
     }
 
-    private List<CharacterDTO> GAME_createCharacterList() {
+    // Character X Actor insert
+    private List<CharacterDTO> GAME_createCharacterList(int gameID) {
         List<CharacterDTO> charList = new ArrayList<>();
-        charList.add(GAME_createCharacter(1));
-        GAME_createCharacter(2);
-        GAME_createCharacter(3);
-
-        return null;
+        charList.add(GAME_createCharacter(1,gameID,"test1","PFP1"));
+        charList.add(GAME_createCharacter(2,gameID,"test2","PFP2"));
+        charList.add(GAME_createCharacter(3,gameID,"test3","PFP3"));
+        return charList;
+    }
+    private CharacterDTO GAME_createCharacter(int charID, int gameID, String name, String PFP) {
+        CharacterDTO character = new CharacterDTO();
+        character.setChID(charID);
+        character.setChBIO("test");
+        character.setChNAME(name);
+        character.setChPFP(PFP);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        List<Integer> aclist = new ArrayList<>();
+        character.setChVAs(aclist);
+        return character;
     }
 
-    private CharacterDTO GAME_createCharacter(int charID) {
-        CharacterDTO character = new CharacterDTO();
-        return null;
+    // Genre X GameMode Insert
+    private List<GenreDTO> GAME_createGenreList(int gameID){
+        List<GenreDTO> genreList = new ArrayList<>();
+        genreList.add(GAME_createGenre(1,gameID,"test1"));
+        genreList.add(GAME_createGenre(2,gameID,"test2"));
+        genreList.add(GAME_createGenre(3,gameID,"test3"));
+        return genreList;
+    }
+    private GenreDTO GAME_createGenre(int genreID, int gameID, String title){
+        GenreDTO genre = new GenreDTO();
+        genre.setGenID(genreID);
+        genre.setGenTITLE(title);
+        List<Integer> genreList = new ArrayList<>();
+        genreList.add(gameID);
+        genre.setGenGAMEs(genreList);
+        return genre;
+    }
+    private List<GameModeDTO> GAME_createGameModeList(int gameID){
+        List<GameModeDTO> gameModeList = new ArrayList<>();
+        gameModeList.add(GAME_createGameMode(1,gameID,"test1"));
+        gameModeList.add(GAME_createGameMode(2,gameID,"test2"));
+        gameModeList.add(GAME_createGameMode(3,gameID,"test3"));
+        return gameModeList;
+    }
+    private GameModeDTO GAME_createGameMode(int gmID, int gameID, String title){
+        GameModeDTO gameMode = new GameModeDTO();
+        gameMode.setGmID(gmID);
+        gameMode.setGmTITLE(title);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        gameMode.setGmGAMEs(gmlist);
+        return gameMode;
     }
 
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
-        GameDTO testGame = createGameDB(20);
+        //GameDTO testGame1 = createGameDB(20);
+        GameDTO testGame2 = createGameDB(70);
     }
 
     @Test

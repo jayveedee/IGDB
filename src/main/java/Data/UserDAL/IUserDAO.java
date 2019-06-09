@@ -1,5 +1,6 @@
 package Data.UserDAL;
 
+import Data.GameDTO.Info.RatingDTO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
@@ -9,6 +10,7 @@ public interface IUserDAO {
 
     boolean createUser(UserDTO user);
     boolean addToUserGameList(String userID, int gameID);
+    boolean addRatingToGame(RatingDTO rating, int gameID);
     UserDTO getUser(String userNAME);
     List<UserDTO> getUserList();
     List<RoleDTO> getUserRoleList(String userNAME);

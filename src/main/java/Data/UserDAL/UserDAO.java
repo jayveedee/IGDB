@@ -1,5 +1,6 @@
 package Data.UserDAL;
 
+import Data.GameDTO.Info.RatingDTO;
 import Data.IMysqlConnection;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -58,6 +59,31 @@ public class UserDAO implements IUserDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setString(1,userName);
             mySql.getPrepStatement().setInt(2,gameID);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addRatingToGame(RatingDTO rating, int gameID) {
+        String query =
+            "INSERT INTO RatingList (ratingID, ratingGIVEN, ratingUSER, ratingGameID) " +
+            "VALUES (?, ?, ?, ?)";
+        int         ratingID        = rating.getRatingID();
+        int         ratingGIVEN     = rating.getRatingGIVEN();
+        String      ratingUSER      = rating.getRatingUSER().getUserNAME();
+
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setInt(1,ratingID);
+            mySql.getPrepStatement().setInt(2,ratingGIVEN);
+            mySql.getPrepStatement().setString(3,ratingUSER);
+            mySql.getPrepStatement().setInt(4,gameID);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
