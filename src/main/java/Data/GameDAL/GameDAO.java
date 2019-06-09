@@ -307,6 +307,8 @@ public class GameDAO implements IGameDAO {
             handleINSERTDuplicateCode(query1, gameID, gameTitle, gameReleaseString, gameDESC);
             mySql.getPrepStatement().setString(5,gameCOV);
             mySql.getPrepStatement().setString(6,gameBG);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

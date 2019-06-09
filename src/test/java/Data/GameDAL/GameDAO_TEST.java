@@ -17,6 +17,7 @@ import Data.UserDAL.UserDAO;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -30,41 +31,44 @@ public class GameDAO_TEST {
 
     public GameDTO createGameDB(int gameID) {
         GameDTO game = new GameDTO();
-        DateDTO date = null;
+        DateDTO date = new DateDTO(1,12,2019);
         WriterDTO writer = null;
         DeveloperDTO dev = null;
         PublisherDTO pub = null;
         ComposerDTO comp = null;
         SoundtrackDTO ost = null;
 
-        List<CharacterDTO> gameCHARs        = null;
-        List<GenreDTO>      gameGENREs      = null;
-        List<ActorDTO>      gameACTOR       = null;
-        List<RatingDTO>     gameRATING      = null;
-        List<GameModeDTO>   gameGAMEMODE    = null;
-        List<TrailerDTO>    gameTRAILER     = null;
-        List<PictureDTO>    gamePics        = null;
+        List<CharacterDTO>  gameCHARs       = GAME_createCharacterList();
+        List<GenreDTO>      gameGENREs      = new ArrayList<>();
+        List<ActorDTO>      gameACTOR       = new ArrayList<>();
+        List<RatingDTO>     gameRATING      = new ArrayList<>();
+        List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();
+        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
+        List<PictureDTO>    gamePics        = new ArrayList<>();
 
         game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");
-        game.setGameBIO("INSERT DESCRIPTION HERE");
-        game.setGameNAME("INSERT GAME TITLE HERE");
-        game.setGameCover("INSERT COVER HERE");
-        game.setGameCOMP(comp);
-        game.setGameDEV(dev);
-        game.setGameOST(ost);
-        game.setGamePUB(pub);
-        game.setGameRELEASEDATE(date);
-        game.setGameWRI(writer);
-        game.setGameACs(gameACTOR);
-        game.setGameCHs(gameCHARs);
-        game.setGameGENREs(gameGENREs);
-        game.setGameGMs(gameGAMEMODE);
-        game.setGamePICs(gamePics);
-        game.setGameRATINGs(gameRATING);
-        game.setGameTRAILERs(gameTRAILER);
+        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
+        game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
+        game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
+        game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
+        game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
+        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
         gdao.createGame(game);
         return game;
+    }
+
+    private List<CharacterDTO> GAME_createCharacterList() {
+        List<CharacterDTO> charList = new ArrayList<>();
+        charList.add(GAME_createCharacter(1));
+        GAME_createCharacter(2);
+        GAME_createCharacter(3);
+
+        return null;
+    }
+
+    private CharacterDTO GAME_createCharacter(int charID) {
+        CharacterDTO character = new CharacterDTO();
+        return null;
     }
 
     @Test

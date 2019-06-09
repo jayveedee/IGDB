@@ -22,7 +22,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class UserDAOTest {
+public class UserDAO_Test {
 
     private IMysqlConnection mySql = new MysqlConnection();
     private UserDAO udao = new UserDAO(mySql);
