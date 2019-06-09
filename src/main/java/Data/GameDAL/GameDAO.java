@@ -5,6 +5,7 @@ import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.MusicArtistDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
@@ -50,16 +51,55 @@ public class GameDAO implements IGameDAO {
         handleINSERTPublisher                   (gameID, gamePUB);
         handleINSERTWriter                      (gameID, gameWRI);
         handleINSERTComposer                    (gameID, gameCOMP);
-        if (gameOST != null){
-            String queryARTIST =
-                "INSERT INTO MusicalArtistList (artistID, artistNAME, artistsPFP) " +
-                "VALUES (?, ?, ?)";
-            String queryOST = "";
-        }
+        handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
 
         return true;
     }
 
+    private boolean handleINSERTSoundtrackxMusicalArtists(int gameID, SoundtrackDTO gameOST) {
+        if (gameOST != null){
+            String queryARTIST =
+                "INSERT INTO MusicalArtistList (artistID, artistNAME, artistsPFP) " +
+                "VALUES (?, ?, ?)";
+            String queryOST =
+                    "INSERT INTO SoundtrackList (ostID, ostTITLE, ostPFP, ostComposerID, ostArtistID, ostGameID) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            int                         ostID           = gameOST.getOstID();
+            String                      ostTITLE        = gameOST.getOstTITLE();
+            String                      ostPFP          = gameOST.getOstPFP();
+            List<MusicArtistDTO> malist          = gameOST.getOstMA();
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryARTIST));
+                for (int i = 0; i < malist.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,malist.get(i).getArtID());
+                    mySql.getPrepStatement().setString(2,malist.get(i).getArtNAME());
+                    mySql.getPrepStatement().setString(3,malist.get(i).getArtPFP());
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryOST));
+                for (int i = 0; i < malist.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,ostID);
+                    mySql.getPrepStatement().setString(2,ostTITLE);
+                    mySql.getPrepStatement().setString(3,ostPFP);
+                    mySql.getPrepStatement().setInt(3,gameOST.getOstCOMP().getCompID());
+                    mySql.getPrepStatement().setInt(4,malist.get(i).getArtID());
+                    mySql.getPrepStatement().setInt(5,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
     private boolean handleINSERTComposer(int gameID, ComposerDTO gameCOMP) {
         if (gameCOMP != null){
             String queryCOMP =
