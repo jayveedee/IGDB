@@ -40,35 +40,69 @@ public class GameDAO implements IGameDAO {
         WriterDTO           gameWTI = game.getGameWRI();
         ComposerDTO         gameCOMP = game.getGameCOMP();              SoundtrackDTO       gameOST = game.getGameOST();
 
-        handleINSERTGame            (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
-        handleINSERTCharacters      (gameID, gameCHAR);
-        handleINSERTActors          (gameID, gameACTOR, gameCHAR);
-        handleINSERTGenres          (gameID, gameGENRE);
-        handleINSERTGameModes       (gameID, gameGM);
-        handleINSERTPictures        (gameID, gamePIC);
-        handleINSERTTrailers        (gameID, gameTRAILER);
+        handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
+        handleINSERTCharacters                  (gameID, gameCHAR);
+        handleINSERTActors                      (gameID, gameACTOR, gameCHAR);
+        handleINSERTGenres                      (gameID, gameGENRE);
+        handleINSERTGameModes                   (gameID, gameGM);
+        handleINSERTPictures                    (gameID, gamePIC);
+        handleINSERTTrailers                    (gameID, gameTRAILER);
+        handleINSERTDeveloperXParentCompany     (gameID, gameDEV);
+
+        return true;
+    }
+
+    private boolean handleINSERTDeveloperXParentCompany(int gameID, DeveloperDTO gameDEV) {
         if (gameDEV != null) {
             String queryParent =
                 "INSERT INTO ParentCompany (parentID, parentNAME, parentCREATED, parentCOUNTRY, parentSTATUS) " +
                 "VALUES (?, ?, ?, ?, ?)";
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
-            DateDTO     parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
+            DateDTO parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
+                String  parentCREATEDstring         = parentCREATED.getDay() + "/" + parentCREATED.getMonth() + "/" + parentCREATED.getYaer();
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
-            boolean     pareentSTATUS               = gameDEV.getDevPCOMPANY().isParentSTATUS();
+            boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
             String queryDEV =
                 "INSERT INTO DeveloperList (devID, devNAME, devCREATED, devCOUNTRY, devSTATUS, decParentID, devGameID) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            int         devID               = gameDEV.getDevID();
+            String      devNAME             = gameDEV.getDevNAME();
+            DateDTO     devCREATED          = gameDEV.getDevCREATED();
+                String  devCREATEDstring    = devCREATED.getDay() + "/" + devCREATED.getMonth() + "/" + devCREATED.getYaer();
+            String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
+            boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
-                mySql.getConnection().setAutoCommit(false);
-                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryParent));
+                handleINSERTCompanyDuplicateCode(queryParent, parentID, parentNAME, parentCREATEDstring, parentCOUNTRY, parentSTATUS);
+                mySql.getPrepStatement().executeUpdate();
+                mySql.getConnection().commit();
+
+                handleINSERTCompanyDuplicateCode(queryDEV, devID, devNAME, devCREATEDstring, devCOUNTRY, devSTATUS);
+                mySql.getPrepStatement().setInt(6,parentID);
+                mySql.getPrepStatement().setInt(7,gameID);
+                mySql.getPrepStatement().executeUpdate();
+                mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
-
         return true;
+    }
+
+    private void handleINSERTCompanyDuplicateCode(String query, int companyID, String companyNAME, String companyCREATED, String companyCOUNTRY, boolean companySTATUS) throws SQLException {
+        handleINSERTDuplicateCode(query, companyID, companyNAME, companyCREATED, companyCOUNTRY);
+        mySql.getPrepStatement().setBoolean(5, companySTATUS);
+    }
+
+    private void handleINSERTDuplicateCode(String query, int ID, String NAME, String CREATED, String COUNTRY_or_DESC) throws SQLException {
+        mySql.getConnection().setAutoCommit(false);
+        mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+        mySql.getPrepStatement().setInt(1, ID);
+        mySql.getPrepStatement().setString(2, NAME);
+        mySql.getPrepStatement().setString(3, CREATED);
+        mySql.getPrepStatement().setString(4, COUNTRY_or_DESC);
     }
 
     private boolean handleINSERTTrailers(int gameID, List<TrailerDTO> gameTRAILER) {
@@ -169,12 +203,7 @@ public class GameDAO implements IGameDAO {
 
     private boolean handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
         try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
-            mySql.getPrepStatement().setInt(1,gameID);
-            mySql.getPrepStatement().setString(2,gameTitle);
-            mySql.getPrepStatement().setString(3,gameReleaseString);
-            mySql.getPrepStatement().setString(4,gameDESC);
+            handleINSERTDuplicateCode(query1, gameID, gameTitle, gameReleaseString, gameDESC);
             mySql.getPrepStatement().setString(5,gameCOV);
             mySql.getPrepStatement().setString(6,gameBG);
         } catch (SQLException e) {
