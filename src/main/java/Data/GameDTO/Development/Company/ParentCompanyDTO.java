@@ -8,15 +8,17 @@ public class ParentCompanyDTO {
     private String      parentNAME;
     private DateDTO     parentCREATED;
     private String      parentCOUNTRY;
+    private boolean     parentSTATUS;
 
     public ParentCompanyDTO() {
     }
 
-    public ParentCompanyDTO(int parentID, String parentNAME, DateDTO parentCREATED, String parentCOUNTRY) {
+    public ParentCompanyDTO(int parentID, String parentNAME, DateDTO parentCREATED, String parentCOUNTRY, boolean parentSTATUS) {
         this.parentID = parentID;
         this.parentNAME = parentNAME;
         this.parentCREATED = parentCREATED;
         this.parentCOUNTRY = parentCOUNTRY;
+        this.parentSTATUS = parentSTATUS;
     }
 
     public int getParentID() {
@@ -49,5 +51,13 @@ public class ParentCompanyDTO {
 
     public void setParentCOUNTRY(String parentCOUNTRY) {
         this.parentCOUNTRY = parentCOUNTRY;
+    }
+
+    public boolean isParentSTATUS() {
+        return parentSTATUS;
+    }
+
+    public void setParentSTATUS(boolean parentSTATUS) {
+        this.parentSTATUS = parentSTATUS;
     }
 }
