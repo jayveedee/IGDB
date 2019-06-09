@@ -3,7 +3,7 @@
     margin-right: 350px;
 }
 
-#uploadedPicture {
+#uploadedPicture, #avatarPicks {
     border: 2px solid #59adff91;
     border-radius: 14px;
     width: 177px;
