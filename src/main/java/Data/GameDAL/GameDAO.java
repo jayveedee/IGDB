@@ -32,13 +32,12 @@ public class GameDAO implements IGameDAO {
         DateDTO     gameRD          = game.getGameRELEASEDATE();
         String      gameRDstring    = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYaer();
 
-        List<ActorDTO>      gameACTOR = game.getGameACs();              List<CharacterDTO>  gameCHAR = game.getGameCHs();
-        List<GenreDTO>      gameGENRE = game.getGameGENREs();           List<GameModeDTO>   gameGM = game.getGameGMs();
-        List<PictureDTO>    gamePIC = game.getGamePICs();               List<RatingDTO>     gameRATING = game.getGameRATINGs();
-        List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
-        DeveloperDTO        gameDEV = game.getGameDEV();                PublisherDTO        gamePUB = game.getGamePUB();
-        WriterDTO           gameWRI = game.getGameWRI();
-        ComposerDTO         gameCOMP = game.getGameCOMP();              SoundtrackDTO       gameOST = game.getGameOST();
+        List<ActorDTO>      gameACTOR   = game.getGameACs();        List<CharacterDTO>  gameCHAR    = game.getGameCHs();
+        List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
+        List<PictureDTO>    gamePIC     = game.getGamePICs();       List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
+        DeveloperDTO        gameDEV     = game.getGameDEV();        PublisherDTO        gamePUB     = game.getGamePUB();
+        WriterDTO           gameWRI     = game.getGameWRI();
+        ComposerDTO         gameCOMP    = game.getGameCOMP();       SoundtrackDTO       gameOST     = game.getGameOST();
 
         handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
         handleINSERTCharacters                  (gameID, gameCHAR);
