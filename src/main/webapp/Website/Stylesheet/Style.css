@@ -60,6 +60,8 @@ h2{
     background: #59adff91;
     padding: 20px;
     border-radius: 14px;
+    color: white;
+    text-decoration: none;
 }
 
 .nav-login{
