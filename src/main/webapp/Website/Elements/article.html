@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <title>Game-Page</title>
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/ArticleInStyle.css">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"></script>
 
 </head>
 <body>
+<nav class="standart-nav">
+    <div class="logo">
+        <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
+    </div>
+    <ul class="navigation-list">
+        <li><a href="#" class="not-active">Forum</a></li>
+        <li><a href="#" class="not-active">Game List</a></li>
+        <li class="nav-login"><a href="Login_Signup.html" class="not-active">Login/Registrer</a></li>
+    </ul>
+</nav>
+<div id="container" class="container">
 
+    <div id="titleInput" class="container">
+        <h3 id="headertitle">Title</h3>
+        <input id="titlefield" type="text" placeholder="Insert the title">
+        <h3 id="headerRD">Release Date</h3>
+        <input class="dateInput" type="date">
+
+    </div>
+
+    <div id="companyInput" class="container">
+        <h3 id="headercompany">Company Details</h3>
+        <ul>
+            <li class ="companylist">
+            <h5 class ="headercompanylist">Company Name:</h5>
+            <input class="companyText" type="text" placeholder="Insert Company Name">
+            </li>
+            <li class ="companylist">
+            <h5 class ="headercompanylist">Company Country:</h5>
+            <input class="companyText" type="text" placeholder="Insert origin of company">
+            </li>
+        </ul>
+    </div>
+
+    <div id="actorInput" class="container">
+        <h3 id="headeractor">Actors</h3>
+        <button class="btn-add-row">Add</button>
+        <div class="element-wrapper">
+            <div class="row">
+                <input id="actorfields" type="text" placeholder="Insert name of Actor">
+                <button class ="btn-remove-row">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gamedescInput" class="container">
+        <h3 id="headergameDesc">Game Description</h3>
+        <textarea id="gameDescfield" rows = "10" cols="163">
+        </textarea>
+    </div>
+
+
+</div>
+<script src="../Functions/Article.js"></script>
 </body>
 </html>
