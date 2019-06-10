@@ -1,4 +1,4 @@
-/*$(document).ready(function () {
+$(document).ready(function () {
     var username = localStorage.getItem("username");
     if (username === null || username === "null"){
         $("#profileBtn").css('display', 'none');
@@ -8,7 +8,7 @@
         $("#profileBtn").css('display', 'inline');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
-});*/
+});
 
 $(document).ready(function () {
     $("#loginRegisterButton").click(function (event) {
