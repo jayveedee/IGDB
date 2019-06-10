@@ -14,9 +14,11 @@
 
 #titlefield{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 0px 0px 0px 100px;
+    width: 100%;
+    max-width: 350px;
 }
 
 /*!--------------------------------Release date---------------------------------------!*/
@@ -34,7 +36,10 @@
 
 .dateInput{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    width: 100%;
+    max-width: 140px;
+    box-sizing: border-box;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 10px 0px 0px 100px;
 }
@@ -61,12 +66,18 @@
     display: inline;
     list-style-type: none;
 }
+#art-list{
+    width: 100%;
+    max-sizing: 400px;
+}
 
 .companyText{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 10px 0px 0px 70px;
+    width: 100%;
+    max-width: 300px;
 }
 
 
@@ -85,8 +96,11 @@
 
 #actorfields{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
+    width: 100%;
+    max-width: 300px;
+
 }
 
 /*----Buttons----*/
@@ -119,4 +133,11 @@
 #gameDescfield{
     resize: none;
     background-color: #cccccc;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/*!--------------------------------Game Description--------------------------------!*/
+#save-article{
+    padding: 10px 10px 10px 10px;
 }
