@@ -1,11 +1,11 @@
 $(document).ready(function () {
     var username = localStorage.getItem("username");
     if (username === null || username === "null"){
-        $("#profileBtn").hide();
-        document.getElementById("loginRegisterButton").innerHTML = "Login/register";
+        $("#profileBtn").css('display', 'none');
+        document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#profileBtn").show();
+        $("#profileBtn").css('display', 'block');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
@@ -23,8 +23,13 @@ $(document).ready(function () {
     });
 });
 
-$("#profileBtn").click(function (event) {
+$(".userDirection").click(function (event) {
     event.preventDefault();
     location.href = "User.html";
+});
+
+$(".articleDirection").click(function(event){
+    event.preventDefault();
+    location.href = "article.html";
 });
 
