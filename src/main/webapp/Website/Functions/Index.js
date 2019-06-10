@@ -23,8 +23,13 @@ $(document).ready(function () {
     });
 });
 
-$("#profileBtn").click(function (event) {
+$(".userDirection").click(function (event) {
     event.preventDefault();
     location.href = "User.html";
+});
+
+$(".articleDirection").click(function(event){
+    event.preventDefault();
+    location.href = "article.html";
 });
 
