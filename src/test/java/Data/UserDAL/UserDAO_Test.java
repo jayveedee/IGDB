@@ -15,7 +15,7 @@ import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 import org.junit.Test;
 
-import javax.management.relation.RoleList;
+import javax.management.relation.Role;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +125,44 @@ public class UserDAO_Test {
 
     @Test
     public void addToUserGameList() throws SQLException {
+        mySql.createConnection();
+
+        List<Integer>GameList = new ArrayList<>();
+        List<RoleDTO> RoleList = new ArrayList<>();
+
+        RoleDTO Role1 = new RoleDTO();
+        RoleDTO Role2 = new RoleDTO();
+        GameDTO g1 = createGameDB(90);
+
+
+        Role1.setRoleID(100);       Role1.setRoleNAME("YAJ");
+        Role2.setRoleID(110);       Role2.setRoleNAME("UJU");
+        RoleList.add(Role1);
+        RoleList.add(Role2);
+
+
+        UserDTO u1 = new UserDTO();
+        u1.setUserNAME("Yam");
+        u1.setUserPASS("uaau");
+        u1.setUserPFP("iuf");
+        u1.setUserEMAIL("Eref");
+        u1.setUserROLEs(RoleList);
+        u1.setUserGAMEs(GameList);
+
+
+        rdao.createRole(Role1);
+        rdao.createRole(Role2);
+        udao.createUser(u1);
+
+        assertTrue(udao.addToUserGameList(u1.getUserNAME(),g1.getGameID()));
+
+        udao.deleteAllUserRoles(u1.getUserNAME());
+        udao.deleteAllUserGameLists(u1.getUserNAME());
+        udao.deleteUser(u1.getUserNAME());
+        rdao.deleteRole(Role1.getRoleID());
+        rdao.deleteRole(Role2.getRoleID());
+        gdao.deleteGame(g1.getGameID());
+
     }
 
     private UserDTO createUserGameList(List<Integer> gameList, List<RoleDTO> roleList) {
@@ -136,7 +174,7 @@ public class UserDAO_Test {
         return user;
     }
 
-    @Test // GOOD TO OG
+    @Test // GOOD TO GO
     public void getUserList() throws SQLException {
         mySql.createConnection();
         List<Integer>GameLIST = new ArrayList<>();
@@ -262,8 +300,49 @@ public class UserDAO_Test {
     public void getUserGameList() throws SQLException {
         mySql.createConnection();
 
+        List<RoleDTO> rlist = new ArrayList<>();
+        List<Integer> gmlist = new ArrayList<>();
 
 
+        RoleDTO r1 = new RoleDTO(1,"kek");
+        RoleDTO r2 = new RoleDTO(2,"asd");
+        rlist.add(r1);
+        rlist.add(r2);
+        UserDTO u1 = new UserDTO();
+        GameDTO g1 = createGameDB(50);
+        GameDTO g2 = createGameDB(51);
+        GameDTO g3 = createGameDB(52);
+        gmlist.add(g1.getGameID());
+        gmlist.add(g2.getGameID());
+        gmlist.add(g3.getGameID());
+        u1.setUserNAME("test");
+        u1.setUserPASS("test32");
+        u1.setUserEMAIL("test");
+        u1.setUserPFP("test");
+        u1.setUserGAMEs(gmlist);
+        u1.setUserROLEs(rlist);
+
+        rdao.createRole(r1);
+        rdao.createRole(r2);
+        udao.createUser(u1);
+        udao.addToUserGameList(u1.getUserNAME(),50);
+        udao.addToUserGameList(u1.getUserNAME(),51);
+        udao.addToUserGameList(u1.getUserNAME(),52);
+
+        List<Integer> testGameList = udao.getUserGameList(u1.getUserNAME());
+        for (int i = 0; i < gmlist.size(); i++) {
+            assertEquals(gmlist.get(i),testGameList.get(i));
+        }
+        assertEquals(gmlist.size(),testGameList.size());
+
+        udao.deleteAllUserRoles(u1.getUserNAME());
+        udao.deleteAllUserGameLists(u1.getUserNAME());
+        udao.deleteUser(u1.getUserNAME());
+        rdao.deleteRole(r1.getRoleID());
+        rdao.deleteRole(r2.getRoleID());
+        gdao.deleteGame(g1.getGameID());
+        gdao.deleteGame(g2.getGameID());
+        gdao.deleteGame(g3.getGameID());
     }
 
     @Test // GOOD TO GO
@@ -448,8 +527,69 @@ public class UserDAO_Test {
     @Test
     public void deleteAllUserGameLists() throws SQLException {
         mySql.createConnection();
+        List<Integer> GameList = new ArrayList<>();
+        List<RoleDTO> RoleList = new ArrayList<>();
+
+        RoleDTO R1 = new RoleDTO();
+        RoleDTO R2 = new RoleDTO();
+        GameDTO G1 = new GameDTO();
+
+        R1.setRoleID(200);     R1.setRoleNAME("JUJ");
+        R2.setRoleID(220);     R2.setRoleNAME("UJU");
+        RoleList.add(R1);
+        RoleList.add(R2);
+
+        UserDTO U1 = new UserDTO();
+        U1.setUserNAME("WOOM");
+        U1.setUserPASS("sdad");
+        U1.setUserEMAIL("Sfadf");
+        U1.setUserPFP("rafa");
+        U1.setUserROLEs(RoleList);
+        U1.setUserGAMEs(GameList);
+
+        udao.createUser(U1);
+        rdao.createRole(R1);
+        rdao.createRole(R2);
+        gdao.createGame(G1);
+
+        assertTrue(udao.deleteAllUserGameLists(U1.getUserNAME()));
+        UserDTO TestDeleteAllUserGameLists = udao.getUser(U1.getUserNAME());
+
+
+
 
 
 
     }
+
+    public GameDTO createGameDB(int gameID) {
+        GameDTO game = new GameDTO();
+        DateDTO date = new DateDTO(1,12,2019);
+        WriterDTO writer = null;
+        DeveloperDTO dev = null;
+        PublisherDTO pub = null;
+        ComposerDTO comp = null;
+        SoundtrackDTO ost = null;
+
+        List<CharacterDTO>  gameCHARs       = new ArrayList<>();
+        List<GenreDTO>      gameGENREs      = new ArrayList<>();
+        List<ActorDTO>      gameACTOR       = new ArrayList<>();
+        List<RatingDTO>     gameRATING      = new ArrayList<>();
+        List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();
+        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
+        List<PictureDTO>    gamePics        = new ArrayList<>();
+
+        game.setGameID(gameID);
+        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
+        game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
+        game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
+        game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
+        game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
+        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
+        gdao.createGame(game);
+        return game;
+    }
+
 }
+
+
