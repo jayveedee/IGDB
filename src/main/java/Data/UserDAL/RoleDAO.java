@@ -56,6 +56,32 @@ public class RoleDAO implements IRoleDAO {
     }
 
     @Override
+    public RoleDTO getSpecificRole(int roleID, String userNAME) {
+        RoleDTO role = new RoleDTO();
+        String query =
+                "SELECT UserRoleList.userNAME, UserRoleList.roleID, Roles.roleNAME FROM UserRoleList " +
+                "INNER JOIN Roles ON UserRoleList.roleID = Roles.roleID " +
+                "WHERE UserRoleList.userNAME = ? AND UserRoleList.roleID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,userNAME);
+            mySql.getPrepStatement().setInt(2,roleID);
+
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            if (rs.next()){
+                role.setRoleNAME(rs.getString("roleNAME"));
+                role.setRoleID(rs.getInt("roleID"));
+            }
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return role;
+    }
+
+    @Override
     public List<RoleDTO> getRoleList() {
         String query = "SELECT * FROM Roles ORDER BY roleID ASC";
         List<RoleDTO> rList = new ArrayList<>();

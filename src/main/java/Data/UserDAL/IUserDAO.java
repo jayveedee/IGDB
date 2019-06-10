@@ -16,7 +16,7 @@ public interface IUserDAO {
     List<RoleDTO> getUserRoleList(String userNAME);
     List<Integer> getUserGameList(String userNAME);
     boolean updateUserInfo(UserDTO newUser);
-    boolean updateSpecificUserRole(String userNAME, RoleDTO newRole);
+    boolean updateSpecificUserRole(String userNAME, int roleID);
     boolean deleteUser(String userNAME);
     boolean deleteAllUserRoles(String userNAME);
     boolean deleteAllUserGameLists(String userName);
