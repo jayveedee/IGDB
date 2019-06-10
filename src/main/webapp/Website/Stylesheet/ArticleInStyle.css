@@ -14,9 +14,11 @@
 
 #titlefield{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 0px 0px 0px 100px;
+    width: 100%;
+    max-width: 350px;
 }
 
 /*!--------------------------------Release date---------------------------------------!*/
@@ -34,7 +36,10 @@
 
 .dateInput{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    width: 100%;
+    max-width: 140px;
+    box-sizing: border-box;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 10px 0px 0px 100px;
 }
@@ -61,18 +66,30 @@
     display: inline;
     list-style-type: none;
 }
+#art-list{
+    width: 100%;
+    max-sizing: 400px;
+}
 
 .companyText{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 10px 0px 0px 70px;
+    width: 100%;
+    max-width: 300px;
 }
 
 
 
-/*!--------------------------------Actor------------------------------------------------!*/
+/*!--------------------------------Actor & Platform---------------------------------------!*/
 #actorInput {
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#platformInput{
     background-color: rgb(47, 111, 181);
     padding: 30px;
     border-radius: 14px;
@@ -83,10 +100,18 @@
     color:#FFFFFF;
 }
 
+#headerplatform{
+    margin: 0px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
 #actorfields{
     border-radius: 14px;
-    padding: 5px 200px 5px 20px;
+    padding: 5px 0px 5px 20px;
     background-color: #cccccc;
+    width: 100%;
+    max-width: 300px;
+
 }
 
 /*----Buttons----*/
@@ -96,13 +121,35 @@
     padding: 0px 0px 10px 100px;
 }
 
+.row2{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
 .btn-add-row{
+    float: right;
+}
+
+.btn-add-row2
+{
     float: right;
 }
 
 .element-wrapper{
     margin: 0px 0px 0px 0px;
 }
+.element-wrapper2{
+    margin: 0px 0px 0px 0px;
+}
+
+/*!--------------------------------Actor------------------------------------------------!*/
+
+
+
+
+
+
+
 
 /*!--------------------------------Game Description--------------------------------!*/
 #gamedescInput{
@@ -119,4 +166,11 @@
 #gameDescfield{
     resize: none;
     background-color: #cccccc;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/*!--------------------------------Game Description--------------------------------!*/
+#save-article{
+    padding: 10px 10px 10px 10px;
 }
