@@ -32,3 +32,34 @@ $(".articleDirection").click(function(event){
     event.preventDefault();
     location.href = "article.html";
 });
+
+function loadAddresses() {
+
+    var action;
+    if ($("#searchInput").val() === "") {
+        action = "/rest/services/game/getGameNames/empty";
+
+    } else {
+        action = "/rest/services/game/getGameNames/" + $("#searchInput").val();
+    }
+
+    $.ajax({
+        type: "post",
+        url: action,
+        success: function (data) {
+            alert("data was sent successfully!");
+        }
+    });
+}
+/*
+            var options = " ";
+            $.each(data, function (i, elt) {
+                options +='<option value="'+elt.text+'">';
+            });
+            $('#dataList').html(options);
+        },
+        error : function () {
+            alert("Something went wrong, try again");
+        }
+    });
+}*/

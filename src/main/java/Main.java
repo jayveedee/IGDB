@@ -8,14 +8,62 @@ import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        //DETTE KODE KILLER ALLE ACTIVE CONNECTIONS!!
+        /*IMysqlConnection mysqlConnection = new MysqlConnection();
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            String query = "SHOW FULL processlist";
+            mysqlConnection.setPrepStatment(mysqlConnection.getConnection().prepareStatement(query));
+            ResultSet resultSet = mysqlConnection.getPrepStatement().executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("Id");
+                System.out.println(id);
+                mysqlConnection.setPrepStatment(mysqlConnection.getConnection().prepareStatement("KILL " + id));
+                mysqlConnection.getPrepStatement().execute();
+            }
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
         IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        /*IMysqlConnection mysqlConnection = new MysqlConnection();
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+            System.out.println(mysqlConnection.getConnection().isClosed());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (mysqlConnection.getConnection() == null){
+            System.out.println("there are no connection");
+        }else {
+            System.out.println("there is a connection or something went wrong");
+            try {
+                mysqlConnection.closeConnection(mysqlConnection.getConnection());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        /*try {
             mysqlConnection.setConnection(mysqlConnection.createConnection());
             IUserDAO userDAO = new UserDAO(mysqlConnection);
             UserDTO userDTO = new UserDTO();
@@ -24,7 +72,7 @@ public class Main {
             System.out.println(userDTO.getUserNAME());
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
         /*IUserDAO userDAO = new UserDAO(mysqlConnection);
         IRoleDAO roleDAO = new RoleDAO(mysqlConnection);
