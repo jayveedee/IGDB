@@ -1,13 +1,13 @@
-package Data.GameDTO.Info;
+package Data.UserDTO;
 
-import Data.UserDTO.UserDTO;
+import Data.GameDTO.DateDTO;
 
 public class ChangesDTO {
 
     private int         changeID;
     private String      changeVER;
     private UserDTO     changeUSERNAME;
-    private DateDTO     changeDATE;
+    private DateDTO changeDATE;
 
     public ChangesDTO(int changeID, String changeVER, UserDTO changeUSERNAME, DateDTO changeDATE) {
         this.changeID = changeID;

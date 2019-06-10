@@ -1,6 +1,6 @@
 package Data.UserDAL;
 
-import Data.GameDTO.Info.RatingDTO;
+import Data.UserDTO.RatingDTO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 

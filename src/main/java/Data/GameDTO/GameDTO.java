@@ -7,6 +7,7 @@ import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.Info.*;
+import Data.UserDTO.RatingDTO;
 
 import java.util.List;
 
@@ -19,12 +20,13 @@ public class GameDTO {
     private WriterDTO               gameWRI;
     private DeveloperDTO            gameDEV;        private PublisherDTO            gamePUB;
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
+    private PlatformDTO             gamePLAT;
 
     private String                  gameCover;      private String                  gameBG;
     private String                  gameBIO;        private List<TrailerDTO>        gameTRAILERs;
     private List<PictureDTO>        gamePICs;
 
-    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs) {
+    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, PlatformDTO gamePLAT) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -38,6 +40,7 @@ public class GameDTO {
         this.gamePUB = gamePUB;
         this.gameCOMP = gameCOMP;
         this.gameOST = gameOST;
+        this.gamePLAT = gamePLAT;
         this.gameCover = gameCover;
         this.gameBG = gameBG;
         this.gameBIO = gameBIO;
@@ -150,6 +153,14 @@ public class GameDTO {
 
     public void setGameOST(SoundtrackDTO gameOST) {
         this.gameOST = gameOST;
+    }
+
+    public PlatformDTO getGamePLAT() {
+        return gamePLAT;
+    }
+
+    public void setGamePLAT(PlatformDTO gamePLAT) {
+        this.gamePLAT = gamePLAT;
     }
 
     public String getGameCover() {

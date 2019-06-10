@@ -1,6 +1,6 @@
 package Data.GameDTO.Development;
 
-import Data.GameDTO.Info.DateDTO;
+import Data.GameDTO.DateDTO;
 
 import java.util.List;
 

@@ -1,7 +1,5 @@
 package Data.GameDTO.Info;
 
-import Data.GameDTO.GameDTO;
-
 public class TrailerDTO {
 
     private int         trailerID;

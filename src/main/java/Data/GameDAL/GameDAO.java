@@ -1,6 +1,7 @@
 package Data.GameDAL;
 
 import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.DateDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
@@ -39,7 +40,7 @@ public class GameDAO implements IGameDAO {
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
         List<PictureDTO>    gamePIC     = game.getGamePICs();       List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
         DeveloperDTO        gameDEV     = game.getGameDEV();        PublisherDTO        gamePUB     = game.getGamePUB();
-        WriterDTO           gameWRI     = game.getGameWRI();
+        WriterDTO           gameWRI     = game.getGameWRI();        PlatformDTO         gamePLAT    = game.getGamePLAT();
         ComposerDTO         gameCOMP    = game.getGameCOMP();       SoundtrackDTO       gameOST     = game.getGameOST();
 
         handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
@@ -52,11 +53,25 @@ public class GameDAO implements IGameDAO {
         handleINSERTDeveloperXParentCompany     (gameID, gameDEV);
         handleINSERTPublisher                   (gameID, gamePUB);
         handleINSERTWriter                      (gameID, gameWRI);
+        handleINSERTPlatform(gameID, gamePLAT);
         handleINSERTComposer                    (gameID, gameCOMP);
         handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         return true;
     }
 
+    private boolean handleINSERTPlatform(int gameID, PlatformDTO gamePLAT) {
+        if (gamePLAT != null){
+            String queryPLAT =
+                "INSERT INTO PlatformList (lpatID, platTITLE, platCREATED, platGameID) " +
+                "VALUES (?, ?, ?, ?)";
+            int         platID              = gamePLAT.getPlatID();
+            String      platTITLE           = gamePLAT.getPlatTITLE();
+            DateDTO platCREATED         = gamePLAT.getPlatCREATED();
+                String  platCREATEDstring   = platCREATED.getDay() + "/" + platCREATED.getMonth() + "/" + platCREATED.getYaer();
+            return handleINSERT_fn_ln_gameid(gameID,queryPLAT,platID,platTITLE,platCREATEDstring);
+        }
+        return false;
+    }
     private boolean handleINSERTSoundtrackxMusicalArtists(int gameID, SoundtrackDTO gameOST) {
         if (gameOST != null){
             String queryARTIST =
@@ -317,7 +332,6 @@ public class GameDAO implements IGameDAO {
         }
         return true;
     }
-    //FIXME måske kan opstå en fejl ved indsætning af flere spil til denne actor, ikke helt sikker (TEST SENERE)
     private boolean handleINSERTActors(int gameID, List<ActorDTO> gameACTOR, List<CharacterDTO> gameCHAR) {
         if (!gameACTOR.isEmpty() && !gameCHAR.isEmpty()) {
             String queryACTOR =
@@ -410,6 +424,8 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame(int gameID) {
-        return false;
+        String query1 = "";
+
+        return true;
     }
 }

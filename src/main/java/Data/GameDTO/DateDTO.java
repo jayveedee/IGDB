@@ -1,4 +1,4 @@
-package Data.GameDTO.Info;
+package Data.GameDTO;
 
 public class DateDTO {
 
