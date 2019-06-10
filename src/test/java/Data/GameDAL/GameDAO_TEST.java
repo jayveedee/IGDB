@@ -20,6 +20,7 @@ import Data.UserDAL.UserDAO;
 import Data.UserDTO.RatingDTO;
 import org.junit.Test;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -287,7 +288,7 @@ public class GameDAO_TEST {
     @Test
     public void getGame() throws SQLException {
         mysql.createConnection();
-
+        mysql.closeConnection(mysql.getConnection());
     }
 
     @Test

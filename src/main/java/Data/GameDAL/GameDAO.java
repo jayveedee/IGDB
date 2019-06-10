@@ -62,7 +62,7 @@ public class GameDAO implements IGameDAO {
     private boolean handleINSERTPlatform(int gameID, PlatformDTO gamePLAT) {
         if (gamePLAT != null){
             String queryPLAT =
-                "INSERT INTO PlatformList (lpatID, platTITLE, platCREATED, platGameID) " +
+                "INSERT INTO PlatformList (platID, platTITLE, platCREATED, platGameID) " +
                 "VALUES (?, ?, ?, ?)";
             int         platID              = gamePLAT.getPlatID();
             String      platTITLE           = gamePLAT.getPlatTITLE();
