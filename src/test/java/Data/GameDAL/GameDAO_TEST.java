@@ -3,6 +3,7 @@ package Data.GameDAL;
 import Data.GameDTO.Character.CharacterDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
+import Data.GameDTO.Development.Company.ParentCompanyDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
@@ -35,8 +36,8 @@ public class GameDAO_TEST {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO(1,12,2019);
         WriterDTO writer = null;
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
+        DeveloperDTO dev = GAME_createDeveloper(1,gameID);
+        PublisherDTO pub = GAME_createPublisher(14,gameID);
         ComposerDTO comp = null;
         SoundtrackDTO ost = null;
 
@@ -175,10 +176,34 @@ public class GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER");
         dev.setDevCOUNTRY("FILLER");
-        DateDTO date = new DateDTO()
-        dev.setDevCREATED();
+        DateDTO date = new DateDTO(1,1,2001);
+        dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
-        dev.set
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        dev.setDevGAMEs(gmlist);
+        dev.setDevPCOMPANY(GAME_createPCompany(1));
+        return dev;
+    }
+    private ParentCompanyDTO GAME_createPCompany(int pcompID){
+        ParentCompanyDTO pcomp = new ParentCompanyDTO();
+        pcomp.setParentID(pcompID);
+        pcomp.setParentNAME("FILLER");
+        pcomp.setParentSTATUS(true);
+        DateDTO date = new DateDTO(1,1,2001);
+        pcomp.setParentCREATED(date);
+        return pcomp;
+    }
+    private PublisherDTO GAME_createPublisher(int pubID, int gameID){
+        PublisherDTO pub = new PublisherDTO();
+        pub.setPubID(pubID);
+        pub.setBiography("FILLER TEXT");
+        pub.setPubNAME("FILLER TEXT");
+        pub.setPubCOUNTRY("FILLER TEXT");
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        pub.setPubGAMEs(gmlist);
+        return pub;
     }
 
     @Test
