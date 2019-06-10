@@ -4,10 +4,12 @@ public class PictureDTO {
 
     private int         picID;
     private String      picURL;
+    private int         picGameID;
 
-    public PictureDTO(int picID, String picURL) {
+    public PictureDTO(int picID, String picURL, int picGameID) {
         this.picID = picID;
         this.picURL = picURL;
+        this.picGameID = picGameID;
     }
 
     public PictureDTO() {
@@ -27,5 +29,13 @@ public class PictureDTO {
 
     public void setPicURL(String picURL) {
         this.picURL = picURL;
+    }
+
+    public int getPicGameID() {
+        return picGameID;
+    }
+
+    public void setPicGameID(int picGameID) {
+        this.picGameID = picGameID;
     }
 }

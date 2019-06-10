@@ -60,7 +60,7 @@ public class GameDAO implements IGameDAO {
     private boolean handleINSERTSoundtrackxMusicalArtists(int gameID, SoundtrackDTO gameOST) {
         if (gameOST != null){
             String queryARTIST =
-                "INSERT INTO MusicalArtistList (artistID, artistNAME, artistsPFP) " +
+                "INSERT INTO MusicalArtistList (artistID, artistNAME, artistPFP) " +
                 "VALUES (?, ?, ?)";
             String queryOST =
                     "INSERT INTO SoundtrackList (ostID, ostTITLE, ostPFP, ostComposerID, ostArtistID, ostGameID) " +
@@ -68,7 +68,7 @@ public class GameDAO implements IGameDAO {
             int                         ostID           = gameOST.getOstID();
             String                      ostTITLE        = gameOST.getOstTITLE();
             String                      ostPFP          = gameOST.getOstPFP();
-            List<MusicArtistDTO> malist          = gameOST.getOstMA();
+            List<MusicArtistDTO>        malist          = gameOST.getOstMA();
             try {
                 mySql.getConnection().setAutoCommit(false);
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryARTIST));
@@ -87,9 +87,9 @@ public class GameDAO implements IGameDAO {
                     mySql.getPrepStatement().setInt(1,ostID);
                     mySql.getPrepStatement().setString(2,ostTITLE);
                     mySql.getPrepStatement().setString(3,ostPFP);
-                    mySql.getPrepStatement().setInt(3,gameOST.getOstCOMP().getCompID());
-                    mySql.getPrepStatement().setInt(4,malist.get(i).getArtID());
-                    mySql.getPrepStatement().setInt(5,gameID);
+                    mySql.getPrepStatement().setInt(4,gameOST.getOstCOMP().getCompID());
+                    mySql.getPrepStatement().setInt(5,malist.get(i).getArtID());
+                    mySql.getPrepStatement().setInt(6,gameID);
                     mySql.getPrepStatement().addBatch();
                 }
                 mySql.getPrepStatement().executeBatch();
@@ -179,7 +179,7 @@ public class GameDAO implements IGameDAO {
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
             String queryDEV =
-                "INSERT INTO DeveloperList (devID, devNAME, devCREATED, devCOUNTRY, devSTATUS, decParentID, devGameID) " +
+                "INSERT INTO DeveloperList (devID, devNAME, devCREATED, devCOUNTRY, devSTATUS, devParentID, devGameID) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
@@ -335,8 +335,9 @@ public class GameDAO implements IGameDAO {
                                 gameACTOR.get(i).getAcBDAY().getDay() + "/" +
                                 gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYaer();
                         mySql.getPrepStatement().setString(4,actorDOBstring);
-                        mySql.getPrepStatement().setInt(5,gameACTOR.get(i).getAcCHs().get(j));
-                        mySql.getPrepStatement().setInt(6,gameID);
+                        mySql.getPrepStatement().setString(5,gameCHAR.get(i).getChPFP());
+                        mySql.getPrepStatement().setInt(6,gameACTOR.get(i).getAcCHs().get(j));
+                        mySql.getPrepStatement().setInt(7,gameID);
                         mySql.getPrepStatement().addBatch();
                     }
                     mySql.getPrepStatement().executeBatch();

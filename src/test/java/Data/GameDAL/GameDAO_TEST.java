@@ -3,8 +3,10 @@ package Data.GameDAL;
 import Data.GameDTO.Character.CharacterDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
+import Data.GameDTO.Development.Company.ParentCompanyDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.MusicArtistDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
@@ -14,6 +16,8 @@ import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
+import Data.UserDTO.RoleDTO;
+import Data.UserDTO.UserDTO;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -32,19 +36,19 @@ public class GameDAO_TEST {
     public GameDTO createGameDB(int gameID) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO(1,12,2019);
-        WriterDTO writer = null;
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
+        WriterDTO writer = GAME_createWriter(23,gameID);
+        DeveloperDTO dev = GAME_createDeveloper(1,gameID);
+        PublisherDTO pub = GAME_createPublisher(14,gameID);
+        ComposerDTO comp = GAME_createComposer(4,gameID,50);
+        SoundtrackDTO ost = GAME_createSoundtrack(50,gameID);
 
         List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
         List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
-        List<ActorDTO>      gameACTOR       = new ArrayList<>();
+        List<ActorDTO>      gameACTOR       = GAME_createActorList(gameID,gameCHARs);
         List<RatingDTO>     gameRATING      = new ArrayList<>();
         List<GameModeDTO>   gameGAMEMODE    = GAME_createGameModeList(gameID);
-        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
-        List<PictureDTO>    gamePics        = new ArrayList<>();
+        List<TrailerDTO>    gameTRAILER     = GAME_createTrailerList(gameID);
+        List<PictureDTO>    gamePics        = GAME_createPictureList(gameID);
 
         game.setGameID(gameID);
         game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
@@ -76,6 +80,31 @@ public class GameDAO_TEST {
         List<Integer> aclist = new ArrayList<>();
         character.setChVAs(aclist);
         return character;
+    }
+    private List<ActorDTO> GAME_createActorList (int gameID, List<CharacterDTO> gameCHARs) {
+        List<ActorDTO> actorList = new ArrayList<>();
+        actorList.add(GAME_createActor(1,gameID,"TEST1","TEST1","TEST1",gameCHARs));
+        actorList.add(GAME_createActor(2,gameID,"TEST2","TEST2","TEST2",gameCHARs));
+        actorList.add(GAME_createActor(3,gameID,"TEST3","TEST3","TEST3",gameCHARs));
+        return actorList;
+    }
+    private ActorDTO GAME_createActor(int actorID, int gameID, String FN, String LN, String PFP, List<CharacterDTO> gameCHARs){
+        ActorDTO actor = new ActorDTO();
+        actor.setAcID(actorID);
+        actor.setAcFN(FN);
+        actor.setAcLN(LN);
+        actor.setAcPFP(PFP);
+        DateDTO DOB = new DateDTO(1,1,2001);
+        actor.setAcBDAY(DOB);
+        List<Integer> charList = new ArrayList<>();
+        for (int i = 0; i < gameCHARs.size(); i++) {
+            charList.add(gameCHARs.get(i).getChID());
+        }
+        actor.setAcCHs(charList);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        actor.setAcGAMEs(gmlist);
+        return actor;
     }
 
     // Genre X GameMode Insert
@@ -112,11 +141,132 @@ public class GameDAO_TEST {
         return gameMode;
     }
 
+    // Trailer & pics Insert
+    private List<TrailerDTO> GAME_createTrailerList(int gameID){
+        List<TrailerDTO> trailerList = new ArrayList<>();
+        trailerList.add(GAME_createTrailer(3,gameID,"TEST1"));
+        trailerList.add(GAME_createTrailer(5,gameID,"TEST2"));
+        trailerList.add(GAME_createTrailer(9,gameID,"TEST3"));
+        return trailerList;
+    }
+    private TrailerDTO GAME_createTrailer(int trailerID, int gameID, String trailerURL){
+        TrailerDTO trailer = new TrailerDTO();
+        trailer.setTrailerID(trailerID);
+        trailer.setTrailerURL(trailerURL);
+        trailer.setTrailerGameID(gameID);
+        return trailer;
+    }
+    private List<PictureDTO> GAME_createPictureList(int gameID){
+        List<PictureDTO> picList = new ArrayList<>();
+        picList.add(GAME_createPicture(1,gameID));
+        picList.add(GAME_createPicture(2,gameID));
+        picList.add(GAME_createPicture(3,gameID));
+        return picList;
+    }
+    private PictureDTO GAME_createPicture(int picID, int gmaeID){
+        PictureDTO picture = new PictureDTO();
+        picture.setPicGameID(gmaeID);
+        picture.setPicID(picID);
+        picture.setPicURL("fillerTEXT");
+        return picture;
+    }
+
+    //Developer, Publisher & ParentCompany Insert
+    private DeveloperDTO GAME_createDeveloper (int devID, int gameID){
+        DeveloperDTO dev = new DeveloperDTO();
+        dev.setDevID(devID);
+        dev.setDevNAME("FILLER");
+        dev.setDevCOUNTRY("FILLER");
+        DateDTO date = new DateDTO(1,1,2001);
+        dev.setDevCREATED(date);
+        dev.setDevSTATUS(true);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        dev.setDevGAMEs(gmlist);
+        dev.setDevPCOMPANY(GAME_createPCompany(1));
+        return dev;
+    }
+    private ParentCompanyDTO GAME_createPCompany(int pcompID){
+        ParentCompanyDTO pcomp = new ParentCompanyDTO();
+        pcomp.setParentID(pcompID);
+        pcomp.setParentNAME("FILLER");
+        pcomp.setParentSTATUS(true);
+        DateDTO date = new DateDTO(1,1,2001);
+        pcomp.setParentCREATED(date);
+        return pcomp;
+    }
+    private PublisherDTO GAME_createPublisher(int pubID, int gameID){
+        PublisherDTO pub = new PublisherDTO();
+        pub.setPubID(pubID);
+        pub.setBiography("FILLER TEXT");
+        pub.setPubNAME("FILLER TEXT");
+        pub.setPubCOUNTRY("FILLER TEXT");
+        DateDTO date = new DateDTO(1,1,2001);
+        pub.setPubCREATED(date);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        pub.setPubGAMEs(gmlist);
+        return pub;
+    }
+
+    //Writer Insert
+    private WriterDTO GAME_createWriter(int wriID, int gameID){
+        WriterDTO writer = new WriterDTO();
+        writer.setWriterID(wriID);
+        writer.setWriterFN("FILLER");
+        writer.setWriterLN("FILLER");
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        writer.setWriterGAMEs(gmlist);
+        return writer;
+    }
+
+    // Composer & Soundtrack Insert
+    private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID){
+        SoundtrackDTO ost = new SoundtrackDTO();
+        ost.setOstID(ostID);
+        ost.setOstTITLE("FILLER");
+        ost.setOstPFP("FILLER");
+        ost.setOstCOMP(GAME_createComposer(4,ostID,gameID));
+        List<MusicArtistDTO> maList = new ArrayList<>();
+        maList.add(GAME_createMusicalArtist(1,ostID));
+        maList.add(GAME_createMusicalArtist(3,ostID));
+        maList.add(GAME_createMusicalArtist(8,ostID));
+        ost.setOstMA(maList);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        ost.setOstGAMEs(gmlist);
+        return ost;
+    }
+    private ComposerDTO GAME_createComposer(int compID, int gameID, int ostID){
+        ComposerDTO comp = new ComposerDTO();
+        comp.setCompID(compID);
+        comp.setCompFN("FILLER");
+        comp.setCompLN("FILLER");
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        comp.setCompGAMEs(gmlist);
+        List<Integer> ostList = new ArrayList<>();
+        ostList.add(ostID);
+        comp.setCompOSTs(ostList);
+        return comp;
+    }
+    private MusicArtistDTO GAME_createMusicalArtist(int maID, int ostID){
+        MusicArtistDTO ma = new MusicArtistDTO();
+        ma.setArtID(maID);
+        ma.setArtNAME("FILLER");
+        List<Integer> ostList = new ArrayList<>();
+        ostList.add(ostID);
+        ma.setArtOSTs(ostList);
+        ma.setArtPFP("FILLER");
+        return ma;
+    }
+
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
-        //GameDTO testGame1 = createGameDB(20);
-        GameDTO testGame2 = createGameDB(70);
+        GameDTO testGame1 = createGameDB(70);
+
     }
 
     @Test

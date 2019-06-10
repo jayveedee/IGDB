@@ -1,17 +1,18 @@
 package Data.GameDTO.Info;
 
+import Data.GameDTO.GameDTO;
 import Data.UserDTO.UserDTO;
 
 public class RatingDTO {
 
     private int         ratingID;
-    private int         ratingGIVEN;
     private UserDTO     ratingUSER;
+    private GameDTO     ratingGAME;
 
-    public RatingDTO(int ratingID, int ratingGIVEN, UserDTO ratingUSER) {
+    public RatingDTO(int ratingID, UserDTO ratingUSER, GameDTO ratingGAME) {
         this.ratingID = ratingID;
-        this.ratingGIVEN = ratingGIVEN;
         this.ratingUSER = ratingUSER;
+        this.ratingGAME = ratingGAME;
     }
 
     public RatingDTO() {
@@ -25,14 +26,6 @@ public class RatingDTO {
         this.ratingID = ratingID;
     }
 
-    public int getRatingGIVEN() {
-        return ratingGIVEN;
-    }
-
-    public void setRatingGIVEN(int ratingGIVEN) {
-        this.ratingGIVEN = ratingGIVEN;
-    }
-
     public UserDTO getRatingUSER() {
         return ratingUSER;
     }
@@ -41,4 +34,11 @@ public class RatingDTO {
         this.ratingUSER = ratingUSER;
     }
 
+    public GameDTO getRatingGAME() {
+        return ratingGAME;
+    }
+
+    public void setRatingGAME(GameDTO ratingGAME) {
+        this.ratingGAME = ratingGAME;
+    }
 }
