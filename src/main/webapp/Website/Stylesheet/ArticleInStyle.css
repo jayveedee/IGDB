@@ -82,14 +82,25 @@
 
 
 
-/*!--------------------------------Actor------------------------------------------------!*/
+/*!--------------------------------Actor & Platform---------------------------------------!*/
 #actorInput {
     background-color: rgb(47, 111, 181);
     padding: 30px;
     border-radius: 14px;
 }
 
+#platformInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
 #headeractor{
+    margin: 0px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#headerplatform{
     margin: 0px 0px 0px 20px;
     color:#FFFFFF;
 }
@@ -110,13 +121,35 @@
     padding: 0px 0px 10px 100px;
 }
 
+.row2{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
 .btn-add-row{
+    float: right;
+}
+
+.btn-add-row2
+{
     float: right;
 }
 
 .element-wrapper{
     margin: 0px 0px 0px 0px;
 }
+.element-wrapper2{
+    margin: 0px 0px 0px 0px;
+}
+
+/*!--------------------------------Actor------------------------------------------------!*/
+
+
+
+
+
+
+
 
 /*!--------------------------------Game Description--------------------------------!*/
 #gamedescInput{
