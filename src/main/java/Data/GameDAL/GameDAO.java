@@ -11,7 +11,9 @@ import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameDAO implements IGameDAO {
@@ -382,6 +384,23 @@ public class GameDAO implements IGameDAO {
     @Override
     public List<GameDTO> getGameList() {
         return null;
+    }
+
+    @Override
+    public ArrayList<String> getGameNames(String characters){
+        String query = "SELECT gameTITLE FROM Game WHERE gameTITLE LIKE ?";
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,characters);
+            ResultSet resultset = mySql.getPrepStatement().executeQuery();
+            while (resultset.next()){
+                list.add(resultset.getString("gameTITLE"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override

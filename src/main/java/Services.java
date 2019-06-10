@@ -3,10 +3,10 @@ import Data.MysqlConnection;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.UserDAO;
 
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Path("services")
 public class Services {
@@ -39,6 +39,24 @@ public class Services {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return answer;
+    }
+
+    @GET
+    @Path("game/getGameNames")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<String> getGameNames(@FormParam("input") String characters){
+        IMysqlConnection mysqlConnection = new MysqlConnection();
+        GameService service = new GameService(mysqlConnection);
+        ArrayList<String> answer = null;
+
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            answer = service.getGameNames(characters);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return answer;
     }
 
