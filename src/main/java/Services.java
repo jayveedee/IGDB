@@ -42,7 +42,7 @@ public class Services {
         return answer;
     }
 
-    @GET
+   /* @GET
     @Path("game/getGameNames")
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<String> getGameNames(@FormParam("input") String characters){
@@ -58,7 +58,7 @@ public class Services {
         }
 
         return answer;
-    }
+    }*/
 
 
 
