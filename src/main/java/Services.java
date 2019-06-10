@@ -42,24 +42,6 @@ public class Services {
         return answer;
     }
 
-   /* @GET
-    @Path("game/getGameNames")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<String> getGameNames(@FormParam("input") String characters){
-        IMysqlConnection mysqlConnection = new MysqlConnection();
-        GameService service = new GameService(mysqlConnection);
-        ArrayList<String> answer = null;
-
-        try {
-            mysqlConnection.setConnection(mysqlConnection.createConnection());
-            answer = service.getGameNames(characters);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return answer;
-    }*/
-
 
 
 
