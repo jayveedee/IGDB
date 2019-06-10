@@ -46,7 +46,7 @@ public class GameDAO_TEST {
         List<RatingDTO>     gameRATING      = new ArrayList<>();
         List<GameModeDTO>   gameGAMEMODE    = GAME_createGameModeList(gameID);
         List<TrailerDTO>    gameTRAILER     = GAME_createTrailerList(gameID);
-        List<PictureDTO>    gamePics        = new ArrayList<>();
+        List<PictureDTO>    gamePics        = GAME_createPictureList(gameID);
 
         game.setGameID(gameID);
         game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
@@ -163,15 +163,28 @@ public class GameDAO_TEST {
     }
     private PictureDTO GAME_createPicture(int picID, int gmaeID){
         PictureDTO picture = new PictureDTO();
-
+        picture.setPicGameID(gmaeID);
+        picture.setPicID(picID);
+        picture.setPicURL("fillerTEXT");
         return picture;
+    }
+
+    //Developer, Publisher & ParentCompany Insert
+    private DeveloperDTO GAME_createDeveloper (int devID, int gameID){
+        DeveloperDTO dev = new DeveloperDTO();
+        dev.setDevID(devID);
+        dev.setDevNAME("FILLER");
+        dev.setDevCOUNTRY("FILLER");
+        DateDTO date = new DateDTO()
+        dev.setDevCREATED();
+        dev.setDevSTATUS(true);
+        dev.set
     }
 
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
-        //GameDTO testGame1 = createGameDB(20);
-        GameDTO testGame2 = createGameDB(70);
+        GameDTO testGame1 = createGameDB(70);
     }
 
     @Test
