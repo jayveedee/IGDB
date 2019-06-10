@@ -6,6 +6,7 @@ import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.ParentCompanyDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.MusicArtistDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
@@ -35,11 +36,11 @@ public class GameDAO_TEST {
     public GameDTO createGameDB(int gameID) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO(1,12,2019);
-        WriterDTO writer = null;
+        WriterDTO writer = GAME_createWriter(23,gameID);
         DeveloperDTO dev = GAME_createDeveloper(1,gameID);
         PublisherDTO pub = GAME_createPublisher(14,gameID);
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
+        ComposerDTO comp = GAME_createComposer(4,gameID,50);
+        SoundtrackDTO ost = GAME_createSoundtrack(50,gameID);
 
         List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
         List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
@@ -200,16 +201,72 @@ public class GameDAO_TEST {
         pub.setBiography("FILLER TEXT");
         pub.setPubNAME("FILLER TEXT");
         pub.setPubCOUNTRY("FILLER TEXT");
+        DateDTO date = new DateDTO(1,1,2001);
+        pub.setPubCREATED(date);
         List<Integer> gmlist = new ArrayList<>();
         gmlist.add(gameID);
         pub.setPubGAMEs(gmlist);
         return pub;
     }
 
+    //Writer Insert
+    private WriterDTO GAME_createWriter(int wriID, int gameID){
+        WriterDTO writer = new WriterDTO();
+        writer.setWriterID(wriID);
+        writer.setWriterFN("FILLER");
+        writer.setWriterLN("FILLER");
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        writer.setWriterGAMEs(gmlist);
+        return writer;
+    }
+
+    // Composer & Soundtrack Insert
+    private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID){
+        SoundtrackDTO ost = new SoundtrackDTO();
+        ost.setOstID(ostID);
+        ost.setOstTITLE("FILLER");
+        ost.setOstPFP("FILLER");
+        ost.setOstCOMP(GAME_createComposer(4,ostID,gameID));
+        List<MusicArtistDTO> maList = new ArrayList<>();
+        maList.add(GAME_createMusicalArtist(1,ostID));
+        maList.add(GAME_createMusicalArtist(3,ostID));
+        maList.add(GAME_createMusicalArtist(8,ostID));
+        ost.setOstMA(maList);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        ost.setOstGAMEs(gmlist);
+        return ost;
+    }
+    private ComposerDTO GAME_createComposer(int compID, int gameID, int ostID){
+        ComposerDTO comp = new ComposerDTO();
+        comp.setCompID(compID);
+        comp.setCompFN("FILLER");
+        comp.setCompLN("FILLER");
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        comp.setCompGAMEs(gmlist);
+        List<Integer> ostList = new ArrayList<>();
+        ostList.add(ostID);
+        comp.setCompOSTs(ostList);
+        return comp;
+    }
+    private MusicArtistDTO GAME_createMusicalArtist(int maID, int ostID){
+        MusicArtistDTO ma = new MusicArtistDTO();
+        ma.setArtID(maID);
+        ma.setArtNAME("FILLER");
+        List<Integer> ostList = new ArrayList<>();
+        ostList.add(ostID);
+        ma.setArtOSTs(ostList);
+        ma.setArtPFP("FILLER");
+        return ma;
+    }
+
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1 = createGameDB(70);
+
     }
 
     @Test
