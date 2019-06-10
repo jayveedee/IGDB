@@ -1,13 +1,17 @@
 package Data.GameDTO.Info;
 
+import Data.GameDTO.GameDTO;
+
 public class TrailerDTO {
 
     private int         trailerID;
     private String      trailerURL;
+    private int         trailerGameID;
 
-    public TrailerDTO(int trailerID, String trailerURL) {
+    public TrailerDTO(int trailerID, String trailerURL, int trailerGameID) {
         this.trailerID = trailerID;
         this.trailerURL = trailerURL;
+        this.trailerGameID = trailerGameID;
     }
 
     public TrailerDTO() {
@@ -27,5 +31,13 @@ public class TrailerDTO {
 
     public void setTrailerURL(String trailerURL) {
         this.trailerURL = trailerURL;
+    }
+
+    public int getTrailerGameID() {
+        return trailerGameID;
+    }
+
+    public void setTrailerGameID(int trailerGameID) {
+        this.trailerGameID = trailerGameID;
     }
 }

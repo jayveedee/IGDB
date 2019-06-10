@@ -14,6 +14,8 @@ import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
+import Data.UserDTO.RoleDTO;
+import Data.UserDTO.UserDTO;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -40,10 +42,10 @@ public class GameDAO_TEST {
 
         List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
         List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
-        List<ActorDTO>      gameACTOR       = new ArrayList<>();
+        List<ActorDTO>      gameACTOR       = GAME_createActorList(gameID,gameCHARs);
         List<RatingDTO>     gameRATING      = new ArrayList<>();
         List<GameModeDTO>   gameGAMEMODE    = GAME_createGameModeList(gameID);
-        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
+        List<TrailerDTO>    gameTRAILER     = GAME_createTrailerList(gameID);
         List<PictureDTO>    gamePics        = new ArrayList<>();
 
         game.setGameID(gameID);
@@ -76,6 +78,31 @@ public class GameDAO_TEST {
         List<Integer> aclist = new ArrayList<>();
         character.setChVAs(aclist);
         return character;
+    }
+    private List<ActorDTO> GAME_createActorList (int gameID, List<CharacterDTO> gameCHARs) {
+        List<ActorDTO> actorList = new ArrayList<>();
+        actorList.add(GAME_createActor(1,gameID,"TEST1","TEST1","TEST1",gameCHARs));
+        actorList.add(GAME_createActor(2,gameID,"TEST2","TEST2","TEST2",gameCHARs));
+        actorList.add(GAME_createActor(3,gameID,"TEST3","TEST3","TEST3",gameCHARs));
+        return actorList;
+    }
+    private ActorDTO GAME_createActor(int actorID, int gameID, String FN, String LN, String PFP, List<CharacterDTO> gameCHARs){
+        ActorDTO actor = new ActorDTO();
+        actor.setAcID(actorID);
+        actor.setAcFN(FN);
+        actor.setAcLN(LN);
+        actor.setAcPFP(PFP);
+        DateDTO DOB = new DateDTO(1,1,2001);
+        actor.setAcBDAY(DOB);
+        List<Integer> charList = new ArrayList<>();
+        for (int i = 0; i < gameCHARs.size(); i++) {
+            charList.add(gameCHARs.get(i).getChID());
+        }
+        actor.setAcCHs(charList);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        actor.setAcGAMEs(gmlist);
+        return actor;
     }
 
     // Genre X GameMode Insert
@@ -110,6 +137,34 @@ public class GameDAO_TEST {
         gmlist.add(gameID);
         gameMode.setGmGAMEs(gmlist);
         return gameMode;
+    }
+
+    // Trailer & pics Insert
+    private List<TrailerDTO> GAME_createTrailerList(int gameID){
+        List<TrailerDTO> trailerList = new ArrayList<>();
+        trailerList.add(GAME_createTrailer(3,gameID,"TEST1"));
+        trailerList.add(GAME_createTrailer(5,gameID,"TEST2"));
+        trailerList.add(GAME_createTrailer(9,gameID,"TEST3"));
+        return trailerList;
+    }
+    private TrailerDTO GAME_createTrailer(int trailerID, int gameID, String trailerURL){
+        TrailerDTO trailer = new TrailerDTO();
+        trailer.setTrailerID(trailerID);
+        trailer.setTrailerURL(trailerURL);
+        trailer.setTrailerGameID(gameID);
+        return trailer;
+    }
+    private List<PictureDTO> GAME_createPictureList(int gameID){
+        List<PictureDTO> picList = new ArrayList<>();
+        picList.add(GAME_createPicture(1,gameID));
+        picList.add(GAME_createPicture(2,gameID));
+        picList.add(GAME_createPicture(3,gameID));
+        return picList;
+    }
+    private PictureDTO GAME_createPicture(int picID, int gmaeID){
+        PictureDTO picture = new PictureDTO();
+
+        return picture;
     }
 
     @Test

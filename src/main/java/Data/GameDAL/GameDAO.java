@@ -333,8 +333,9 @@ public class GameDAO implements IGameDAO {
                                 gameACTOR.get(i).getAcBDAY().getDay() + "/" +
                                 gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYaer();
                         mySql.getPrepStatement().setString(4,actorDOBstring);
-                        mySql.getPrepStatement().setInt(5,gameACTOR.get(i).getAcCHs().get(j));
-                        mySql.getPrepStatement().setInt(6,gameID);
+                        mySql.getPrepStatement().setString(5,gameCHAR.get(i).getChPFP());
+                        mySql.getPrepStatement().setInt(6,gameACTOR.get(i).getAcCHs().get(j));
+                        mySql.getPrepStatement().setInt(7,gameID);
                         mySql.getPrepStatement().addBatch();
                     }
                     mySql.getPrepStatement().executeBatch();

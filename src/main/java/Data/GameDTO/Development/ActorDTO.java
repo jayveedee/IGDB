@@ -35,14 +35,6 @@ public class ActorDTO {
         this.acID = acID;
     }
 
-    public String getfisrtName() {
-        return acFN;
-    }
-
-    public void setfisrtName(String fisrtName) {
-        this.acFN = fisrtName;
-    }
-
     public String getAcFN() {
         return acFN;
     }

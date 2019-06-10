@@ -71,19 +71,17 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean addRatingToGame(RatingDTO rating, int gameID) {
         String query =
-            "INSERT INTO RatingList (ratingID, ratingGIVEN, ratingUSER, ratingGameID) " +
-            "VALUES (?, ?, ?, ?)";
+            "INSERT INTO RatingList (ratingID, ratingUSER, ratingGameID) " +
+            "VALUES (?, ?, ?)";
         int         ratingID        = rating.getRatingID();
-        int         ratingGIVEN     = rating.getRatingGIVEN();
         String      ratingUSER      = rating.getRatingUSER().getUserNAME();
 
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setInt(1,ratingID);
-            mySql.getPrepStatement().setInt(2,ratingGIVEN);
-            mySql.getPrepStatement().setString(3,ratingUSER);
-            mySql.getPrepStatement().setInt(4,gameID);
+            mySql.getPrepStatement().setString(2,ratingUSER);
+            mySql.getPrepStatement().setInt(3,gameID);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
