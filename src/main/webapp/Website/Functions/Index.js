@@ -32,4 +32,3 @@ $(".articleDirection").click(function(event){
     event.preventDefault();
     location.href = "article.html";
 });
-
