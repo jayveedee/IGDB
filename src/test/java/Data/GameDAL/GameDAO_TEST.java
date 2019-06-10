@@ -120,11 +120,16 @@ public class GameDAO_TEST {
     }
 
     @Test
-    public void getGame() {
+    public void getGame() throws SQLException {
+        mysql.createConnection();
+
+
+
     }
 
     @Test
     public void getGameList() {
+
     }
 
     @Test

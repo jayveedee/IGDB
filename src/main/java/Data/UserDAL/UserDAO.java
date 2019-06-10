@@ -214,10 +214,23 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean updateSpecificUserRole(String userNAME, RoleDTO newRole) {
-        String query = "UPDATE UserRoleList SET roleID = ? WHERE userNAME = ?";
+    public boolean updateSpecificUserRole(String userNAME, int roleID) {
+        String query = "UPDATE UserRoleList SET roleID = ? WHERE userNAME = ? AND roleID = ?";
         RoleDAO rdao = new RoleDAO(mySql);
-        return rdao.handleUpdateUserRolesXCreateRole(query,newRole.getRoleID(),userNAME);
+
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setInt(1,roleID);
+            mySql.getPrepStatement().setString(2,userNAME);
+            mySql.getPrepStatement().setInt(3,roleID);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
