@@ -9,16 +9,24 @@
 
 </head>
 <body>
-<nav class="standart-nav">
-    <div class="logo">
-        <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
-    </div>
-    <ul class="navigation-list">
-        <li><a href="#" class="not-active">Forum</a></li>
-        <li><a href="#" class="not-active">Game List</a></li>
-        <li class="nav-login"><a href="Login_Signup.html" class="not-active">Login/Registrer</a></li>
-    </ul>
-</nav>
+    <nav class="standart-nav">
+        <div class="logo">
+            <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
+        </div>
+        <ul class="navigation-list">
+            <li><a href="#" class="not-active">Forum</a></li>
+            <li><a href="#" class="not-active">Game List</a></li>
+            <div class="autocomplete" style="display: inline;">
+                <div style="display: inline;">
+                    <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="">
+                </div>
+            </div>      
+            <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
+            <div class="profileBtn">
+                <a id="profileBtn" class="not-active" href="User.html">Profile</a>
+            </div>
+        </ul>
+    </nav>
 <div id="container" class="container">
 <h1 id="headerarticle">Create a Game</h1>
     <div id="titleInput" class="container">

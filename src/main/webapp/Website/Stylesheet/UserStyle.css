@@ -39,7 +39,7 @@ input:focus {
 }
 
 .button:hover {
-    background: #59adff91;
+    background: rgb(252, 96, 40);
 }
 
 /*Profile part END*/

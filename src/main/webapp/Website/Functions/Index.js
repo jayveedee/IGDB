@@ -1,14 +1,14 @@
-/*$(document).ready(function () {
+$(document).ready(function () {
     var username = localStorage.getItem("username");
     if (username === null || username === "null"){
         $("#profileBtn").css('display', 'none');
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#profileBtn").css('display', 'inline');
+        $("#profileBtn").css('display', 'black');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
-});*/
+});
 
 $(document).ready(function () {
     $("#loginRegisterButton").click(function (event) {
