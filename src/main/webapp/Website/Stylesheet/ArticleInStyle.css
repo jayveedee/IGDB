@@ -100,12 +100,23 @@
     border-radius: 14px;
 }
 
+#genreInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
 #headeractor{
     margin: 0px 0px 0px 20px;
     color:#FFFFFF;
 }
 
 #headerplatform{
+    margin: 0px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#headergenre{
     margin: 0px 0px 0px 20px;
     color:#FFFFFF;
 }
@@ -131,6 +142,11 @@
     padding: 0px 0px 10px 100px;
 }
 
+.row3{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
 .btn-add-row{
     float: right;
 }
@@ -140,12 +156,22 @@
     float: right;
 }
 
+.btn-add-row3{
+    float: right;
+}
+
 .element-wrapper{
     margin: 0px 0px 0px 0px;
 }
 .element-wrapper2{
     margin: 0px 0px 0px 0px;
 }
+
+.element-wrapper3{
+    margin: 0px 0px 0px 0px;
+}
+
+
 
 /*!--------------------------------Actor------------------------------------------------!*/
 
