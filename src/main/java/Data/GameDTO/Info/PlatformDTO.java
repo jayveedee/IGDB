@@ -1,5 +1,7 @@
 package Data.GameDTO.Info;
 
+import Data.GameDTO.DateDTO;
+
 import java.util.List;
 
 public class PlatformDTO {
@@ -7,11 +9,13 @@ public class PlatformDTO {
     private int                 platID;
     private String              platTITLE;
     private List<Integer>       platGAMEs;
+    private DateDTO             platCREATED;
 
-    public PlatformDTO(int platID, String platTITLE, List<Integer> platGAMEs) {
+    public PlatformDTO(int platID, String platTITLE, List<Integer> platGAMEs, DateDTO platCREATED) {
         this.platID = platID;
         this.platTITLE = platTITLE;
         this.platGAMEs = platGAMEs;
+        this.platCREATED = platCREATED;
     }
 
     public PlatformDTO() {
@@ -39,5 +43,13 @@ public class PlatformDTO {
 
     public void setPlatGAMEs(List<Integer> platGAMEs) {
         this.platGAMEs = platGAMEs;
+    }
+
+    public DateDTO getPlatCREATED() {
+        return platCREATED;
+    }
+
+    public void setPlatCREATED(DateDTO platCREATED) {
+        this.platCREATED = platCREATED;
     }
 }

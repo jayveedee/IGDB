@@ -1,8 +1,5 @@
 package Data.GameDTO.Development;
 
-import Data.GameDTO.GameDTO;
-import Data.GameDTO.Info.SoundtrackDTO;
-
 import java.util.List;
 
 public class ComposerDTO {

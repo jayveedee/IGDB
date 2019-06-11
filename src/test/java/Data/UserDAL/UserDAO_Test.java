@@ -2,6 +2,7 @@ package Data.UserDAL;
 
 import Data.GameDAL.GameDAO;
 import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.DateDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
@@ -11,11 +12,11 @@ import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
+import Data.UserDTO.RatingDTO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 import org.junit.Test;
 
-import javax.management.relation.Role;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,7 @@ public class UserDAO_Test {
         for (int i = 0; i < roleList.size(); i++) {
             assertTrue(rdao.deleteRole(roleList.get(i).getRoleID()));
         }
+        mySql.closeConnection(mySql.getConnection());
     }
 
           // Hjælpe metoder
@@ -121,6 +123,7 @@ public class UserDAO_Test {
         for (int i = 0; i < roleList.size(); i++) {
             assertTrue(rdao.deleteRole(roleList.get(i).getRoleID()));
         }
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test   // GOOD TO GO %%
@@ -162,7 +165,7 @@ public class UserDAO_Test {
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
         gdao.deleteGame(g1.getGameID());
-
+        mySql.closeConnection(mySql.getConnection());
     }
 
     private UserDTO createUserGameList(List<Integer> gameList, List<RoleDTO> roleList) {
@@ -253,6 +256,7 @@ public class UserDAO_Test {
 
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -294,6 +298,7 @@ public class UserDAO_Test {
         udao.deleteUser(user1.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -343,6 +348,7 @@ public class UserDAO_Test {
         gdao.deleteGame(g1.getGameID());
         gdao.deleteGame(g2.getGameID());
         gdao.deleteGame(g3.getGameID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -390,9 +396,7 @@ public class UserDAO_Test {
         udao.deleteUser(newUser.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
-
-
-
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -436,6 +440,7 @@ public class UserDAO_Test {
         rdao.deleteRole(Role2.getRoleID());
         rdao.deleteRole(newRole.getRoleID());
         udao.deleteUser(user1.getUserNAME());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -481,6 +486,7 @@ public class UserDAO_Test {
 
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -515,6 +521,7 @@ public class UserDAO_Test {
         assertTrue(udao.deleteUser(user1.getUserNAME()));
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test  // GOOD TO GO
@@ -554,6 +561,7 @@ public class UserDAO_Test {
         rdao.deleteRole(R1.getRoleID());
         rdao.deleteRole(R2.getRoleID());
         gdao.deleteGame(G1.getGameID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     public GameDTO createGameDB(int gameID) {

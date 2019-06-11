@@ -1,6 +1,7 @@
 package Data.GameDAL;
 
 import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.DateDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.ParentCompanyDTO;
@@ -16,15 +17,13 @@ import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
-import Data.UserDTO.RoleDTO;
-import Data.UserDTO.UserDTO;
+import Data.UserDTO.RatingDTO;
 import org.junit.Test;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class GameDAO_TEST {
 
@@ -40,7 +39,10 @@ public class GameDAO_TEST {
         DeveloperDTO dev = GAME_createDeveloper(1,gameID);
         PublisherDTO pub = GAME_createPublisher(14,gameID);
         ComposerDTO comp = GAME_createComposer(4,gameID,50);
-        SoundtrackDTO ost = GAME_createSoundtrack(50,gameID);
+        PlatformDTO plat = GAME_createPlatform(55,gameID);
+            List<Integer> maList = new ArrayList<>();
+            maList.add(gameID);
+        SoundtrackDTO ost = GAME_createSoundtrack(50,gameID,maList);
 
         List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
         List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
@@ -56,7 +58,7 @@ public class GameDAO_TEST {
         game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
         game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
-        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
+        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
         gdao.createGame(game);
         return game;
     }
@@ -64,7 +66,7 @@ public class GameDAO_TEST {
     // Character X Actor insert
     private List<CharacterDTO> GAME_createCharacterList(int gameID) {
         List<CharacterDTO> charList = new ArrayList<>();
-        charList.add(GAME_createCharacter(1,gameID,"test1","PFP1"));
+        charList.add(GAME_createCharacter(100,gameID,"test1","PFP1"));
         charList.add(GAME_createCharacter(2,gameID,"test2","PFP2"));
         charList.add(GAME_createCharacter(3,gameID,"test3","PFP3"));
         return charList;
@@ -83,7 +85,7 @@ public class GameDAO_TEST {
     }
     private List<ActorDTO> GAME_createActorList (int gameID, List<CharacterDTO> gameCHARs) {
         List<ActorDTO> actorList = new ArrayList<>();
-        actorList.add(GAME_createActor(1,gameID,"TEST1","TEST1","TEST1",gameCHARs));
+        actorList.add(GAME_createActor(110,gameID,"TEST1","TEST1","TEST1",gameCHARs));
         actorList.add(GAME_createActor(2,gameID,"TEST2","TEST2","TEST2",gameCHARs));
         actorList.add(GAME_createActor(3,gameID,"TEST3","TEST3","TEST3",gameCHARs));
         return actorList;
@@ -107,10 +109,10 @@ public class GameDAO_TEST {
         return actor;
     }
 
-    // Genre X GameMode Insert
+    // Genre, GameMode & Platform Insert
     private List<GenreDTO> GAME_createGenreList(int gameID){
         List<GenreDTO> genreList = new ArrayList<>();
-        genreList.add(GAME_createGenre(1,gameID,"test1"));
+        genreList.add(GAME_createGenre(120,gameID,"test1"));
         genreList.add(GAME_createGenre(2,gameID,"test2"));
         genreList.add(GAME_createGenre(3,gameID,"test3"));
         return genreList;
@@ -126,7 +128,7 @@ public class GameDAO_TEST {
     }
     private List<GameModeDTO> GAME_createGameModeList(int gameID){
         List<GameModeDTO> gameModeList = new ArrayList<>();
-        gameModeList.add(GAME_createGameMode(1,gameID,"test1"));
+        gameModeList.add(GAME_createGameMode(130,gameID,"test1"));
         gameModeList.add(GAME_createGameMode(2,gameID,"test2"));
         gameModeList.add(GAME_createGameMode(3,gameID,"test3"));
         return gameModeList;
@@ -139,6 +141,17 @@ public class GameDAO_TEST {
         gmlist.add(gameID);
         gameMode.setGmGAMEs(gmlist);
         return gameMode;
+    }
+    private PlatformDTO GAME_createPlatform(int platID, int gameID) {
+        PlatformDTO plat = new PlatformDTO();
+        plat.setPlatID(platID);
+        plat.setPlatTITLE("FILLER");
+        DateDTO date = new DateDTO(1,1,2001);
+        plat.setPlatCREATED(date);
+        List<Integer> gmlist = new ArrayList<>();
+        gmlist.add(gameID);
+        plat.setPlatGAMEs(gmlist);
+        return plat;
     }
 
     // Trailer & pics Insert
@@ -158,7 +171,7 @@ public class GameDAO_TEST {
     }
     private List<PictureDTO> GAME_createPictureList(int gameID){
         List<PictureDTO> picList = new ArrayList<>();
-        picList.add(GAME_createPicture(1,gameID));
+        picList.add(GAME_createPicture(140,gameID));
         picList.add(GAME_createPicture(2,gameID));
         picList.add(GAME_createPicture(3,gameID));
         return picList;
@@ -183,7 +196,7 @@ public class GameDAO_TEST {
         List<Integer> gmlist = new ArrayList<>();
         gmlist.add(gameID);
         dev.setDevGAMEs(gmlist);
-        dev.setDevPCOMPANY(GAME_createPCompany(1));
+        dev.setDevPCOMPANY(GAME_createPCompany(gameID));
         return dev;
     }
     private ParentCompanyDTO GAME_createPCompany(int pcompID){
@@ -222,16 +235,16 @@ public class GameDAO_TEST {
     }
 
     // Composer & Soundtrack Insert
-    private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID){
+    private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID, List<Integer> maIDs){
         SoundtrackDTO ost = new SoundtrackDTO();
         ost.setOstID(ostID);
         ost.setOstTITLE("FILLER");
         ost.setOstPFP("FILLER");
         ost.setOstCOMP(GAME_createComposer(4,ostID,gameID));
         List<MusicArtistDTO> maList = new ArrayList<>();
-        maList.add(GAME_createMusicalArtist(1,ostID));
-        maList.add(GAME_createMusicalArtist(3,ostID));
-        maList.add(GAME_createMusicalArtist(8,ostID));
+        for (int i = 0; i < maIDs.size(); i++) {
+            maList.add(GAME_createMusicalArtist(maIDs.get(i),ostID));
+        }
         ost.setOstMA(maList);
         List<Integer> gmlist = new ArrayList<>();
         gmlist.add(gameID);
@@ -266,15 +279,16 @@ public class GameDAO_TEST {
     public void createGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1 = createGameDB(70);
-
+        GameDTO testGame2 = createGameDB(71);
+        GameDTO testGame3 = createGameDB(72);
+        GameDTO testGame4 = createGameDB(75);
+        mysql.closeConnection(mysql.getConnection());
     }
 
     @Test
     public void getGame() throws SQLException {
         mysql.createConnection();
-
-
-
+        mysql.closeConnection(mysql.getConnection());
     }
 
     @Test

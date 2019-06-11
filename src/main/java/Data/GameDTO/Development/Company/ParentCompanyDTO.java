@@ -1,6 +1,6 @@
 package Data.GameDTO.Development.Company;
 
-import Data.GameDTO.Info.DateDTO;
+import Data.GameDTO.DateDTO;
 
 public class ParentCompanyDTO {
 

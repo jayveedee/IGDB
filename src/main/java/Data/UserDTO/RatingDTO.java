@@ -1,7 +1,6 @@
-package Data.GameDTO.Info;
+package Data.UserDTO;
 
 import Data.GameDTO.GameDTO;
-import Data.UserDTO.UserDTO;
 
 public class RatingDTO {
 

@@ -28,6 +28,7 @@ public class RoleDAO_TEST {
         assertEquals(role.getRoleID(),test.getRoleID());
         assertEquals(role.getRoleNAME(),test.getRoleNAME());
         rdao.deleteRole(1);
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test //GOOD TO GO
@@ -42,6 +43,7 @@ public class RoleDAO_TEST {
         assertEquals(role.getRoleID(),test.getRoleID());
         assertEquals(role.getRoleNAME(),test.getRoleNAME());
         rdao.deleteRole(role.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -72,6 +74,7 @@ public class RoleDAO_TEST {
         rdao.deleteRole(r1.getRoleID());
         rdao.deleteRole(r2.getRoleID());
         rdao.deleteRole(r3.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
@@ -93,6 +96,7 @@ public class RoleDAO_TEST {
         assertEquals(newRole.getRoleNAME(),t2.getRoleNAME());
 
         rdao.deleteRole(role.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 
     @Test //GOOD TO GO
@@ -112,5 +116,6 @@ public class RoleDAO_TEST {
 
         assertNull(test.getRoleNAME());
         assertEquals(0, test.getRoleID());
+        mySql.closeConnection(mySql.getConnection());
     }
 }
