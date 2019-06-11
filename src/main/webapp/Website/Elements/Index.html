@@ -17,7 +17,11 @@
                 <li><a href="#" class="not-active">Game List</a></li>
                 <div class="autocomplete" style="display: inline;">
                     <div style="display: inline;">
-                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="">
+                        <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                            <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" onkeyup="loadAddresses();" list="dataList">
+                            <input type="submit" value="Search">
+                        </form>
+
                     </div>
                 </div>
                 <div class="profileBtn">
@@ -30,6 +34,11 @@
                 <li class="nav-login"><a id="loginRegisterButton" href="#" class="nav-active">Login/Registrer</a></li>
             </ul>
         </nav>
+
+    <datalist id="dataList">
+
+
+    </datalist>
 
     <div class="container">
     <h2>New Games</h2>
@@ -87,5 +96,6 @@
     </div>
 </div>
 <script src="../Functions/Index.js"></script>
+<script src="../Functions/ConnectionScript.js"></script>
 </body>
 </html>

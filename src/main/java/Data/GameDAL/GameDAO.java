@@ -402,7 +402,7 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public ArrayList<String> getGameNames(String characters){
-        String query = "SELECT gameTITLE FROM Game WHERE gameTITLE LIKE ?";
+        String query = "SELECT gameTITLE FROM Game WHERE gameTITLE LIKE ? LIMIT 10";
         ArrayList<String> list = new ArrayList<>();
         try {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));

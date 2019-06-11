@@ -1,9 +1,7 @@
 import Data.GameDAL.GameDAO;
 import Data.GameDAL.IGameDAO;
 import Data.IMysqlConnection;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameService {
 
@@ -14,7 +12,7 @@ public class GameService {
 
     }
 
-    public ArrayList<String> getGameNames(String characters){
+   public ArrayList<String> getGameNames(String characters){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(characters);
