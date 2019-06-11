@@ -4,7 +4,7 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/Website" relative="/" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
@@ -24,10 +24,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/jquery-ajax-chain" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="@types/jquery" level="application" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="@types/jquery-ajax-chain" level="application" />
+    <orderEntry type="library" exported="" name="jquery" level="application" />
+    <orderEntry type="library" exported="" name="@types/jquery" level="application" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../CDIO2_3/target/cdio2_3-0.0.1-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.13.jar!/" />
@@ -36,7 +36,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql:mysql-connector-java:8.0.13" level="project" />
+    <orderEntry type="library" exported="" name="mysql:mysql-connector-java:8.0.13" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
     <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.containers:jersey-container-servlet:2.27" level="project" />
