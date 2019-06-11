@@ -74,11 +74,23 @@ h2{
     text-decoration: none;
 }
 
-.profileBtn{
+.navLinks{
     float: right;
     margin-top: 6px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.createArticle{
+    background-color: coral;
+    padding: 20px;
+    border-radius: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.createArticle:hover{
+    background-color: rgb(252, 96, 40);
 }
 
 .searchBar{

@@ -2,10 +2,12 @@ $(document).ready(function () {
     var username = localStorage.getItem("username");
     if (username === null || username === "null"){
         $("#profileBtn").css('display', 'none');
+        $("#createArticle").css('display', 'none');
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
         $("#profileBtn").css('display', 'inline');
+        $("#createArticle").css('display', 'inline');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
