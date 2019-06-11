@@ -34,7 +34,6 @@ $(".articleDirection").click(function(event){
 });
 
 function loadAddresses() {
-
     var action;
     if ($("#searchInput").val() === "") {
         action = "/rest/services/game/getGameNames/empty";
@@ -47,7 +46,11 @@ function loadAddresses() {
         type: "post",
         url: action,
         success: function (data) {
-            alert("data was sent successfully!");
+            alert("hola");
+            alert(data);
+        },
+        error : function () {
+            alert("data was NOT sent and received successfully")
         }
     });
 }

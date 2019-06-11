@@ -34,14 +34,24 @@ public class Main {
             e.printStackTrace();
         }*/
 
-        IMysqlConnection mysqlConnection = new MysqlConnection();
-        try {
-            mysqlConnection.setConnection(mysqlConnection.createConnection());
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //TESTER OM LISTEN AF GAME NAMES FRA SERVER FUNGERE ORDENTLIGT. TEST STATUS = INGEN PROBLEMER. KRÆVER AT GAMENAMESERVICE RETURNERE ET ARRAYLIST
+        /*
+        Services services = new Services();
+        ArrayList<String> list = new ArrayList<>();
+
+        services.createConnection();
+        list = services.GameNamesService("p");
+        services.closeConnection();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }*/
+
+        //TESTER OM JSON STRINGEN BLIVER LAVET KORREKT ALT EFTER HVILKE SPIL MAN SØGER EFTER. TEST STATUS = INGEN PROBLEMER.
+        Services services = new Services();
+        services.createConnection();
+        String json = services.GameNamesService("p");
+        services.closeConnection();
+        System.out.println(json);
 
 
         /*IMysqlConnection mysqlConnection = new MysqlConnection();

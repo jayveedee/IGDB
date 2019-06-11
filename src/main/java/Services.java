@@ -2,30 +2,30 @@ import Data.IMysqlConnection;
 import Data.MysqlConnection;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.UserDAO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
+import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+@Singleton
 @Path("services")
 public class Services {
 
-    IMysqlConnection mysqlConnection = new MysqlConnection();
+    IMysqlConnection mysqlConnection;
+
 
     @POST
     @Path("createConnection")
     public String createConnection(){
         String answer;
-        try {
-            if (mysqlConnection.getConnection() == null || mysqlConnection.getConnection().isClosed()){
-                mysqlConnection.setConnection(mysqlConnection.createConnection());
-            }
-            answer = "true";
-        } catch (SQLException e) {
-            e.printStackTrace();
-            answer = "false";
-        }
+        ConnectionService connection = ConnectionService.getInstance();
+        answer = connection.createConnection();
+        mysqlConnection = connection.getMysqlConnection();
         return answer;
     }
 
@@ -33,16 +33,8 @@ public class Services {
     @Path("closeConnection")
     public String closeConnection(){
         String answer;
-        try {
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
-            answer = "true";
-        } catch (SQLException e) {
-            e.printStackTrace();
-            answer = "false";
-        } catch (NullPointerException u){
-            u.printStackTrace();
-            answer = "true";
-        }
+        ConnectionService connection = ConnectionService.getInstance();
+        answer = connection.closeConnection();
         return answer;
     }
 
@@ -81,19 +73,45 @@ public class Services {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("game/getGameNames/{input}")
-    public ArrayList<String> GameNamesService(@PathParam("input") String characters){
+    public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
-            System.out.println("der er ikke nogen characters");
-            //return null;
+            return null;
             //bruges til ikke at sende alle games når der ikke står noget i søgefeltet. (fordi man bruger % i querien)
-            //lige nu er denne if-statement skyld i at søgefeltet ikke kan gennemføre data transferen.
         }
 
         ArrayList<String> answer = null;
         System.out.println(characters);
-        //GameService service = new GameService(mysqlConnection);
-        //answer = service.getGameNames(characters);
 
-        return answer;
+        GameService service = new GameService(mysqlConnection);
+
+        answer = service.getGameNames(characters);
+
+        class JSONObject{
+            private ArrayList<String> gameNames;
+
+            public JSONObject() {
+
+            }
+
+            public ArrayList<String> getGameNames() {
+                return gameNames;
+            }
+
+            public void setGameNames(ArrayList<String> gameNames) {
+                this.gameNames = gameNames;
+            }
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.setGameNames(answer);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = "placeHolder";
+        try {
+            jsonString = objectMapper.writeValueAsString(jsonObject);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
     }
 }
