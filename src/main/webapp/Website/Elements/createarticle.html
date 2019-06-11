@@ -27,26 +27,89 @@
             </div>
         </ul>
     </nav>
+
 <div id="container" class="container">
-<h1 id="headerarticle">Create a Game</h1>
+    <h1 id="headerarticle">Create a Game</h1>
+
     <div id="titleInput" class="container">
         <h3 id="headertitle">Title</h3>
         <input id="titlefield" type="text" placeholder="Insert the title">
         <h3 id="headerRD">Release Date</h3>
         <input class="dateInput" type="date">
+    </div>
 
+    <div id="mediaInput" class="container">
+        <h3 id="headerMedia">Media</h3>
+        <ul>
+            <li class="media-list">
+                <h5 class="media-headers">Game Cover</h5>
+                <input id="picturefield" type="text" placeholder="Insert URL of game cover">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Game Trailer</h5>
+                <input class="media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Picture List</h5>
+                <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Background Image</h5>
+                <input class="media-input" id="backpicfield" type="text" placeholder="Insert URL of background image">
+            </li>
+        </ul>
+    </div>
+
+    <div id="artInput" class="container">
+        <h3 id="headerArt">Art</h3>
+        <ul>
+            <li class="media-list">
+                <h5 class="media-headers">Soundtrack</h5>
+                <button class="btn-add-row4">Add</button>
+                <div class="element-wrapper4">
+                    <div class="row4">
+                        <input class="media-input" type="text" placeholder="Insert name of soundtrack ">
+                        <button class ="btn-remove-row4">Remove</button>
+                    </div>
+                </div>
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Musical Artists</h5>
+                <button class="btn-add-row5">Add</button>
+                <div class="element-wrapper5">
+                    <input class="media-input" type="text" placeholder="Insert name of musical artists">
+                    <button class ="btn-remove-row5">Remove</button>
+                </div>
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Composers</h5>
+                <button class="btn-add-row6">Add</button>
+                <div class="element-wrapper6">
+                    <input class="media-input" type="text" placeholder="Insert name of composers">
+                    <button class ="btn-remove-row6">Remove</button>
+                </div>
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Writers</h5>
+                <button class="btn-add-row7">Add</button>
+                <div class ="element-wrapper7">
+                    <input class="media-input" type="text" placeholder="Insert name of writers">
+                    <button class ="btn-remove-row7">Remove</button>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="companyInput" class="container">
         <h3 id="headercompany">Company Details</h3>
         <ul id="art-list">
             <li class ="companylist">
-            <h5 class ="headercompanylist">Company Name:</h5>
-            <input class="companyText" type="text" placeholder="Insert Company Name">
+                <h5 class ="headercompanylist">Company Name:</h5>
+                <input class="companyText" type="text" placeholder="Insert Company Name">
             </li>
             <li class ="companylist">
-            <h5 class ="headercompanylist">Company Country:</h5>
-            <input class="companyText" type="text" placeholder="Insert origin of company">
+                <h5 class ="headercompanylist">Company Country:</h5>
+                <input class="companyText" type="text" placeholder="Insert origin of company">
             </li>
         </ul>
     </div>
