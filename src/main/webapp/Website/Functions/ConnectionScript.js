@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type : "post",
-        url : "/rest/createConnection",
+        url : "/rest/services/createConnection",
         success : function (data) {
             if (data === "false") {
                 alert("There was a SQLexception");
@@ -16,7 +16,7 @@ $(document).ready(function () {
 window.addEventListener("beforeunload", function () {
     $.ajax({
         type : "post",
-        url : "/rest/closeConnection",
+        url : "/rest/services/closeConnection",
         success : function (data) {
             if (data === "false") {
                 alert("There was a SQLexception");

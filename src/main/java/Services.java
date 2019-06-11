@@ -71,7 +71,7 @@ public class Services {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
     @Path("game/getGameNames/{input}")
     public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
