@@ -5,7 +5,7 @@ $(document).ready(function () {
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#profileBtn").css('display', 'inline');
+        $("#profileBtn").css('display', 'black');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
