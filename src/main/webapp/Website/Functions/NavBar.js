@@ -5,7 +5,7 @@ $(document).ready(function () {
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#profileBtn").css('display', 'black');
+        $("#profileBtn").css('display', 'inline');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
@@ -23,16 +23,7 @@ $(document).ready(function () {
     });
 });
 
-$(".userDirection").click(function (event) {
-    event.preventDefault();
-    location.href = "User.html";
-});
-
-$(".articleDirection").click(function(event){
-    event.preventDefault();
-    location.href = "article.html";
-});
-
+$("#searchInput").keyup(
 function loadAddresses() {
     var action;
     if ($("#searchInput").val() === "") {
@@ -60,16 +51,26 @@ function loadAddresses() {
             alert("data was NOT sent and received successfully")
         }
     });
-}
-/*
-            var options = " ";
-            $.each(data, function (i, elt) {
-                options +='<option value="'+elt.text+'">';
-            });
-            $('#dataList').html(options);
+});
+
+//FIXME ikke færdig kodet
+$("#searchBar").submit(function (event) {
+    event.preventDefault();
+    location.href="createarticle.html";
+    /*$.ajax({
+        type : $(this).attr("method"),
+        url : $(this).attr("action"),
+        data : $(this).serialize(),
+        success : function (data) {
+            if (data == "null"){
+                alert("Could not log in. Something is wrong with the password or the username");
+            }else{
+                localStorage.setItem("username", data);
+                location.href = "Index.html";
+            }
         },
         error : function () {
-            alert("Something went wrong, try again");
+            alert("Couldn't log in, try again");
         }
-    });
-}*/
+    });*/
+});
