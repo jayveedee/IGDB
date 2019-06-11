@@ -46,12 +46,15 @@ function loadAddresses() {
         type: "post",
         url: action,
         success: function (data) {
-            alert(data);
+            //alert(data);
             var object = JSON.parse(data);
-            var list = object.gameNames;;
+            var list = object.gameNames;
+            var options = "";
             for (var i = 0; i < list.length; i++) {
-                alert(list[i]);
+                //alert(list[i]);
+                options+='<option value="'+list[i]+'">';
             }
+            $('#dataList').html(options);
         },
         error : function () {
             alert("data was NOT sent and received successfully")
