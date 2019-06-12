@@ -4,6 +4,7 @@ import Data.GameDTO.Character.CharacterDTO;
 import Data.GameDTO.DateDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
+import Data.GameDTO.Development.Company.ParentCompanyDTO;
 import Data.GameDTO.Development.Company.PublisherDTO;
 import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.MusicArtistDTO;
@@ -416,12 +417,10 @@ public class GameDAO implements IGameDAO {
         String queryCHAR            = "SELECT * FROM CharacterList  WHERE charGameID        = ?";
         String queryACTOR           = "SELECT * FROM ActorList      WHERE actorGameID       = ?";
         String queryCOMP            = "SELECT * FROM ComposerList   WHERE compGameID        = ?";
-        String queryOST             = "SELECT * FROM SoundtrackList  WHERE ostGameID          = ?";
+        String queryOST             = "SELECT * FROM SoundtrackList WHERE ostGameID         = ?";
         String queryWRI             = "SELECT * FROM WriterList     WHERE writerGameID      = ?";
-        String queryPUB             = "SEELCT * FROM PublisherList  WHERE pubGameID         = ?";
-        String queryDEV             = "SELECT * FROM DeveloperList  " +
-                "                      INNER JOIN ParentCompany ON DeveloperList.devParentID = ParentCompany.parentID " +
-                "                                                   WHERE devGameID         = ?";
+        String queryPUB             = "SELECT * FROM PublisherList  WHERE pubGameID         = ?";
+        String queryDEV             = "SELECT * FROM DeveloperList  WHERE devGameID         = ?";
         GameDTO game = new GameDTO();
         try {
             mySql.getConnection().setAutoCommit(false);
@@ -526,38 +525,138 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryACTOR));
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs8 = mySql.getPrepStatement().executeQuery();
-            List<ActorDTO> actorList = new ArrayList<>();
-            String actorCharQuery =
-                "SELECT * FROM ActorList " +
-                "INNER JOIN CharacterList ON ActorList.actorCharID = CharacterList.charID " +
-                "AND " +
-                "ActorList.actorGameID = CharacterList.charGameID WHERE actorGameID = ?";
+            List<ActorDTO> actList = new ArrayList<>();
+            String actCharList = "SELECT * FROM CharacterList WHERE charID = ?";
             if (rs8.next()){
-                ActorDTO ac = new ActorDTO();
-                ac.setAcID(rs8.getInt("actorID"));
-                ac.setAcFN(rs8.getString("actorFN"));
-                ac.setAcLN(rs8.getString("actorLN"));
-                ac.setAcPFP(rs8.getString("actorPFP"));
-                    String acDate = rs8.getString("actorDOB");
-                    String[] acDateSplit = acDate.split("/");
-                DateDTO date = new DateDTO(acDateSplit[0],acDateSplit[1],acDateSplit[2]);
-                ac.setAcBDAY(date);
-                ac.setAcGAME(rs8.getInt("actorGameID"));
-                mySql.setPrepStatment(mySql.getConnection().prepareStatement(actorCharQuery));
-                mySql.getPrepStatement().setInt(1,gameID);
+                ActorDTO act = new ActorDTO();
+                act.setAcID(rs8.getInt("actorID"));
+                act.setAcFN(rs8.getString("actorFN"));
+                act.setAcLN(rs8.getString("actorLN"));
+                act.setAcPFP(rs8.getString("actorPFP"));
+                act.setAcGAME(rs8.getInt("actorGameID"));
+                    String actDOB           = rs8.getString("actorDOB");
+                    String[] actDOBsplit    = actDOB.split("/");
+                    DateDTO actDate         = new DateDTO(actDOBsplit[0],actDOBsplit[1],actDOBsplit[2]);
+                act.setAcBDAY(actDate);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(actCharList));
+                mySql.getPrepStatement().setInt(1,rs8.getInt("actorCharID"));
                 ResultSet rs9 = mySql.getPrepStatement().executeQuery();
-                List<Integer> chActorList = new ArrayList<>();
+                List<Integer> actCharLIST = new ArrayList<>();
                 if (rs9.next()){
-                    chActorList.add(rs9.getInt("charID"));
+                    actCharLIST.add(rs9.getInt("charID"));
                 }
-                ac.setAcCHs(chActorList);
+                act.setAcCHs(actCharLIST);
+                actList.add(act);
             }
-            game.setGameACs(actorList);
+            game.setGameACs(actList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryCOMP));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs10 = mySql.getPrepStatement().executeQuery();
+            ComposerDTO comp = new ComposerDTO();
+            String compOstList = "SELECT * FROM SoundtrackList WHERE ostComposerID = ?";
+            if (rs10.next()){
+                comp.setCompID(rs10.getInt("compID"));
+                comp.setCompFN(rs10.getString("compFN"));
+                comp.setCompLN(rs10.getString("compLN"));
+                comp.setCompGAME(rs10.getInt("compGameID"));
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(compOstList));
+                mySql.getPrepStatement().setInt(1,rs10.getInt("compID"));
+                ResultSet rs11 = mySql.getPrepStatement().executeQuery();
+                List<Integer> ostCompLIST = new ArrayList<>();
+                if (rs11.next()){
+                    ostCompLIST.add(rs11.getInt("ostID"));
+                }
+                comp.setCompOSTs(ostCompLIST);
+            }
+            game.setGameCOMP(comp);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryOST));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs12 = mySql.getPrepStatement().executeQuery();
+            SoundtrackDTO ost = new SoundtrackDTO();
+            String ostMa   = "SELECT * FROM MusicalArtistList WHERE artistID = ?";
+            if (rs12.next()){
+                ost.setOstID(rs12.getInt("ostID"));
+                ost.setOstTITLE(rs12.getString("ostTITLE"));
+                ost.setOstPFP(rs12.getString("ostPFP"));
+                ost.setOstGAME(rs12.getInt("ostGameID"));
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(ostMa));
+                mySql.getPrepStatement().setInt(1,rs12.getInt("ostArtistID"));
+                ResultSet rs13 = mySql.getPrepStatement().executeQuery();
+                List<MusicArtistDTO> maList = new ArrayList<>();
+                if (rs13.next()){
+                    MusicArtistDTO ma = new MusicArtistDTO();
+                    ma.setArtID(rs13.getInt("artistID"));
+                    ma.setArtNAME(rs13.getString("artistNAME"));
+                    ma.setArtPFP(rs13.getString("artistPFP"));
+                    maList.add(ma);
+                }
+                ost.setOstMA(maList);
+                ost.setOstCOMP(comp);
+            }
+            game.setGameOST(ost);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryWRI));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs15 = mySql.getPrepStatement().executeQuery();
+            WriterDTO writer = new WriterDTO();
+            if (rs15.next()){
+                writer.setWriterID(rs15.getInt("writerID"));
+                writer.setWriterFN(rs15.getString("writerFN"));
+                writer.setWriterLN(rs15.getString("writerLN"));
+                writer.setWriterGAME(rs15.getInt("writerGameID"));
+            }
+            game.setGameWRI(writer);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPUB));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs16 = mySql.getPrepStatement().executeQuery();
+            PublisherDTO pub = new PublisherDTO();
+            if (rs16.next()){
+                pub.setPubID(rs16.getInt("pubID"));
+                pub.setPubNAME(rs16.getString("pubNAME"));
+                pub.setPubCOUNTRY(rs16.getString("pubCOUNTRY"));
+                pub.setPubSTATUS(rs16.getBoolean("pubSTATUS"));
+                pub.setPubGAME(rs16.getInt("pubGameID"));
+            }
+            game.setGamePUB(pub);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryDEV));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs17 = mySql.getPrepStatement().executeQuery();
+            DeveloperDTO dev = new DeveloperDTO();
+            String devPcompanyQuery = "SELECT * FROM ParentCompany WHERE parentID = ?";
+            if (rs17.next()){
+                dev.setDevID(rs17.getInt("devID"));
+                dev.setDevNAME(rs17.getString("devNAME"));
+                dev.setDevCOUNTRY(rs17.getString("devCOUNTRY"));
+                dev.setDevGAME(rs17.getInt("devGameID"));
+                    String devDate          = rs16.getString("devCREATED");
+                    String[] devDateSplit   = devDate.split("/");
+                    DateDTO devDATE = new DateDTO(devDateSplit[0],devDateSplit[1],devDateSplit[2]);
+                dev.setDevCREATED(devDATE);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(devPcompanyQuery));
+                mySql.getPrepStatement().setInt(1,rs17.getInt("devParentID"));
+                ResultSet rs18 = mySql.getPrepStatement().executeQuery();
+                ParentCompanyDTO parent = new ParentCompanyDTO();
+                if (rs18.next()){
+                    parent.setParentID(rs18.getInt("parentID"));
+                    parent.setParentNAME(rs18.getString("parentNAME"));
+                    parent.setParentCOUNTRY(rs18.getString("parentCOUNTRY"));
+                    parent.setParentSTATUS(rs18.getBoolean("parentSTATUS"));
+                        String parentDate           = rs18.getString("parentCREATED");
+                        String[] parentDateSplit    = parentDate.split("/");
+                        DateDTO parentDATE          = new DateDTO(parentDateSplit[0],parentDateSplit[1],parentDateSplit[2]);
+                    parent.setParentCREATED(parentDATE);
+                }
+                dev.setDevPCOMPANY(parent);
+            }
+            game.setGameDEV(dev);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return game;
     }
 
