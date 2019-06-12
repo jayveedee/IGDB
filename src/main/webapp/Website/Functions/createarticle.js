@@ -1,7 +1,6 @@
 /*--------------------------------------------------------------------------bt1*/
 $(document).on("click", ".btn-add-row", function(){
     var row = $(".row").eq(0).clone().show();
-
     $(".element-wrapper").append(row)
 });
 
@@ -13,7 +12,6 @@ $(document).on("click", ".btn-remove-row", function(){
 /*--------------------------------------------------------------------------bt2*/
 $(document).on("click", ".btn-add-row2", function(){
     var row2 = $(".row2").eq(0).clone().show();
-
     $(".element-wrapper2").append(row2)
 });
 
@@ -24,7 +22,6 @@ $(document).on("click", ".btn-remove-row2", function(){
 /*--------------------------------------------------------------------------bt3*/
 $(document).on("click", ".btn-add-row3", function(){
     var row3 = $(".row3").eq(0).clone().show();
-
     $(".element-wrapper3").append(row3)
 });
 
@@ -33,13 +30,72 @@ $(document).on("click", ".btn-remove-row3", function(){
     $(".row3").eq(index3).remove();
 });
 /*--------------------------------------------------------------------------bt4*/
-$(document).on("click", ".btn-add-row4", function(){
+$(document).on("click", "#btn4", function(){
     var row4 = $(".row4").eq(0).clone().show();
-
     $(".element-wrapper4").append(row4)
 });
 
 $(document).on("click", ".btn-remove-row4", function(){
-    var index4 = $(".btn-remove-row4").index(this);
+    var index4 = $(".btn-add-row4").index(this);
     $(".row4").eq(index4).remove();
+});
+/*--------------------------------------------------------------------------bt5*/
+$(document).on("click", ".btn-add-row5", function(){
+    var row5 = $(".row5").eq(0).clone().show();
+    $(".element-wrapper5").append(row5)
+});
+
+$(document).on("click", ".btn-remove-row5", function(){
+    var index5 = $(".btn-remove-row5").index(this);
+    $(".row5").eq(index5).remove();
+});
+/*--------------------------------------------------------------------------bt6*/
+$(document).on("click", ".btn-add-row6", function(){
+    var row6 = $(".row6").eq(0).clone().show();
+    $(".element-wrapper6").append(row6)
+});
+
+$(document).on("click", ".btn-remove-row6", function(){
+    var index6 = $(".btn-remove-row6").index(this);
+    $(".row6").eq(index6).remove();
+});
+/*--------------------------------------------------------------------------bt7*/
+$(document).on("click", ".btn-add-row7", function(){
+    var row7 = $(".row7").eq(0).clone().show();
+    $(".element-wrapper7").append(row7)
+});
+
+$(document).on("click", ".btn-remove-row7", function(){
+    var index7 = $(".btn-remove-row7").index(this);
+    $(".row7").eq(index7).remove();
+});
+/*--------------------------------------------------------------------------bt8*/
+$(document).on("click", ".btn-add-row8", function(){
+    var row8 = $(".row8").eq(0).clone().show();
+    $(".element-wrapper8").append(row8)
+});
+
+$(document).on("click", ".btn-remove-row8", function(){
+    var index8 = $(".btn-remove-row8").index(this);
+    $(".row8").eq(index8).remove();
+});
+/*--------------------------------------------------------------------------bt9*/
+$(document).on("click", ".btn-add-row9", function(){
+    var row9 = $(".row9").eq(0).clone().show();
+    $(".element-wrapper9").append(row9)
+});
+
+$(document).on("click", ".btn-remove-row9", function() {
+    var index9 = $(".btn-remove-row9").index(this);
+    $(".row9").eq(index9).remove();
+});
+/*--------------------------------------------------------------------------bt10*/
+$(document).on("click", "#btn10", function(){
+    var row10 = $(".row10").eq(0).clone().show();
+    $(".element-wrapper10").append(row10)
+});
+
+$(document).on("click", ".btn-remove-row10", function() {
+    var index10 = $(".btn-remove-row10").index(this);
+    $(".row10").eq(index10).remove();
 });

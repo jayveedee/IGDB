@@ -88,6 +88,40 @@
     width: 100%;
     max-width: 350px;
 }
+
+.btn-add-row8{
+    float: right;
+}
+
+.btn-add-row9{
+    float: right;
+}
+
+.add-button{
+    float: right;
+}
+
+.row8{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row9{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row9 {
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+.row10{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+
+
 /*!--------------------------------Art details--------------------------------------!*/
 
 #headerArt{
@@ -173,8 +207,17 @@
     width: 100%;
     max-width: 300px;
 }
+/*!--------------------------------Publisher details---------------------------------------!*/
+#publisherInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
 
-
+.introheader{
+    margin: 20px 0px 30px 20px;
+    color:#FFFFFF;
+}
 
 /*!--------------------------------Actor & Platform---------------------------------------!*/
 #actorInput {
@@ -220,6 +263,11 @@
 }
 
 /*----Buttons----*/
+
+.list-rows{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
 
 .row{
     display: none;
