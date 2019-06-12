@@ -35,11 +35,11 @@
             <div class="profile-container">
                 <ul>
                     <li><p style="margin: 0;">Username:</p></li>
-                    <input type="text" class="profile-search">
+                    <input type="text" class="profile-search" id="usernameInput" disabled>
                     <li><p style="margin: 0;">Email:</p></li>
-                    <input type="text" class="profile-search">
+                    <input type="text" class="profile-search" disabled id="emailInput">
                     <li><p style="margin: 0;">Password:</p></li>
-                    <input type="password" class="profile-search" id="showAndHide">
+                    <input type="password" class="profile-search" id="showAndHide" disabled>
                     <br>
                     <input type="checkbox" onclick="showPass()">Show Password
                 </ul>
@@ -74,8 +74,10 @@
                 </div>
             </div>
         </div>
+
+        <!--<script src="../Functions/ConnectionScript.js"></script>-->
         <script src="../Functions/User.js"></script>
         <script src="../Functions/NavBar.js"></script>
-        <script src="../Functions/ConnectionScript.js"></script>
+        <script src="../Functions/User2ndScript.js"></script>
     </body>
 </html>

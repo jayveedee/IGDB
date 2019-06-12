@@ -2,11 +2,13 @@ import Data.IMysqlConnection;
 import Data.MysqlConnection;
 import Data.UserDAL.IUserDAO;
 import Data.UserDAL.UserDAO;
+import Data.UserDTO.UserDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import javax.inject.Singleton;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
@@ -16,62 +18,67 @@ import java.util.ArrayList;
 @Path("services")
 public class Services {
 
-    IMysqlConnection mysqlConnection;
-
-
-    @POST
-    @Path("createConnection")
-    public String createConnection(){
-        String answer;
-        ConnectionService connection = ConnectionService.getInstance();
-        answer = connection.createConnection();
-        mysqlConnection = connection.getMysqlConnection();
-        return answer;
-    }
-
-    @POST
-    @Path("closeConnection")
-    public String closeConnection(){
-        String answer;
-        ConnectionService connection = ConnectionService.getInstance();
-        answer = connection.closeConnection();
-        return answer;
-    }
-
     @POST
     @Path("user/createUser")
     public boolean createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
-        //IMysqlConnection mySQL = new MysqlConnection();
+        IMysqlConnection mySQL = new MysqlConnection();
         boolean answer = true;
-        //try {
-           // mySQL.setConnection(mySQL.createConnection());
-            UserService service = new UserService(mysqlConnection);
+        try {
+            mySQL.setConnection(mySQL.createConnection());
+            UserService service = new UserService(mySQL);
             answer=service.createUser(username, email, password);
-            //mySQL.closeConnection(mySQL.getConnection());
-        //} catch (SQLException e) {
-          //  e.printStackTrace();
-        //}
+            mySQL.closeConnection(mySQL.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return answer;
+    }
+
+    @POST
+    @Path("user/getUser/{username}")
+    public String getUser(@PathParam("username") String username){
+        IMysqlConnection mysqlConnection = new MysqlConnection();
+        UserDTO user = null;
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            UserService service = new UserService(mysqlConnection);
+            user = service.getUser(username);
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = "placeHolder";
+
+        try {
+            objectMapper.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        //return jsonString;
+        return "hola!";
     }
 
     @POST
     @Path("user/logIn")
     public String logIn(@FormParam("username") String username, @FormParam("password") String password){
-        //IMysqlConnection mysqlConnection = new MysqlConnection();
+        IMysqlConnection mysqlConnection = new MysqlConnection();
         String answer = "placeHolder";
-        //try {
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
             UserService service = new UserService(mysqlConnection);
             answer = service.logIn(username, password);
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
-        //} catch (SQLException e) {
-          //  e.printStackTrace();
-        //}
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return answer;
     }
 
     @POST
-    //@Produces(MediaType.APPLICATION_JSON)
     @Path("game/getGameNames/{input}")
     public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
@@ -82,9 +89,16 @@ public class Services {
         ArrayList<String> answer = null;
         System.out.println(characters);
 
-        GameService service = new GameService(mysqlConnection);
+        IMysqlConnection mysqlConnection = new MysqlConnection();
+        try {
+            mysqlConnection.setConnection(mysqlConnection.createConnection());
+            GameService service = new GameService(mysqlConnection);
+            answer = service.getGameNames(characters);
+            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        answer = service.getGameNames(characters);
 
         class JSONObject{
             private ArrayList<String> gameNames;

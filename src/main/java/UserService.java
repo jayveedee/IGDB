@@ -39,6 +39,13 @@ public class UserService {
         return answer;
     }
 
+    public UserDTO getUser(String username){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        UserDTO user = new UserDTO();
+        user = userDAO.getUser(username);
+        return user;
+    }
+
     public String logIn(String username, String password){
         IUserDAO userDAO = new UserDAO(mySQL);
         UserDTO userDTO = userDAO.getUser(username);
