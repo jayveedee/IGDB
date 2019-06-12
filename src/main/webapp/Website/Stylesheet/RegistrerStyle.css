@@ -1,9 +1,10 @@
-.Login-Page{
+/*Container in the middel */
+.LR-Container{
     width: 400px;
-    padding: 10% 0 0;
+    padding: 10%;
     margin: auto;
 }
-
+/*The information inside the container, held by a form */
 .form{
     position: relative;
     z-index: 1;
@@ -15,49 +16,32 @@
 }
 
 .form input{
-    font-family: "Roboto", "sans-serif";
-    background: aliceblue;
     width: 100%;
-    border: 0;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 14px;
-}
-
-.form p {
-    margin-bottom: 0;
-    color: #FFFFFF;
 }
 
 .form .Registrer-form{
     display: none;
 }
 
-.form-header{
-    margin-top: 0;
-    color: white;
-    font-family: "Roboto", "sans-serif";
-}
-
-.submit-txt {
+.logRegBtn{
     color: white;
     text-decoration: none;
 }
 
-.button {
-    outline: 0;
+.submit {
     width: 50% !important;
     border: 0;
-    padding: 12px;
     color: #FFFFFF;
     font-size: 14px;
     cursor: pointer;
-    background-color: rgba(30,144,255,0.6) !important;
-    border-radius: 7px;
+    background-color: rgba(30,144,255,0.6);
+    border-radius: 4px;
 }
 
-.button:hover{
+.submit:hover{
     background-color: #1E90FF !important;
 }
 
@@ -69,15 +53,6 @@
     border-radius: 14px;
 }
 
-.tab a {
-    color: white;
-    text-decoration: none;
-}
-
-.login-active{
-    background: #1E90FF;
-}
-
-.tab:hover{
+.login-tab{
     background: #1E90FF;
 }
