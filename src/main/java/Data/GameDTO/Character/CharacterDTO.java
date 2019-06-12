@@ -1,24 +1,18 @@
 package Data.GameDTO.Character;
 
-import java.util.List;
-
 public class CharacterDTO {
 
     private int                     chID;
     private String                  chNAME;
-    private List<Integer>           chVAs;
-    private List<Integer>           chGAMEs;
+    private int                     chGAME;
 
     private String                  chPFP;
-    private String                  chBIO;
 
-    public CharacterDTO(int chID, String chNAME, String chBIO, List<Integer> chVAs, String chPFP, List<Integer> chGAMEs) {
+    public CharacterDTO(int chID, String chNAME, String chPFP, int chGAME) {
         this.chID = chID;
         this.chNAME = chNAME;
-        this.chBIO = chBIO;
-        this.chVAs = chVAs;
         this.chPFP = chPFP;
-        this.chGAMEs = chGAMEs;
+        this.chGAME = chGAME;
     }
 
     public CharacterDTO() {
@@ -40,22 +34,6 @@ public class CharacterDTO {
         this.chNAME = firstName;
     }
 
-    public String getChBIO() {
-        return chBIO;
-    }
-
-    public void setChBIO(String chBIO) {
-        this.chBIO = chBIO;
-    }
-
-    public List<Integer> getChVAs() {
-        return chVAs;
-    }
-
-    public void setChVAs(List<Integer> chVAs) {
-        this.chVAs = chVAs;
-    }
-
     public String getChPFP() {
         return chPFP;
     }
@@ -64,11 +42,11 @@ public class CharacterDTO {
         this.chPFP = chPFP;
     }
 
-    public List<Integer> getChGAMEs() {
-        return chGAMEs;
+    public int getChGAME() {
+        return chGAME;
     }
 
-    public void setChGAMEs(List<Integer> chGAMEs) {
-        this.chGAMEs = chGAMEs;
+    public void setChGAME(int chGAME) {
+        this.chGAME = chGAME;
     }
 }

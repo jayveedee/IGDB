@@ -8,14 +8,14 @@ public class ComposerDTO {
     private String                  compFN;
     private String                  compLN;
     private List<Integer>           compOSTs;
-    private List<Integer>           compGAMEs;
+    private int                     compGAME;
 
-    public ComposerDTO(int compID, String compFN, String compLN, List<Integer> compOSTs, List<Integer> compGAMEs) {
+    public ComposerDTO(int compID, String compFN, String compLN, List<Integer> compOSTs, int compGAME) {
         this.compID = compID;
         this.compFN = compFN;
         this.compLN = compLN;
         this.compOSTs = compOSTs;
-        this.compGAMEs = compGAMEs;
+        this.compGAME = compGAME;
     }
 
     public ComposerDTO() {
@@ -53,11 +53,11 @@ public class ComposerDTO {
         this.compOSTs = compOSTs;
     }
 
-    public List<Integer> getCompGAMEs() {
-        return compGAMEs;
+    public int getCompGAME() {
+        return compGAME;
     }
 
-    public void setCompGAMEs(List<Integer> compGAMEs) {
-        this.compGAMEs = compGAMEs;
+    public void setCompGAME(int compGAME) {
+        this.compGAME = compGAME;
     }
 }

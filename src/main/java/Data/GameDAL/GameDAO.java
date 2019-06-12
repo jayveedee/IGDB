@@ -40,8 +40,8 @@ public class GameDAO implements IGameDAO {
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
         List<PictureDTO>    gamePIC     = game.getGamePICs();       List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
         DeveloperDTO        gameDEV     = game.getGameDEV();        PublisherDTO        gamePUB     = game.getGamePUB();
-        WriterDTO           gameWRI     = game.getGameWRI();        PlatformDTO         gamePLAT    = game.getGamePLAT();
-        ComposerDTO         gameCOMP    = game.getGameCOMP();       SoundtrackDTO       gameOST     = game.getGameOST();
+        WriterDTO           gameWRI     = game.getGameWRI();        List<PlatformDTO>   gamePLAT    = game.getGamePLAT();
+        SoundtrackDTO       gameOST     = game.getGameOST();
 
         handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
         handleINSERTCharacters                  (gameID, gameCHAR);
@@ -54,21 +54,36 @@ public class GameDAO implements IGameDAO {
         handleINSERTPublisher                   (gameID, gamePUB);
         handleINSERTWriter                      (gameID, gameWRI);
         handleINSERTPlatform(gameID, gamePLAT);
-        handleINSERTComposer                    (gameID, gameCOMP);
+        handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
         handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         return true;
     }
 
-    private boolean handleINSERTPlatform(int gameID, PlatformDTO gamePLAT) {
+    private boolean handleINSERTPlatform(int gameID, List<PlatformDTO> gamePLAT) {
         if (gamePLAT != null){
             String queryPLAT =
                 "INSERT INTO PlatformList (platID, platTITLE, platCREATED, platGameID) " +
                 "VALUES (?, ?, ?, ?)";
-            int         platID              = gamePLAT.getPlatID();
-            String      platTITLE           = gamePLAT.getPlatTITLE();
-            DateDTO platCREATED         = gamePLAT.getPlatCREATED();
-                String  platCREATEDstring   = platCREATED.getDay() + "/" + platCREATED.getMonth() + "/" + platCREATED.getYaer();
-            return handleINSERT_fn_ln_gameid(gameID,queryPLAT,platID,platTITLE,platCREATEDstring);
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPLAT));
+                for (int i = 0; i < gamePLAT.size(); i++) {
+                    mySql.getPrepStatement().setInt(1,gamePLAT.get(i).getPlatID());
+                    mySql.getPrepStatement().setString(2,gamePLAT.get(i).getPlatTITLE());
+                        String day      = gamePLAT.get(i).getPlatCREATED().getDay();
+                        String month    = gamePLAT.get(i).getPlatCREATED().getMonth();
+                        String year     = gamePLAT.get(i).getPlatCREATED().getYaer();
+                    mySql.getPrepStatement().setString(3,day + "/" + month + "/" + year);
+                    mySql.getPrepStatement().setInt(4,gameID);
+                    mySql.getPrepStatement().addBatch();
+                }
+                mySql.getPrepStatement().executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
         }
         return false;
     }
@@ -392,7 +407,158 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public GameDTO getGame(int gameID) {
-        return null;
+        String queryGAME            = "SELECT * FROM Game           WHERE gameID            = ?";
+        String queryPIC             = "SELECT * FROM PictureList    WHERE pictureGameID     = ?";
+        String queryPLAT            = "SELECT * FROM PlatformList   WHERE platGameID        = ?";
+        String queryTRAILER         = "SELECT * FROM TrailerList    WHERE trailerGameID     = ?";
+        String queryGM              = "SELECT * FROM GameModeList   WHERE gmGameID          = ?";
+        String queryGENRE           = "SELECT * FROM GenreList      WHERE genreGameID       = ?";
+        String queryCHAR            = "SELECT * FROM CharacterList  WHERE charGameID        = ?";
+        String queryACTOR           = "SELECT * FROM ActorList      WHERE actorGameID       = ?";
+        String queryCOMP            = "SELECT * FROM ComposerList   WHERE compGameID        = ?";
+        String queryOST             = "SELECT * FROM SoundtrackList  WHERE ostGameID          = ?";
+        String queryWRI             = "SELECT * FROM WriterList     WHERE writerGameID      = ?";
+        String queryPUB             = "SEELCT * FROM PublisherList  WHERE pubGameID         = ?";
+        String queryDEV             = "SELECT * FROM DeveloperList  " +
+                "                      INNER JOIN ParentCompany ON DeveloperList.devParentID = ParentCompany.parentID " +
+                "                                                   WHERE devGameID         = ?";
+        GameDTO game = new GameDTO();
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGAME));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs1 = mySql.getPrepStatement().executeQuery();
+            if (rs1.next()){
+                game.setGameCover(rs1.getString("gameCOVER"));
+                game.setGameNAME(rs1.getString("gameTITLE"));
+                game.setGameBIO(rs1.getString("gameDESC"));
+                String gameRDstring = rs1.getString("gameRD");
+                String [] stringSplit = gameRDstring.split("/");
+                DateDTO date = new DateDTO(stringSplit[0],stringSplit[1],stringSplit[2]);
+                game.setGameRELEASEDATE(date);
+                game.setGameBG(rs1.getString("gameBG"));
+                game.setGameID(rs1.getInt("gameID"));
+            }
+
+            List<PictureDTO> picList = new ArrayList<>();
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPIC));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs2 = mySql.getPrepStatement().executeQuery();
+            if (rs2.next()){
+                PictureDTO pic = new PictureDTO();
+                pic.setPicURL(rs2.getString("pictureURL"));
+                pic.setPicID(rs2.getInt("pictureID"));
+                pic.setPicGameID(rs2.getInt("pictureGameID"));
+                picList.add(pic);
+            }
+            game.setGamePICs(picList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPLAT));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs3 = mySql.getPrepStatement().executeQuery();
+            List <PlatformDTO> platformList = new ArrayList<>();
+            if (rs3.next()){
+                PlatformDTO plat = new PlatformDTO();
+                plat.setPlatID(rs3.getInt("platGameID"));
+                plat.setPlatTITLE(rs3.getString("platTITLE"));
+                    String platCreatedstring = rs3.getString("platCREATED");
+                    String[] platStringSplit = platCreatedstring.split("/");
+                    DateDTO date = new DateDTO(platStringSplit[0], platStringSplit[1], platStringSplit[2]);
+                plat.setPlatCREATED(date);
+                plat.setPlatGAMEs(gameID);
+                platformList.add(plat);
+            }
+            game.setGamePLAT(platformList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryTRAILER));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs4 = mySql.getPrepStatement().executeQuery();
+            List<TrailerDTO> trailerList = new ArrayList<>();
+            if (rs4.next()){
+                TrailerDTO trailer = new TrailerDTO();
+                trailer.setTrailerID(rs4.getInt("trailerID"));
+                trailer.setTrailerGameID(rs4.getInt("trailerGameID"));
+                trailer.setTrailerURL(rs4.getString("trailerURL"));
+                trailerList.add(trailer);
+            }
+            game.setGameTRAILERs(trailerList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGM));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs5 = mySql.getPrepStatement().executeQuery();
+            List<GameModeDTO> gmList = new ArrayList<>();
+            if (rs5.next()){
+                GameModeDTO gm = new GameModeDTO();
+                gm.setGmID(rs5.getInt("gmID"));
+                gm.setGmTITLE(rs5.getString("gmTITLE"));
+                gm.setGmGAME(rs5.getInt("gmGameID"));
+                gmList.add(gm);
+            }
+            game.setGameGMs(gmList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGENRE));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs6 = mySql.getPrepStatement().executeQuery();
+            List<GenreDTO> genreList = new ArrayList<>();
+            if (rs6.next()){
+                GenreDTO genre = new GenreDTO();
+                genre.setGenID(rs6.getInt("genreID"));
+                genre.setGenTITLE(rs6.getString("genreTITLE"));
+                genre.setGenGAME(rs6.getInt("genreGameID"));
+                genreList.add(genre);
+            }
+            game.setGameGENREs(genreList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryCHAR));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs7 = mySql.getPrepStatement().executeQuery();
+            List<CharacterDTO> charList = new ArrayList<>();
+            if (rs7.next()){
+                CharacterDTO ch = new CharacterDTO();
+                ch.setChID(rs7.getInt("charID"));
+                ch.setChNAME(rs7.getString("charNAME"));
+                ch.setChPFP(rs7.getString("charPFP"));
+                ch.setChGAME(rs7.getInt("charGameID"));
+                charList.add(ch);
+            }
+            game.setGameCHs(charList);
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryACTOR));
+            mySql.getPrepStatement().setInt(1,gameID);
+            ResultSet rs8 = mySql.getPrepStatement().executeQuery();
+            List<ActorDTO> actorList = new ArrayList<>();
+            String actorCharQuery =
+                "SELECT * FROM ActorList " +
+                "INNER JOIN CharacterList ON ActorList.actorCharID = CharacterList.charID " +
+                "AND " +
+                "ActorList.actorGameID = CharacterList.charGameID WHERE actorGameID = ?";
+            if (rs8.next()){
+                ActorDTO ac = new ActorDTO();
+                ac.setAcID(rs8.getInt("actorID"));
+                ac.setAcFN(rs8.getString("actorFN"));
+                ac.setAcLN(rs8.getString("actorLN"));
+                ac.setAcPFP(rs8.getString("actorPFP"));
+                    String acDate = rs8.getString("actorDOB");
+                    String[] acDateSplit = acDate.split("/");
+                DateDTO date = new DateDTO(acDateSplit[0],acDateSplit[1],acDateSplit[2]);
+                ac.setAcBDAY(date);
+                ac.setAcGAME(rs8.getInt("actorGameID"));
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(actorCharQuery));
+                mySql.getPrepStatement().setInt(1,gameID);
+                ResultSet rs9 = mySql.getPrepStatement().executeQuery();
+                List<Integer> chActorList = new ArrayList<>();
+                if (rs9.next()){
+                    chActorList.add(rs9.getInt("charID"));
+                }
+                ac.setAcCHs(chActorList);
+            }
+            game.setGameACs(actorList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return game;
     }
 
     @Override

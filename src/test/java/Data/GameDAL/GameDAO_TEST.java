@@ -32,7 +32,7 @@ public class GameDAO_TEST {
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
 
-    public GameDTO createGameDB(int gameID) {
+    public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO(1,12,2019);
         WriterDTO writer = GAME_createWriter(23,gameID);
@@ -53,7 +53,7 @@ public class GameDAO_TEST {
         List<PictureDTO>    gamePics        = GAME_createPictureList(gameID);
 
         game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
+        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME(userNAME);
         game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
         game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
         game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
@@ -203,6 +203,7 @@ public class GameDAO_TEST {
         ParentCompanyDTO pcomp = new ParentCompanyDTO();
         pcomp.setParentID(pcompID);
         pcomp.setParentNAME("FILLER");
+        pcomp.setParentCOUNTRY("ASD");
         pcomp.setParentSTATUS(true);
         DateDTO date = new DateDTO(1,1,2001);
         pcomp.setParentCREATED(date);
@@ -278,10 +279,10 @@ public class GameDAO_TEST {
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
-        GameDTO testGame1 = createGameDB(70);
-        GameDTO testGame2 = createGameDB(71);
-        GameDTO testGame3 = createGameDB(72);
-        GameDTO testGame4 = createGameDB(75);
+        GameDTO testGame1 = createGameDB(70,"COD1");
+        GameDTO testGame2 = createGameDB(71,"COD2");
+        GameDTO testGame3 = createGameDB(72,"COD3");
+        GameDTO testGame4 = createGameDB(75,"COD4");
         mysql.closeConnection(mysql.getConnection());
     }
 
