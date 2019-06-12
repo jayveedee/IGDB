@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/*$(document).ready(function () {
     $.ajax({
         type : "post",
         url : "/rest/services/createConnection",
@@ -26,4 +26,4 @@ window.addEventListener("beforeunload", function () {
             alert("Could not create a connection to the database! 2222");
         }
     });
-});
+});*/
