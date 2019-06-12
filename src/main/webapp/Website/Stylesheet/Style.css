@@ -9,7 +9,7 @@ body{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-repeat: no-repeat;
 }
 
 h2{
@@ -67,7 +67,7 @@ h2{
 .nav-login{
     float:right;
     margin-right: 20px;
-    margin-top: 6px;
+    margin-top: 12px;
 }
 .interactive-logo{
     color:white;
@@ -95,13 +95,11 @@ h2{
 
 .searchBar{
     font: inherit;
-    color: currentColor;
     width: 30%;
     border: 0;
-    height: 1.1875em;
+    height: 1.8em;
     padding: 6px 0 7px 10px;
-    margin: 0px 0px 0px 180px;
-    min-width: 0;
+    margin: 0px 0px 0px 480px;
     box-sizing: content-box;
     background-color: #fafafa;
     -webkit-tap-highlight-color: transparent;
