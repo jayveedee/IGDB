@@ -23,7 +23,7 @@ window.addEventListener("beforeunload", function () {
             }
         },
         error : function () {
-            alert("Could not create a connection to the database!");
+            alert("Could not create a connection to the database! 2222");
         }
     });
 });

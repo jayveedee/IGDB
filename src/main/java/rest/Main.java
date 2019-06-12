@@ -1,16 +1,4 @@
-import Data.GameDTO.GameDTO;
-import Data.IMysqlConnection;
-import Data.MysqlConnection;
-import Data.UserDAL.IRoleDAO;
-import Data.UserDAL.IUserDAO;
-import Data.UserDAL.RoleDAO;
-import Data.UserDAL.UserDAO;
-import Data.UserDTO.RoleDTO;
-import Data.UserDTO.UserDTO;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+package rest;
 
 public class Main {
 
@@ -36,7 +24,7 @@ public class Main {
 
         //TESTER OM LISTEN AF GAME NAMES FRA SERVER FUNGERE ORDENTLIGT. TEST STATUS = INGEN PROBLEMER. KRÆVER AT GAMENAMESERVICE RETURNERE ET ARRAYLIST
         /*
-        Services services = new Services();
+        rest.Services services = new rest.Services();
         ArrayList<String> list = new ArrayList<>();
 
         services.createConnection();

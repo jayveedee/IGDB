@@ -17,6 +17,12 @@ public class MysqlConnection implements IMysqlConnection {
 
     @Override
     public Connection createConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         return connection = DriverManager.getConnection
                 (
                 myURLStart +

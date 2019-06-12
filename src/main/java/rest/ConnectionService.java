@@ -1,10 +1,12 @@
+package rest;
+
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.inject.Singleton;
 import java.sql.SQLException;
 
+@Singleton
 public class ConnectionService {
     private static ConnectionService singleInstance = null;
     private static IMysqlConnection mysqlConnection = new MysqlConnection();

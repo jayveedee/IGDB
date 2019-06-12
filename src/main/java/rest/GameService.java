@@ -1,3 +1,5 @@
+package rest;
+
 import Data.GameDAL.GameDAO;
 import Data.GameDAL.IGameDAO;
 import Data.IMysqlConnection;
