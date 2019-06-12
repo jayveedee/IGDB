@@ -26,35 +26,36 @@
             </div>
         </ul>
     </nav>
-<div class="Login-Page">
-    <div class="form">
-        <div class="forms">
-                <ul class="tab-group">
-                    <li class="tab login-active" style="float: left; margin-left: -39px;"><a href="#" class="submit-txt" id="Login">Login</a></li>
-                    <li class="tab registrer-active" style="float: right;"><a href="#" class="submit-txt" id="Registrer">Registrer</a></li>
-                </ul>
-            </div>
-        <!--- Registrer form start--->
-        <form id = "registerForm" method="post" action="/rest/services/user/createUser" class="Registrer-form">
-            <input type="text" name="username" placeholder="Username" minlength="8" maxlength="16" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
-            <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
-            <div id="password_length"></div>
-            <input type="submit" value="Registrer" id="regi_submit" class="button" name="login">
-        </form>
-        <!--- Registrer form END --->
-        <!--- Login form start--->
-        <form id = "loginForm" method="post" action="/rest/services/user/logIn" class="Login-form">
-            <input type="text" name="username" placeholder="Username" minlength="8" maxlength="16" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login" class="button" name="login">
-        </form>
-        <!--- Login form END --->
+    <div class="LR-Container">
+        <div class="form">
+            <div class="forms">
+                    <ul class="tab-group">
+                        <li class="tab login-tab" style="float: left; margin-left: -39px;"><a href="#" class="logRegBtn" id="Login">Login</a></li>
+                        <li class="tab registrer-tab" style="float: right;"><a href="#" class="logRegBtn" id="Registrer">Registrer</a></li>
+                    </ul>
+                </div>
+            <!--- Login form START--->
+            <form id = "loginForm" method="post" action="/rest/services/user/logIn" class="Login-form">
+                <input type="text" name="username" placeholder="Username" minlength="8" maxlength="16" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login" class="submit" name="login">
+            </form>
+            <!--- Login form END --->
+            <!--- Registrer form start--->
+            <form id = "registerForm" method="post" action="/rest/services/user/createUser" class="Registrer-form">
+                <input type="text" name="username" placeholder="Username - Min 8 and Max 30 charactrers" minlength="8" maxlength="16" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
+                <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
+                <input type="submit" value="Registrer" id="regi_submit" class="submit" name="login">
+            </form>
+            <!--- Registrer form END --->
+        </div>
     </div>
-</div>
-<script src="../Functions/Login_Signup.js"></script>
-<script src="../Functions/Index.js"></script>
-<script src="../Functions/ConnectionScript.js"></script>
+    <!--Import of JS/Jquery START-->
+    <script src="../Functions/Login_Signup.js"></script>
+    <script src="../Functions/Index.js"></script>
+    <script src="../Functions/ConnectionScript.js"></script>
+    <!--Import of JS/Jquery END-->
 </body>
 </html>
