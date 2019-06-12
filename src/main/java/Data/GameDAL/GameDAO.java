@@ -718,33 +718,69 @@ public class GameDAO implements IGameDAO {
             mySql.getConnection().commit();
 
 
+            mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
 
             for (int i = 0; i < newGame.getGameCHs().size(); i++) {
-
                 mySql.getPrepStatement().setString(1, newGame.getGameCHs().get(i).getChNAME());
                 mySql.getPrepStatement().setString(2, newGame.getGameCHs().get(i).getChPFP());
-                String
-                mySql.getPrepStatement().setInt(3, newGame.getGameCHs().get(i).getChGAMEs());
+                mySql.getPrepStatement().setInt(3, newGame.getGameCHs().get(i).getChGAME());
                 mySql.getPrepStatement().setInt(4, newGame.getGameCHs().get(i).getChID());
+                mySql.getPrepStatement().addBatch();
             }
-
+            mySql.getPrepStatement().executeBatch();
+            mySql.getConnection().commit();
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
             for (int j = 0; j < newGame.getGameGENREs().size(); j++) {
                 mySql.getPrepStatement().setString(1, newGame.getGameGENREs().get(j).getGenTITLE());
                 mySql.getPrepStatement().setInt(2, newGame.getGameGENREs().get(j).getGenID());
-                mySql.getPrepStatement().setInt(3, newGame.getGameGENREs().get(j).getGenGAMEs());
+                mySql.getPrepStatement().setInt(3, newGame.getGameGENREs().get(j).getGenGAME());
+                mySql.getPrepStatement().addBatch();
             }
+            mySql.getPrepStatement().executeBatch();
+            mySql.getConnection().commit();
 
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query5));
             mySql.getPrepStatement().setString(1, newGame.getGameWRI().getWriterFN());
             mySql.getPrepStatement().setString(2, newGame.getGameWRI().getWriterLN());
             mySql.getPrepStatement().setInt(3, newGame.getGameWRI().getWriterID());
-            for (int k = 0; k < newGame.getGameGENREs().size(); k++) {
-                mySql.getPrepStatement().setInt(4, newGame.getGameWRI().g);
+            mySql.getPrepStatement().setInt(4, newGame.getGameWRI().getWriterGAME());
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query6));
+            mySql.getPrepStatement().setString(1,newGame.getGameDEV().getDevNAME());
+            String created = newGame.getGameDEV().getDevCREATED().getDay() + "/" + newGame.getGameDEV().getDevCREATED().getMonth() +"/"+ newGame.getGameDEV().getDevCREATED().getYaer();
+            mySql.getPrepStatement().setString(2,created);
+            mySql.getPrepStatement().setString(3,newGame.getGameDEV().getDevCOUNTRY());
+            mySql.getPrepStatement().setBoolean(4,newGame.getGameDEV().isDevSTATUS());
+            mySql.getPrepStatement().setInt(5,newGame.getGameDEV().getDevID());
+            mySql.getPrepStatement().setInt(6,newGame.getGameDEV().getDevPCOMPANY().getParentID());
+            mySql.getPrepStatement().setInt(7,newGame.getGameDEV().getDevGAME());
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query7));
+            mySql.getPrepStatement().setString(1,newGame.getGameCOMP().getCompFN());
+            mySql.getPrepStatement().setString(2,newGame.getGameCOMP().getCompLN());
+            mySql.getPrepStatement().setInt(3,newGame.getGameCOMP().getCompID());
+            mySql.getPrepStatement().setInt(4,newGame.getGameCOMP().getCompGAME());
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query8));
+            for (int i = 0; i < newGame.getGamePLAT().size(); i++) {
+               mySql.getPrepStatement().setString(1,newGame.getGamePLAT().get(i).getPlatTITLE());
+               String GPCreated = newGame.getGamePLAT().get(i).getPlatCREATED().getDay() +"/"+newGame.getGamePLAT().get(i).getPlatCREATED().getMonth() + "/"+ newGame.getGamePLAT().get(i).getPlatCREATED().getYaer();
+               mySql.getPrepStatement().setString(2,GPCreated);
+               mySql.getPrepStatement().setInt(3,newGame.getGamePLAT().get(i).getPlatID());
+               mySql.getPrepStatement().setInt(4,newGame.getGamePLAT().get(i).getPlatGAMEs());
+               mySql.getPrepStatement().addBatch();
+              }
+              mySql.getPrepStatement().executeBatch();
+              mySql.getConnection().commit();
 
 
-            }
 
            
         } catch (SQLException e) {
