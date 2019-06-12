@@ -36,7 +36,7 @@
             </div>
         <!--- Registrer form start--->
         <form id = "registerForm" method="post" action="/rest/services/user/createUser" class="Registrer-form">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="username" placeholder="Username" minlength="8" maxlength="16" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" id="pass_txt" name="password" pattern=".{8,}" placeholder="Password - at least 8 charactrers" required>
             <input type="password" id="confirm_txt" name="password_confirm" pattern=".{8,}" placeholder="Password Confirmation" required>
@@ -46,7 +46,7 @@
         <!--- Registrer form END --->
         <!--- Login form start--->
         <form id = "loginForm" method="post" action="/rest/services/user/logIn" class="Login-form">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="username" placeholder="Username" minlength="8" maxlength="16" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" value="Login" class="button" name="login">
         </form>

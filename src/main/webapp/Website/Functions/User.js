@@ -1,4 +1,4 @@
-//For modal elementet
+ //For modal elementet
 var modal = document.getElementById('simpleModal');
 //for åbne modal knappen
 var modalBtn = document.getElementById('modalBtn');
