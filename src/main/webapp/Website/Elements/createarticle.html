@@ -46,16 +46,28 @@
                 <input id="picturefield" type="text" placeholder="Insert URL of game cover">
             </li>
             <li class="media-list">
+                <h5 class="media-headers">Background Image</h5>
+                <input class="media-input" id="backpicfield" type="text" placeholder="Insert URL of background image">
+            </li>
+            <li class="media-list">
                 <h5 class="media-headers">Game Trailer</h5>
-                <input class="media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
+                <button class="btn-add-row8">Add</button>
+                <div class="element-wrapper8">
+                    <div class="row8">
+                        <input class="media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
+                        <button class="btn-remove-row8">Remove</button>
+                    </div>
+                </div>
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Picture List</h5>
-                <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
-            </li>
-            <li class="media-list">
-                <h5 class="media-headers">Background Image</h5>
-                <input class="media-input" id="backpicfield" type="text" placeholder="Insert URL of background image">
+                <button class="btn-add-row9">Add</button>
+                <div class="element-wrapper9">
+                    <div class="row9">
+                        <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
+                        <button class="btn-remove-row9">Remove</button>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -65,10 +77,11 @@
         <ul>
             <li class="media-list">
                 <h5 class="media-headers">Soundtrack</h5>
-                <button class="btn-add-row4">Add</button>
+                <button class="add-button" id="btn4">Add</button>
                 <div class="element-wrapper4">
                     <div class="row4">
                         <input class="media-input" type="text" placeholder="Insert name of soundtrack ">
+                        <input class="media-input" type="text" placeholder="Insert image URL of soundtrack">
                         <button class ="btn-remove-row4">Remove</button>
                     </div>
                 </div>
@@ -77,24 +90,31 @@
                 <h5 class="media-headers">Musical Artists</h5>
                 <button class="btn-add-row5">Add</button>
                 <div class="element-wrapper5">
-                    <input class="media-input" type="text" placeholder="Insert name of musical artists">
-                    <button class ="btn-remove-row5">Remove</button>
+                    <div class="row5">
+                        <input class="media-input" type="text" placeholder="Insert name of musical artist">
+                        <input class="media-input" type="text" placeholder="Insert image URL of the artist">
+                        <button class ="btn-remove-row5">Remove</button>
+                    </div>
                 </div>
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Composers</h5>
                 <button class="btn-add-row6">Add</button>
                 <div class="element-wrapper6">
-                    <input class="media-input" type="text" placeholder="Insert name of composers">
-                    <button class ="btn-remove-row6">Remove</button>
+                    <div class="row6">
+                        <input class="media-input" type="text" placeholder="Insert name of composers">
+                        <button class ="btn-remove-row6">Remove</button>
+                    </div>
                 </div>
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Writers</h5>
                 <button class="btn-add-row7">Add</button>
                 <div class ="element-wrapper7">
-                    <input class="media-input" type="text" placeholder="Insert name of writers">
-                    <button class ="btn-remove-row7">Remove</button>
+                    <div class="row7">
+                        <input class="media-input" type="text" placeholder="Insert name of writers">
+                        <button class ="btn-remove-row7">Remove</button>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -102,16 +122,90 @@
 
     <div id="companyInput" class="container">
         <h3 id="headercompany">Company Details</h3>
-        <ul id="art-list">
-            <li class ="companylist">
-                <h5 class ="headercompanylist">Company Name:</h5>
-                <input class="companyText" type="text" placeholder="Insert Company Name">
+        <ul id="media-list">
+            <li class ="media-list">
+                <h5 class ="media-headers">Company Name</h5>
+                <input class="media-input" type="text" placeholder="Insert Company Name">
             </li>
-            <li class ="companylist">
-                <h5 class ="headercompanylist">Company Country:</h5>
-                <input class="companyText" type="text" placeholder="Insert origin of company">
+            <li class ="media-list">
+                <h5 class ="media-headers">Origin of Company</h5>
+                <input class="media-input" type="text" placeholder="Insert origin of company">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Company Status</h5>
+                <input class="media-input" type="text" placeholder="Insert status of developer">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Creation of Company</h5>
+                <input class="media-input" type="date">
+            </li>
+            <li class="media-list">
+                <h5 class="media-headers">Developers</h5>
+                <button class="add-button" id="btn10">Add</button>
+                <div class="element-wrapper10">
+                    <div class="row10">
+                        <input class="media-input" type="text" placeholder="Insert name of developers">
+                        <button class="btn-remove-row10">Remove</button>
+                    </div>
+                </div>
             </li>
         </ul>
+    </div>
+
+    <div id="developerInput" class="container">
+        <h3 class="introheader">Developers</h3>
+        <button id="btn12" class="add-button">Add</button>
+        <div class="element-wrapper12">
+            <div class="list-rows row12">
+                <ul>
+                    <li class="media-list">
+                        <h5 class="media-headers">Developer Name</h5>
+                        <input class="media-input" type="text" placeholder="Insert name of developer">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Date of Developer Creation</h5>
+                        <input class="media-input" type="date">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Origin of Developer</h5>
+                        <input class="media-input" type="text" placeholder="Insert origin of Developer">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Developer Status</h5>
+                        <input class="media-input" type="text" placeholder="Insert status of developer">
+                    </li>
+                </ul>
+                <button class="btn-remove-row12">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="publisherInput" class="container">
+        <h3 class="introheader">Publisher details</h3>
+        <button id="btn13" class="add-button">Add</button>
+        <div class="element-wrapper13">
+            <div class="list-rows row13">
+                <ul>
+                    <li class="media-list">
+                        <h5 class="media-headers">Publisher Name</h5>
+                        <input class="media-input" type="text" placeholder="Insert name of publisher">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Date of Publisher Creation</h5>
+                        <input class="media-input" type="date">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Origin of Publisher</h5>
+                        <input class="media-input" type="text" placeholder="Insert origin of publisher">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Publisher Status</h5>
+                        <input class="media-input" type="text" placeholder="Insert status of publisher">
+                    </li>
+                </ul>
+                <button class="btn-remove-row13">Remove</button>
+            </div>
+        </div>
     </div>
 
     <div id="actorInput" class="container">
@@ -119,8 +213,41 @@
         <button class="btn-add-row">Add</button>
         <div class="element-wrapper">
             <div class="row">
-                <input id="actorfields" type="text" placeholder="Insert name of Actor">
-                <button class ="btn-remove-row">Remove</button>
+                <ul>
+                    <li class="media-list">
+                        <h5 class="media-headers">Name of Actor</h5>
+                        <input class="media-input" type="text" placeholder="Insert name of Actor">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Image of Actor</h5>
+                        <input class="media-input" type="text" placeholder="Insert image URL of Actor">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Date of Birth of Actor</h5>
+                        <input class="dateInput" type="date">
+                    </li>
+                    <button class ="btn-remove-row">Remove</button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="charInput" class="container">
+        <h3 class="introheader">Ingame Characters</h3>
+        <button id="btn11" class="add-button">Add</button>
+        <div class="element-wrapper11">
+            <div class="list-rows row11">
+                <ul>
+                    <li class="media-list">
+                        <h5 class="media-headers">Name of character</h5>
+                        <input class="media-input" type="text" placeholder="Insert name of character">
+                    </li>
+                    <li class="media-list">
+                        <h5 class="media-headers">Character Image</h5>
+                        <input class="media-input" type="text" placeholder="Insert image URL of character">
+                    </li>
+                </ul>
+                <button class="btn-remove-row11">Remove</button>
             </div>
         </div>
     </div>
