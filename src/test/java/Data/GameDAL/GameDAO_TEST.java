@@ -20,6 +20,8 @@ import Data.UserDAL.UserDAO;
 import Data.UserDTO.RatingDTO;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,7 @@ public class GameDAO_TEST {
         game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
-        gdao.createGame(game);
+        //gdao.createGame(game);
         return game;
     }
 
@@ -270,6 +272,18 @@ public class GameDAO_TEST {
     @Test
     public void getGame() throws SQLException {
         mysql.createConnection();
+        GameDTO testGame1       = createGameDB(70,"COD1");
+        GameDTO testGame1DB     = gdao.getGame(70);
+
+        assertEquals(testGame1.getGameID(),testGame1DB.getGameID());
+        assertEquals(testGame1.getGameBG(),testGame1DB.getGameBG());
+        assertEquals(testGame1.getGameBIO(),testGame1DB.getGameBIO());
+        assertEquals(testGame1.getGameCover(),testGame1DB.getGameCover());
+        assertEquals(testGame1.getGameNAME(),testGame1DB.getGameNAME());
+        assertEquals(testGame1.getGameRELEASEDATE().getDay(),testGame1DB.getGameRELEASEDATE().getDay());
+        assertEquals(testGame1.getGameRELEASEDATE().getMonth(),testGame1DB.getGameRELEASEDATE().getMonth());
+        assertEquals(testGame1.getGameRELEASEDATE().getYaer(),testGame1DB.getGameRELEASEDATE().getYaer());
+
         mysql.closeConnection(mysql.getConnection());
     }
 

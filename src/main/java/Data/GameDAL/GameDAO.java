@@ -435,7 +435,7 @@ public class GameDAO implements IGameDAO {
                 String [] stringSplit = gameRDstring.split("/");
                 DateDTO date = new DateDTO(stringSplit[0],stringSplit[1],stringSplit[2]);
                 game.setGameRELEASEDATE(date);
-                game.setGameBG(rs1.getString("gameBG"));
+                game.setGameBG(rs1.getString("gameBACKGROUND"));
                 game.setGameID(rs1.getInt("gameID"));
             }
 
@@ -632,7 +632,7 @@ public class GameDAO implements IGameDAO {
                 dev.setDevNAME(rs17.getString("devNAME"));
                 dev.setDevCOUNTRY(rs17.getString("devCOUNTRY"));
                 dev.setDevGAME(rs17.getInt("devGameID"));
-                    String devDate          = rs16.getString("devCREATED");
+                    String devDate          = rs17.getString("devCREATED");
                     String[] devDateSplit   = devDate.split("/");
                     DateDTO devDATE = new DateDTO(devDateSplit[0],devDateSplit[1],devDateSplit[2]);
                 dev.setDevCREATED(devDATE);
