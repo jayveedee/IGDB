@@ -1,5 +1,3 @@
-package rest;
-
 import javax.ws.rs.*;
 
 

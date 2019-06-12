@@ -1,8 +1,7 @@
-package rest;
-
 import Data.GameDAL.GameDAO;
 import Data.GameDAL.IGameDAO;
 import Data.IMysqlConnection;
+
 import java.util.ArrayList;
 
 public class GameService {

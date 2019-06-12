@@ -1,12 +1,15 @@
-package rest;
-
 import Data.IMysqlConnection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import javax.inject.Singleton;
-import javax.ws.rs.*;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import java.util.ArrayList;
+
 @Singleton
 @Path("services")
 public class Services {

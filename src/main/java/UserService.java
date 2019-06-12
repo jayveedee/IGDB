@@ -1,5 +1,3 @@
-package rest;
-
 import Data.IMysqlConnection;
 import Data.UserDAL.IRoleDAO;
 import Data.UserDAL.IUserDAO;
@@ -7,6 +5,7 @@ import Data.UserDAL.RoleDAO;
 import Data.UserDAL.UserDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
+
 import java.util.ArrayList;
 
 public class UserService {

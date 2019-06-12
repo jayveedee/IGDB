@@ -1,5 +1,3 @@
-package rest;
-
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
 
