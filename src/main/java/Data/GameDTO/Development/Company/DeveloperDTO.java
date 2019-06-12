@@ -12,16 +12,16 @@ public class DeveloperDTO {
     private boolean             devSTATUS;
     private String              devCOUNTRY;
     private ParentCompanyDTO    devPCOMPANY;
-    private List<Integer>       devGAMEs;
+    private int                 devGAME;
 
-    public DeveloperDTO(int devID, String devNAME, DateDTO devCREATED, boolean devSTATUS, String devCOUNTRY, ParentCompanyDTO devPCOMPANY, List<Integer> devGAMEs) {
+    public DeveloperDTO(int devID, String devNAME, DateDTO devCREATED, boolean devSTATUS, String devCOUNTRY, ParentCompanyDTO devPCOMPANY, int devGAME) {
         this.devID = devID;
         this.devNAME = devNAME;
         this.devCREATED = devCREATED;
         this.devSTATUS = devSTATUS;
         this.devCOUNTRY = devCOUNTRY;
         this.devPCOMPANY = devPCOMPANY;
-        this.devGAMEs = devGAMEs;
+        this.devGAME = devGAME;
     }
 
     public DeveloperDTO() {
@@ -75,11 +75,11 @@ public class DeveloperDTO {
         this.devPCOMPANY = devPCOMPANY;
     }
 
-    public List<Integer> getDevGAMEs() {
-        return devGAMEs;
+    public int getDevGAME() {
+        return devGAME;
     }
 
-    public void setDevGAMEs(List<Integer> devGAMEs) {
-        this.devGAMEs = devGAMEs;
+    public void setDevGAME(int devGAME) {
+        this.devGAME = devGAME;
     }
 }

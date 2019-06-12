@@ -11,18 +11,15 @@ public class PublisherDTO {
     private DateDTO             pubCREATED;
     private String              pubCOUNTRY;
     private boolean             pubSTATUS;
-    private List<Integer>       pubGAMEs;
+    private int                 pubGAME;
 
-    private String biography;
-
-    public PublisherDTO(int pubID, String pubNAME, DateDTO pubCREATED, String pubCOUNTRY, boolean pubSTATUS, List<Integer> pubGAMEs, String biography) {
+    public PublisherDTO(int pubID, String pubNAME, DateDTO pubCREATED, String pubCOUNTRY, boolean pubSTATUS, int pubGAME) {
         this.pubID = pubID;
         this.pubNAME = pubNAME;
         this.pubCREATED = pubCREATED;
         this.pubCOUNTRY = pubCOUNTRY;
         this.pubSTATUS = pubSTATUS;
-        this.pubGAMEs = pubGAMEs;
-        this.biography = biography;
+        this.pubGAME = pubGAME;
     }
 
     public PublisherDTO() {
@@ -68,19 +65,11 @@ public class PublisherDTO {
         this.pubSTATUS = pubSTATUS;
     }
 
-    public List<Integer> getPubGAMEs() {
-        return pubGAMEs;
+    public int getPubGAME() {
+        return pubGAME;
     }
 
-    public void setPubGAMEs(List<Integer> pubGAMEs) {
-        this.pubGAMEs = pubGAMEs;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setPubGAME(int pubGAME) {
+        this.pubGAME = pubGAME;
     }
 }

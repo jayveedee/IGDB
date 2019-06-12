@@ -2,11 +2,11 @@ package Data.GameDTO;
 
 public class DateDTO {
 
-    private int day;
-    private int month;
-    private int yaer;
+    private String day;
+    private String month;
+    private String yaer;
 
-    public DateDTO(int day, int month, int yaer) {
+    public DateDTO(String day, String month, String yaer) {
         this.day = day;
         this.month = month;
         this.yaer = yaer;
@@ -15,27 +15,27 @@ public class DateDTO {
     public DateDTO() {
     }
 
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public int getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
-    public int getYaer() {
+    public String getYaer() {
         return yaer;
     }
 
-    public void setYaer(int yaer) {
+    public void setYaer(String yaer) {
         this.yaer = yaer;
     }
 }

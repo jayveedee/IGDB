@@ -20,7 +20,8 @@ import Data.UserDAL.UserDAO;
 import Data.UserDTO.RatingDTO;
 import org.junit.Test;
 
-import java.sql.Connection;
+import static org.junit.Assert.*;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +33,19 @@ public class GameDAO_TEST {
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
 
-    public GameDTO createGameDB(int gameID) {
+    public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO(1,12,2019);
+        DateDTO date = new DateDTO("1","12","2019");
         WriterDTO writer = GAME_createWriter(23,gameID);
         DeveloperDTO dev = GAME_createDeveloper(1,gameID);
         PublisherDTO pub = GAME_createPublisher(14,gameID);
         ComposerDTO comp = GAME_createComposer(4,gameID,50);
-        PlatformDTO plat = GAME_createPlatform(55,gameID);
             List<Integer> maList = new ArrayList<>();
             maList.add(gameID);
         SoundtrackDTO ost = GAME_createSoundtrack(50,gameID,maList);
 
         List<CharacterDTO>  gameCHARs       = GAME_createCharacterList(gameID);
+        List<PlatformDTO>   plat            = GAME_createPlatformList(gameID);
         List<GenreDTO>      gameGENREs      = GAME_createGenreList(gameID);
         List<ActorDTO>      gameACTOR       = GAME_createActorList(gameID,gameCHARs);
         List<RatingDTO>     gameRATING      = new ArrayList<>();
@@ -53,13 +54,13 @@ public class GameDAO_TEST {
         List<PictureDTO>    gamePics        = GAME_createPictureList(gameID);
 
         game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
+        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME(userNAME);
         game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
         game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
         game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
-        gdao.createGame(game);
+        //gdao.createGame(game);
         return game;
     }
 
@@ -74,13 +75,10 @@ public class GameDAO_TEST {
     private CharacterDTO GAME_createCharacter(int charID, int gameID, String name, String PFP) {
         CharacterDTO character = new CharacterDTO();
         character.setChID(charID);
-        character.setChBIO("test");
         character.setChNAME(name);
         character.setChPFP(PFP);
         List<Integer> gmlist = new ArrayList<>();
         gmlist.add(gameID);
-        List<Integer> aclist = new ArrayList<>();
-        character.setChVAs(aclist);
         return character;
     }
     private List<ActorDTO> GAME_createActorList (int gameID, List<CharacterDTO> gameCHARs) {
@@ -96,16 +94,14 @@ public class GameDAO_TEST {
         actor.setAcFN(FN);
         actor.setAcLN(LN);
         actor.setAcPFP(PFP);
-        DateDTO DOB = new DateDTO(1,1,2001);
+        DateDTO DOB = new DateDTO("1","1","2001");
         actor.setAcBDAY(DOB);
         List<Integer> charList = new ArrayList<>();
         for (int i = 0; i < gameCHARs.size(); i++) {
             charList.add(gameCHARs.get(i).getChID());
         }
         actor.setAcCHs(charList);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        actor.setAcGAMEs(gmlist);
+        actor.setAcGAME(gameID);
         return actor;
     }
 
@@ -121,9 +117,7 @@ public class GameDAO_TEST {
         GenreDTO genre = new GenreDTO();
         genre.setGenID(genreID);
         genre.setGenTITLE(title);
-        List<Integer> genreList = new ArrayList<>();
-        genreList.add(gameID);
-        genre.setGenGAMEs(genreList);
+        genre.setGenGAME(gameID);
         return genre;
     }
     private List<GameModeDTO> GAME_createGameModeList(int gameID){
@@ -137,20 +131,23 @@ public class GameDAO_TEST {
         GameModeDTO gameMode = new GameModeDTO();
         gameMode.setGmID(gmID);
         gameMode.setGmTITLE(title);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        gameMode.setGmGAMEs(gmlist);
+        gameMode.setGmGAME(gameID);
         return gameMode;
+    }
+    private List<PlatformDTO> GAME_createPlatformList(int gameID) {
+        List<PlatformDTO> platList = new ArrayList<>();
+        platList.add(GAME_createPlatform(5,gameID));
+        platList.add(GAME_createPlatform(8,gameID));
+        platList.add(GAME_createPlatform(2,gameID));
+        return platList;
     }
     private PlatformDTO GAME_createPlatform(int platID, int gameID) {
         PlatformDTO plat = new PlatformDTO();
         plat.setPlatID(platID);
         plat.setPlatTITLE("FILLER");
-        DateDTO date = new DateDTO(1,1,2001);
+        DateDTO date = new DateDTO("1","1","2001");
         plat.setPlatCREATED(date);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        plat.setPlatGAMEs(gmlist);
+        plat.setPlatGAMEs(gameID);
         return plat;
     }
 
@@ -190,12 +187,10 @@ public class GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER");
         dev.setDevCOUNTRY("FILLER");
-        DateDTO date = new DateDTO(1,1,2001);
+        DateDTO date = new DateDTO("1","1","2001");
         dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        dev.setDevGAMEs(gmlist);
+        dev.setDevGAME(gameID);
         dev.setDevPCOMPANY(GAME_createPCompany(gameID));
         return dev;
     }
@@ -203,22 +198,20 @@ public class GameDAO_TEST {
         ParentCompanyDTO pcomp = new ParentCompanyDTO();
         pcomp.setParentID(pcompID);
         pcomp.setParentNAME("FILLER");
+        pcomp.setParentCOUNTRY("ASD");
         pcomp.setParentSTATUS(true);
-        DateDTO date = new DateDTO(1,1,2001);
+        DateDTO date = new DateDTO("1","1","2001");
         pcomp.setParentCREATED(date);
         return pcomp;
     }
     private PublisherDTO GAME_createPublisher(int pubID, int gameID){
         PublisherDTO pub = new PublisherDTO();
         pub.setPubID(pubID);
-        pub.setBiography("FILLER TEXT");
         pub.setPubNAME("FILLER TEXT");
         pub.setPubCOUNTRY("FILLER TEXT");
-        DateDTO date = new DateDTO(1,1,2001);
+        DateDTO date = new DateDTO("1","1","2001");
         pub.setPubCREATED(date);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        pub.setPubGAMEs(gmlist);
+        pub.setPubGAME(gameID);
         return pub;
     }
 
@@ -228,9 +221,7 @@ public class GameDAO_TEST {
         writer.setWriterID(wriID);
         writer.setWriterFN("FILLER");
         writer.setWriterLN("FILLER");
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        writer.setWriterGAMEs(gmlist);
+        writer.setWriterGAME(gameID);
         return writer;
     }
 
@@ -246,9 +237,7 @@ public class GameDAO_TEST {
             maList.add(GAME_createMusicalArtist(maIDs.get(i),ostID));
         }
         ost.setOstMA(maList);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        ost.setOstGAMEs(gmlist);
+        ost.setOstGAME(gameID);
         return ost;
     }
     private ComposerDTO GAME_createComposer(int compID, int gameID, int ostID){
@@ -256,9 +245,7 @@ public class GameDAO_TEST {
         comp.setCompID(compID);
         comp.setCompFN("FILLER");
         comp.setCompLN("FILLER");
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
-        comp.setCompGAMEs(gmlist);
+        comp.setCompGAME(gameID);
         List<Integer> ostList = new ArrayList<>();
         ostList.add(ostID);
         comp.setCompOSTs(ostList);
@@ -268,9 +255,6 @@ public class GameDAO_TEST {
         MusicArtistDTO ma = new MusicArtistDTO();
         ma.setArtID(maID);
         ma.setArtNAME("FILLER");
-        List<Integer> ostList = new ArrayList<>();
-        ostList.add(ostID);
-        ma.setArtOSTs(ostList);
         ma.setArtPFP("FILLER");
         return ma;
     }
@@ -278,16 +262,28 @@ public class GameDAO_TEST {
     @Test
     public void createGame() throws SQLException {
         mysql.createConnection();
-        GameDTO testGame1 = createGameDB(70);
-        GameDTO testGame2 = createGameDB(71);
-        GameDTO testGame3 = createGameDB(72);
-        GameDTO testGame4 = createGameDB(75);
+        GameDTO testGame1 = createGameDB(70,"COD1");
+        GameDTO testGame2 = createGameDB(71,"COD2");
+        GameDTO testGame3 = createGameDB(72,"COD3");
+        GameDTO testGame4 = createGameDB(75,"COD4");
         mysql.closeConnection(mysql.getConnection());
     }
 
     @Test
     public void getGame() throws SQLException {
         mysql.createConnection();
+        GameDTO testGame1       = createGameDB(70,"COD1");
+        GameDTO testGame1DB     = gdao.getGame(70);
+
+        assertEquals(testGame1.getGameID(),testGame1DB.getGameID());
+        assertEquals(testGame1.getGameBG(),testGame1DB.getGameBG());
+        assertEquals(testGame1.getGameBIO(),testGame1DB.getGameBIO());
+        assertEquals(testGame1.getGameCover(),testGame1DB.getGameCover());
+        assertEquals(testGame1.getGameNAME(),testGame1DB.getGameNAME());
+        assertEquals(testGame1.getGameRELEASEDATE().getDay(),testGame1DB.getGameRELEASEDATE().getDay());
+        assertEquals(testGame1.getGameRELEASEDATE().getMonth(),testGame1DB.getGameRELEASEDATE().getMonth());
+        assertEquals(testGame1.getGameRELEASEDATE().getYaer(),testGame1DB.getGameRELEASEDATE().getYaer());
+
         mysql.closeConnection(mysql.getConnection());
     }
 

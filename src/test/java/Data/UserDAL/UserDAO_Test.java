@@ -566,7 +566,7 @@ public class UserDAO_Test {
 
     public GameDTO createGameDB(int gameID) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO(1,12,2019);
+        DateDTO date = new DateDTO("1","12","2019");
         WriterDTO writer = null;
         DeveloperDTO dev = null;
         PublisherDTO pub = null;
