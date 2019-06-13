@@ -31,12 +31,12 @@ public interface IGameDAO {
     boolean updatedGameTrailer      (int gameID, int oldTrailerID, TrailerDTO updatedTrailer);
 
     boolean updateGamePublisher     (int gameID, int oldPublisherID, PublisherDTO updatedPublisher);
-    boolean updateGameDeveloper     (int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper);
+    boolean updateGameDeveloper     (int gameID, int oldDeveloperID, int oldPCompanyID, DeveloperDTO updatedDeveloper);
     boolean updateGameWriter        (int gameID, int oldWriterID, WriterDTO updatedWriter);
 
     boolean updateGameCharacter     (int gameID, int oldCharID, CharacterDTO updatedCharacter);
     boolean updateGameActor         (int gameID, int oldActorID, ActorDTO updatedActor);
-    boolean updateGameOST           (int gameID, int oldOSTID, SoundtrackDTO updatedOST);
+    boolean updateGameOST           (int gameID, int oldOstID, int oldComposerID, int oldArtistID, SoundtrackDTO updatedOST);
     boolean updateGameComposer      (int gameID, int oldCompID, ComposerDTO updatedComposer);
 
     boolean deleteGame(int gameID) throws SQLException;

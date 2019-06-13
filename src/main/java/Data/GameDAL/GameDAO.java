@@ -63,7 +63,7 @@ public class GameDAO implements IGameDAO {
         return true;
     }
 
-    private boolean handleINSERTPlatform(int gameID, List<PlatformDTO> gamePLAT) {
+    private void handleINSERTPlatform(int gameID, List<PlatformDTO> gamePLAT) {
         if (gamePLAT != null){
             String queryPLAT =
                 "INSERT INTO PlatformList (platID, platTITLE, platCREATED, platGameID) " +
@@ -85,13 +85,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
-            return true;
         }
-        return false;
     }
-    private boolean handleINSERTSoundtrackxMusicalArtists(int gameID, SoundtrackDTO gameOST) {
+    private void handleINSERTSoundtrackxMusicalArtists(int gameID, SoundtrackDTO gameOST) {
         if (gameOST != null){
             String queryARTIST =
                 "INSERT INTO MusicalArtistList (artistID, artistNAME, artistPFP) " +
@@ -130,12 +127,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTComposer(int gameID, ComposerDTO gameCOMP) {
+    private void handleINSERTComposer(int gameID, ComposerDTO gameCOMP) {
         if (gameCOMP != null){
             String queryCOMP =
                 "INSERT INTO ComposerList (compID, compFN, compLN, compGameID) " +
@@ -143,11 +138,10 @@ public class GameDAO implements IGameDAO {
             int             compID              = gameCOMP.getCompID();
             String          compFN              = gameCOMP.getCompFN();
             String          compLN              = gameCOMP.getCompLN();
-            return (handleINSERT_fn_ln_gameid(gameID, queryCOMP, compID, compFN, compLN));
+            handleINSERT_fn_ln_gameid(gameID, queryCOMP, compID, compFN, compLN);
         }
-        return false;
     }
-    private boolean handleINSERTWriter(int gameID, List<WriterDTO> gameWRI) {
+    private void handleINSERTWriter(int gameID, List<WriterDTO> gameWRI) {
         if (gameWRI != null) {
             String queryWRI =
                 "INSERT INTO WriterList (writerID, writerFN, writerLN, writerGameID) " +
@@ -167,12 +161,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return false;
     }
-    private boolean handleINSERT_fn_ln_gameid(int gameID, String query, int ID, String FN, String LN) {
+    private void handleINSERT_fn_ln_gameid(int gameID, String query, int ID, String FN, String LN) {
         try {
             handleINSERTDuplicateCode2(query, ID, FN, LN);
             mySql.getPrepStatement().setInt(4,gameID);
@@ -180,9 +172,7 @@ public class GameDAO implements IGameDAO {
             mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
     }
     private void handleINSERTDuplicateCode2(String query, int ID, String FN_or_NAME, String LN_or_CREATEDstring) throws SQLException {
         mySql.getConnection().setAutoCommit(false);
@@ -213,7 +203,7 @@ public class GameDAO implements IGameDAO {
             }
         }
     }
-    private boolean handleINSERTDeveloperXParentCompany(int gameID, DeveloperDTO gameDEV) {
+    private void handleINSERTDeveloperXParentCompany(int gameID, DeveloperDTO gameDEV) {
         if (gameDEV != null) {
             String queryParent =
                 "INSERT INTO ParentCompany (parentID, parentNAME, parentCREATED, parentCOUNTRY, parentSTATUS) " +
@@ -246,10 +236,8 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
     private void handleINSERTCompanyDuplicateCode1(String query, int companyID, String companyNAME, String companyCREATED, String companyCOUNTRY, boolean companySTATUS) throws SQLException {
         handleINSERTDuplicateCode(query, companyID, companyNAME, companyCREATED, companyCOUNTRY);
@@ -259,7 +247,7 @@ public class GameDAO implements IGameDAO {
         handleINSERTDuplicateCode2(query, ID, NAME, CREATED);
         mySql.getPrepStatement().setString(4, COUNTRY_or_DESC);
     }
-    private boolean handleINSERTTrailers(int gameID, List<TrailerDTO> gameTRAILER) {
+    private void handleINSERTTrailers(int gameID, List<TrailerDTO> gameTRAILER) {
         if (!gameTRAILER.isEmpty()){
             String queryTRAILER =
                 "INSERT INTO TrailerList (trailerID, trailerURL, trailerGameID) " +
@@ -277,12 +265,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTPictures(int gameID, List<PictureDTO> gamePIC) {
+    private void handleINSERTPictures(int gameID, List<PictureDTO> gamePIC) {
         if (!gamePIC.isEmpty()){
             String queryPICTURES =
                 "INSERT INTO PictureList (pictureID, pictureURL, pictureGameID) " +
@@ -300,12 +286,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTGameModes(int gameID, List<GameModeDTO> gameGM) {
+    private void handleINSERTGameModes(int gameID, List<GameModeDTO> gameGM) {
         if (!gameGM.isEmpty()) {
             String queryGameGM =
                 "INSERT INTO GameModeList (gmID, gmTITLE, gmGameID) " +
@@ -323,12 +307,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTGenres(int gameID, List<GenreDTO> gameGENRE) {
+    private void handleINSERTGenres(int gameID, List<GenreDTO> gameGENRE) {
         if (!gameGENRE.isEmpty()) {
             String queryGENRE =
                 "INSERT INTO GenreList (genreID, genreTITLE, genreGameID) " +
@@ -346,12 +328,10 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
+    private void handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
         try {
             handleINSERTDuplicateCode(query1, gameID, gameTitle, gameReleaseString, gameDESC);
             mySql.getPrepStatement().setString(5,gameCOV);
@@ -360,11 +340,9 @@ public class GameDAO implements IGameDAO {
             mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
     }
-    private boolean handleINSERTActors(int gameID, List<ActorDTO> gameACTOR, List<CharacterDTO> gameCHAR) {
+    private void handleINSERTActors(int gameID, List<ActorDTO> gameACTOR, List<CharacterDTO> gameCHAR) {
         if (!gameACTOR.isEmpty() && !gameCHAR.isEmpty()) {
             String queryACTOR =
                 "INSERT INTO ActorList (actorID, actorFN, actorLN, actorDOB, actorPFP, actorCHARID, actorGameID) " +
@@ -392,12 +370,10 @@ public class GameDAO implements IGameDAO {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
-    private boolean handleINSERTCharacters(int gameID, List<CharacterDTO> gameCHAR) {
+    private void handleINSERTCharacters(int gameID, List<CharacterDTO> gameCHAR) {
         if (!gameCHAR.isEmpty()) {
             String queryCHAR =
                 "INSERT INTO CharacterList (charID, charNAME, charPFP, charGameID) " +
@@ -416,10 +392,8 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().commit();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             }
         }
-        return true;
     }
 
     @Override
@@ -740,44 +714,22 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean updateGameGenre(int gameID, int oldGenreID, int updatedGenreID) {
         String query = "UPDATE GenreList SET genreID = ? WHERE genreID = ? AND genreGameID = ?";
-        try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            PreparedStatement prepStatement = mySql.getPrepStatement();
-            prepStatement.setInt(1,updatedGenreID);
-            prepStatement.setInt(2,oldGenreID);
-            prepStatement.setInt(3,gameID);
-            prepStatement.executeUpdate();
-            mySql.getConnection().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        return handleStaticTablesDuplicateCode(gameID, oldGenreID, updatedGenreID, query);
     }
 
     @Override
     public boolean updateGameGM(int gameID, int oldGMID, int updatedGMID) {
         String query = "UPDATE GameModeList SET gmID = ? WHERE gmID = ? AND gmGameID = ?";
-        try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            PreparedStatement prepStatement = mySql.getPrepStatement();
-            prepStatement.setInt(1,updatedGMID);
-            prepStatement.setInt(2,oldGMID);
-            prepStatement.setInt(3,gameID);
-            prepStatement.executeUpdate();
-            mySql.getConnection().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        return handleStaticTablesDuplicateCode(gameID, oldGMID, updatedGMID, query);
     }
 
     @Override
     public boolean updateGamePlatform(int gameID, int oldPlatformID, int updatedPlatformID) {
         String query = "UPDATE PlatformList SET platID = ? WHERE platID = ? AND gameID = ?";
+        return handleStaticTablesDuplicateCode(gameID, oldPlatformID, updatedPlatformID, query);
+    }
+
+    private boolean handleStaticTablesDuplicateCode(int gameID, int oldPlatformID, int updatedPlatformID, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
@@ -855,35 +807,168 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public boolean updateGameDeveloper(int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper) {
+    public boolean updateGameDeveloper(int gameID, int oldDeveloperID, int oldPCompanyID, DeveloperDTO updatedDeveloper) {
         String query1 = "UPDATE DeveloperList SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ?, devParentID = ? WHERE devID = ? AND devGameID = ?";
         String query2 = "UPDATE ParentCompany SET parentNAME = ?, parentCREATED = ?, parentCOUNTRY = ?, parentSTATUS = ? WHERE parentID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            PreparedStatement prepStatement1 = mySql.getPrepStatement();
+            prepStatement1.setString(1,updatedDeveloper.getDevNAME());
+            prepStatement1.setString(2,updatedDeveloper.getDevCREATED().getDateString());
+            prepStatement1.setString(3,updatedDeveloper.getDevCOUNTRY());
+            prepStatement1.setBoolean(4,updatedDeveloper.isDevSTATUS());
+            prepStatement1.setInt(5,updatedDeveloper.getDevPCOMPANY().getParentID());
+            prepStatement1.setInt(6,oldDeveloperID);
+            prepStatement1.setInt(7,gameID);
+            prepStatement1.executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            PreparedStatement prepStatement2 = mySql.getPrepStatement();
+            prepStatement2.setString(1,updatedDeveloper.getDevPCOMPANY().getParentNAME());
+            prepStatement2.setString(2,updatedDeveloper.getDevPCOMPANY().getParentCREATED().getDateString());
+            prepStatement2.setString(3,updatedDeveloper.getDevPCOMPANY().getParentCOUNTRY());
+            prepStatement2.setBoolean(4,updatedDeveloper.getDevPCOMPANY().isParentSTATUS());
+            prepStatement2.setInt(5,oldPCompanyID);
+            prepStatement2.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 
     @Override
     public boolean updateGameWriter(int gameID, int oldWriterID, WriterDTO updatedWriter) {
-        return false;
+        String query = "UPDATE WriterList SET writerFN = ?, writerLN = ? WHERE writerID = ? AND writerGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedWriter.getWriterFN());
+            prepStatement.setString(2,updatedWriter.getWriterLN());
+            prepStatement.setInt(3,oldWriterID);
+            prepStatement.setInt(4,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean updateGameCharacter(int gameID, int oldCharID, CharacterDTO updatedCharacter) {
-        return false;
+        String query = "UPDATE CharacterList SET charNAME = ?, charPFP = ? WHERE charID = ? AND charGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedCharacter.getChNAME());
+            prepStatement.setString(2,updatedCharacter.getChPFP());
+            prepStatement.setInt(3,oldCharID);
+            prepStatement.setInt(4,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean updateGameActor(int gameID, int oldActorID, ActorDTO updatedActor) {
-        return false;
+        String query = "UPDATE ActorList SET actorFN = ?, actorLN = ?, actorDOB = ?, actorPFP = ? WHERE actorID = ? AND actorGameID = ? AND actorCharID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            for (int i = 0; i < updatedActor.getAcCHs().size(); i++) {
+                prepStatement.setString(1,updatedActor.getAcFN());
+                prepStatement.setString(2,updatedActor.getAcLN());
+                prepStatement.setString(3,updatedActor.getAcBDAY().getDateString());
+                prepStatement.setString(4,updatedActor.getAcPFP());
+                prepStatement.setInt(5,oldActorID);
+                prepStatement.setInt(6,gameID);
+                prepStatement.setInt(7,updatedActor.getAcCHs().get(i));
+                prepStatement.addBatch();
+            }
+            prepStatement.executeBatch();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateGameOST(int gameID, int oldOSTID, SoundtrackDTO updatedOST) {
-        return false;
+    public boolean updateGameOST(int gameID, int oldOstID, int oldComposerID, int oldArtistID, SoundtrackDTO updatedOST) {
+        String query1 = "UPDATE ComposerList SET compFN = ?, compLN = ? WHERE compID = ? AND compGameID = ?";
+        String query2 = "UPDATE MusicalArtistList SET artistNAME = ?, artistPFP WHERE artistID = ?";
+        String query3 = "UPDATE SoundtrackList SET ostTITLE = ?, ostPFP = ? WHERE ostID = ? AND ostGameID = ? AND ostComposerID = ? and ostArtistID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
+            PreparedStatement prepStatement1 = mySql.getPrepStatement();
+            prepStatement1.setString(1,updatedOST.getOstCOMP().getCompFN());
+            prepStatement1.setString(2,updatedOST.getOstCOMP().getCompLN());
+            prepStatement1.setInt(3,oldComposerID);
+            prepStatement1.setInt(4,gameID);
+            prepStatement1.executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+            PreparedStatement prepStatement2 = mySql.getPrepStatement();
+            for (int i = 0; i < updatedOST.getOstMA().size(); i++) {
+                prepStatement2.setString(1,updatedOST.getOstMA().get(i).getArtNAME());
+                prepStatement2.setString(2,updatedOST.getOstMA().get(i).getArtPFP());
+                prepStatement2.setInt(3,oldArtistID);
+                prepStatement2.addBatch();
+            }
+            prepStatement2.executeBatch();
+            mySql.getConnection().commit();
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
+            PreparedStatement prepStatement3 = mySql.getPrepStatement();
+            prepStatement3.setString(1,updatedOST.getOstTITLE());
+            prepStatement3.setString(2,updatedOST.getOstPFP());
+            prepStatement3.setInt(3,oldOstID);
+            prepStatement3.setInt(4,gameID);
+            prepStatement3.setInt(5,oldComposerID);
+            prepStatement3.setInt(6,oldArtistID);
+            prepStatement3.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean updateGameComposer(int gameID, int oldCompID, ComposerDTO updatedComposer) {
-        return false;
+        String query = "UPDATE ComposerList SET compFN = ?, compLN = ? WHERE compID = ? AND compGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedComposer.getCompFN());
+            prepStatement.setString(2,updatedComposer.getCompLN());
+            prepStatement.setInt(3,oldCompID);
+            prepStatement.setInt(4,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
