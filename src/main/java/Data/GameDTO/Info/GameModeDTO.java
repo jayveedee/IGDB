@@ -6,12 +6,12 @@ public class GameModeDTO {
 
     private int                 gmID;
     private String              gmTITLE;
-    private List<Integer>       gmGAMEs;
+    private int                 gmGAME;
 
-    public GameModeDTO(int gmID, String gmTITLE, List<Integer> gmGAMEs) {
+    public GameModeDTO(int gmID, String gmTITLE, int gmGAME) {
         this.gmID = gmID;
         this.gmTITLE = gmTITLE;
-        this.gmGAMEs = gmGAMEs;
+        this.gmGAME = gmGAME;
     }
 
     public GameModeDTO() {
@@ -33,11 +33,11 @@ public class GameModeDTO {
         this.gmTITLE = gmTITLE;
     }
 
-    public List<Integer> getGmGAMEs() {
-        return gmGAMEs;
+    public int getGmGAME() {
+        return gmGAME;
     }
 
-    public void setGmGAMEs(List<Integer> gmGAMEs) {
-        this.gmGAMEs = gmGAMEs;
+    public void setGmGAME(int gmGAME) {
+        this.gmGAME = gmGAME;
     }
 }

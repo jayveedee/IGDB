@@ -11,15 +11,15 @@ public class SoundtrackDTO {
     private String                      ostTITLE;
     private ComposerDTO                 ostCOMP;
     private List<MusicArtistDTO>        ostMA;
-    private List<Integer>               ostGAMEs;
+    private int                         ostGAME;
     private String                      ostPFP;
 
-    public SoundtrackDTO(int ostID, String ostTITLE, ComposerDTO ostCOMP, List<MusicArtistDTO> ostMA, List<Integer> ostGAMEs, String ostPFP) {
+    public SoundtrackDTO(int ostID, String ostTITLE, ComposerDTO ostCOMP, List<MusicArtistDTO> ostMA, int ostGAME, String ostPFP) {
         this.ostID = ostID;
         this.ostTITLE = ostTITLE;
         this.ostCOMP = ostCOMP;
         this.ostMA = ostMA;
-        this.ostGAMEs = ostGAMEs;
+        this.ostGAME = ostGAME;
         this.ostPFP = ostPFP;
     }
 
@@ -58,12 +58,12 @@ public class SoundtrackDTO {
         this.ostMA = ostMA;
     }
 
-    public List<Integer> getOstGAMEs() {
-        return ostGAMEs;
+    public int getOstGAME() {
+        return ostGAME;
     }
 
-    public void setOstGAMEs(List<Integer> ostGAMEs) {
-        this.ostGAMEs = ostGAMEs;
+    public void setOstGAME(int ostGAME) {
+        this.ostGAME = ostGAME;
     }
 
     public String getOstPFP() {

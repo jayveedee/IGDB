@@ -1,19 +1,17 @@
 package Data.GameDTO.Development;
 
-import java.util.List;
-
 public class WriterDTO {
 
     private int             writerID;
     private String          writerFN;
     private String          writerLN;
-    private List<Integer>   writerGAMEs;
+    private int             writerGAME;
 
-    public WriterDTO(int writerID, String writerFN, String writerLN, List<Integer> writerGAMEs) {
+    public WriterDTO(int writerID, String writerFN, String writerLN, int writerGAME) {
         this.writerID = writerID;
         this.writerFN = writerFN;
         this.writerLN = writerLN;
-        this.writerGAMEs = writerGAMEs;
+        this.writerGAME = writerGAME;
     }
 
     public WriterDTO() {
@@ -43,11 +41,11 @@ public class WriterDTO {
         this.writerLN = writerLN;
     }
 
-    public List<Integer> getWriterGAMEs() {
-        return writerGAMEs;
+    public int getWriterGAME() {
+        return writerGAME;
     }
 
-    public void setWriterGAMEs(List<Integer> writerGAMEs) {
-        this.writerGAMEs = writerGAMEs;
+    public void setWriterGAME(int writerGAME) {
+        this.writerGAME = writerGAME;
     }
 }

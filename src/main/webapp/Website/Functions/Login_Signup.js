@@ -3,8 +3,8 @@ $(function () {
     $('#Registrer').on('click', function (e) {
         $('.Login-form').css('display', 'none');
         $('.Registrer-form').css('display', 'inline');
-        $('.registrer-active').css('background', '#1E90FF');
-        $('.login-active').css('background', 'none');
+        $('.registrer-tab').css('background', '#1E90FF');
+        $('.login-tab').css('background', 'none');
         e.preventDefault();
     });
  });
@@ -13,12 +13,13 @@ $(function () {
      $('#Login').on('click', function (e) {
          $('.Login-form').css('display', 'inline');
          $('.Registrer-form').css('display', 'none');
-         $('.login-active').css('background', '#1E90FF');
-         $('.registrer-active').css('background', 'none');
+         $('.login-tab').css('background', '#1E90FF');
+         $('.registrer-tab').css('background', 'none');
          e.preventDefault();
      });
  });
 
+ //This function is checking if the password and password-confirm is the same
  $(function () {
     $(".button").click(function () {
         var password = $("#pass_txt").val();

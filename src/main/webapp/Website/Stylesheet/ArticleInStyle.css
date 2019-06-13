@@ -48,6 +48,129 @@
     background-color: #cccccc;
     margin: 10px 0px 0px 100px;
 }
+/*!--------------------------------Media details--------------------------------------!*/
+#headerMedia{
+    margin: 20px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#mediaInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+#picturefield{
+    border-radius: 14px;
+    padding: 5px 0px 5px 20px;
+    background-color: #cccccc;
+    margin: 0px 0px 0px 100px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.media-list{
+    display: inline;
+    list-style-type: none;
+}
+
+.media-headers{
+    color:#FFFFFF;
+    padding: 0px 0px 0px 0px;
+    margin: 10px 0px 5px 0px;
+}
+
+.media-input{
+    border-radius: 14px;
+    padding: 5px 0px 5px 20px;
+    background-color: #cccccc;
+    margin: 0px 0px 0px 100px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.btn-add-row8{
+    float: right;
+}
+
+.btn-add-row9{
+    float: right;
+}
+
+.add-button{
+    float: right;
+}
+
+.row8{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row9{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row9 {
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+.row10{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+
+
+/*!--------------------------------Art details--------------------------------------!*/
+
+#headerArt{
+    margin: 20px 0px 0px 20px;
+    color:#FFFFFF;
+}
+
+#artInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+.btn-add-row4{
+    float: right;
+}
+
+.btn-add-row5{
+    float: right;
+}
+
+.btn-add-row6{
+    float: right;
+}
+
+.btn-add-row7{
+    float: right;
+}
+
+.row4{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row5{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row6{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
+.row7{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
 /*!--------------------------------Company details--------------------------------------!*/
 
 #companyInput{
@@ -84,8 +207,17 @@
     width: 100%;
     max-width: 300px;
 }
+/*!--------------------------------Publisher details---------------------------------------!*/
+#publisherInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
 
-
+.introheader{
+    margin: 20px 0px 30px 20px;
+    color:#FFFFFF;
+}
 
 /*!--------------------------------Actor & Platform---------------------------------------!*/
 #actorInput {
@@ -132,6 +264,11 @@
 
 /*----Buttons----*/
 
+.list-rows{
+    display: none;
+    padding: 0px 0px 10px 100px;
+}
+
 .row{
     display: none;
     padding: 0px 0px 10px 100px;
@@ -173,12 +310,21 @@
 
 
 
-/*!--------------------------------Actor------------------------------------------------!*/
+/*!--------------------------------Character------------------------------------------------!*/
+#charInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
 
 
 
-
-
+/*!--------------------------------developers--------------------------------!*/
+#developerInput{
+    background-color: rgb(47, 111, 181);
+    padding: 30px;
+    border-radius: 14px;
+}
 
 
 

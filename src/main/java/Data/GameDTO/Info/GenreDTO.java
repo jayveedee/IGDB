@@ -6,12 +6,12 @@ public class GenreDTO {
 
     private int                 genID;
     private String              genTITLE;
-    private List<Integer>       genGAMEs;
+    private int                 genGAME;
 
-    public GenreDTO(int genID, String genTITLE, List<Integer> genGAMEs) {
+    public GenreDTO(int genID, String genTITLE, int genGAME) {
         this.genID = genID;
         this.genTITLE = genTITLE;
-        this.genGAMEs = genGAMEs;
+        this.genGAME = genGAME;
     }
 
     public GenreDTO() {
@@ -33,11 +33,11 @@ public class GenreDTO {
         this.genTITLE = genTITLE;
     }
 
-    public List<Integer> getGenGAMEs() {
-        return genGAMEs;
+    public int getGenGAME() {
+        return genGAME;
     }
 
-    public void setGenGAMEs(List<Integer> genGAMEs) {
-        this.genGAMEs = genGAMEs;
+    public void setGenGAME(int genGAME) {
+        this.genGAME = genGAME;
     }
 }
