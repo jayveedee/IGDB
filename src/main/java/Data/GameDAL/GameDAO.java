@@ -671,11 +671,6 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public List<GameDTO> getGameList() {
-        return null;
-    }
-
-    @Override
     public ArrayList<String> getGameNames(String characters){
         String query = "SELECT gameTITLE FROM Game WHERE gameTITLE LIKE ? LIMIT 10";
         ArrayList<String> list = new ArrayList<>();
