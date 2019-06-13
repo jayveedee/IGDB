@@ -34,9 +34,21 @@ public class UserService {
         user.setUserGAMEs(null);
         user.setUserROLEs(roleList);
 
-        roleDAO.createRole(role);
         boolean answer = userDAO.createUser(user);
 
+        return answer;
+    }
+
+    public UserDTO getUser(String username){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        UserDTO user;
+        user = userDAO.getUser(username);
+        return user;
+    }
+
+    public boolean updateUser(UserDTO user){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        boolean answer = userDAO.updateUserInfo(user);
         return answer;
     }
 

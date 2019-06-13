@@ -15,7 +15,11 @@
             <ul class="navigation-list">
                 <div class="autocomplete" style="display: inline;">
                     <div style="display: inline;">
-                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="">
+                        <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                            <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
+                            <input type="submit" value="Search">
+                        </form>
+                        <datalist id="dataList"></datalist>
                     </div>
                 </div>      
                 <div class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></div>
@@ -30,16 +34,23 @@
         <div class="container">
             <h1 style="text-align: center; color: white; font-size: 40px;">User Profile</h1>
             <div class="profile-container">
+                <form id="userInfoForm" method="post" action="/rest/services/user/updateUser">
                 <ul>
                     <li><p style="margin: 0;">Username:</p></li>
-                    <input type="text" class="profile-search">
+                    <input name="username" type="text" class="profile-search" id="usernameInput" disabled="true">
                     <li><p style="margin: 0;">Email:</p></li>
-                    <input type="text" class="profile-search">
+                    <input name="email" type="email" class="profile-search" disabled="true" id="emailInput">
                     <li><p style="margin: 0;">Password:</p></li>
-                    <input type="password" class="profile-search" id="showAndHide">
+                    <input name="password" type="password" class="profile-search showAndHide" id="showAndHide" disabled="true">
+                    <li><p style="margin: 0;"id="confirmPasswordText">Confirm Password:</p></li>
+                    <input type="password" class="profile-search showAndHide" id="confirmPassword" disabled="true">
                     <br>
                     <input type="checkbox" onclick="showPass()">Show Password
+                    <br>
+                    <input type="submit" value="submit changes" id="submitChanges">
+                    <input type="button" id="changeUserInfoButton" value="Change user info">
                 </ul>
+                </form>
             </div>  
             <img alt="*" id="uploadedPicture" src="https://imgur.com/y6rRbDc.png">
             <br>
@@ -71,8 +82,10 @@
                 </div>
             </div>
         </div>
+
+        <!--<script src="../Functions/ConnectionScript.js"></script>-->
         <script src="../Functions/User.js"></script>
-        <script src="../Functions/Index.js"></script>
-        <script src="../Functions/ConnectionScript.js"></script>
+        <script src="../Functions/NavBar.js"></script>
+        <script src="../Functions/User2ndScript.js"></script>
     </body>
 </html>
