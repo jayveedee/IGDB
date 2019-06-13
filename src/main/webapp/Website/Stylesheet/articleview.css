@@ -78,3 +78,8 @@
 .infowrapper{
     display: inline;
 }
+
+.actorslist{
+    width: 100%;
+    max-width: 1270px;
+}
