@@ -21,13 +21,16 @@ public class Services {
     @POST
     @Path("user/createUser")
     public boolean createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
-        IMysqlConnection mySQL = new MysqlConnection();
+//        IMysqlConnection mySQL = new MysqlConnection();
         boolean answer = true;
         try {
-            mySQL.setConnection(mySQL.createConnection());
-            UserService service = new UserService(mySQL);
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
             answer=service.createUser(username, email, password);
-            mySQL.closeConnection(mySQL.getConnection());
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //IKKE LUK FORBINDELSEN, BARE HOLD DEN ÅBEN
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,14 +40,16 @@ public class Services {
     @POST
     @Path("user/getUser/{username}")
     public String getUser(@PathParam("username") String username){
-        IMysqlConnection mysqlConnection = new MysqlConnection();
+        //IMysqlConnection mysqlConnection = new MysqlConnection();
         UserDTO user = null;
         try {
-            mysqlConnection.setConnection(mysqlConnection.createConnection());
-            UserService service = new UserService(mysqlConnection);
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
             user = service.getUser(username);
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
-
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,25 +58,52 @@ public class Services {
         String jsonString = "placeHolder";
 
         try {
-            objectMapper.writeValueAsString(user);
+            jsonString = objectMapper.writeValueAsString(user);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
-        //return jsonString;
-        return "hola!";
+        return jsonString;
+    }
+
+    //FIXME useren mangler at kunne se sine roller på user-hjemmesiden. Man kan også gøre så man kan ændre sit billede igennem user-siden, men dette er ikke nødvendigt. Desuden mangler userGames også.
+    @POST
+    @Path("user/updateUser")
+    public boolean updateUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password){
+        boolean answer = false;
+        UserDTO user = new UserDTO();
+        user.setUserEMAIL(email);
+        user.setUserPASS(password);
+        user.setUserNAME(username);
+
+        try {
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
+            answer = service.updateUser(user);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return answer;
     }
 
     @POST
     @Path("user/logIn")
     public String logIn(@FormParam("username") String username, @FormParam("password") String password){
-        IMysqlConnection mysqlConnection = new MysqlConnection();
+        //IMysqlConnection mysqlConnection = new MysqlConnection();
         String answer = "placeHolder";
         try {
-            mysqlConnection.setConnection(mysqlConnection.createConnection());
-            UserService service = new UserService(mysqlConnection);
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
             answer = service.logIn(username, password);
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,12 +121,16 @@ public class Services {
         ArrayList<String> answer = null;
         System.out.println(characters);
 
-        IMysqlConnection mysqlConnection = new MysqlConnection();
+        //IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
-            mysqlConnection.setConnection(mysqlConnection.createConnection());
-            GameService service = new GameService(mysqlConnection);
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
             answer = service.getGameNames(characters);
-            mysqlConnection.closeConnection(mysqlConnection.getConnection());
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }

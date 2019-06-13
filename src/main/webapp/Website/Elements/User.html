@@ -33,16 +33,23 @@
         <div class="container">
             <h1 style="text-align: center; color: white; font-size: 40px;">User Profile</h1>
             <div class="profile-container">
+                <form id="userInfoForm" method="post" action="/rest/services/user/updateUser">
                 <ul>
                     <li><p style="margin: 0;">Username:</p></li>
-                    <input type="text" class="profile-search" id="usernameInput" disabled>
+                    <input name="username" type="text" class="profile-search" id="usernameInput" disabled="true">
                     <li><p style="margin: 0;">Email:</p></li>
-                    <input type="text" class="profile-search" disabled id="emailInput">
+                    <input name="email" type="email" class="profile-search" disabled="true" id="emailInput">
                     <li><p style="margin: 0;">Password:</p></li>
-                    <input type="password" class="profile-search" id="showAndHide" disabled>
+                    <input name="password" type="password" class="profile-search showAndHide" id="showAndHide" disabled="true">
+                    <li><p style="margin: 0;"id="confirmPasswordText">Confirm Password:</p></li>
+                    <input type="password" class="profile-search showAndHide" id="confirmPassword" disabled="true">
                     <br>
                     <input type="checkbox" onclick="showPass()">Show Password
+                    <br>
+                    <input type="submit" value="submit changes" id="submitChanges">
+                    <input type="button" id="changeUserInfoButton" value="Change user info">
                 </ul>
+                </form>
             </div>  
             <img alt="*" id="uploadedPicture" src="https://imgur.com/y6rRbDc.png">
             <br>

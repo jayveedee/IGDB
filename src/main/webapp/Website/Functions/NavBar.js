@@ -20,7 +20,7 @@ $(document).ready(function () {
             location.href = "Login_Signup.html"
         }else if (username !== null || username === "null") {
             localStorage.setItem("username", "null");
-            location.reload();
+            location.href ="Index.html"
         }
     });
 });
