@@ -109,26 +109,6 @@ $(document).on("click", ".btn-remove-row11", function() {
     var index11 = $(".btn-remove-row11").index(this);
     $(".row11").eq(index11).remove();
 });
-/*--------------------------------------------------------------------------bt12*/
-$(document).on("click", "#btn12", function(){
-    var row12 = $(".row12").eq(0).clone().show();
-    $(".element-wrapper12").append(row12)
-});
-
-$(document).on("click", ".btn-remove-row12", function() {
-    var index12 = $(".btn-remove-row12").index(this);
-    $(".row12").eq(index12).remove();
-});
-/*--------------------------------------------------------------------------bt13*/
-$(document).on("click", "#btn13", function(){
-    var row13 = $(".row13").eq(0).clone().show();
-    $(".element-wrapper13").append(row13)
-});
-
-$(document).on("click", ".btn-remove-row13", function() {
-    var index13 = $(".btn-remove-row13").index(this);
-    $(".row13").eq(index13).remove();
-});
 
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
