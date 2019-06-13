@@ -2,6 +2,7 @@ package Data.GameDAL;
 
 import Data.GameDTO.GameDTO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface IGameDAO {
     List<GameDTO> getGameList();
     ArrayList<String> getGameNames(String characters);
     boolean updateGame(GameDTO newGame);
-    boolean deleteGame(int gameID);
+    boolean deleteGame(int gameID) throws SQLException;
 }

@@ -294,6 +294,14 @@ public class GameDAO_TEST {
 
     @Test
     public void updateGame() {
+        try {
+            mysql.createConnection();
+           GameDTO G1 =  createGameDB(88,"Pubg");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test
