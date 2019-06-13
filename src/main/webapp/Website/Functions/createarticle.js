@@ -133,30 +133,132 @@ $(document).on("click", ".btn-remove-row13", function() {
 
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
+    //initializing game
+
+    var parentCompany = {
+        parentID : 0,
+        parentNAME : $("#companyNameField").val(),
+        parentCREATED : $("#creationOfCompanyField").val(),
+        parentCountry : $("#companyOriginField").val(),
+        parentSTATUS : $("#companyStatusField").val()
+    };
+
+    var developer = {
+        devID : 0,
+        devNAME : "placeholder",
+        devCREATED : "placeholder",
+        devSTATUS : "placeholder",
+        devCOUNTRY : "placeholder",
+        devPCOMPANY : null,
+        devGAME : 0
+    };
+
     var game ={
-        gameNAME : "placeholder",
+        gameID : 0,
+        gameNAME : $("#titlefield").val(),
         gameCHs : [],
         gameACs : [],
         gameGENREs : [],
         gameGMs : [],
         gameRATINGs : [],
-        gameRELEASEDATE : "placeholder",
-        gameWRI : "placeholder",
-        gameCOMP : "placeholder",
+        gameRELEASEDATE : $("#releaseDateField").val(),
+        gameWRI : [],
+        gameCOMP : parentCompany,
         gameDEV : "placeholder",
         gamePUB : "placeholder",
         gameOST : "placeholder",
         gamePLAT : [],
-        gameCOVER : "placeholder",
-        gameBG : "placeholder",
-        gameBIO : "placeholder",
+        gameCOVER : $("#picturefield").val(),
+        gameBG : $("#backpicfield").val(),
+        gameBIO : $("#gameDescfield").val(),
         gameTRAILERs : [],
         gamePICs : []
     };
 
-    var plat={
-
+    var platform={
+        platID : 0,
+        platTITLE : "placeholder",
+        platGAME : 0,
+        platCREATED : "placeholder"
     };
+
+    var trailer = {
+        trailerID : 0,
+        trailerURL : "placeholder",
+        trailerGameID : 0
+    };
+
+    var picture = {
+        picID : 0,
+        picURL : "placeholder",
+        picGameID : 0
+    };
+
+    var soundtrack = {
+        ostID : 0,
+        ostTITLE : "placeholder",
+        ostCOMP : null,
+        ostMA : null,
+        ostGAME : 0,
+        ostPFP : "placeholder"
+    };
+
+    var composer = {
+        compID : 0,
+        compFN : "placeholder",
+        compLN : "placeholder",
+        compOSTs : null,
+        compGAME : null
+    };
+
+    var musician = {
+        artID : 0,
+        artNAME : "placeholder",
+        artPFP : "placeholder"
+    };
+
+    var writers = {
+        writerID : 0,
+        writerFN : "placeholder",
+        writerLN : "placeholder",
+        writerGAME : "placeholder"
+    };
+
+
+    var publisher = {
+        pubID : 0,
+        pubNAME : "placeholder",
+        pubCREATED : "placeholder",
+        pubCOUNTRY : "placeholder",
+        pubSTATUS : "placeholder",
+        pubGAME : 0
+    };
+
+    var actor = {
+        acID : 0,
+        acFN : "placeholder",
+        acLN : "placeholder",
+        acBDAY : "placeholder",
+        acCHs : "placeholder",
+        acGAME : 0,
+        acPFP : "placeholder"
+    };
+
+    var character = {
+        chID : 0,
+        chNAME : "placeholder",
+        chGAME : 0
+    };
+
+    var genre = {
+        genID : 0,
+        genTITLE : "placeholder",
+        genGAME : 0
+    };
+
+
+
+
     game.gameNAME.push("hey");
     game.gameNAME.push("omg");
     for (var i = 0; i < game.gameNAME.length; i++) {
