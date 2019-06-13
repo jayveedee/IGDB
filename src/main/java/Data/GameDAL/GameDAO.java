@@ -857,7 +857,7 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean updateGameDeveloper(int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper) {
         String query1 = "UPDATE DeveloperList SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ?, devParentID = ? WHERE devID = ? AND devGameID = ?";
-        String query2 = "UPDATE ParentCompany SET parentNAME = ?, parentCREATED = ?, parentCOUNTRY = ?, parentSTATUS = ? WHERE ";
+        String query2 = "UPDATE ParentCompany SET parentNAME = ?, parentCREATED = ?, parentCOUNTRY = ?, parentSTATUS = ? WHERE parentID = ?";
         return true;
     }
 
