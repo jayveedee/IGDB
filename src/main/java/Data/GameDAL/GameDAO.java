@@ -55,7 +55,9 @@ public class GameDAO implements IGameDAO {
         handleINSERTPublisher                   (gameID, gamePUB);
         handleINSERTWriter                      (gameID, gameWRI);
         handleINSERTPlatform(gameID, gamePLAT);
-        handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
+        if (gameOST != null){
+            handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
+        }
         handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         return true;
     }
@@ -700,20 +702,58 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean updateGame(GameDTO newGame) {
 
-        String query1   = "UPDATE Game SET gameTITLE = ? , gameRD = ?, gameDESC = ?, gameCOVER =?, gameBACKGROUND =? where gameID = ? ";
-        String query2  = "UPDATE CharacterList SET charNAME = ?, charPFP = ? WHERE charGameID = ? and  charID = ?";
-        String query3  = "UPDATE GenreList SET genreTITLE = ? WHERE genreID = ? and genreGameID = ? ";
-        //String query4  = "RatingList";
-        String query5  = "UPDATE WriterList SET writerFN = ?, writerLN = ? WHERE writerID = ? AND  writerGameID = ?";
-        String query6  = "UPDATE DeveloperList SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ? WHERE devID = ? and devParentID = ? and devGameID = ?";
-        String query7  = "UPDATE ComposerList SET compFN = ?, compLN = ? WHERE compID = ? AND compGameID = ?";
-        String query8  = "UPDATE PlatformList SET platTITLE = ?, platCREATED = ?  WHERE platID = ? and platGameID = ?";
-        String query9  = "UPDATE PictureList SET pictureURL = ? WHERE pictureID = ? AND pictureGameID = ?";
-        String query10 = "UPDATE ActorList SET actorFN = ?, actorLN = ?, actorDOF = ?, actorPFP = ? WHERE actorID = ? and actorCharID = ? and actorGameID = ?";
-        String query11 = "UPDATE GameModeList SET gmTITLE = ? WHERE gmID = ? AND gmGameID = ?";
-        String query12 = "UPDATE PublisherList SET pubNAME = ?, pubCREATED = ?, pubCOUNTRY = ?, pubSTATUS = ? WHERE pubID = ? AND pubGameID = ?";
-        String query13 = "UPDATE SoundtrackList SET ostTITLE = ?, ostPFP = ? WHERE ostID = ? AND ostComposerID = ? AND ostArtistID = ? AND ostGameID = ?";
-        String query14 = "UPDATE TrailerList SET  trailerURL = ?  WHERE trailerID = ? AND trailerGameID = ?";
+        //FIXME GOOD
+        String query1  =    "UPDATE Game " +
+                            "SET gameTITLE = ?, gameRD = ?, gameDESC = ?, gameCOVER =?, gameBACKGROUND = ? " +
+                            "WHERE gameID = ? ";
+        //FIXME GOOD
+        String query2  =    "UPDATE CharacterList " +
+                            "SET charNAME = ?, charPFP = ? " +
+                            "WHERE charGameID = ? AND  charID = ?";
+        //FIXME Vi har statiske genre, så vi ændrer kun genreID hos gameID for at skifte genre (har brug for en anden metode til at lave nye genre)
+        String query3  =    "UPDATE GenreList " +
+                            "SET genreTITLE = ? " +
+                            "WHERE genreID = ? AND genreGameID = ? ";
+
+        String query5  =    "UPDATE WriterList " +
+                            "SET writerFN = ?, writerLN = ? " +
+                            "WHERE writerID = ? AND  writerGameID = ?";
+
+        String query6  =    "UPDATE DeveloperList " +
+                            "SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ? " +
+                            "WHERE devID = ? AND devParentID = ? AND devGameID = ?";
+
+        String query7  =    "UPDATE ComposerList " +
+                            "SET compFN = ?, compLN = ? " +
+                            "WHERE compID = ? AND compGameID = ?";
+
+        String query8  =    "UPDATE PlatformList " +
+                            "SET platTITLE = ?, platCREATED = ?  " +
+                            "WHERE platID = ? AND platGameID = ?";
+
+        String query9  =    "UPDATE PictureList " +
+                            "SET pictureURL = ? " +
+                            "WHERE pictureID = ? AND pictureGameID = ?";
+
+        String query10 =    "UPDATE ActorList " +
+                            "SET actorFN = ?, actorLN = ?, actorDOF = ?, actorPFP = ? " +
+                            "WHERE actorID = ? AND actorCharID = ? AND actorGameID = ?";
+
+        String query11 =    "UPDATE GameModeList " +
+                            "SET gmTITLE = ? " +
+                            "WHERE gmID = ? AND gmGameID = ?";
+
+        String query12 =    "UPDATE PublisherList " +
+                            "SET pubNAME = ?, pubCREATED = ?, pubCOUNTRY = ?, pubSTATUS = ? " +
+                            "WHERE pubID = ? AND pubGameID = ?";
+
+        String query13 =    "UPDATE SoundtrackList " +
+                            "SET ostTITLE = ?, ostPFP = ? " +
+                            "WHERE ostID = ? AND ostComposerID = ? AND ostArtistID = ? AND ostGameID = ?";
+
+        String query14 =    "UPDATE TrailerList " +
+                            "SET  trailerURL = ?  " +
+                            "WHERE trailerID = ? AND trailerGameID = ?";
 
         try {
             mySql.getConnection().setAutoCommit(false);
@@ -844,7 +884,7 @@ public class GameDAO implements IGameDAO {
 
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query13));
             mySql.getPrepStatement().setString(1,newGame.getGameOST().getOstTITLE());
-            mySql.getPrepStatement().setString(2,newGame.getGameOST().getOstPFP();
+            mySql.getPrepStatement().setString(2,newGame.getGameOST().getOstPFP());
             mySql.getPrepStatement().setInt(3,newGame.getGameOST().getOstID());
             mySql.getPrepStatement().setInt(4,newGame.getGameOST().getOstCOMP().getCompID());
             for (int i = 0; i < newGame.getGameOST().getOstMA().size(); i++) {
@@ -879,14 +919,14 @@ public class GameDAO implements IGameDAO {
     public boolean deleteGame (int gameID) {
         String query1 = "DELETE From Game WHERE gameID = ?";
         String query2 = "DELETE FROM TrailerList WHERE trailerGameID = ?";
-        String query3 = "DELETE FROM "
+        String query3 = "DELETE FROM ";
 
 
 
 
 
 
-
+        return true;
     }
 
     private boolean handleDeleteGame(String gameTITLE, String query) {
@@ -899,7 +939,7 @@ public class GameDAO implements IGameDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return true;
     }
 }
 
