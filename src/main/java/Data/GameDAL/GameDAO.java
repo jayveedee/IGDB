@@ -57,8 +57,8 @@ public class GameDAO implements IGameDAO {
         handleINSERTPlatform(gameID, gamePLAT);
         if (gameOST != null){
             handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
+            handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         }
-        handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         return true;
     }
 
