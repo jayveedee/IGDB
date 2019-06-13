@@ -415,7 +415,7 @@ public class GameDAO implements IGameDAO {
         String queryGM              = "SELECT * FROM GameModeList   WHERE gmGameID          = ?";
         String queryGENRE           = "SELECT * FROM GenreList      WHERE genreGameID       = ?";
         String queryCHAR            = "SELECT * FROM CharacterList  WHERE charGameID        = ?";
-        String queryACTOR           = "SELECT * FROM ActorList      WHERE actorGameID       = ?";
+        String queryACTOR           = "SELECT actorID, ANY_VALUE(actorFN), ANY_VALUE(actorLN), ANY_VALUE(actorDOB), ANY_VALUE(actorPFP), ANY_VALUE(actorCharID), actorGameID FROM ActorList      WHERE actorGameID       = ?     GROUP BY actorID";
         String queryCOMP            = "SELECT * FROM ComposerList   WHERE compGameID        = ?";
         String queryOST             = "SELECT * FROM SoundtrackList WHERE ostGameID         = ?";
         String queryWRI             = "SELECT * FROM WriterList     WHERE writerGameID      = ?";
@@ -458,13 +458,13 @@ public class GameDAO implements IGameDAO {
             List <PlatformDTO> platformList = new ArrayList<>();
             while (rs3.next()){
                 PlatformDTO plat = new PlatformDTO();
-                plat.setPlatID(rs3.getInt("platGameID"));
+                plat.setPlatID(rs3.getInt("platID"));
                 plat.setPlatTITLE(rs3.getString("platTITLE"));
                     String platCreatedstring = rs3.getString("platCREATED");
                     String[] platStringSplit = platCreatedstring.split("/");
                     DateDTO date = new DateDTO(platStringSplit[0], platStringSplit[1], platStringSplit[2]);
                 plat.setPlatCREATED(date);
-                plat.setPlatGAMEs(gameID);
+                plat.setPlatGAMEs(rs3.getInt("platGameID"));
                 platformList.add(plat);
             }
             game.setGamePLAT(platformList);
@@ -526,26 +526,37 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs8 = mySql.getPrepStatement().executeQuery();
             List<ActorDTO> actList = new ArrayList<>();
-            String actCharList = "SELECT * FROM CharacterList WHERE charID = ?";
+            String actCharList = "SELECT * FROM CharacterList WHERE charID = ? AND charGameID = ?";
+            String actCharList1 = "" +
+                    "SELECT ANY_VALUE(actorID), ANY_VALUE(actorFN), ANY_VALUE(actorLN), ANY_VALUE(actorDOB), ANY_VALUE(actorPFP), actorCharID, actorGameID " +
+                    "FROM ActorList " +
+                    "WHERE actorGameID = ? " +
+                    "GROUP BY actorCharID";
             while (rs8.next()){
                 ActorDTO act = new ActorDTO();
                 act.setAcID(rs8.getInt("actorID"));
-                act.setAcFN(rs8.getString("actorFN"));
-                act.setAcLN(rs8.getString("actorLN"));
-                act.setAcPFP(rs8.getString("actorPFP"));
+                act.setAcFN(rs8.getString("ANY_VALUE(actorFN)"));
+                act.setAcLN(rs8.getString("ANY_VALUE(actorLN)"));
+                act.setAcPFP(rs8.getString("ANY_VALUE(actorPFP)"));
                 act.setAcGAME(rs8.getInt("actorGameID"));
-                    String actDOB           = rs8.getString("actorDOB");
+                    String actDOB           = rs8.getString("ANY_VALUE(actorDOB)");
                     String[] actDOBsplit    = actDOB.split("/");
                     DateDTO actDate         = new DateDTO(actDOBsplit[0],actDOBsplit[1],actDOBsplit[2]);
                 act.setAcBDAY(actDate);
-                mySql.setPrepStatment(mySql.getConnection().prepareStatement(actCharList));
-                mySql.getPrepStatement().setInt(1,rs8.getInt("actorCharID"));
-                ResultSet rs9 = mySql.getPrepStatement().executeQuery();
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(actCharList1));
+                mySql.getPrepStatement().setInt(1,gameID);
+                ResultSet rs0 = mySql.getPrepStatement().executeQuery();
                 List<Integer> actCharLIST = new ArrayList<>();
-                while (rs9.next()){
-                    actCharLIST.add(rs9.getInt("charID"));
+                while (rs0.next()){
+                    mySql.setPrepStatment(mySql.getConnection().prepareStatement(actCharList));
+                    mySql.getPrepStatement().setInt(1,rs0.getInt("actorCharID"));
+                    mySql.getPrepStatement().setInt(2,gameID);
+                    ResultSet rs9 = mySql.getPrepStatement().executeQuery();
+                    while (rs9.next()){
+                        actCharLIST.add(rs9.getInt("charID"));
+                    }
+                    act.setAcCHs(actCharLIST);
                 }
-                act.setAcCHs(actCharLIST);
                 actList.add(act);
             }
             game.setGameACs(actList);

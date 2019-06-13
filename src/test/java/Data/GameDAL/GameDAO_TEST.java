@@ -77,8 +77,7 @@ public class GameDAO_TEST {
         character.setChID(charID);
         character.setChNAME(name);
         character.setChPFP(PFP);
-        List<Integer> gmlist = new ArrayList<>();
-        gmlist.add(gameID);
+        character.setChGAME(gameID);
         return character;
     }
     private List<ActorDTO> GAME_createActorList (int gameID, List<CharacterDTO> gameCHARs) {
@@ -333,30 +332,51 @@ public class GameDAO_TEST {
             assertEquals(actTest1.get(i).getAcPFP(),actTest1DB.get(i).getAcPFP());
             List<Integer> actTest1Ch        = actTest1.get(i).getAcCHs();
             List<Integer> actTest1ChDB      = actTest1DB.get(i).getAcCHs();
-            //assertEquals(actTest1Ch.size(),actTest1ChDB.size());
+            assertEquals(actTest1Ch.size(),actTest1ChDB.size());
             for (int j = 0; j < actTest1.get(i).getAcCHs().size(); j++) {
                 assertEquals(actTest1Ch.get(j),actTest1ChDB.get(j));
             }
         }
+        assertEquals(testGame1.getGameGENREs().size(),testGame1DB.getGameGENREs().size());
         for (int i = 0; i < testGame1.getGameGENREs().size(); i++) {
-
+            assertEquals(testGame1.getGameGENREs().get(i).getGenID(),testGame1DB.getGameGENREs().get(i).getGenID());
+            assertEquals(testGame1.getGameGENREs().get(i).getGenTITLE(),testGame1DB.getGameGENREs().get(i).getGenTITLE());
+            assertEquals(testGame1.getGameGENREs().get(i).getGenGAME(),testGame1DB.getGameGENREs().get(i).getGenGAME());
         }
+        assertEquals(testGame1.getGameCHs().size(),testGame1DB.getGameCHs().size());
         for (int i = 0; i < testGame1.getGameCHs().size(); i++) {
-
+            assertEquals(testGame1.getGameCHs().get(i).getChID(),testGame1DB.getGameCHs().get(i).getChID());
+            assertEquals(testGame1.getGameCHs().get(i).getChNAME(),testGame1DB.getGameCHs().get(i).getChNAME());
+            assertEquals(testGame1.getGameCHs().get(i).getChPFP(),testGame1DB.getGameCHs().get(i).getChPFP());
+            assertEquals(testGame1.getGameCHs().get(i).getChGAME(),testGame1DB.getGameCHs().get(i).getChGAME());
         }
+        assertEquals(testGame1.getGameGMs().size(),testGame1DB.getGameGMs().size());
         for (int i = 0; i < testGame1.getGameGMs().size(); i++) {
-
+            assertEquals(testGame1.getGameGMs().get(i).getGmID(),testGame1DB.getGameGMs().get(i).getGmID());
+            assertEquals(testGame1.getGameGMs().get(i).getGmTITLE(),testGame1DB.getGameGMs().get(i).getGmTITLE());
+            assertEquals(testGame1.getGameGMs().get(i).getGmGAME(),testGame1DB.getGameGMs().get(i).getGmGAME());
         }
+        assertEquals(testGame1.getGameTRAILERs().size(),testGame1DB.getGameTRAILERs().size());
         for (int i = 0; i < testGame1.getGameTRAILERs().size(); i++) {
-
+            assertEquals(testGame1.getGameTRAILERs().get(i).getTrailerID(),testGame1DB.getGameTRAILERs().get(i).getTrailerID());
+            assertEquals(testGame1.getGameTRAILERs().get(i).getTrailerURL(),testGame1DB.getGameTRAILERs().get(i).getTrailerURL());
+            assertEquals(testGame1.getGameTRAILERs().get(i).getTrailerGameID(),testGame1DB.getGameTRAILERs().get(i).getTrailerGameID());
         }
+        assertEquals(testGame1.getGamePICs().size(),testGame1DB.getGamePICs().size());
         for (int i = 0; i < testGame1.getGamePICs().size(); i++) {
-
+            assertEquals(testGame1.getGamePICs().get(i).getPicID(),testGame1DB.getGamePICs().get(i).getPicID());
+            assertEquals(testGame1.getGamePICs().get(i).getPicURL(),testGame1DB.getGamePICs().get(i).getPicURL());
+            assertEquals(testGame1.getGamePICs().get(i).getPicGameID(),testGame1DB.getGamePICs().get(i).getPicGameID());
         }
+        assertEquals(testGame1.getGamePLAT().size(),testGame1DB.getGamePLAT().size());
         for (int i = 0; i < testGame1.getGamePLAT().size(); i++) {
-
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatID(),testGame1DB.getGamePLAT().get(i).getPlatID());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatTITLE(),testGame1DB.getGamePLAT().get(i).getPlatTITLE());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatGAMEs(),testGame1DB.getGamePLAT().get(i).getPlatGAMEs());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getDay(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getDay());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getMonth(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getMonth());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getYaer(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getYaer());
         }
-
         mysql.closeConnection(mysql.getConnection());
     }
 
