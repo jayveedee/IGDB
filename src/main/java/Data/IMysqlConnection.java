@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public interface IMysqlConnection {
 
-    Connection createConnection() throws SQLException;
+    Connection createConnection() throws SQLException, ClassNotFoundException;
     void closeConnection(Connection connection) throws SQLException;
 
     Statement getStatement();
