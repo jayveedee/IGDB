@@ -37,3 +37,18 @@
     color: #FFFFFF;
     margin: 20px;
 }
+
+.gamedata{
+    width: 550px;
+    margin: 0px 0px 0px 120px;
+
+}
+
+.gamedatahead{
+    color: #FFFFFF;
+}
+
+.dataoutput{
+    width: 500px;
+    border-radius: 5px;
+}
