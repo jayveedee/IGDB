@@ -694,24 +694,9 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean updateGame(int gameID, GameDTO updatedGame) {
-        String query = "UPDATE Game SET gameTITLE = ?, gameRD = ?, gameDESC = ?, gameCOVER = ?, gameBACKGROUND = ? WHERE gameID = ?";
-        try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            PreparedStatement prepStatement = mySql.getPrepStatement();
-            prepStatement.setString(1,updatedGame.getGameNAME());
-            prepStatement.setString(2,updatedGame.getGameRELEASEDATE().getDateString());
-            prepStatement.setString(3,updatedGame.getGameBIO());
-            prepStatement.setString(4,updatedGame.getGameCover());
-            prepStatement.setString(5,updatedGame.getGameBG());
-            prepStatement.setInt(6,gameID);
-            prepStatement.executeUpdate();
-            mySql.getConnection().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        String query = "INSERT INTO Game (gameID, gameTITLE, gameRD, gameDESC, gameCOVER, gameBACKGROUND) VALUES (?, ?, ?, ?, ?, ?)";
+        deleteGame(gameID);
+        return handleINSERT_AND_UPDATEentireGame(query,updatedGame);
     }
 
     @Override
