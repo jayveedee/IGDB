@@ -30,13 +30,17 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean createGame(GameDTO game) {
         String query = "INSERT INTO Game (gameID, gameTITLE, gameRD, gameDESC, gameCOVER, gameBACKGROUND) VALUES (?, ?, ?, ?, ?, ?)";
+        return handleINSERT_AND_UPDATEentireGame(query,game);
+    }
+
+    private boolean handleINSERT_AND_UPDATEentireGame(String query, GameDTO game){
         int         gameID          = game.getGameID();
         String      gameTitle       = game.getGameNAME();
         String      gameDESC        = game.getGameBIO();
         String      gameCOV         = game.getGameCover();
         String      gameBG          = game.getGameBG();
         DateDTO     gameRD          = game.getGameRELEASEDATE();
-        String      gameRDstring    = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYear();
+        String      gameRDstring    = gameRD.getDateString();
 
         List<ActorDTO>      gameACTOR   = game.getGameACs();        List<CharacterDTO>  gameCHAR    = game.getGameCHs();
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
@@ -62,7 +66,6 @@ public class GameDAO implements IGameDAO {
         }
         return true;
     }
-
     private void handleINSERTPlatform(int gameID, List<PlatformDTO> gamePLAT) {
         if (gamePLAT != null){
             String queryPLAT =
