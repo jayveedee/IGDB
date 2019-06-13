@@ -16,11 +16,14 @@ import java.util.ArrayList;
 
 public interface IGameDAO {
 
-    boolean createGame(GameDTO game);
+    //CREATE
+    boolean createGame              (GameDTO game);
 
-    GameDTO getGame(int gameID);
-    ArrayList<String> getGameNames(String characters);
+    //READ
+    GameDTO getGame                 (int gameID);
+    ArrayList<String> getGameNames  (String characters);
 
+    //UPDATE
     boolean updateGame              (int gameID, GameDTO updatedGame);
     boolean updateGameGenre         (int gameID, int oldGenreID, int updatedGenreID);
     boolean updateGameGM            (int gameID, int oldGMID, int updatedGMID);
@@ -37,6 +40,7 @@ public interface IGameDAO {
     boolean updateGameOST           (int gameID, int oldOstID, int oldComposerID, int oldArtistID, SoundtrackDTO updatedOST);
     boolean updateGameComposer      (int gameID, int oldCompID, ComposerDTO updatedComposer);
 
+    //DELETE
     boolean deleteGame(int gameID) throws SQLException;
 
 }

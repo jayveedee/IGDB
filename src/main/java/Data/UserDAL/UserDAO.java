@@ -49,6 +49,22 @@ public class UserDAO implements IUserDAO {
         }
         return true;
     }
+    private boolean handleUpdateUserXcreateUser(String query, String fisrtParam, String secondParan, String thirdParam, String fourthParam) {
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,fisrtParam);
+            mySql.getPrepStatement().setString(2,secondParan);
+            mySql.getPrepStatement().setString(3,thirdParam);
+            mySql.getPrepStatement().setString(4,fourthParam);
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public boolean addToUserGameList(String userName, int gameID) {
@@ -82,23 +98,6 @@ public class UserDAO implements IUserDAO {
             mySql.getPrepStatement().setInt(1,ratingID);
             mySql.getPrepStatement().setString(2,ratingUSER);
             mySql.getPrepStatement().setInt(3,gameID);
-            mySql.getPrepStatement().executeUpdate();
-            mySql.getConnection().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-        private boolean handleUpdateUserXcreateUser(String query, String fisrtParam, String secondParan, String thirdParam, String fourthParam) {
-        try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setString(1,fisrtParam);
-            mySql.getPrepStatement().setString(2,secondParan);
-            mySql.getPrepStatement().setString(3,thirdParam);
-            mySql.getPrepStatement().setString(4,fourthParam);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
@@ -154,7 +153,6 @@ public class UserDAO implements IUserDAO {
         }
         return ulist;
     }
-
     private void handleGetUser(ResultSet rs, UserDTO user) throws SQLException {
         user.setUserNAME(rs.getString("userNAME"));
         user.setUserPASS(rs.getString("userPASS"));
@@ -243,7 +241,6 @@ public class UserDAO implements IUserDAO {
         String query = "DELETE FROM UserRoleList WHERE userNAME = ?";
         return handleDeleteByID(userNAME, query);
     }
-
     private boolean handleDeleteByID(String userNAME, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);

@@ -21,7 +21,6 @@ public class RoleDAO implements IRoleDAO {
         String query = "INSERT INTO Roles (roleID, roleNAME) VALUES (?, ?)";
         return handleUpdateUserRolesXCreateRole(query, role.getRoleID(), role.getRoleNAME());
     }
-
     boolean handleUpdateUserRolesXCreateRole(String query, int roleID, String rolenameORusername) {
         try {
             mySql.getConnection().setAutoCommit(false);
@@ -111,7 +110,6 @@ public class RoleDAO implements IRoleDAO {
         }
         return true;
     }
-
     List<RoleDTO> handleGetRoleList(ResultSet rs) throws SQLException {
         List<RoleDTO> rList = new ArrayList<>();
         while (rs.next()){
@@ -129,7 +127,6 @@ public class RoleDAO implements IRoleDAO {
         String query2 = "DELETE FROM Roles WHERE roleID = ?";
         return handleDeleteByID(roleID, query1) && handleDeleteByID(roleID, query2);
     }
-
     private boolean handleDeleteByID(int roleid, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
