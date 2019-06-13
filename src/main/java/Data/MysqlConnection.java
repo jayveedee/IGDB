@@ -1,8 +1,12 @@
 package Data;
 
+import javax.inject.Singleton;
 import java.sql.*;
 
+@Singleton
 public class MysqlConnection implements IMysqlConnection {
+
+
 
     private Statement           statement;
     private PreparedStatement   prepStatement;
@@ -14,6 +18,15 @@ public class MysqlConnection implements IMysqlConnection {
     private String myUser = "s185095&";
     private String myPassStart = "password=";
     private String myPass = "qSmM4qcR0JF1sAnR6OZss";
+
+    private static MysqlConnection mysqlConnection = null;
+
+    public static MysqlConnection getInstance() {
+        if(mysqlConnection == null) {
+            mysqlConnection = new MysqlConnection();
+        }
+        return mysqlConnection;
+    }
 
     @Override
     public Connection createConnection() throws SQLException {
