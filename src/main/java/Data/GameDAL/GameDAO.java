@@ -728,7 +728,6 @@ public class GameDAO implements IGameDAO {
         String query = "UPDATE PlatformList SET platID = ? WHERE platID = ? AND gameID = ?";
         return handleStaticTablesDuplicateCode(gameID, oldPlatformID, updatedPlatformID, query);
     }
-
     private boolean handleStaticTablesDuplicateCode(int gameID, int oldPlatformID, int updatedPlatformID, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
@@ -749,31 +748,21 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean updateGamePicture(int gameID, int oldPicID, PictureDTO updatedPicture) {
         String query = "UPDATE PictureList SET pictureURL = ? WHERE pictureID = ? AND pictureGameID = ?";
-        try {
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            PreparedStatement prepStatement = mySql.getPrepStatement();
-            prepStatement.setString(1,updatedPicture.getPicURL());
-            prepStatement.setInt(2,oldPicID);
-            prepStatement.setInt(2,gameID);
-            prepStatement.executeUpdate();
-            mySql.getConnection().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        return handleDuplicateCodeByObjectUpdate(query,updatedPicture.getPicURL(),oldPicID,gameID);
     }
 
     @Override
     public boolean updatedGameTrailer(int gameID, int oldTrailerID, TrailerDTO updatedTrailer) {
         String query = "UPDATE TrailerList SET trailerURL = ? WHERE trailerID = ? AND trailerGameID = ?";
+        return handleDuplicateCodeByObjectUpdate(query,updatedTrailer.getTrailerURL(),oldTrailerID,gameID);
+    }
+    private boolean handleDuplicateCodeByObjectUpdate(String query, String URL, int ID, int gameID) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             PreparedStatement prepStatement = mySql.getPrepStatement();
-            prepStatement.setString(1,updatedTrailer.getTrailerURL());
-            prepStatement.setInt(2,oldTrailerID);
+            prepStatement.setString(1,URL);
+            prepStatement.setInt(2,ID);
             prepStatement.setInt(3,gameID);
             prepStatement.executeUpdate();
             mySql.getConnection().commit();
@@ -910,7 +899,7 @@ public class GameDAO implements IGameDAO {
     @Override
     public boolean updateGameOST(int gameID, int oldOstID, int oldComposerID, int oldArtistID, SoundtrackDTO updatedOST) {
         String query1 = "UPDATE ComposerList SET compFN = ?, compLN = ? WHERE compID = ? AND compGameID = ?";
-        String query2 = "UPDATE MusicalArtistList SET artistNAME = ?, artistPFP WHERE artistID = ?";
+        String query2 = "UPDATE MusicalArtistList SET artistNAME = ?, artistPFP = ? WHERE artistID = ?";
         String query3 = "UPDATE SoundtrackList SET ostTITLE = ?, ostPFP = ? WHERE ostID = ? AND ostGameID = ? AND ostComposerID = ? and ostArtistID = ?";
         try {
             mySql.getConnection().setAutoCommit(false);
