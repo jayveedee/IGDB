@@ -365,7 +365,7 @@ public class GameDAO implements IGameDAO {
                                 gameACTOR.get(i).getAcBDAY().getDay() + "/" +
                                 gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYaer();
                         mySql.getPrepStatement().setString(4,actorDOBstring);
-                        mySql.getPrepStatement().setString(5,gameCHAR.get(i).getChPFP());
+                        mySql.getPrepStatement().setString(5,gameACTOR.get(i).getAcPFP());
                         mySql.getPrepStatement().setInt(6,gameACTOR.get(i).getAcCHs().get(j));
                         mySql.getPrepStatement().setInt(7,gameID);
                         mySql.getPrepStatement().addBatch();
@@ -427,7 +427,7 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGAME));
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs1 = mySql.getPrepStatement().executeQuery();
-            if (rs1.next()){
+            while (rs1.next()){
                 game.setGameCover(rs1.getString("gameCOVER"));
                 game.setGameNAME(rs1.getString("gameTITLE"));
                 game.setGameBIO(rs1.getString("gameDESC"));
@@ -443,7 +443,7 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPIC));
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs2 = mySql.getPrepStatement().executeQuery();
-            if (rs2.next()){
+            while (rs2.next()){
                 PictureDTO pic = new PictureDTO();
                 pic.setPicURL(rs2.getString("pictureURL"));
                 pic.setPicID(rs2.getInt("pictureID"));
@@ -456,7 +456,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs3 = mySql.getPrepStatement().executeQuery();
             List <PlatformDTO> platformList = new ArrayList<>();
-            if (rs3.next()){
+            while (rs3.next()){
                 PlatformDTO plat = new PlatformDTO();
                 plat.setPlatID(rs3.getInt("platGameID"));
                 plat.setPlatTITLE(rs3.getString("platTITLE"));
@@ -473,7 +473,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs4 = mySql.getPrepStatement().executeQuery();
             List<TrailerDTO> trailerList = new ArrayList<>();
-            if (rs4.next()){
+            while (rs4.next()){
                 TrailerDTO trailer = new TrailerDTO();
                 trailer.setTrailerID(rs4.getInt("trailerID"));
                 trailer.setTrailerGameID(rs4.getInt("trailerGameID"));
@@ -486,7 +486,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs5 = mySql.getPrepStatement().executeQuery();
             List<GameModeDTO> gmList = new ArrayList<>();
-            if (rs5.next()){
+            while (rs5.next()){
                 GameModeDTO gm = new GameModeDTO();
                 gm.setGmID(rs5.getInt("gmID"));
                 gm.setGmTITLE(rs5.getString("gmTITLE"));
@@ -499,7 +499,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs6 = mySql.getPrepStatement().executeQuery();
             List<GenreDTO> genreList = new ArrayList<>();
-            if (rs6.next()){
+            while (rs6.next()){
                 GenreDTO genre = new GenreDTO();
                 genre.setGenID(rs6.getInt("genreID"));
                 genre.setGenTITLE(rs6.getString("genreTITLE"));
@@ -512,7 +512,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs7 = mySql.getPrepStatement().executeQuery();
             List<CharacterDTO> charList = new ArrayList<>();
-            if (rs7.next()){
+            while (rs7.next()){
                 CharacterDTO ch = new CharacterDTO();
                 ch.setChID(rs7.getInt("charID"));
                 ch.setChNAME(rs7.getString("charNAME"));
@@ -527,7 +527,7 @@ public class GameDAO implements IGameDAO {
             ResultSet rs8 = mySql.getPrepStatement().executeQuery();
             List<ActorDTO> actList = new ArrayList<>();
             String actCharList = "SELECT * FROM CharacterList WHERE charID = ?";
-            if (rs8.next()){
+            while (rs8.next()){
                 ActorDTO act = new ActorDTO();
                 act.setAcID(rs8.getInt("actorID"));
                 act.setAcFN(rs8.getString("actorFN"));
@@ -542,7 +542,7 @@ public class GameDAO implements IGameDAO {
                 mySql.getPrepStatement().setInt(1,rs8.getInt("actorCharID"));
                 ResultSet rs9 = mySql.getPrepStatement().executeQuery();
                 List<Integer> actCharLIST = new ArrayList<>();
-                if (rs9.next()){
+                while (rs9.next()){
                     actCharLIST.add(rs9.getInt("charID"));
                 }
                 act.setAcCHs(actCharLIST);
@@ -555,7 +555,7 @@ public class GameDAO implements IGameDAO {
             ResultSet rs10 = mySql.getPrepStatement().executeQuery();
             ComposerDTO comp = new ComposerDTO();
             String compOstList = "SELECT * FROM SoundtrackList WHERE ostComposerID = ?";
-            if (rs10.next()){
+            while (rs10.next()){
                 comp.setCompID(rs10.getInt("compID"));
                 comp.setCompFN(rs10.getString("compFN"));
                 comp.setCompLN(rs10.getString("compLN"));
@@ -564,7 +564,7 @@ public class GameDAO implements IGameDAO {
                 mySql.getPrepStatement().setInt(1,rs10.getInt("compID"));
                 ResultSet rs11 = mySql.getPrepStatement().executeQuery();
                 List<Integer> ostCompLIST = new ArrayList<>();
-                if (rs11.next()){
+                while (rs11.next()){
                     ostCompLIST.add(rs11.getInt("ostID"));
                 }
                 comp.setCompOSTs(ostCompLIST);
@@ -576,7 +576,7 @@ public class GameDAO implements IGameDAO {
             ResultSet rs12 = mySql.getPrepStatement().executeQuery();
             SoundtrackDTO ost = new SoundtrackDTO();
             String ostMa   = "SELECT * FROM MusicalArtistList WHERE artistID = ?";
-            if (rs12.next()){
+            while (rs12.next()){
                 ost.setOstID(rs12.getInt("ostID"));
                 ost.setOstTITLE(rs12.getString("ostTITLE"));
                 ost.setOstPFP(rs12.getString("ostPFP"));
@@ -585,7 +585,7 @@ public class GameDAO implements IGameDAO {
                 mySql.getPrepStatement().setInt(1,rs12.getInt("ostArtistID"));
                 ResultSet rs13 = mySql.getPrepStatement().executeQuery();
                 List<MusicArtistDTO> maList = new ArrayList<>();
-                if (rs13.next()){
+                while (rs13.next()){
                     MusicArtistDTO ma = new MusicArtistDTO();
                     ma.setArtID(rs13.getInt("artistID"));
                     ma.setArtNAME(rs13.getString("artistNAME"));
@@ -601,7 +601,7 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs15 = mySql.getPrepStatement().executeQuery();
             WriterDTO writer = new WriterDTO();
-            if (rs15.next()){
+            while (rs15.next()){
                 writer.setWriterID(rs15.getInt("writerID"));
                 writer.setWriterFN(rs15.getString("writerFN"));
                 writer.setWriterLN(rs15.getString("writerLN"));
@@ -613,10 +613,14 @@ public class GameDAO implements IGameDAO {
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs16 = mySql.getPrepStatement().executeQuery();
             PublisherDTO pub = new PublisherDTO();
-            if (rs16.next()){
+            while (rs16.next()){
                 pub.setPubID(rs16.getInt("pubID"));
                 pub.setPubNAME(rs16.getString("pubNAME"));
                 pub.setPubCOUNTRY(rs16.getString("pubCOUNTRY"));
+                    String pubDate      = rs16.getString("pubCREATED");
+                    String[] pubDATE    = pubDate.split("/");
+                    DateDTO pubDaTe     = new DateDTO(pubDATE[0],pubDATE[1],pubDATE[2]);
+                pub.setPubCREATED(pubDaTe);
                 pub.setPubSTATUS(rs16.getBoolean("pubSTATUS"));
                 pub.setPubGAME(rs16.getInt("pubGameID"));
             }
@@ -627,7 +631,7 @@ public class GameDAO implements IGameDAO {
             ResultSet rs17 = mySql.getPrepStatement().executeQuery();
             DeveloperDTO dev = new DeveloperDTO();
             String devPcompanyQuery = "SELECT * FROM ParentCompany WHERE parentID = ?";
-            if (rs17.next()){
+            while (rs17.next()){
                 dev.setDevID(rs17.getInt("devID"));
                 dev.setDevNAME(rs17.getString("devNAME"));
                 dev.setDevCOUNTRY(rs17.getString("devCOUNTRY"));
@@ -640,7 +644,7 @@ public class GameDAO implements IGameDAO {
                 mySql.getPrepStatement().setInt(1,rs17.getInt("devParentID"));
                 ResultSet rs18 = mySql.getPrepStatement().executeQuery();
                 ParentCompanyDTO parent = new ParentCompanyDTO();
-                if (rs18.next()){
+                while (rs18.next()){
                     parent.setParentID(rs18.getInt("parentID"));
                     parent.setParentNAME(rs18.getString("parentNAME"));
                     parent.setParentCOUNTRY(rs18.getString("parentCOUNTRY"));
