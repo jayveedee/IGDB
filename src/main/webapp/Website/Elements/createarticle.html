@@ -33,23 +33,23 @@
         </ul>
     </nav>
 
+<form id="createGameForm" method="post" action="/rest/services/game/createGame">
 <div id="container" class="container">
     <h1 id="headerarticle">Create a Game</h1>
 
     <div id="titleInput" class="container">
         <h3 id="headertitle">Title</h3>
-        <input id="titlefield" type="text" placeholder="Insert the title">
+        <input id="titlefield" type="text" placeholder="Insert the title" name="titleField">
         <h3 id="headerRD">Release Date</h3>
-        <input class="dateInput" type="date">
+        <input class="dateInput" type="date" name="releaseDate">
     </div>
 
-    //FIXME skal denne slut-tag være her?
     <div id="mediaInput" class="container">
         <h3 id="headerMedia">Media</h3>
         <ul>
             <li class="media-list">
                 <h5 class="media-headers">Game Cover</h5>
-                <input id="picturefield" type="text" placeholder="Insert URL of game cover">
+                <input id="picturefield" type="text" placeholder="Insert URL of game cover" name="gameCover">
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Background Image</h5>
@@ -57,7 +57,7 @@
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Game Trailer</h5>
-                <button class="btn-add-row8">Add</button>
+                <button class="btn-add-row8" type="button">Add</button>
                 <div class="element-wrapper8">
                     <div class="row8">
                         <input class="media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
@@ -67,7 +67,7 @@
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Picture List</h5>
-                <button class="btn-add-row9">Add</button>
+                <button class="btn-add-row9" type="button">Add</button>
                 <div class="element-wrapper9">
                     <div class="row9">
                         <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
@@ -83,7 +83,7 @@
         <ul>
             <li class="media-list">
                 <h5 class="media-headers">Soundtrack</h5>
-                <button class="add-button" id="btn4">Add</button>
+                <button class="add-button" id="btn4" type="button">Add</button>
                 <div class="element-wrapper4">
                     <div class="row4">
                         <input class="media-input" type="text" placeholder="Insert name of soundtrack ">
@@ -94,7 +94,7 @@
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Musical Artists</h5>
-                <button class="btn-add-row5">Add</button>
+                <button class="btn-add-row5" type="button">Add</button>
                 <div class="element-wrapper5">
                     <div class="row5">
                         <input class="media-input" type="text" placeholder="Insert name of musical artist">
@@ -105,7 +105,7 @@
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Composers</h5>
-                <button class="btn-add-row6">Add</button>
+                <button class="btn-add-row6" type="button">Add</button>
                 <div class="element-wrapper6">
                     <div class="row6">
                         <input class="media-input" type="text" placeholder="Insert name of composers">
@@ -115,7 +115,7 @@
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Writers</h5>
-                <button class="btn-add-row7">Add</button>
+                <button class="btn-add-row7" type="button">Add</button>
                 <div class ="element-wrapper7">
                     <div class="row7">
                         <input class="media-input" type="text" placeholder="Insert name of writers">
@@ -150,7 +150,7 @@
 
     <div id="developerInput" class="container">
         <h3 class="introheader">Developers</h3>
-        <button id="btn12" class="add-button">Add</button>
+        <button id="btn12" class="add-button" type="button">Add</button>
         <div class="element-wrapper12">
             <div class="list-rows row12">
                 <ul>
@@ -178,7 +178,7 @@
 
     <div id="publisherInput" class="container">
         <h3 class="introheader">Publisher details</h3>
-        <button id="btn13" class="add-button">Add</button>
+        <button id="btn13" class="add-button" type="button">Add</button>
         <div class="element-wrapper13">
             <div class="list-rows row13">
                 <ul>
@@ -206,7 +206,7 @@
 
     <div id="actorInput" class="container">
         <h3 id="headeractor">Actors</h3>
-        <button class="btn-add-row">Add</button>
+        <button class="btn-add-row" type="button">Add</button>
         <div class="element-wrapper">
             <div class="row">
                 <ul>
@@ -230,7 +230,7 @@
 
     <div id="charInput" class="container">
         <h3 class="introheader">Ingame Characters</h3>
-        <button id="btn11" class="add-button">Add</button>
+        <button id="btn11" class="add-button" type="button">Add</button>
         <div class="element-wrapper11">
             <div class="list-rows row11">
                 <ul>
@@ -250,7 +250,7 @@
 
     <div id="platformInput" class="container">
         <h3 id="headerplatform">Eligible Game Platforms</h3>
-        <button class="btn-add-row2">Add</button>
+        <button class="btn-add-row2" type="button">Add</button>
         <div class="element-wrapper2">
             <div class="row2">
                 <select>
@@ -274,7 +274,7 @@
 
     <div id="genreInput" class="container">
         <h3 id="headergenre">Game genre</h3>
-        <button class="btn-add-row3">Add</button>
+        <button class="btn-add-row3" type="button">Add</button>
         <div class="element-wrapper3">
             <div class="row3">
                 <select>
@@ -292,11 +292,13 @@
 
     <div id="gamedescInput" class="container">
         <h3 id="headergameDesc">Game Description</h3>
-        <textarea id="gameDescfield" rows = "10">
+        <textarea id="gameDescfield" rows = "10" name="gameDescription">
         </textarea>
     </div>
-    <button id="save-article">Save Game ;)</button>
+    <input type="submit" id="save-article" value="Save Game">
+    <!--<button id="save-article">Save Game ;)</button>-->
 </div>
+</form>
 <script src="../Functions/createarticle.js"></script>
 <!--<script src="../Functions/ConnectionScript.js"></script>-->
 <script src="../Functions/NavBar.js"></script>

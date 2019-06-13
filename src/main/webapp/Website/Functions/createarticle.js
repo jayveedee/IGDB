@@ -129,3 +129,38 @@ $(document).on("click", ".btn-remove-row13", function() {
     var index13 = $(".btn-remove-row13").index(this);
     $(".row13").eq(index13).remove();
 });
+
+$("#createGameForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type : $(this).attr("method"),
+        url : $(this).attr("action"),
+        data : $(this).serialize(),
+        success : function (data) {
+            alert("success");
+        },
+        error : function () {
+            alert("error");
+        }
+    });
+});
+
+/*$("#registerForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type : $(this).attr("method"),
+        url : $(this).attr("action"),
+        data : $(this).serialize(),
+        success : function (data) {
+            if (data == "true"){
+                alert("Your new account has been created successfully!");
+                location.href = "Login_Signup.html"
+            }else{
+                alert("Couldn't create user. This username might be taken. Try again.")
+            }
+        },
+        error : function () {
+            alert("Couldn't create user, try again");
+        }
+    });
+});*/

@@ -124,7 +124,6 @@ public class Services {
         }
 
         ArrayList<String> answer = null;
-        System.out.println(characters);
 
         //IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
@@ -168,5 +167,15 @@ public class Services {
             e.printStackTrace();
         }
         return jsonString;
+    }
+
+    @POST
+    @Path("game/createGame")
+    public String createGame(@FormParam("titleField") String title, @FormParam("gameCover") String gameCover, @FormParam("gameDescription") String gameDescription, @FormParam("releaseDate") String releaseDate){
+        System.out.println(title);
+        System.out.println(gameCover);
+        System.out.println(gameDescription);
+        System.out.println(releaseDate);
+        return "hey";
     }
 }
