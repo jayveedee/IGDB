@@ -1,6 +1,15 @@
 package Data.GameDAL;
 
+import Data.GameDTO.Character.CharacterDTO;
+import Data.GameDTO.Development.ActorDTO;
+import Data.GameDTO.Development.Company.DeveloperDTO;
+import Data.GameDTO.Development.Company.PublisherDTO;
+import Data.GameDTO.Development.ComposerDTO;
+import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
+import Data.GameDTO.Info.PictureDTO;
+import Data.GameDTO.Info.SoundtrackDTO;
+import Data.GameDTO.Info.TrailerDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,9 +18,26 @@ import java.util.List;
 public interface IGameDAO {
 
     boolean createGame(GameDTO game);
+
     GameDTO getGame(int gameID);
     List<GameDTO> getGameList();
     ArrayList<String> getGameNames(String characters);
-    boolean updateGame(GameDTO newGame);
+
+    boolean updateGame              (int gameID, GameDTO updatedGame);
+    boolean updateGameGenre         (int gameID, int oldGenreID, int updatedGenreID);
+    boolean updateGameGM            (int gameID, int oldGMID, int updatedGMID);
+    boolean updateGamePlatform      (int gameID, int oldPlatformID, int updatedPlatformID);
+    boolean updateGamePicture       (int gameID, int oldPicID, PictureDTO updatedPicture);
+    boolean updatedGameTrailer      (int gameID, int oldTrailerID, TrailerDTO updatedTrailer);
+
+    boolean updateGamePublisher     (int gameID, int oldPublisherID, PublisherDTO updatedPublisher);
+    boolean updateGameDeveloper     (int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper);
+    boolean updateGameWriter        (int gameID, int oldWriterID, WriterDTO updatedWriter);
+
+    boolean updateGameCharacter     (int gameID, int oldCharID, CharacterDTO updatedCharacter);
+    boolean updateGameActor         (int gameID, int oldActorID, ActorDTO updatedActor);
+    boolean updateGameOST           (int gameID, int oldOSTID, SoundtrackDTO updatedOST);
+    boolean updateGameComposer      (int gameID, int oldCompID, ComposerDTO updatedComposer);
+
     boolean deleteGame(int gameID) throws SQLException;
 }

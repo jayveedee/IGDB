@@ -17,7 +17,7 @@ public class GameDTO {
     private List<CharacterDTO>      gameCHs;        private List<ActorDTO>          gameACs;
     private List<GenreDTO>          gameGENREs;     private List<GameModeDTO>       gameGMs;
     private List<RatingDTO>         gameRATINGs;    private DateDTO                 gameRELEASEDATE;
-    private WriterDTO               gameWRI;
+    private List<WriterDTO>         gameWRI;
     private DeveloperDTO            gameDEV;        private PublisherDTO            gamePUB;
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
     private List<PlatformDTO>       gamePLAT;
@@ -26,7 +26,7 @@ public class GameDTO {
     private String                  gameBIO;        private List<TrailerDTO>        gameTRAILERs;
     private List<PictureDTO>        gamePICs;
 
-    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, WriterDTO gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
+    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, List<WriterDTO> gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -115,11 +115,11 @@ public class GameDTO {
         this.gameRELEASEDATE = gameRELEASEDATE;
     }
 
-    public WriterDTO getGameWRI() {
+    public List<WriterDTO> getGameWRI() {
         return gameWRI;
     }
 
-    public void setGameWRI(WriterDTO gameWRI) {
+    public void setGameWRI(List<WriterDTO> gameWRI) {
         this.gameWRI = gameWRI;
     }
 

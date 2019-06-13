@@ -13,6 +13,7 @@ import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,13 +36,13 @@ public class GameDAO implements IGameDAO {
         String      gameCOV         = game.getGameCover();
         String      gameBG          = game.getGameBG();
         DateDTO     gameRD          = game.getGameRELEASEDATE();
-        String      gameRDstring    = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYaer();
+        String      gameRDstring    = gameRD.getDay() + "/" + gameRD.getMonth() + "/" + gameRD.getYear();
 
         List<ActorDTO>      gameACTOR   = game.getGameACs();        List<CharacterDTO>  gameCHAR    = game.getGameCHs();
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
         List<PictureDTO>    gamePIC     = game.getGamePICs();       List<TrailerDTO>    gameTRAILER = game.getGameTRAILERs();
         DeveloperDTO        gameDEV     = game.getGameDEV();        PublisherDTO        gamePUB     = game.getGamePUB();
-        WriterDTO           gameWRI     = game.getGameWRI();        List<PlatformDTO>   gamePLAT    = game.getGamePLAT();
+        List<WriterDTO>     gameWRI     = game.getGameWRI();        List<PlatformDTO>   gamePLAT    = game.getGamePLAT();
         SoundtrackDTO       gameOST     = game.getGameOST();
 
         handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
@@ -75,7 +76,7 @@ public class GameDAO implements IGameDAO {
                     mySql.getPrepStatement().setString(2,gamePLAT.get(i).getPlatTITLE());
                         String day      = gamePLAT.get(i).getPlatCREATED().getDay();
                         String month    = gamePLAT.get(i).getPlatCREATED().getMonth();
-                        String year     = gamePLAT.get(i).getPlatCREATED().getYaer();
+                        String year     = gamePLAT.get(i).getPlatCREATED().getYear();
                     mySql.getPrepStatement().setString(3,day + "/" + month + "/" + year);
                     mySql.getPrepStatement().setInt(4,gameID);
                     mySql.getPrepStatement().addBatch();
@@ -146,15 +147,28 @@ public class GameDAO implements IGameDAO {
         }
         return false;
     }
-    private boolean handleINSERTWriter(int gameID, WriterDTO gameWRI) {
+    private boolean handleINSERTWriter(int gameID, List<WriterDTO> gameWRI) {
         if (gameWRI != null) {
             String queryWRI =
                 "INSERT INTO WriterList (writerID, writerFN, writerLN, writerGameID) " +
                 "VALUES (?, ?, ?, ?)";
-            int                 writerID            = gameWRI.getWriterID();
-            String              writerFN            = gameWRI.getWriterFN();
-            String              writerLN            = gameWRI.getWriterLN();
-            return handleINSERT_fn_ln_gameid(gameID, queryWRI, writerID, writerFN, writerLN);
+            try {
+                mySql.getConnection().setAutoCommit(false);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryWRI));
+                PreparedStatement prepStatement = mySql.getPrepStatement();
+                for (int i = 0; i < gameWRI.size(); i++) {
+                    prepStatement.setInt(1,gameWRI.get(i).getWriterID());
+                    prepStatement.setString(2,gameWRI.get(i).getWriterFN());
+                    prepStatement.setString(3,gameWRI.get(i).getWriterLN());
+                    prepStatement.setInt(4,gameID);
+                    prepStatement.addBatch();
+                }
+                prepStatement.executeBatch();
+                mySql.getConnection().commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
         return false;
     }
@@ -185,7 +199,7 @@ public class GameDAO implements IGameDAO {
             int             pubID               = gamePUB.getPubID();
             String          pubNAME             = gamePUB.getPubNAME();
             DateDTO pubCREATED          = gamePUB.getPubCREATED();
-                String      pubCREATEDstring    = pubCREATED.getDay() + "/" + pubCREATED.getMonth() + "/" +pubCREATED.getYaer();
+                String      pubCREATEDstring    = pubCREATED.getDay() + "/" + pubCREATED.getMonth() + "/" +pubCREATED.getYear();
             String          pubCOUNTRY          = gamePUB.getPubCOUNTRY();
             boolean         pubSTATUS           = gamePUB.isPubSTATUS();
 
@@ -207,7 +221,7 @@ public class GameDAO implements IGameDAO {
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
             DateDTO parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
-                String  parentCREATEDstring         = parentCREATED.getDay() + "/" + parentCREATED.getMonth() + "/" + parentCREATED.getYaer();
+                String  parentCREATEDstring         = parentCREATED.getDay() + "/" + parentCREATED.getMonth() + "/" + parentCREATED.getYear();
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
@@ -217,7 +231,7 @@ public class GameDAO implements IGameDAO {
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
             DateDTO     devCREATED          = gameDEV.getDevCREATED();
-                String  devCREATEDstring    = devCREATED.getDay() + "/" + devCREATED.getMonth() + "/" + devCREATED.getYaer();
+                String  devCREATEDstring    = devCREATED.getDay() + "/" + devCREATED.getMonth() + "/" + devCREATED.getYear();
             String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
             boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
@@ -365,7 +379,7 @@ public class GameDAO implements IGameDAO {
                         mySql.getPrepStatement().setString(3,gameACTOR.get(i).getAcLN());
                         String actorDOBstring =
                                 gameACTOR.get(i).getAcBDAY().getDay() + "/" +
-                                gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYaer();
+                                gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYear();
                         mySql.getPrepStatement().setString(4,actorDOBstring);
                         mySql.getPrepStatement().setString(5,gameACTOR.get(i).getAcPFP());
                         mySql.getPrepStatement().setInt(6,gameACTOR.get(i).getAcCHs().get(j));
@@ -613,14 +627,16 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryWRI));
             mySql.getPrepStatement().setInt(1,gameID);
             ResultSet rs15 = mySql.getPrepStatement().executeQuery();
-            WriterDTO writer = new WriterDTO();
+            List<WriterDTO> writerList = new ArrayList<>();
             while (rs15.next()){
+                WriterDTO writer = new WriterDTO();
                 writer.setWriterID(rs15.getInt("writerID"));
                 writer.setWriterFN(rs15.getString("writerFN"));
                 writer.setWriterLN(rs15.getString("writerLN"));
                 writer.setWriterGAME(rs15.getInt("writerGameID"));
+                writerList.add(writer);
             }
-            game.setGameWRI(writer);
+            game.setGameWRI(writerList);
 
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPUB));
             mySql.getPrepStatement().setInt(1,gameID);
@@ -700,220 +716,175 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public boolean updateGame(GameDTO newGame) {
-
-        //FIXME GOOD
-        String query1  =    "UPDATE Game " +
-                            "SET gameTITLE = ?, gameRD = ?, gameDESC = ?, gameCOVER =?, gameBACKGROUND = ? " +
-                            "WHERE gameID = ? ";
-        //FIXME GOOD
-        String query2  =    "UPDATE CharacterList " +
-                            "SET charNAME = ?, charPFP = ? " +
-                            "WHERE charGameID = ? AND  charID = ?";
-        //FIXME Vi har statiske genre, så vi ændrer kun genreID hos gameID for at skifte genre (har brug for en anden metode til at lave nye genre)
-        String query3  =    "UPDATE GenreList " +
-                            "SET genreTITLE = ? " +
-                            "WHERE genreID = ? AND genreGameID = ? ";
-
-        String query5  =    "UPDATE WriterList " +
-                            "SET writerFN = ?, writerLN = ? " +
-                            "WHERE writerID = ? AND  writerGameID = ?";
-
-        String query6  =    "UPDATE DeveloperList " +
-                            "SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ? " +
-                            "WHERE devID = ? AND devParentID = ? AND devGameID = ?";
-
-        String query7  =    "UPDATE ComposerList " +
-                            "SET compFN = ?, compLN = ? " +
-                            "WHERE compID = ? AND compGameID = ?";
-
-        String query8  =    "UPDATE PlatformList " +
-                            "SET platTITLE = ?, platCREATED = ?  " +
-                            "WHERE platID = ? AND platGameID = ?";
-
-        String query9  =    "UPDATE PictureList " +
-                            "SET pictureURL = ? " +
-                            "WHERE pictureID = ? AND pictureGameID = ?";
-
-        String query10 =    "UPDATE ActorList " +
-                            "SET actorFN = ?, actorLN = ?, actorDOF = ?, actorPFP = ? " +
-                            "WHERE actorID = ? AND actorCharID = ? AND actorGameID = ?";
-
-        String query11 =    "UPDATE GameModeList " +
-                            "SET gmTITLE = ? " +
-                            "WHERE gmID = ? AND gmGameID = ?";
-
-        String query12 =    "UPDATE PublisherList " +
-                            "SET pubNAME = ?, pubCREATED = ?, pubCOUNTRY = ?, pubSTATUS = ? " +
-                            "WHERE pubID = ? AND pubGameID = ?";
-
-        String query13 =    "UPDATE SoundtrackList " +
-                            "SET ostTITLE = ?, ostPFP = ? " +
-                            "WHERE ostID = ? AND ostComposerID = ? AND ostArtistID = ? AND ostGameID = ?";
-
-        String query14 =    "UPDATE TrailerList " +
-                            "SET  trailerURL = ?  " +
-                            "WHERE trailerID = ? AND trailerGameID = ?";
-
+    public boolean updateGame(int gameID, GameDTO updatedGame) {
+        String query = "UPDATE Game SET gameTITLE = ?, gameRD = ?, gameDESC = ?, gameCOVER = ?, gameBACKGROUND = ? WHERE gameID = ?";
         try {
             mySql.getConnection().setAutoCommit(false);
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query1));
-            mySql.getPrepStatement().setString(1, newGame.getGameNAME());
-            String date = newGame.getGameRELEASEDATE().getDay() + "/" + newGame.getGameRELEASEDATE().getMonth() + "/" + newGame.getGameRELEASEDATE().getYaer();
-            mySql.getPrepStatement().setString(2, date);
-            mySql.getPrepStatement().setString(3, newGame.getGameBIO());
-            mySql.getPrepStatement().setString(4, newGame.getGameCover());
-            mySql.getPrepStatement().setString(5, newGame.getGameBG());
-            mySql.getPrepStatement().setInt(6, newGame.getGameID());
-            mySql.getPrepStatement().executeUpdate();
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedGame.getGameNAME());
+            prepStatement.setString(2,updatedGame.getGameRELEASEDATE().getDateString());
+            prepStatement.setString(3,updatedGame.getGameBIO());
+            prepStatement.setString(4,updatedGame.getGameCover());
+            prepStatement.setString(5,updatedGame.getGameBG());
+            prepStatement.setInt(6,gameID);
+            prepStatement.executeUpdate();
             mySql.getConnection().commit();
-
-
-            mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
-
-            for (int i = 0; i < newGame.getGameCHs().size(); i++) {
-                mySql.getPrepStatement().setString(1, newGame.getGameCHs().get(i).getChNAME());
-                mySql.getPrepStatement().setString(2, newGame.getGameCHs().get(i).getChPFP());
-                mySql.getPrepStatement().setInt(3, newGame.getGameCHs().get(i).getChGAME());
-                mySql.getPrepStatement().setInt(4, newGame.getGameCHs().get(i).getChID());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
-            for (int j = 0; j < newGame.getGameGENREs().size(); j++) {
-                mySql.getPrepStatement().setString(1, newGame.getGameGENREs().get(j).getGenTITLE());
-                mySql.getPrepStatement().setInt(2, newGame.getGameGENREs().get(j).getGenID());
-                mySql.getPrepStatement().setInt(3, newGame.getGameGENREs().get(j).getGenGAME());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query5));
-            mySql.getPrepStatement().setString(1, newGame.getGameWRI().getWriterFN());
-            mySql.getPrepStatement().setString(2, newGame.getGameWRI().getWriterLN());
-            mySql.getPrepStatement().setInt(3, newGame.getGameWRI().getWriterID());
-            mySql.getPrepStatement().setInt(4, newGame.getGameWRI().getWriterGAME());
-            mySql.getPrepStatement().executeUpdate();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query6));
-            mySql.getPrepStatement().setString(1,newGame.getGameDEV().getDevNAME());
-            String created = newGame.getGameDEV().getDevCREATED().getDay() + "/" + newGame.getGameDEV().getDevCREATED().getMonth() +"/"+ newGame.getGameDEV().getDevCREATED().getYaer();
-            mySql.getPrepStatement().setString(2,created);
-            mySql.getPrepStatement().setString(3,newGame.getGameDEV().getDevCOUNTRY());
-            mySql.getPrepStatement().setBoolean(4,newGame.getGameDEV().isDevSTATUS());
-            mySql.getPrepStatement().setInt(5,newGame.getGameDEV().getDevID());
-            mySql.getPrepStatement().setInt(6,newGame.getGameDEV().getDevPCOMPANY().getParentID());
-            mySql.getPrepStatement().setInt(7,newGame.getGameDEV().getDevGAME());
-            mySql.getPrepStatement().executeUpdate();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query7));
-            mySql.getPrepStatement().setString(1,newGame.getGameCOMP().getCompFN());
-            mySql.getPrepStatement().setString(2,newGame.getGameCOMP().getCompLN());
-            mySql.getPrepStatement().setInt(3,newGame.getGameCOMP().getCompID());
-            mySql.getPrepStatement().setInt(4,newGame.getGameCOMP().getCompGAME());
-            mySql.getPrepStatement().executeUpdate();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query8));
-            for (int i = 0; i < newGame.getGamePLAT().size(); i++) {
-                mySql.getPrepStatement().setString(1,newGame.getGamePLAT().get(i).getPlatTITLE());
-                String GPCreated = newGame.getGamePLAT().get(i).getPlatCREATED().getDay() +"/"+newGame.getGamePLAT().get(i).getPlatCREATED().getMonth() + "/"+ newGame.getGamePLAT().get(i).getPlatCREATED().getYaer();
-                mySql.getPrepStatement().setString(2,GPCreated);
-                mySql.getPrepStatement().setInt(3,newGame.getGamePLAT().get(i).getPlatID());
-                mySql.getPrepStatement().setInt(4,newGame.getGamePLAT().get(i).getPlatGAMEs());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query9));
-            for (int i = 0; i < newGame.getGamePICs().size(); i++) {
-                mySql.getPrepStatement().setString(1,newGame.getGamePICs().get(i).getPicURL());
-                mySql.getPrepStatement().setInt(2,newGame.getGamePICs().get(i).getPicID());
-                mySql.getPrepStatement().setInt(3,newGame.getGamePICs().get(i).getPicGameID());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query10));
-            for (int i = 0; i < newGame.getGameACs().size(); i++) {
-                mySql.getPrepStatement().setString(1,newGame.getGameACs().get(i).getAcFN());
-                mySql.getPrepStatement().setString(2,newGame.getGameACs().get(i).getAcLN());
-                String dateAC = newGame.getGameACs().get(i).getAcBDAY().getDay() +"/"+ newGame.getGameACs().get(i).getAcBDAY().getMonth()+"/"+newGame.getGameACs().get(i).getAcBDAY().getYaer();
-                mySql.getPrepStatement().setString(3,dateAC);
-                mySql.getPrepStatement().setString(4,newGame.getGameACs().get(i).getAcPFP());
-                mySql.getPrepStatement().setInt(5,newGame.getGameACs().get(i).getAcID());
-                for (int j = 0; j < newGame.getGameACs().get(i).getAcCHs().size(); j++) {
-                    mySql.getPrepStatement().setInt(6,newGame.getGameACs().get(i).getAcCHs().get(j));
-                }
-                mySql.getPrepStatement().setInt(7,newGame.getGameACs().get(i).getAcGAME());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query11));
-            for (int i = 0; i < newGame.getGameGMs().size(); i++) {
-
-                mySql.getPrepStatement().setString(1,newGame.getGameGMs().get(i).getGmTITLE());
-                mySql.getPrepStatement().setInt(2,newGame.getGameGMs().get(i).getGmID());
-                mySql.getPrepStatement().setInt(3,newGame.getGameGMs().get(i).getGmGAME());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query12));
-            mySql.getPrepStatement().setString(1,newGame.getGamePUB().getPubNAME());
-            String PubCreated = newGame.getGamePUB().getPubCREATED().getDay() + "/"+ newGame.getGamePUB().getPubCREATED().getMonth()+"/"+ newGame.getGamePUB().getPubCREATED().getYaer();
-            mySql.getPrepStatement().setString(2,PubCreated);
-            mySql.getPrepStatement().setString(3,newGame.getGamePUB().getPubCOUNTRY());
-            mySql.getPrepStatement().setBoolean(4,newGame.getGamePUB().isPubSTATUS());
-            mySql.getPrepStatement().setInt(5,newGame.getGamePUB().getPubID());
-            mySql.getPrepStatement().setInt(6,newGame.getGamePUB().getPubGAME());
-            mySql.getPrepStatement().executeUpdate();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query13));
-            mySql.getPrepStatement().setString(1,newGame.getGameOST().getOstTITLE());
-            mySql.getPrepStatement().setString(2,newGame.getGameOST().getOstPFP());
-            mySql.getPrepStatement().setInt(3,newGame.getGameOST().getOstID());
-            mySql.getPrepStatement().setInt(4,newGame.getGameOST().getOstCOMP().getCompID());
-            for (int i = 0; i < newGame.getGameOST().getOstMA().size(); i++) {
-                mySql.getPrepStatement().setInt(5,newGame.getGameOST().getOstMA().get(i).getArtID());
-                mySql.getPrepStatement().setInt(6,newGame.getGameOST().getOstGAME());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query14));
-            for (int i = 0; i < newGame.getGameTRAILERs().size(); i++) {
-                mySql.getPrepStatement().setString(1,newGame.getGameTRAILERs().get(i).getTrailerURL());
-                mySql.getPrepStatement().setInt(2,newGame.getGameTRAILERs().get(i).getTrailerID());
-                mySql.getPrepStatement().setInt(3,newGame.getGameTRAILERs().get(i).getTrailerGameID());
-                mySql.getPrepStatement().addBatch();
-            }
-            mySql.getPrepStatement().executeBatch();
-            mySql.getConnection().commit();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
+    }
 
+    @Override
+    public boolean updateGameGenre(int gameID, int oldGenreID, int updatedGenreID) {
+        String query = "UPDATE GenreList SET genreID = ? WHERE genreID = ? AND genreGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setInt(1,updatedGenreID);
+            prepStatement.setInt(2,oldGenreID);
+            prepStatement.setInt(3,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
+    @Override
+    public boolean updateGameGM(int gameID, int oldGMID, int updatedGMID) {
+        String query = "UPDATE GameModeList SET gmID = ? WHERE gmID = ? AND gmGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setInt(1,updatedGMID);
+            prepStatement.setInt(2,oldGMID);
+            prepStatement.setInt(3,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateGamePlatform(int gameID, int oldPlatformID, int updatedPlatformID) {
+        String query = "UPDATE PlatformList SET platID = ? WHERE platID = ? AND gameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setInt(1,updatedPlatformID);
+            prepStatement.setInt(2,oldPlatformID);
+            prepStatement.setInt(3,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateGamePicture(int gameID, int oldPicID, PictureDTO updatedPicture) {
+        String query = "UPDATE PictureList SET pictureURL = ? WHERE pictureID = ? AND pictureGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedPicture.getPicURL());
+            prepStatement.setInt(2,oldPicID);
+            prepStatement.setInt(2,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updatedGameTrailer(int gameID, int oldTrailerID, TrailerDTO updatedTrailer) {
+        String query = "UPDATE TrailerList SET trailerURL = ? WHERE trailerID = ? AND trailerGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedTrailer.getTrailerURL());
+            prepStatement.setInt(2,oldTrailerID);
+            prepStatement.setInt(3,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateGamePublisher(int gameID, int oldPublisherID, PublisherDTO updatedPublisher) {
+        String query = "UPDATE PublisherList SET pubNAME = ?, pubCREATED = ?, pubCOUNTRY = ?, pubSTATUS = ? WHERE pubID = ? AND pubGameID = ?";
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            PreparedStatement prepStatement = mySql.getPrepStatement();
+            prepStatement.setString(1,updatedPublisher.getPubNAME());
+            prepStatement.setString(2,updatedPublisher.getPubCREATED().getDateString());
+            prepStatement.setString(3,updatedPublisher.getPubCOUNTRY());
+            prepStatement.setBoolean(4,updatedPublisher.isPubSTATUS());
+            prepStatement.setInt(5,oldPublisherID);
+            prepStatement.setInt(6,gameID);
+            prepStatement.executeUpdate();
+            mySql.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateGameDeveloper(int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper) {
+        String query1 = "UPDATE DeveloperList SET devNAME = ?, devCREATED = ?, devCOUNTRY = ?, devSTATUS = ?, devParentID = ? WHERE devID = ? AND devGameID = ?";
+        String query2 = "UPDATE ParentCompany SET parentNAME = ?, parentCREATED = ?, parentCOUNTRY = ?, parentSTATUS = ? WHERE ";
+        return true;
+    }
+
+    @Override
+    public boolean updateGameWriter(int gameID, int oldWriterID, WriterDTO updatedWriter) {
         return false;
     }
 
+    @Override
+    public boolean updateGameCharacter(int gameID, int oldCharID, CharacterDTO updatedCharacter) {
+        return false;
+    }
 
+    @Override
+    public boolean updateGameActor(int gameID, int oldActorID, ActorDTO updatedActor) {
+        return false;
+    }
+
+    @Override
+    public boolean updateGameOST(int gameID, int oldOSTID, SoundtrackDTO updatedOST) {
+        return false;
+    }
+
+    @Override
+    public boolean updateGameComposer(int gameID, int oldCompID, ComposerDTO updatedComposer) {
+        return false;
+    }
 
     @Override
     public boolean deleteGame (int gameID) {

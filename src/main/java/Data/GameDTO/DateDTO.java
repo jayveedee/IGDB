@@ -4,12 +4,12 @@ public class DateDTO {
 
     private String day;
     private String month;
-    private String yaer;
+    private String year;
 
-    public DateDTO(String day, String month, String yaer) {
+    public DateDTO(String day, String month, String year) {
         this.day = day;
         this.month = month;
-        this.yaer = yaer;
+        this.year = year;
     }
 
     public DateDTO() {
@@ -31,11 +31,14 @@ public class DateDTO {
         this.month = month;
     }
 
-    public String getYaer() {
-        return yaer;
+    public String getYear() {
+        return year;
     }
 
-    public void setYaer(String yaer) {
-        this.yaer = yaer;
+    public void setYear(String year) {
+        this.year = year;
+    }
+    public String getDateString(){
+        return day + "/" + month + "/" + year;
     }
 }
