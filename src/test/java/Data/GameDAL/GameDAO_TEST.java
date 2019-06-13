@@ -264,7 +264,8 @@ public class GameDAO_TEST {
         GameDTO testGame1 = createGameDB(70,"COD1");
         GameDTO testGame2 = createGameDB(71,"COD2");
         GameDTO testGame3 = createGameDB(72,"COD3");
-        GameDTO testGame4 = createGameDB(75,"COD4");
+        GameDTO testGame4 = createGameDB(99,"COD4");
+        assertTrue(gdao.createGame(testGame4));
         mysql.closeConnection(mysql.getConnection());
     }
 
