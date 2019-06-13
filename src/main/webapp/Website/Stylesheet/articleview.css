@@ -38,17 +38,38 @@
     margin: 20px;
 }
 
-.gamedata{
-    width: 550px;
-    margin: 0px 0px 0px 120px;
-
-}
-
 .gamedatahead{
     color: #FFFFFF;
 }
 
 .dataoutput{
-    width: 500px;
+    width: 300px;
     border-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.gamedescout{
+    resize: none;
+    width: 100%;
+    max-width: 500px;
+}
+.containerout{
+    padding: 20px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    width: 550px;
+    margin: 0px 0px 20px 120px;
+}
+
+.piclist{
+    margin: 0px 0px 19px 50px;
+    padding: 0px 0px 0px 20px;
+    width: 650px;
+}
+.intro-ul{
+    padding: 0px 0px 0px 0px;
+    display: flex;
+}
+.infowrapper{
+    display: inline;
 }
