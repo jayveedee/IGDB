@@ -1,3 +1,9 @@
+import Data.IMysqlConnection;
+import Data.MysqlConnection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -33,11 +39,11 @@ public class Main {
         }*/
 
         //TESTER OM JSON STRINGEN BLIVER LAVET KORREKT ALT EFTER HVILKE SPIL MAN SØGER EFTER. TEST STATUS = INGEN PROBLEMER.
-        Services services = new Services();
+        /*Services services = new Services();
         services.createConnection();
         String json = services.GameNamesService("p");
         services.closeConnection();
-        System.out.println(json);
+        System.out.println(json);*/
 
 
         /*IMysqlConnection mysqlConnection = new MysqlConnection();

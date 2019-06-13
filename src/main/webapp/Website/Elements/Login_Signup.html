@@ -15,10 +15,14 @@
         <ul class="navigation-list">
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
-                    <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="">
+                    <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
+                        <input type="submit" value="Search">
+                    </form>
+                    <datalist id="dataList"></datalist>
                 </div>
             </div>
-            <div class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="nav-active">Login/Registrer</a></div>
+            <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="nav-active">Login/Registrer</a></li>
             <div class="navLinks">
                 <a id="profileBtn" class="not-active" href="User.html">Profile</a>
             </div>
@@ -55,8 +59,8 @@
     </div>
     <!--Import of JS/Jquery START-->
     <script src="../Functions/Login_Signup.js"></script>
-    <script src="../Functions/Index.js"></script>
-    <script src="../Functions/ConnectionScript.js"></script>
+    <script src="../Functions/NavBar.js"></script>
+    <!--<script src="../Functions/ConnectionScript.js"></script>-->
     <!--Import of JS/Jquery END-->
 </body>
 </html>
