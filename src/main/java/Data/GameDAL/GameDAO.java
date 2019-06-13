@@ -780,10 +780,79 @@ public class GameDAO implements IGameDAO {
               mySql.getPrepStatement().executeBatch();
               mySql.getConnection().commit();
 
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query9));
+            for (int i = 0; i < newGame.getGamePICs().size(); i++) {
+                mySql.getPrepStatement().setString(1,newGame.getGamePICs().get(i).getPicURL());
+                mySql.getPrepStatement().setInt(2,newGame.getGamePICs().get(i).getPicID());
+                mySql.getPrepStatement().setInt(3,newGame.getGamePICs().get(i).getPicGameID());
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+           mySql.setPrepStatment(mySql.getConnection().prepareStatement(query10));
+            for (int i = 0; i < newGame.getGameACs().size(); i++) {
+                mySql.getPrepStatement().setString(1,newGame.getGameACs().get(i).getAcFN());
+                mySql.getPrepStatement().setString(2,newGame.getGameACs().get(i).getAcLN());
+                String dateAC = newGame.getGameACs().get(i).getAcBDAY().getDay() +"/"+ newGame.getGameACs().get(i).getAcBDAY().getMonth()+"/"+newGame.getGameACs().get(i).getAcBDAY().getYaer();
+                mySql.getPrepStatement().setString(3,dateAC);
+                mySql.getPrepStatement().setString(4,newGame.getGameACs().get(i).getAcPFP());
+                mySql.getPrepStatement().setInt(5,newGame.getGameACs().get(i).getAcID());
+                mySql.getPrepStatement().setInt(6,newGame.getGameACs().get(i).getAcCHs();
+                mySql.getPrepStatement().setInt(7,newGame.getGameACs().get(i).getAcGAME());
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query11));
+            for (int i = 0; i < newGame.getGameGMs().size(); i++) {
+
+                mySql.getPrepStatement().setString(1,newGame.getGameGMs().get(i).getGmTITLE());
+                mySql.getPrepStatement().setInt(2,newGame.getGameGMs().get(i).getGmID());
+                mySql.getPrepStatement().setInt(3,newGame.getGameGMs().get(i).getGmGAME());
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
 
 
-           
-        } catch (SQLException e) {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query12));
+           mySql.getPrepStatement().setString(1,newGame.getGamePUB().getPubNAME());
+           String PubCreated = newGame.getGamePUB().getPubCREATED().getDay() + "/"+ newGame.getGamePUB().getPubCREATED().getMonth()+"/"+ newGame.getGamePUB().getPubCREATED().getYaer();
+           mySql.getPrepStatement().setString(2,PubCreated);
+           mySql.getPrepStatement().setString(3,newGame.getGamePUB().getPubCOUNTRY());
+           mySql.getPrepStatement().setBoolean(4,newGame.getGamePUB().isPubSTATUS());
+           mySql.getPrepStatement().setInt(5,newGame.getGamePUB().getPubID());
+           mySql.getPrepStatement().setInt(6,newGame.getGamePUB().getPubGAME());
+           mySql.getPrepStatement().executeUpdate();
+           mySql.getConnection().commit();
+
+           mySql.setPrepStatment(mySql.getConnection().prepareStatement(query13));
+           mySql.getPrepStatement().setString(1,newGame.getGameOST().getOstTITLE());
+           mySql.getPrepStatement().setString(2,newGame.getGameOST().getOstPFP();
+           mySql.getPrepStatement().setInt(3,newGame.getGameOST().getOstID());
+           mySql.getPrepStatement().setInt(4,newGame.getGameOST().getOstCOMP().getCompID());
+            for (int i = 0; i < newGame.getGameOST().getOstMA().size(); i++) {
+                mySql.getPrepStatement().setInt(5,newGame.getGameOST().getOstMA().get(i).getArtID());
+                mySql.getPrepStatement().setInt(6,newGame.getGameOST().getOstGAME());
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+
+
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query14));
+            for (int i = 0; i < newGame.getGameTRAILERs().size(); i++) {
+                mySql.getPrepStatement().setString(1,newGame.getGameTRAILERs().get(i).getTrailerURL());
+                mySql.getPrepStatement().setInt(2,newGame.getGameTRAILERs().get(i).getTrailerID());
+                mySql.getPrepStatement().setInt(3,newGame.getGameTRAILERs().get(i).getTrailerGameID());
+                mySql.getPrepStatement().addBatch();
+            }
+            mySql.getPrepStatement().executeUpdate();
+            mySql.getConnection().commit();
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -795,6 +864,7 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame(int gameID) {
+
         String query1 = "";
 
         return true;
