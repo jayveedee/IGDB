@@ -130,12 +130,59 @@ $(document).on("click", ".btn-remove-row13", function() {
     $(".row13").eq(index13).remove();
 });
 
+
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
+    var game ={
+        gameNAME : "placeholder",
+        gameCHs : [],
+        gameACs : [],
+        gameGENREs : [],
+        gameGMs : [],
+        gameRATINGs : [],
+        gameRELEASEDATE : "placeholder",
+        gameWRI : "placeholder",
+        gameCOMP : "placeholder",
+        gameDEV : "placeholder",
+        gamePUB : "placeholder",
+        gameOST : "placeholder",
+        gamePLAT : [],
+        gameCOVER : "placeholder",
+        gameBG : "placeholder",
+        gameBIO : "placeholder",
+        gameTRAILERs : [],
+        gamePICs : []
+    };
+
+    var plat={
+
+    };
+    game.gameNAME.push("hey");
+    game.gameNAME.push("omg");
+    for (var i = 0; i < game.gameNAME.length; i++) {
+        alert(game.gameNAME[i]);
+    }
+
+    alert(game.gameNAME);
+
+});
+
+//FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
+/*$("#createGameForm").submit(function (event) {
+    event.preventDefault();
+    var data = $(this).serializeArray();
+    var newArray = new Array();
+    newArray.push("hey");
+    newArray.push("hi");
+    //var newArraySerialized =JSON.stringify(newArray) ;
+    //newArraySerialized.push({name : "newValueFromNewArray", value : "OMG BRO Hvis Det Her virker så køber jeg en lotto plade"});
+    data.push({name : "newValue", value : "detHerErDenNyeValueOgDetKanVæreSejtHvisDetteVirkede"});
+    data.push({name : "list", value : newArray});
+    //data = data.concat(newArraySerialized);
     $.ajax({
         type : $(this).attr("method"),
         url : $(this).attr("action"),
-        data : $(this).serialize(),
+        data : $.param(data),
         success : function (data) {
             alert("success");
         },
@@ -143,7 +190,7 @@ $("#createGameForm").submit(function (event) {
             alert("error");
         }
     });
-});
+});*/
 
 /*$("#registerForm").submit(function (event) {
     event.preventDefault();
