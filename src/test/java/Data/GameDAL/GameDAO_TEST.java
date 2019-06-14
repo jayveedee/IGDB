@@ -396,7 +396,7 @@ public class GameDAO_TEST {
         mysql.closeConnection(mysql.getConnection());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void updateGame() {
         try {
             mysql.createConnection();
