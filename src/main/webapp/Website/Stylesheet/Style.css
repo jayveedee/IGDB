@@ -1,4 +1,4 @@
-/* General START*/
+/*---------------------General START---------------------*/
 body{
     margin:10px;
     padding: 0px;
@@ -17,8 +17,15 @@ h2{
     left: 275px;
     margin: 20px;
 }
-/* Body END*/
-/* Nav-bar START*/
+
+.container{
+    padding: 20px;
+    margin: 20px 200px 0px 200px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+/*---------------------General END---------------------*/
+/*---------------------Nav-bar START---------------------*/
 .standart-nav{
     display: flex;
     justify-content: space-around;
@@ -63,6 +70,7 @@ h2{
     border-radius: 14px;
     color: white;
     text-decoration: none;
+    display: block;
 }
 
 .nav-login{
@@ -116,27 +124,57 @@ h2{
 #searchBar {
     display: inline;
 }
-/* Body END*/
-
-.container{
-    padding: 20px;
-    margin: 20px 200px 0px 200px;
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 4px;
-}
-
-.slideshow-container{
+/*---------------------Nav-bar END---------------------*/
+/*---------------------Slideshow START---------------------*/
+.top-container{
     width: 60%;
     margin: auto;
-    position: center;
+    height: 400px;
     overflow: hidden;
+    position: relative;
 }
 
-.slideshow-slide{
-    height: 380px;
-    width: 100%;
-    margin: auto;
+
+.slideshow-container{
+    display: flex;
+    height: 100%;
 }
+
+.slideshow-container img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.top-container button{
+    position: absolute;
+    top: 50%;
+    z-index: 999999999;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+    padding: 9px 9px 9px 9px;
+}
+
+.top-container button:hover{
+    background-color: grey;
+    opacity: 1;
+}
+
+#prevBtn{
+    left: 2%;
+}
+
+#nextBtn{
+    right: 2%;
+}
+
+
+/*---------------------Slideshow END---------------------*/
+
 .article-container{
     display: flex;
     position: center;
@@ -222,6 +260,4 @@ h2{
     position: absolute;
     margin: 20px 0px 0px 30px;
     width: 350px;
-
 }
-
