@@ -5,7 +5,7 @@ import Data.GameDTO.GameDTO;
 public class RatingDTO {
 
     private int         ratingID;
-    private UserDTO     ratingUSER;
+        private UserDTO     ratingUSER;
     private GameDTO     ratingGAME;
 
     public RatingDTO(int ratingID, UserDTO ratingUSER, GameDTO ratingGAME) {

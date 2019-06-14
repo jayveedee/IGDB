@@ -1,0 +1,85 @@
+.backgroundimage{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    -webkit-filter: blur(4px);
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    position:relative;
+}
+
+.coverimage{
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    max-width: 285px;
+    vertical-align: middle;
+    position: absolute;
+    top: 480px;
+    border-radius: 20px;
+    margin: 0px 0px 0px 120px;
+}
+
+.intro-info{
+    margin: 0px 0px 0px 400px;
+}
+
+.gametitle{
+    color: #FFFFFF;
+    margin: 20px;
+}
+
+.shortgameinfo{
+    color: #FFFFFF;
+    margin: 20px;
+}
+
+.gamedatahead{
+    color: #FFFFFF;
+}
+
+.dataoutput{
+    width: 300px;
+    border-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.gamedescout{
+    resize: none;
+    width: 100%;
+    max-width: 500px;
+}
+.containerout{
+    padding: 20px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    width: 550px;
+    margin: 0px 0px 20px 120px;
+}
+
+.piclist{
+    margin: 0px 0px 19px 50px;
+    padding: 0px 0px 0px 20px;
+    width: 650px;
+}
+.vidlist{
+    margin: 0px 0px 19px 50px;
+    padding: 0px 0px 0px 20px;
+    width: 650px;
+}
+.intro-ul{
+    padding: 0px 0px 0px 0px;
+    display: flex;
+}
+.infowrapper{
+    display: inline;
+}
+
+.actorslist{
+    width: 100%;
+    max-width: 1270px;
+}
