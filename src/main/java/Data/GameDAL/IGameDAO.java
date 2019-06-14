@@ -41,6 +41,6 @@ public interface IGameDAO {
     boolean updateGameComposer      (int gameID, int oldCompID, ComposerDTO updatedComposer);
 
     //DELETE
-    boolean deleteGame(int gameID) throws SQLException;
+    boolean deleteGame(int gameID);
 
 }
