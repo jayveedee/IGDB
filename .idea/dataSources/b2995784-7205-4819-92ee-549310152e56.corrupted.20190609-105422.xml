@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="s185095@ec2-52-30-211-3.eu-west-1.compute.amazonaws.com">
+<dataSource name="@s185095">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
     <root id="1">
       <ServerVersion>8.0.12</ServerVersion>
@@ -1187,7 +1187,6 @@ actorGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="308" parent="275" name="changeID">
       <Position>1</Position>
@@ -1233,7 +1232,6 @@ changeUSER</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="316" parent="275" name="ChangeList_ibfk_2">
       <ColNames>changeUSER</ColNames>
@@ -1283,7 +1281,6 @@ charGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="325" parent="277" name="compID">
       <Position>1</Position>
@@ -1329,7 +1326,6 @@ compGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="333" parent="278" name="devID">
       <Position>1</Position>
@@ -1400,7 +1396,6 @@ devGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="346" parent="279" name="gameID">
       <Position>1</Position>
@@ -1434,421 +1429,406 @@ devGameID</ColNames>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="352" parent="279" name="gameTITLE">
-      <ColNames>gameTITLE</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="353" parent="279" name="gameTITLE_2">
-      <ColNames>gameTITLE</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="354" parent="279" name="PRIMARY">
+    <key id="352" parent="279" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>gameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="355" parent="279" name="gameTITLE">
-      <ColNames>gameTITLE</ColNames>
-      <UnderlyingIndexName>gameTITLE</UnderlyingIndexName>
-    </key>
-    <column id="356" parent="280" name="gmID">
+    <column id="353" parent="280" name="gmID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="280" name="gmTITLE">
+    <column id="354" parent="280" name="gmTITLE">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="280" name="gmGameID">
+    <column id="355" parent="280" name="gmGameID">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="359" parent="280" name="gmTITLE">
+    <index id="356" parent="280" name="gmTITLE">
       <ColNames>gmTITLE</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="360" parent="280" name="gmGameID">
-      <ColNames>gmGameID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="361" parent="280" name="PRIMARY">
+    <key id="357" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>gmID
-gmGameID</ColNames>
+      <ColNames>gmGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="362" parent="280" name="GameModeList_ibfk_1">
+    <foreign-key id="358" parent="280" name="GameModeList_ibfk_1">
       <ColNames>gmGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="363" parent="281" name="genreID">
+    <column id="359" parent="281" name="genreID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="281" name="genreTITLE">
+    <column id="360" parent="281" name="genreTITLE">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="281" name="genreGameID">
+    <column id="361" parent="281" name="genreGameID">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="366" parent="281" name="genreTITLE">
+    <index id="362" parent="281" name="genreTITLE">
       <ColNames>genreTITLE</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="367" parent="281" name="genreGameID">
+    <index id="363" parent="281" name="genreGameID">
       <ColNames>genreGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="368" parent="281" name="PRIMARY">
+    <key id="364" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>genreID
 genreGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="369" parent="281" name="GenreList_ibfk_1">
+    <foreign-key id="365" parent="281" name="GenreList_ibfk_1">
       <ColNames>genreGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="370" parent="282" name="artistID">
+    <column id="366" parent="282" name="artistID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="282" name="artistNAME">
+    <column id="367" parent="282" name="artistNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="282" name="artistPFP">
+    <column id="368" parent="282" name="artistPFP">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="373" parent="282" name="artistNAME">
+    <index id="369" parent="282" name="artistNAME">
       <ColNames>artistNAME</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="374" parent="282" name="PRIMARY">
+    <key id="370" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>artistID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="375" parent="283" name="parentID">
+    <column id="371" parent="283" name="parentID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="283" name="parentNAME">
+    <column id="372" parent="283" name="parentNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="283" name="parentCREATED">
+    <column id="373" parent="283" name="parentCREATED">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="378" parent="283" name="parentCOUNTRY">
+    <column id="374" parent="283" name="parentCOUNTRY">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="283" name="parentSTATUS">
+    <column id="375" parent="283" name="parentSTATUS">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="380" parent="283" name="parentNAME">
+    <index id="376" parent="283" name="parentNAME">
       <ColNames>parentNAME</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="381" parent="283" name="PRIMARY">
+    <key id="377" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>parentID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="382" parent="284" name="pictureID">
+    <column id="378" parent="284" name="pictureID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="284" name="pictureURL">
+    <column id="379" parent="284" name="pictureURL">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="384" parent="284" name="pictureGameID">
+    <column id="380" parent="284" name="pictureGameID">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="385" parent="284" name="pictureURL">
+    <index id="381" parent="284" name="pictureURL">
       <ColNames>pictureURL</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="386" parent="284" name="pictureGameID">
+    <index id="382" parent="284" name="pictureGameID">
       <ColNames>pictureGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="387" parent="284" name="PRIMARY">
+    <key id="383" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pictureID
 pictureGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="388" parent="284" name="PictureList_ibfk_1">
+    <foreign-key id="384" parent="284" name="PictureList_ibfk_1">
       <ColNames>pictureGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="389" parent="285" name="platID">
+    <column id="385" parent="285" name="platID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="390" parent="285" name="platTITLE">
+    <column id="386" parent="285" name="platTITLE">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="391" parent="285" name="platCREATED">
+    <column id="387" parent="285" name="platCREATED">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="392" parent="285" name="platGameID">
+    <column id="388" parent="285" name="platGameID">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="393" parent="285" name="platTITLE">
+    <index id="389" parent="285" name="platTITLE">
       <ColNames>platTITLE</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="394" parent="285" name="platGameID">
+    <index id="390" parent="285" name="platGameID">
       <ColNames>platGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="395" parent="285" name="PRIMARY">
+    <key id="391" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>platID
 platGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="396" parent="285" name="PlatformList_ibfk_1">
+    <foreign-key id="392" parent="285" name="PlatformList_ibfk_1">
       <ColNames>platGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="397" parent="286" name="pubID">
+    <column id="393" parent="286" name="pubID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="398" parent="286" name="pubNAME">
+    <column id="394" parent="286" name="pubNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="399" parent="286" name="pubCREATED">
+    <column id="395" parent="286" name="pubCREATED">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="400" parent="286" name="pubCOUNTRY">
+    <column id="396" parent="286" name="pubCOUNTRY">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="286" name="pubSTATUS">
+    <column id="397" parent="286" name="pubSTATUS">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="402" parent="286" name="pubGameID">
+    <column id="398" parent="286" name="pubGameID">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="403" parent="286" name="pubNAME">
+    <index id="399" parent="286" name="pubNAME">
       <ColNames>pubNAME</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="404" parent="286" name="pubGameID">
+    <index id="400" parent="286" name="pubGameID">
       <ColNames>pubGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="405" parent="286" name="PRIMARY">
+    <key id="401" parent="286" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pubID
 pubGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="406" parent="286" name="PublisherList_ibfk_1">
+    <foreign-key id="402" parent="286" name="PublisherList_ibfk_1">
       <ColNames>pubGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="407" parent="287" name="ratingID">
+    <column id="403" parent="287" name="ratingID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="408" parent="287" name="ratingUSER">
+    <column id="404" parent="287" name="ratingGIVEN">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="409" parent="287" name="ratingGameID">
-      <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="410" parent="287" name="ratingUSER">
+    <column id="405" parent="287" name="ratingUSER">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="406" parent="287" name="ratingGameID">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="407" parent="287" name="ratingGIVEN">
+      <ColNames>ratingGIVEN</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="408" parent="287" name="ratingUSER">
       <ColNames>ratingUSER</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="411" parent="287" name="ratingGameID">
+    <index id="409" parent="287" name="ratingGameID">
       <ColNames>ratingGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="412" parent="287" name="PRIMARY">
+    <key id="410" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ratingID
 ratingUSER
 ratingGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="413" parent="287" name="RatingList_ibfk_1">
+    <foreign-key id="411" parent="287" name="RatingList_ibfk_1">
       <ColNames>ratingUSER</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>username</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="414" parent="287" name="RatingList_ibfk_2">
+    <foreign-key id="412" parent="287" name="RatingList_ibfk_2">
       <ColNames>ratingGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="415" parent="288" name="roleID">
+    <column id="413" parent="288" name="roleID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="416" parent="288" name="roleNAME">
+    <column id="414" parent="288" name="roleNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="417" parent="288" name="roleNAME">
+    <index id="415" parent="288" name="roleNAME">
       <ColNames>roleNAME</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="418" parent="288" name="PRIMARY">
+    <key id="416" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roleID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="419" parent="289" name="ostID">
+    <column id="417" parent="289" name="ostID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="420" parent="289" name="ostTITLE">
+    <column id="418" parent="289" name="ostTITLE">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="421" parent="289" name="ostPFP">
+    <column id="419" parent="289" name="ostPFP">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="422" parent="289" name="ostComposerID">
+    <column id="420" parent="289" name="ostComposerID">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="423" parent="289" name="ostArtistID">
+    <column id="421" parent="289" name="ostArtistID">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="424" parent="289" name="ostGameID">
+    <column id="422" parent="289" name="ostGameID">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="425" parent="289" name="ostTITLE">
+    <index id="423" parent="289" name="ostTITLE">
       <ColNames>ostTITLE</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="426" parent="289" name="ostComposerID">
+    <index id="424" parent="289" name="ostComposerID">
       <ColNames>ostComposerID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="427" parent="289" name="ostArtistID">
+    <index id="425" parent="289" name="ostArtistID">
       <ColNames>ostArtistID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="428" parent="289" name="ostGameID">
+    <index id="426" parent="289" name="ostGameID">
       <ColNames>ostGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="429" parent="289" name="PRIMARY">
+    <key id="427" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ostID
 ostComposerID
@@ -1856,211 +1836,204 @@ ostArtistID
 ostGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="430" parent="289" name="SoundtrackList_ibfk_1">
+    <foreign-key id="428" parent="289" name="SoundtrackList_ibfk_1">
       <ColNames>ostComposerID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>ComposerList</RefTableName>
       <RefColNames>compid</RefColNames>
     </foreign-key>
-    <foreign-key id="431" parent="289" name="SoundtrackList_ibfk_2">
+    <foreign-key id="429" parent="289" name="SoundtrackList_ibfk_2">
       <ColNames>ostArtistID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>MusicalArtistList</RefTableName>
       <RefColNames>artistid</RefColNames>
     </foreign-key>
-    <foreign-key id="432" parent="289" name="SoundtrackList_ibfk_3">
+    <foreign-key id="430" parent="289" name="SoundtrackList_ibfk_3">
       <ColNames>ostGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="433" parent="290" name="trailerID">
+    <column id="431" parent="290" name="trailerID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="434" parent="290" name="trailerURL">
+    <column id="432" parent="290" name="trailerURL">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="435" parent="290" name="trailerGameID">
+    <column id="433" parent="290" name="trailerGameID">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="436" parent="290" name="trailerURL">
+    <index id="434" parent="290" name="trailerURL">
       <ColNames>trailerURL</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="437" parent="290" name="trailerGameID">
+    <index id="435" parent="290" name="trailerGameID">
       <ColNames>trailerGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="438" parent="290" name="PRIMARY">
+    <key id="436" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>trailerID
 trailerGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="439" parent="290" name="TrailerList_ibfk_1">
+    <foreign-key id="437" parent="290" name="TrailerList_ibfk_1">
       <ColNames>trailerGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="440" parent="291" name="gameID">
+    <column id="438" parent="291" name="gameID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="441" parent="291" name="userNAME">
+    <column id="439" parent="291" name="userNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="442" parent="291" name="gameID">
+    <index id="440" parent="291" name="gameID">
       <ColNames>gameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="443" parent="291" name="PRIMARY">
+    <key id="441" parent="291" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userNAME
 gameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="444" parent="291" name="UserGameList_ibfk_2">
+    <foreign-key id="442" parent="291" name="UserGameList_ibfk_2">
       <ColNames>gameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="445" parent="291" name="UserGameList_ibfk_1">
+    <foreign-key id="443" parent="291" name="UserGameList_ibfk_1">
       <ColNames>userNAME</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>username</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="446" parent="292" name="roleID">
+    <column id="444" parent="292" name="roleID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="447" parent="292" name="userNAME">
+    <column id="445" parent="292" name="userNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="448" parent="292" name="roleID">
+    <index id="446" parent="292" name="roleID">
       <ColNames>roleID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="449" parent="292" name="PRIMARY">
+    <key id="447" parent="292" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userNAME
 roleID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="450" parent="292" name="UserRoleList_ibfk_2">
+    <foreign-key id="448" parent="292" name="UserRoleList_ibfk_2">
       <ColNames>roleID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Roles</RefTableName>
       <RefColNames>roleid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="451" parent="292" name="UserRoleList_ibfk_1">
+    <foreign-key id="449" parent="292" name="UserRoleList_ibfk_1">
       <ColNames>userNAME</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Users</RefTableName>
       <RefColNames>username</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="452" parent="293" name="userNAME">
+    <column id="450" parent="293" name="userNAME">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="453" parent="293" name="userPASS">
+    <column id="451" parent="293" name="userPASS">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="454" parent="293" name="userEMAIL">
+    <column id="452" parent="293" name="userEMAIL">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="455" parent="293" name="userPFP">
+    <column id="453" parent="293" name="userPFP">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="456" parent="293" name="userEMAIL">
+    <index id="454" parent="293" name="userEMAIL">
       <ColNames>userEMAIL</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="457" parent="293" name="PRIMARY">
+    <key id="455" parent="293" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userNAME</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="458" parent="294" name="writerID">
+    <column id="456" parent="294" name="writerID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="459" parent="294" name="writerFN">
+    <column id="457" parent="294" name="writerFN">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="460" parent="294" name="writerLN">
+    <column id="458" parent="294" name="writerLN">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="461" parent="294" name="writerGameID">
+    <column id="459" parent="294" name="writerGameID">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="462" parent="294" name="writerFN">
+    <index id="460" parent="294" name="writerFN">
       <ColNames>writerFN
 writerLN</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="463" parent="294" name="writerGameID">
+    <index id="461" parent="294" name="writerGameID">
       <ColNames>writerGameID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="464" parent="294" name="PRIMARY">
+    <key id="462" parent="294" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>writerID
 writerGameID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="465" parent="294" name="WriterList_ibfk_1">
+    <foreign-key id="463" parent="294" name="WriterList_ibfk_1">
       <ColNames>writerGameID</ColNames>
       <RefSchemaName>s185095</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>gameid</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>
