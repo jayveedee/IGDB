@@ -63,6 +63,7 @@ $(document).on("click", ".btn-remove-row7", function(){
 /*--------------------------------------------------------------------------bt8*/
 $(document).on("click", ".btn-add-row8", function(){
     var row8 = $(".row8").eq(0).clone().show();
+    row8.attr("id","hejsa");
     $(".element-wrapper8").append(row8)
 });
 
@@ -126,20 +127,20 @@ $("#createGameForm").submit(function (event) {
 
     var publisher = {
         pubID : 0,
-        pubNAME : $("#publisherNameField"),
-        pubCREATED : $("#publisherCreationField"),
-        pubCOUNTRY : $("#publisherOriginField"),
-        pubSTATUS : $("#publisherStatusField"),
+        pubNAME : $("#publisherNameField").val(),
+        pubCREATED : $("#publisherCreationField").val(),
+        pubCOUNTRY : $("#publisherOriginField").val(),
+        pubSTATUS : $("#publisherStatusField").val(),
         pubGAME : null
     };
 
     var soundtrack = {
         ostID : 0,
-        ostTITLE : "placeholder",
+        ostTITLE : $("#soundtrackNameField").val(),
         ostCOMP : null,
         ostMA : null,
         ostGAME : 0,
-        ostPFP : "placeholder"
+        ostURL : $("#soundtrackURLField").val()
     };
 
     var game ={
@@ -155,7 +156,7 @@ $("#createGameForm").submit(function (event) {
         gameCOMP : parentCompany,
         gameDEV : developer,
         gamePUB : publisher,
-        gameOST : "placeholder",
+        gameOST : soundtrack,
         gamePLAT : [],
         gameCOVER : $("#picturefield").val(),
         gameBG : $("#backpicfield").val(),
