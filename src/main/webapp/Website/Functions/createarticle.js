@@ -125,12 +125,30 @@ $("#createGameForm").submit(function (event) {
 
     var developer = {
         devID : 0,
-        devNAME : "placeholder",
-        devCREATED : "placeholder",
-        devSTATUS : "placeholder",
-        devCOUNTRY : "placeholder",
-        devPCOMPANY : null,
-        devGAME : 0
+        devNAME : $("#developerNameField").val(),
+        devCREATED : $("#developerCreationField").val(),
+        devSTATUS : $("#developerStatusField").val(),
+        devCOUNTRY : $("#developerOriginField").val(),
+        devPCOMPANY : parentCompany,
+        devGAME : null
+    };
+
+    var publisher = {
+        pubID : 0,
+        pubNAME : $("#publisherNameField"),
+        pubCREATED : $("#publisherCreationField"),
+        pubCOUNTRY : $("#publisherOriginField"),
+        pubSTATUS : $("#publisherStatusField"),
+        pubGAME : null
+    };
+
+    var soundtrack = {
+        ostID : 0,
+        ostTITLE : "placeholder",
+        ostCOMP : null,
+        ostMA : null,
+        ostGAME : 0,
+        ostPFP : "placeholder"
     };
 
     var game ={
@@ -144,8 +162,8 @@ $("#createGameForm").submit(function (event) {
         gameRELEASEDATE : $("#releaseDateField").val(),
         gameWRI : [],
         gameCOMP : parentCompany,
-        gameDEV : "placeholder",
-        gamePUB : "placeholder",
+        gameDEV : developer,
+        gamePUB : publisher,
         gameOST : "placeholder",
         gamePLAT : [],
         gameCOVER : $("#picturefield").val(),
@@ -174,15 +192,6 @@ $("#createGameForm").submit(function (event) {
         picGameID : 0
     };
 
-    var soundtrack = {
-        ostID : 0,
-        ostTITLE : "placeholder",
-        ostCOMP : null,
-        ostMA : null,
-        ostGAME : 0,
-        ostPFP : "placeholder"
-    };
-
     var composer = {
         compID : 0,
         compFN : "placeholder",
@@ -202,16 +211,6 @@ $("#createGameForm").submit(function (event) {
         writerFN : "placeholder",
         writerLN : "placeholder",
         writerGAME : "placeholder"
-    };
-
-
-    var publisher = {
-        pubID : 0,
-        pubNAME : "placeholder",
-        pubCREATED : "placeholder",
-        pubCOUNTRY : "placeholder",
-        pubSTATUS : "placeholder",
-        pubGAME : 0
     };
 
     var actor = {
