@@ -944,44 +944,35 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public boolean deleteGame (GameDTO game) {
+    public boolean deleteGame (int gameID) {
         String query1 = "DELETE FROM UserGameList WHERE gameID = ?";
-        handleDeleteGame1(game.getGameID(),query1);
-        String query3 = "DELETE FROM ActorList WHERE actorGameID = ? AND actorCharID = ? AND actorID = ?";
-        handleDeleteGame2(game.getGameID(),query3,game.getGameACs());
-        String query4 = "DELETE FROM CharacterList WHERE charGameID = ?";
-        String query5 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
-        String query6 = "DELETE FROM GenreList WHERE genreGameID = ? ";
-        String query7 = "DELETE FROM PlatformList WHERE platGameID = ?";
-        String query8 = "DELETE FROM TrailerList WHERE trailerGameID = ?";
-        String query9 = "DELETE FROM PictureList WHERE pictureGameID = ? ";
-        String query10 = "DELETE FROM PublisherList WHERE pubGameID = ?";
-        String query11 = "DELETE FROM WriterList WHERE writerGameID = ?";
-        String query12 = "DELETE FROM SoundtrackList WHERE ostGameID = ? ";
-        String query13 = "DELETE FROM MusicalArtistList WHERE artistID = ?" ;
-        String query14 = "DELETE FROM ComposerList WHERE compGameID = ? ";
-        String query15 = "";
-        String query16 = "DELETE From Game WHERE gameID = ?";
+        handleDeleteByID(gameID, query1);
+        String query2 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
+        handleDeleteByID(gameID,query2);
+        String query3 = "DELETE FROM GenreList WHERE genreGameID = ? ";
+        handleDeleteByID(gameID,query3);
+        String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
+        handleDeleteByID(gameID,query4);
+        String query5 = "DELETE FROM TrailerList WHERE trailerGameID = ?";
+        handleDeleteByID(gameID,query5);
+        String query6 = "DELETE FROM PictureList WHERE pictureGameID = ? ";
+        handleDeleteByID(gameID,query6);
+        String query7 = "DELETE FROM PublisherList WHERE pubGameID = ?";
+        handleDeleteByID(gameID,query7);
+        String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
+        handleDeleteByID(gameID,query8);
 
-
-    }
-
-    private boolean handleDeleteGame2(int gameID, String query3, List<ActorDTO> gameACs) {
-        try {
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
-            for (int i = 0; i < gameACs.size(); i++) {
-                mySql.getPrepStatement().setInt(1,gameID);
-                mySql.getPrepStatement().setInt(2,gameACs.get(i).);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        String query111 = "DELETE FROM SoundtrackList WHERE ostGameID = ? ";
+        String query222 = "DELETE FROM MusicalArtistList WHERE artistID = ?" ;
+        String query333 = "DELETE FROM ComposerList WHERE compGameID = ? ";
+        String query444 = "DELETE FROM ActorList WHERE actorGameID = ? AND actorCharID = ? AND actorID = ?";
+        String query555 = "DELETE FROM CharacterList WHERE charGameID = ?";
+        String query666 = "DELETE From Game WHERE gameID = ?";
 
         return true;
     }
 
-    private boolean handleDeleteGame1(int gameID, String query) {
+    private boolean handleDeleteByID(int gameID, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
