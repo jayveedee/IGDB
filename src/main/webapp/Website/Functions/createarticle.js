@@ -1,3 +1,5 @@
+var row8counter = 0;
+
 /*--------------------------------------------------------------------------bt1*/
 $(document).on("click", ".btn-add-row", function(){
     var row = $(".row").eq(0).clone().show();
@@ -62,12 +64,16 @@ $(document).on("click", ".btn-remove-row7", function(){
 });
 /*--------------------------------------------------------------------------bt8*/
 $(document).on("click", ".btn-add-row8", function(){
+    row8counter++;
     var row8 = $(".row8").eq(0).clone().show();
-    row8.attr("id","hejsa");
-    $(".element-wrapper8").append(row8)
+    row8.attr("id","row8"+row8counter);
+    $(".element-wrapper8").append(row8);
 });
 
 $(document).on("click", ".btn-remove-row8", function(){
+    if (row8counter !== 0){
+        row8counter--;
+    }
     var index8 = $(".btn-remove-row8").index(this);
     $(".row8").eq(index8).remove();
 });
