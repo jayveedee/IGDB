@@ -1,8 +1,4 @@
-import Data.IMysqlConnection;
-import Data.MysqlConnection;
-import Data.UserDAL.IUserDAO;
-import Data.UserDAL.UserDAO;
-import Data.UserDTO.UserDTO;
+/*import Data.IMysqlConnection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -116,6 +112,7 @@ public class Services {
     }
 
     @POST
+    //@Produces(MediaType.APPLICATION_JSON)
     @Path("game/getGameNames/{input}")
     public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
@@ -124,21 +121,11 @@ public class Services {
         }
 
         ArrayList<String> answer = null;
+        System.out.println(characters);
 
-        //IMysqlConnection mysqlConnection = new MysqlConnection();
-        try {
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
-            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
-                MysqlConnection.getInstance().createConnection();
-            }
-            GameService service = new GameService(MysqlConnection.getInstance());
-            answer = service.getGameNames(characters);
-            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        GameService service = new GameService(mysqlConnection);
 
+        answer = service.getGameNames(characters);
 
         class JSONObject{
             private ArrayList<String> gameNames;
@@ -168,14 +155,5 @@ public class Services {
         }
         return jsonString;
     }
-
-    @POST
-    @Path("game/createGame")
-    public String createGame(@FormParam("titleField") String title, @FormParam("gameCover") String gameCover, @FormParam("gameDescription") String gameDescription, @FormParam("releaseDate") String releaseDate){
-        System.out.println(title);
-        System.out.println(gameCover);
-        System.out.println(gameDescription);
-        System.out.println(releaseDate);
-        return "hey";
-    }
 }
+*/
