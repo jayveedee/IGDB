@@ -400,62 +400,63 @@ public class GameDAO_TEST {
     public void updateGame() {
         try {
             mysql.createConnection();
-            GameDTO testUpdateGame = createGameDB(70, "COD1");
-            GameDTO updateGame = createGameDB1(70,"ZOD1");
-            gdao.updateGame(70,updateGame);
-            GameDTO updatedGame = gdao.getGame(70);
+            GameDTO insertedGame = createGameDB(500, "COD1");
+            gdao.createGame(insertedGame);
+            GameDTO updatedGame = createGameDB1(500,"ZOD1");
+            gdao.updateGame(500,updatedGame);
+            GameDTO receivedGame = gdao.getGame(500);
 
-            assertEquals(testUpdateGame.getGameID(),updatedGame.getGameID());
-            assertEquals(testUpdateGame.getGameBG(),updatedGame.getGameBG());
-            assertEquals(testUpdateGame.getGameBIO(),updatedGame.getGameBIO());
-            assertEquals(testUpdateGame.getGameCover(),updatedGame.getGameCover());
-            assertEquals(testUpdateGame.getGameNAME(),updatedGame.getGameNAME());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getDay(),updatedGame.getGameRELEASEDATE().getDay());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getMonth(),updatedGame.getGameRELEASEDATE().getMonth());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getYear(),updatedGame.getGameRELEASEDATE().getYear());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentID(),updatedGame.getGameDEV().getDevPCOMPANY().getParentID());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentNAME(),updatedGame.getGameDEV().getDevPCOMPANY().getParentNAME());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear());
-            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompID(),updatedGame.getGameOST().getOstCOMP().getCompID());
-            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompFN(),updatedGame.getGameOST().getOstCOMP().getCompFN());
-            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompLN(),updatedGame.getGameOST().getOstCOMP().getCompLN());
-            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompGAME(),updatedGame.getGameOST().getOstCOMP().getCompGAME());
-            List<Integer> compOstList1      = testUpdateGame.getGameOST().getOstCOMP().getCompOSTs();
-            List<Integer> compOstList1DB    = updatedGame.getGameOST().getOstCOMP().getCompOSTs();
-            for (int i = 0; i < testUpdateGame.getGameOST().getOstCOMP().getCompOSTs().size(); i++) {
+            assertEquals(updatedGame.getGameID(),receivedGame.getGameID());
+            assertEquals(updatedGame.getGameBG(),receivedGame.getGameBG());
+            assertEquals(updatedGame.getGameBIO(),receivedGame.getGameBIO());
+            assertEquals(updatedGame.getGameCover(),receivedGame.getGameCover());
+            assertEquals(updatedGame.getGameNAME(),receivedGame.getGameNAME());
+            assertEquals(updatedGame.getGameRELEASEDATE().getDay(),receivedGame.getGameRELEASEDATE().getDay());
+            assertEquals(updatedGame.getGameRELEASEDATE().getMonth(),receivedGame.getGameRELEASEDATE().getMonth());
+            assertEquals(updatedGame.getGameRELEASEDATE().getYear(),receivedGame.getGameRELEASEDATE().getYear());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentID(),receivedGame.getGameDEV().getDevPCOMPANY().getParentID());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY(),receivedGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentNAME(),receivedGame.getGameDEV().getDevPCOMPANY().getParentNAME());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay(),receivedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth(),receivedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth());
+            assertEquals(updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear(),receivedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear());
+            assertEquals(updatedGame.getGameOST().getOstCOMP().getCompID(),receivedGame.getGameOST().getOstCOMP().getCompID());
+            assertEquals(updatedGame.getGameOST().getOstCOMP().getCompFN(),receivedGame.getGameOST().getOstCOMP().getCompFN());
+            assertEquals(updatedGame.getGameOST().getOstCOMP().getCompLN(),receivedGame.getGameOST().getOstCOMP().getCompLN());
+            assertEquals(updatedGame.getGameOST().getOstCOMP().getCompGAME(),receivedGame.getGameOST().getOstCOMP().getCompGAME());
+            List<Integer> compOstList1      = updatedGame.getGameOST().getOstCOMP().getCompOSTs();
+            List<Integer> compOstList1DB    = receivedGame.getGameOST().getOstCOMP().getCompOSTs();
+            for (int i = 0; i < updatedGame.getGameOST().getOstCOMP().getCompOSTs().size(); i++) {
                 assertEquals(compOstList1.get(i),compOstList1DB.get(i));
             }
-            assertEquals(testUpdateGame.getGameOST().getOstID(),updatedGame.getGameOST().getOstID());
-            assertEquals(testUpdateGame.getGameOST().getOstURL(),updatedGame.getGameOST().getOstURL());
-            assertEquals(testUpdateGame.getGameOST().getOstGAME(),updatedGame.getGameOST().getOstGAME());
-            assertEquals(testUpdateGame.getGameOST().getOstTITLE(),updatedGame.getGameOST().getOstTITLE());
-            List<MusicArtistDTO> ostMaList1     = testUpdateGame.getGameOST().getOstMA();
-            List<MusicArtistDTO> ostMaList1DB   = updatedGame.getGameOST().getOstMA();
-            for (int i = 0; i < testUpdateGame.getGameOST().getOstMA().size(); i++) {
+            assertEquals(updatedGame.getGameOST().getOstID(),receivedGame.getGameOST().getOstID());
+            assertEquals(updatedGame.getGameOST().getOstURL(),receivedGame.getGameOST().getOstURL());
+            assertEquals(updatedGame.getGameOST().getOstGAME(),receivedGame.getGameOST().getOstGAME());
+            assertEquals(updatedGame.getGameOST().getOstTITLE(),receivedGame.getGameOST().getOstTITLE());
+            List<MusicArtistDTO> ostMaList1     = updatedGame.getGameOST().getOstMA();
+            List<MusicArtistDTO> ostMaList1DB   = receivedGame.getGameOST().getOstMA();
+            for (int i = 0; i < updatedGame.getGameOST().getOstMA().size(); i++) {
                 assertEquals(ostMaList1.get(i).getArtID(),ostMaList1DB.get(i).getArtID());
                 assertEquals(ostMaList1.get(i).getArtNAME(),ostMaList1DB.get(i).getArtNAME());
                 assertEquals(ostMaList1.get(i).getArtPFP(),ostMaList1DB.get(i).getArtPFP());
             }
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getDay(),updatedGame.getGamePUB().getPubCREATED().getDay());
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getMonth(),updatedGame.getGamePUB().getPubCREATED().getMonth());
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getYear(),updatedGame.getGamePUB().getPubCREATED().getYear());
-            assertEquals(testUpdateGame.getGamePUB().getPubCOUNTRY(),updatedGame.getGamePUB().getPubCOUNTRY());
-            assertEquals(testUpdateGame.getGamePUB().getPubID(),updatedGame.getGamePUB().getPubID());
-            assertEquals(testUpdateGame.getGamePUB().getPubNAME(),updatedGame.getGamePUB().getPubNAME());
-            assertEquals(testUpdateGame.getGamePUB().getPubGAME(),updatedGame.getGamePUB().getPubGAME());
-            assertEquals(testUpdateGame.getGameWRI().size(),updatedGame.getGameWRI().size());
-            for (int i = 0; i < testUpdateGame.getGameWRI().size(); i++) {
-                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterID(),updatedGame.getGameWRI().get(i).getWriterID());
-                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterGAME(),updatedGame.getGameWRI().get(i).getWriterGAME());
-                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterFN(),updatedGame.getGameWRI().get(i).getWriterFN());
-                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterLN(),updatedGame.getGameWRI().get(i).getWriterLN());
+            assertEquals(updatedGame.getGamePUB().getPubCREATED().getDay(),receivedGame.getGamePUB().getPubCREATED().getDay());
+            assertEquals(updatedGame.getGamePUB().getPubCREATED().getMonth(),receivedGame.getGamePUB().getPubCREATED().getMonth());
+            assertEquals(updatedGame.getGamePUB().getPubCREATED().getYear(),receivedGame.getGamePUB().getPubCREATED().getYear());
+            assertEquals(updatedGame.getGamePUB().getPubCOUNTRY(),receivedGame.getGamePUB().getPubCOUNTRY());
+            assertEquals(updatedGame.getGamePUB().getPubID(),receivedGame.getGamePUB().getPubID());
+            assertEquals(updatedGame.getGamePUB().getPubNAME(),receivedGame.getGamePUB().getPubNAME());
+            assertEquals(updatedGame.getGamePUB().getPubGAME(),receivedGame.getGamePUB().getPubGAME());
+            assertEquals(updatedGame.getGameWRI().size(),receivedGame.getGameWRI().size());
+            for (int i = 0; i < updatedGame.getGameWRI().size(); i++) {
+                assertEquals(updatedGame.getGameWRI().get(i).getWriterID(),receivedGame.getGameWRI().get(i).getWriterID());
+                assertEquals(updatedGame.getGameWRI().get(i).getWriterGAME(),receivedGame.getGameWRI().get(i).getWriterGAME());
+                assertEquals(updatedGame.getGameWRI().get(i).getWriterFN(),receivedGame.getGameWRI().get(i).getWriterFN());
+                assertEquals(updatedGame.getGameWRI().get(i).getWriterLN(),receivedGame.getGameWRI().get(i).getWriterLN());
             }
-            List<ActorDTO> actTest1     = testUpdateGame.getGameACs();
-            List<ActorDTO> actTest1DB   = updatedGame.getGameACs();
-            for (int i = 0; i < testUpdateGame.getGameACs().size(); i++) {
+            List<ActorDTO> actTest1     = updatedGame.getGameACs();
+            List<ActorDTO> actTest1DB   = receivedGame.getGameACs();
+            for (int i = 0; i < updatedGame.getGameACs().size(); i++) {
                 assertEquals(actTest1.get(i).getAcBDAY().getDay(),actTest1DB.get(i).getAcBDAY().getDay());
                 assertEquals(actTest1.get(i).getAcBDAY().getMonth(),actTest1DB.get(i).getAcBDAY().getMonth());
                 assertEquals(actTest1.get(i).getAcBDAY().getYear(),actTest1DB.get(i).getAcBDAY().getYear());
@@ -471,45 +472,45 @@ public class GameDAO_TEST {
                     assertEquals(actTest1Ch.get(j),actTest1ChDB.get(j));
                 }
             }
-            assertEquals(testUpdateGame.getGameGENREs().size(),updatedGame.getGameGENREs().size());
-            for (int i = 0; i < testUpdateGame.getGameGENREs().size(); i++) {
-                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenID(),updatedGame.getGameGENREs().get(i).getGenID());
-                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenTITLE(),updatedGame.getGameGENREs().get(i).getGenTITLE());
-                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenGAME(),updatedGame.getGameGENREs().get(i).getGenGAME());
+            assertEquals(updatedGame.getGameGENREs().size(),receivedGame.getGameGENREs().size());
+            for (int i = 0; i < updatedGame.getGameGENREs().size(); i++) {
+                assertEquals(updatedGame.getGameGENREs().get(i).getGenID(),receivedGame.getGameGENREs().get(i).getGenID());
+                assertEquals(updatedGame.getGameGENREs().get(i).getGenTITLE(),receivedGame.getGameGENREs().get(i).getGenTITLE());
+                assertEquals(updatedGame.getGameGENREs().get(i).getGenGAME(),receivedGame.getGameGENREs().get(i).getGenGAME());
             }
-            assertEquals(testUpdateGame.getGameCHs().size(),updatedGame.getGameCHs().size());
-            for (int i = 0; i < testUpdateGame.getGameCHs().size(); i++) {
-                assertEquals(testUpdateGame.getGameCHs().get(i).getChID(),updatedGame.getGameCHs().get(i).getChID());
-                assertEquals(testUpdateGame.getGameCHs().get(i).getChNAME(),updatedGame.getGameCHs().get(i).getChNAME());
-                assertEquals(testUpdateGame.getGameCHs().get(i).getChPFP(),updatedGame.getGameCHs().get(i).getChPFP());
-                assertEquals(testUpdateGame.getGameCHs().get(i).getChGAME(),updatedGame.getGameCHs().get(i).getChGAME());
+            assertEquals(updatedGame.getGameCHs().size(),receivedGame.getGameCHs().size());
+            for (int i = 0; i < updatedGame.getGameCHs().size(); i++) {
+                assertEquals(updatedGame.getGameCHs().get(i).getChID(),receivedGame.getGameCHs().get(i).getChID());
+                assertEquals(updatedGame.getGameCHs().get(i).getChNAME(),receivedGame.getGameCHs().get(i).getChNAME());
+                assertEquals(updatedGame.getGameCHs().get(i).getChPFP(),receivedGame.getGameCHs().get(i).getChPFP());
+                assertEquals(updatedGame.getGameCHs().get(i).getChGAME(),receivedGame.getGameCHs().get(i).getChGAME());
             }
-            assertEquals(testUpdateGame.getGameGMs().size(),updatedGame.getGameGMs().size());
-            for (int i = 0; i < testUpdateGame.getGameGMs().size(); i++) {
-                assertEquals(testUpdateGame.getGameGMs().get(i).getGmID(),updatedGame.getGameGMs().get(i).getGmID());
-                assertEquals(testUpdateGame.getGameGMs().get(i).getGmTITLE(),updatedGame.getGameGMs().get(i).getGmTITLE());
-                assertEquals(testUpdateGame.getGameGMs().get(i).getGmGAME(),updatedGame.getGameGMs().get(i).getGmGAME());
+            assertEquals(updatedGame.getGameGMs().size(),receivedGame.getGameGMs().size());
+            for (int i = 0; i < updatedGame.getGameGMs().size(); i++) {
+                assertEquals(updatedGame.getGameGMs().get(i).getGmID(),receivedGame.getGameGMs().get(i).getGmID());
+                assertEquals(updatedGame.getGameGMs().get(i).getGmTITLE(),receivedGame.getGameGMs().get(i).getGmTITLE());
+                assertEquals(updatedGame.getGameGMs().get(i).getGmGAME(),receivedGame.getGameGMs().get(i).getGmGAME());
             }
-            assertEquals(testUpdateGame.getGameTRAILERs().size(),updatedGame.getGameTRAILERs().size());
-            for (int i = 0; i < testUpdateGame.getGameTRAILERs().size(); i++) {
-                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerID(),updatedGame.getGameTRAILERs().get(i).getTrailerID());
-                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerURL(),updatedGame.getGameTRAILERs().get(i).getTrailerURL());
-                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerGameID(),updatedGame.getGameTRAILERs().get(i).getTrailerGameID());
+            assertEquals(updatedGame.getGameTRAILERs().size(),receivedGame.getGameTRAILERs().size());
+            for (int i = 0; i < updatedGame.getGameTRAILERs().size(); i++) {
+                assertEquals(updatedGame.getGameTRAILERs().get(i).getTrailerID(),receivedGame.getGameTRAILERs().get(i).getTrailerID());
+                assertEquals(updatedGame.getGameTRAILERs().get(i).getTrailerURL(),receivedGame.getGameTRAILERs().get(i).getTrailerURL());
+                assertEquals(updatedGame.getGameTRAILERs().get(i).getTrailerGameID(),receivedGame.getGameTRAILERs().get(i).getTrailerGameID());
             }
-            assertEquals(testUpdateGame.getGamePICs().size(),updatedGame.getGamePICs().size());
-            for (int i = 0; i < testUpdateGame.getGamePICs().size(); i++) {
-                assertEquals(testUpdateGame.getGamePICs().get(i).getPicID(),updatedGame.getGamePICs().get(i).getPicID());
-                assertEquals(testUpdateGame.getGamePICs().get(i).getPicURL(),updatedGame.getGamePICs().get(i).getPicURL());
-                assertEquals(testUpdateGame.getGamePICs().get(i).getPicGameID(),updatedGame.getGamePICs().get(i).getPicGameID());
+            assertEquals(updatedGame.getGamePICs().size(),receivedGame.getGamePICs().size());
+            for (int i = 0; i < updatedGame.getGamePICs().size(); i++) {
+                assertEquals(updatedGame.getGamePICs().get(i).getPicID(),receivedGame.getGamePICs().get(i).getPicID());
+                assertEquals(updatedGame.getGamePICs().get(i).getPicURL(),receivedGame.getGamePICs().get(i).getPicURL());
+                assertEquals(updatedGame.getGamePICs().get(i).getPicGameID(),receivedGame.getGamePICs().get(i).getPicGameID());
             }
-            assertEquals(testUpdateGame.getGamePLAT().size(),updatedGame.getGamePLAT().size());
-            for (int i = 0; i < testUpdateGame.getGamePLAT().size(); i++) {
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatID(),updatedGame.getGamePLAT().get(i).getPlatID());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatTITLE(),updatedGame.getGamePLAT().get(i).getPlatTITLE());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatGAMEs(),updatedGame.getGamePLAT().get(i).getPlatGAMEs());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getDay(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getDay());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getMonth(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getMonth());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getYear(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getYear());
+            assertEquals(updatedGame.getGamePLAT().size(),receivedGame.getGamePLAT().size());
+            for (int i = 0; i < updatedGame.getGamePLAT().size(); i++) {
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatID(),receivedGame.getGamePLAT().get(i).getPlatID());
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatTITLE(),receivedGame.getGamePLAT().get(i).getPlatTITLE());
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatGAMEs(),receivedGame.getGamePLAT().get(i).getPlatGAMEs());
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatCREATED().getDay(),receivedGame.getGamePLAT().get(i).getPlatCREATED().getDay());
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatCREATED().getMonth(),receivedGame.getGamePLAT().get(i).getPlatCREATED().getMonth());
+                assertEquals(updatedGame.getGamePLAT().get(i).getPlatCREATED().getYear(),receivedGame.getGamePLAT().get(i).getPlatCREATED().getYear());
             }
             mysql.closeConnection(mysql.getConnection());
 
@@ -546,13 +547,13 @@ public class GameDAO_TEST {
         List<PictureDTO>    gamePics        = GAME_createPictureList1(gameID);
 
         game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL1");        game.setGameBIO("INSERT DESCRIPTION HERE1");         game.setGameNAME(userNAME);
-        game.setGameCover("INSERT COVER HERE1");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
+        game.setGameBG("INSERT BACKGROUND URL1");       game.setGameBIO("INSERT DESCRIPTION HERE1");        game.setGameNAME(userNAME);
+        game.setGameCover("INSERT COVER HERE1");        game.setGameCOMP(comp);                             game.setGameDEV(dev);
         game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
         game.setGameWRI(gameWRI);                       game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
-        gdao.createGame(game);
+        //gdao.createGame(game);
         return game;
     }
 
