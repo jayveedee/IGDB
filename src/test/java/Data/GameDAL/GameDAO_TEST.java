@@ -34,6 +34,7 @@ public class GameDAO_TEST {
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
 
+    // Create Game Object til tests
     public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO("1","12","2019");
@@ -65,7 +66,7 @@ public class GameDAO_TEST {
         return game;
     }
 
-    // Character X Actor insert
+    // Character X Actor insert ( CREATE )
     private List<CharacterDTO> GAME_createCharacterList(int gameID) {
         List<CharacterDTO> charList = new ArrayList<>();
         charList.add(GAME_createCharacter(60,gameID,"test1","PFP1"));
@@ -105,7 +106,7 @@ public class GameDAO_TEST {
         return actor;
     }
 
-    // Genre, GameMode & Platform Insert
+    // Genre, GameMode & Platform Insert ( CREATE )
     private List<GenreDTO> GAME_createGenreList(int gameID){
         List<GenreDTO> genreList = new ArrayList<>();
         genreList.add(GAME_createGenre(60,gameID,"test1"));
@@ -151,7 +152,7 @@ public class GameDAO_TEST {
         return plat;
     }
 
-    // Trailer & pics Insert
+    // Trailer & pics Insert ( CREATE )
     private List<TrailerDTO> GAME_createTrailerList(int gameID){
         List<TrailerDTO> trailerList = new ArrayList<>();
         trailerList.add(GAME_createTrailer(60,gameID,"TEST1"));
@@ -181,7 +182,7 @@ public class GameDAO_TEST {
         return picture;
     }
 
-    //Developer, Publisher & ParentCompany Insert
+    //Developer, Publisher & ParentCompany Insert ( CREATE )
     private DeveloperDTO GAME_createDeveloper (int devID, int gameID){
         DeveloperDTO dev = new DeveloperDTO();
         dev.setDevID(devID);
@@ -215,7 +216,7 @@ public class GameDAO_TEST {
         return pub;
     }
 
-    //Writer Insert
+    //Writer Insert ( CREATE )
     private List<WriterDTO> GAME_createWriterList(int gameID){
         List<WriterDTO> wriList = new ArrayList<>();
         wriList.add(GAME_createWriter(4,gameID));
@@ -232,7 +233,7 @@ public class GameDAO_TEST {
         return writer;
     }
 
-    // Composer & Soundtrack Insert
+    // Composer & Soundtrack Insert ( CREATE )
     private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID, List<Integer> maIDs){
         SoundtrackDTO ost = new SoundtrackDTO();
         ost.setOstID(ostID);
@@ -266,7 +267,7 @@ public class GameDAO_TEST {
         return ma;
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void createGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1 = createGameDB(70,"COD1");
@@ -280,7 +281,7 @@ public class GameDAO_TEST {
         mysql.closeConnection(mysql.getConnection());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void getGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1       = createGameDB(70,"COD1");
@@ -396,11 +397,6 @@ public class GameDAO_TEST {
     }
 
     @Test
-    public void getGameList() {
-
-    }
-
-    @Test
     public void updateGame() {
         try {
             mysql.createConnection();
@@ -433,7 +429,7 @@ public class GameDAO_TEST {
                 assertEquals(compOstList1.get(i),compOstList1DB.get(i));
             }
             assertEquals(testUpdateGame.getGameOST().getOstID(),updatedGame.getGameOST().getOstID());
-            assertEquals(testUpdateGame.getGameOST().getOstPFP(),updatedGame.getGameOST().getOstPFP());
+            assertEquals(testUpdateGame.getGameOST().getOstURL(),updatedGame.getGameOST().getOstURL());
             assertEquals(testUpdateGame.getGameOST().getOstGAME(),updatedGame.getGameOST().getOstGAME());
             assertEquals(testUpdateGame.getGameOST().getOstTITLE(),updatedGame.getGameOST().getOstTITLE());
             List<MusicArtistDTO> ostMaList1     = testUpdateGame.getGameOST().getOstMA();
@@ -522,8 +518,12 @@ public class GameDAO_TEST {
         }
     }
 
-    @Test
-    public void deleteGame() {
+    @Test //GOOD TO GO
+    public void deleteGame() throws SQLException {
+        mysql.createConnection();
+        gdao.createGame(createGameDB(100,"TEST"));
+        assertTrue(gdao.deleteGame(100));
+        mysql.closeConnection(mysql.getConnection());
     }
     public GameDTO createGameDB1(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
@@ -556,7 +556,7 @@ public class GameDAO_TEST {
         return game;
     }
 
-    // Character X Actor insert
+    // Character X Actor insert ( UPDATE )
     private List<CharacterDTO> GAME_createCharacterList1(int gameID) {
         List<CharacterDTO> charList = new ArrayList<>();
         charList.add(GAME_createCharacter1(30,gameID,"test30","PFP31"));
@@ -596,7 +596,7 @@ public class GameDAO_TEST {
         return actor;
     }
 
-    // Genre, GameMode & Platform Insert
+    // Genre, GameMode & Platform Insert ( UPDATE )
     private List<GenreDTO> GAME_createGenreList1(int gameID){
         List<GenreDTO> genreList = new ArrayList<>();
         genreList.add(GAME_createGenre1(30,gameID,"test31"));
@@ -642,7 +642,7 @@ public class GameDAO_TEST {
         return plat;
     }
 
-    // Trailer & pics Insert
+    // Trailer & pics Insert ( UPDATE )
     private List<TrailerDTO> GAME_createTrailerList1(int gameID){
         List<TrailerDTO> trailerList = new ArrayList<>();
         trailerList.add(GAME_createTrailer1(30,gameID,"TEST31"));
@@ -672,7 +672,7 @@ public class GameDAO_TEST {
         return picture;
     }
 
-    //Developer, Publisher & ParentCompany Insert
+    //Developer, Publisher & ParentCompany Insert ( UPDATE )
     private DeveloperDTO GAME_createDeveloper1 (int devID, int gameID){
         DeveloperDTO dev = new DeveloperDTO();
         dev.setDevID(devID);
@@ -706,7 +706,7 @@ public class GameDAO_TEST {
         return pub;
     }
 
-    //Writer Insert
+    //Writer Insert ( UPDATE )
     private List<WriterDTO> GAME_createWriterList1(int gameID){
         List<WriterDTO> wriList = new ArrayList<>();
         wriList.add(GAME_createWriter1(41,gameID));
@@ -723,12 +723,12 @@ public class GameDAO_TEST {
         return writer;
     }
 
-    // Composer & Soundtrack Insert
+    // Composer & Soundtrack Insert ( UPDATE )
     private SoundtrackDTO GAME_createSoundtrack1(int ostID, int gameID, List<Integer> maIDs){
         SoundtrackDTO ost = new SoundtrackDTO();
         ost.setOstID(ostID);
         ost.setOstTITLE("FILLER1");
-        ost.setOstPFP("FILLER1");
+        ost.setOstURL("FILLER1");
         ost.setOstCOMP(GAME_createComposer1(42,gameID,ostID));
         List<MusicArtistDTO> maList = new ArrayList<>();
         for (int i = 0; i < maIDs.size(); i++) {
