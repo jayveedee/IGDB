@@ -6,8 +6,8 @@ $(document).ready(function () {
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
-        $("#profileBtn").css('display', 'inline');
-        $("#createArticle").css('display', 'inline');
+        $("#profileBtn").css('display', 'block');
+        $("#createArticle").css('display', 'block');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });

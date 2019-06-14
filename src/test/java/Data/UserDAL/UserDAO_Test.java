@@ -567,7 +567,6 @@ public class UserDAO_Test {
     public GameDTO createGameDB(int gameID) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO("1","12","2019");
-        WriterDTO writer = null;
         DeveloperDTO dev = null;
         PublisherDTO pub = null;
         ComposerDTO comp = null;
@@ -575,6 +574,7 @@ public class UserDAO_Test {
 
         List<CharacterDTO>  gameCHARs       = new ArrayList<>();
         List<GenreDTO>      gameGENREs      = new ArrayList<>();
+        List<WriterDTO>     writer          = new ArrayList<>();
         List<ActorDTO>      gameACTOR       = new ArrayList<>();
         List<RatingDTO>     gameRATING      = new ArrayList<>();
         List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();

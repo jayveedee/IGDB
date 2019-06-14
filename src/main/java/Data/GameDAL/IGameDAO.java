@@ -13,16 +13,17 @@ import Data.GameDTO.Info.TrailerDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface IGameDAO {
 
-    boolean createGame(GameDTO game);
+    //CREATE
+    boolean createGame              (GameDTO game);
 
-    GameDTO getGame(int gameID);
-    List<GameDTO> getGameList();
-    ArrayList<String> getGameNames(String characters);
+    //READ
+    GameDTO getGame                 (int gameID);
+    ArrayList<String> getGameNames  (String characters);
 
+    //UPDATE
     boolean updateGame              (int gameID, GameDTO updatedGame);
     boolean updateGameGenre         (int gameID, int oldGenreID, int updatedGenreID);
     boolean updateGameGM            (int gameID, int oldGMID, int updatedGMID);
@@ -31,14 +32,15 @@ public interface IGameDAO {
     boolean updatedGameTrailer      (int gameID, int oldTrailerID, TrailerDTO updatedTrailer);
 
     boolean updateGamePublisher     (int gameID, int oldPublisherID, PublisherDTO updatedPublisher);
-    boolean updateGameDeveloper     (int gameID, int oldDeveloperID, DeveloperDTO updatedDeveloper);
+    boolean updateGameDeveloper     (int gameID, int oldDeveloperID, int oldPCompanyID, DeveloperDTO updatedDeveloper);
     boolean updateGameWriter        (int gameID, int oldWriterID, WriterDTO updatedWriter);
 
     boolean updateGameCharacter     (int gameID, int oldCharID, CharacterDTO updatedCharacter);
     boolean updateGameActor         (int gameID, int oldActorID, ActorDTO updatedActor);
-    boolean updateGameOST           (int gameID, int oldOSTID, SoundtrackDTO updatedOST);
+    boolean updateGameOST           (int gameID, int oldOstID, int oldComposerID, int oldArtistID, SoundtrackDTO updatedOST);
     boolean updateGameComposer      (int gameID, int oldCompID, ComposerDTO updatedComposer);
 
+    //DELETE
     boolean deleteGame(int gameID) throws SQLException;
 
 }

@@ -6,18 +6,9 @@ import java.sql.*;
 @Singleton
 public class MysqlConnection implements IMysqlConnection {
 
-
-
     private Statement           statement;
     private PreparedStatement   prepStatement;
     private Connection          connection;
-
-    private String myURLStart = "jdbc:mysql://";
-    private String myURL = "ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185095?";
-    private String myUserStart = "user=";
-    private String myUser = "s185095&";
-    private String myPassStart = "password=";
-    private String myPass = "qSmM4qcR0JF1sAnR6OZss";
 
     private static MysqlConnection mysqlConnection = null;
 
@@ -30,20 +21,25 @@ public class MysqlConnection implements IMysqlConnection {
 
     @Override
     public Connection createConnection() throws SQLException {
+        String myURLStart = "jdbc:mysql://";
+        String myURL = "ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185095?";
+        String myUserStart = "user=";
+        String myUser = "s185095&";
+        String myPassStart = "password=";
+        String myPass = "qSmM4qcR0JF1sAnR6OZss";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return connection = DriverManager.getConnection
                 (
-                myURLStart +
-                    myURL +
-                    myUserStart +
-                    myUser +
-                    myPassStart +
-                    myPass
+                        myURLStart +
+                                myURL +
+                                myUserStart +
+                                myUser +
+                                myPassStart +
+                                myPass
                 );
     }
 
