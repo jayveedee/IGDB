@@ -34,6 +34,7 @@ public class GameDAO_TEST {
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
 
+    // Create Game Object til tests
     public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
         DateDTO date = new DateDTO("1","12","2019");
@@ -65,7 +66,7 @@ public class GameDAO_TEST {
         return game;
     }
 
-    // Character X Actor insert
+    // Character X Actor insert ( CREATE )
     private List<CharacterDTO> GAME_createCharacterList(int gameID) {
         List<CharacterDTO> charList = new ArrayList<>();
         charList.add(GAME_createCharacter(60,gameID,"test1","PFP1"));
@@ -105,7 +106,7 @@ public class GameDAO_TEST {
         return actor;
     }
 
-    // Genre, GameMode & Platform Insert
+    // Genre, GameMode & Platform Insert ( CREATE )
     private List<GenreDTO> GAME_createGenreList(int gameID){
         List<GenreDTO> genreList = new ArrayList<>();
         genreList.add(GAME_createGenre(60,gameID,"test1"));
@@ -151,7 +152,7 @@ public class GameDAO_TEST {
         return plat;
     }
 
-    // Trailer & pics Insert
+    // Trailer & pics Insert ( CREATE )
     private List<TrailerDTO> GAME_createTrailerList(int gameID){
         List<TrailerDTO> trailerList = new ArrayList<>();
         trailerList.add(GAME_createTrailer(60,gameID,"TEST1"));
@@ -181,7 +182,7 @@ public class GameDAO_TEST {
         return picture;
     }
 
-    //Developer, Publisher & ParentCompany Insert
+    //Developer, Publisher & ParentCompany Insert ( CREATE )
     private DeveloperDTO GAME_createDeveloper (int devID, int gameID){
         DeveloperDTO dev = new DeveloperDTO();
         dev.setDevID(devID);
@@ -215,7 +216,7 @@ public class GameDAO_TEST {
         return pub;
     }
 
-    //Writer Insert
+    //Writer Insert ( CREATE )
     private List<WriterDTO> GAME_createWriterList(int gameID){
         List<WriterDTO> wriList = new ArrayList<>();
         wriList.add(GAME_createWriter(4,gameID));
@@ -232,7 +233,7 @@ public class GameDAO_TEST {
         return writer;
     }
 
-    // Composer & Soundtrack Insert
+    // Composer & Soundtrack Insert ( CREATE )
     private SoundtrackDTO GAME_createSoundtrack(int ostID, int gameID, List<Integer> maIDs){
         SoundtrackDTO ost = new SoundtrackDTO();
         ost.setOstID(ostID);
@@ -266,7 +267,7 @@ public class GameDAO_TEST {
         return ma;
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void createGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1 = createGameDB(70,"COD1");
@@ -280,7 +281,7 @@ public class GameDAO_TEST {
         mysql.closeConnection(mysql.getConnection());
     }
 
-    @Test
+    @Test // GOOD TO GO
     public void getGame() throws SQLException {
         mysql.createConnection();
         GameDTO testGame1       = createGameDB(70,"COD1");
@@ -396,23 +397,364 @@ public class GameDAO_TEST {
     }
 
     @Test
-    public void getGameList() {
-
-    }
-
-    @Test
     public void updateGame() {
         try {
             mysql.createConnection();
-           GameDTO G1 =  createGameDB(88,"Pubg");
+            GameDTO testUpdateGame = createGameDB(70, "COD1");
+            GameDTO updateGame = createGameDB1(70,"ZOD1");
+            gdao.updateGame(70,updateGame);
+            GameDTO updatedGame = gdao.getGame(70);
 
+            assertEquals(testUpdateGame.getGameID(),updatedGame.getGameID());
+            assertEquals(testUpdateGame.getGameBG(),updatedGame.getGameBG());
+            assertEquals(testUpdateGame.getGameBIO(),updatedGame.getGameBIO());
+            assertEquals(testUpdateGame.getGameCover(),updatedGame.getGameCover());
+            assertEquals(testUpdateGame.getGameNAME(),updatedGame.getGameNAME());
+            assertEquals(testUpdateGame.getGameRELEASEDATE().getDay(),updatedGame.getGameRELEASEDATE().getDay());
+            assertEquals(testUpdateGame.getGameRELEASEDATE().getMonth(),updatedGame.getGameRELEASEDATE().getMonth());
+            assertEquals(testUpdateGame.getGameRELEASEDATE().getYear(),updatedGame.getGameRELEASEDATE().getYear());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentID(),updatedGame.getGameDEV().getDevPCOMPANY().getParentID());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentNAME(),updatedGame.getGameDEV().getDevPCOMPANY().getParentNAME());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear());
+            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompID(),updatedGame.getGameOST().getOstCOMP().getCompID());
+            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompFN(),updatedGame.getGameOST().getOstCOMP().getCompFN());
+            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompLN(),updatedGame.getGameOST().getOstCOMP().getCompLN());
+            assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompGAME(),updatedGame.getGameOST().getOstCOMP().getCompGAME());
+            List<Integer> compOstList1      = testUpdateGame.getGameOST().getOstCOMP().getCompOSTs();
+            List<Integer> compOstList1DB    = updatedGame.getGameOST().getOstCOMP().getCompOSTs();
+            for (int i = 0; i < testUpdateGame.getGameOST().getOstCOMP().getCompOSTs().size(); i++) {
+                assertEquals(compOstList1.get(i),compOstList1DB.get(i));
+            }
+            assertEquals(testUpdateGame.getGameOST().getOstID(),updatedGame.getGameOST().getOstID());
+            assertEquals(testUpdateGame.getGameOST().getOstURL(),updatedGame.getGameOST().getOstURL());
+            assertEquals(testUpdateGame.getGameOST().getOstGAME(),updatedGame.getGameOST().getOstGAME());
+            assertEquals(testUpdateGame.getGameOST().getOstTITLE(),updatedGame.getGameOST().getOstTITLE());
+            List<MusicArtistDTO> ostMaList1     = testUpdateGame.getGameOST().getOstMA();
+            List<MusicArtistDTO> ostMaList1DB   = updatedGame.getGameOST().getOstMA();
+            for (int i = 0; i < testUpdateGame.getGameOST().getOstMA().size(); i++) {
+                assertEquals(ostMaList1.get(i).getArtID(),ostMaList1DB.get(i).getArtID());
+                assertEquals(ostMaList1.get(i).getArtNAME(),ostMaList1DB.get(i).getArtNAME());
+                assertEquals(ostMaList1.get(i).getArtPFP(),ostMaList1DB.get(i).getArtPFP());
+            }
+            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getDay(),updatedGame.getGamePUB().getPubCREATED().getDay());
+            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getMonth(),updatedGame.getGamePUB().getPubCREATED().getMonth());
+            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getYear(),updatedGame.getGamePUB().getPubCREATED().getYear());
+            assertEquals(testUpdateGame.getGamePUB().getPubCOUNTRY(),updatedGame.getGamePUB().getPubCOUNTRY());
+            assertEquals(testUpdateGame.getGamePUB().getPubID(),updatedGame.getGamePUB().getPubID());
+            assertEquals(testUpdateGame.getGamePUB().getPubNAME(),updatedGame.getGamePUB().getPubNAME());
+            assertEquals(testUpdateGame.getGamePUB().getPubGAME(),updatedGame.getGamePUB().getPubGAME());
+            assertEquals(testUpdateGame.getGameWRI().size(),updatedGame.getGameWRI().size());
+            for (int i = 0; i < testUpdateGame.getGameWRI().size(); i++) {
+                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterID(),updatedGame.getGameWRI().get(i).getWriterID());
+                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterGAME(),updatedGame.getGameWRI().get(i).getWriterGAME());
+                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterFN(),updatedGame.getGameWRI().get(i).getWriterFN());
+                assertEquals(testUpdateGame.getGameWRI().get(i).getWriterLN(),updatedGame.getGameWRI().get(i).getWriterLN());
+            }
+            List<ActorDTO> actTest1     = testUpdateGame.getGameACs();
+            List<ActorDTO> actTest1DB   = updatedGame.getGameACs();
+            for (int i = 0; i < testUpdateGame.getGameACs().size(); i++) {
+                assertEquals(actTest1.get(i).getAcBDAY().getDay(),actTest1DB.get(i).getAcBDAY().getDay());
+                assertEquals(actTest1.get(i).getAcBDAY().getMonth(),actTest1DB.get(i).getAcBDAY().getMonth());
+                assertEquals(actTest1.get(i).getAcBDAY().getYear(),actTest1DB.get(i).getAcBDAY().getYear());
+                assertEquals(actTest1.get(i).getAcFN(),actTest1DB.get(i).getAcFN());
+                assertEquals(actTest1.get(i).getAcLN(),actTest1DB.get(i).getAcLN());
+                assertEquals(actTest1.get(i).getAcID(),actTest1DB.get(i).getAcID());
+                assertEquals(actTest1.get(i).getAcGAME(),actTest1DB.get(i).getAcGAME());
+                assertEquals(actTest1.get(i).getAcPFP(),actTest1DB.get(i).getAcPFP());
+                List<Integer> actTest1Ch        = actTest1.get(i).getAcCHs();
+                List<Integer> actTest1ChDB      = actTest1DB.get(i).getAcCHs();
+                assertEquals(actTest1Ch.size(),actTest1ChDB.size());
+                for (int j = 0; j < actTest1.get(i).getAcCHs().size(); j++) {
+                    assertEquals(actTest1Ch.get(j),actTest1ChDB.get(j));
+                }
+            }
+            assertEquals(testUpdateGame.getGameGENREs().size(),updatedGame.getGameGENREs().size());
+            for (int i = 0; i < testUpdateGame.getGameGENREs().size(); i++) {
+                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenID(),updatedGame.getGameGENREs().get(i).getGenID());
+                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenTITLE(),updatedGame.getGameGENREs().get(i).getGenTITLE());
+                assertEquals(testUpdateGame.getGameGENREs().get(i).getGenGAME(),updatedGame.getGameGENREs().get(i).getGenGAME());
+            }
+            assertEquals(testUpdateGame.getGameCHs().size(),updatedGame.getGameCHs().size());
+            for (int i = 0; i < testUpdateGame.getGameCHs().size(); i++) {
+                assertEquals(testUpdateGame.getGameCHs().get(i).getChID(),updatedGame.getGameCHs().get(i).getChID());
+                assertEquals(testUpdateGame.getGameCHs().get(i).getChNAME(),updatedGame.getGameCHs().get(i).getChNAME());
+                assertEquals(testUpdateGame.getGameCHs().get(i).getChPFP(),updatedGame.getGameCHs().get(i).getChPFP());
+                assertEquals(testUpdateGame.getGameCHs().get(i).getChGAME(),updatedGame.getGameCHs().get(i).getChGAME());
+            }
+            assertEquals(testUpdateGame.getGameGMs().size(),updatedGame.getGameGMs().size());
+            for (int i = 0; i < testUpdateGame.getGameGMs().size(); i++) {
+                assertEquals(testUpdateGame.getGameGMs().get(i).getGmID(),updatedGame.getGameGMs().get(i).getGmID());
+                assertEquals(testUpdateGame.getGameGMs().get(i).getGmTITLE(),updatedGame.getGameGMs().get(i).getGmTITLE());
+                assertEquals(testUpdateGame.getGameGMs().get(i).getGmGAME(),updatedGame.getGameGMs().get(i).getGmGAME());
+            }
+            assertEquals(testUpdateGame.getGameTRAILERs().size(),updatedGame.getGameTRAILERs().size());
+            for (int i = 0; i < testUpdateGame.getGameTRAILERs().size(); i++) {
+                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerID(),updatedGame.getGameTRAILERs().get(i).getTrailerID());
+                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerURL(),updatedGame.getGameTRAILERs().get(i).getTrailerURL());
+                assertEquals(testUpdateGame.getGameTRAILERs().get(i).getTrailerGameID(),updatedGame.getGameTRAILERs().get(i).getTrailerGameID());
+            }
+            assertEquals(testUpdateGame.getGamePICs().size(),updatedGame.getGamePICs().size());
+            for (int i = 0; i < testUpdateGame.getGamePICs().size(); i++) {
+                assertEquals(testUpdateGame.getGamePICs().get(i).getPicID(),updatedGame.getGamePICs().get(i).getPicID());
+                assertEquals(testUpdateGame.getGamePICs().get(i).getPicURL(),updatedGame.getGamePICs().get(i).getPicURL());
+                assertEquals(testUpdateGame.getGamePICs().get(i).getPicGameID(),updatedGame.getGamePICs().get(i).getPicGameID());
+            }
+            assertEquals(testUpdateGame.getGamePLAT().size(),updatedGame.getGamePLAT().size());
+            for (int i = 0; i < testUpdateGame.getGamePLAT().size(); i++) {
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatID(),updatedGame.getGamePLAT().get(i).getPlatID());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatTITLE(),updatedGame.getGamePLAT().get(i).getPlatTITLE());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatGAMEs(),updatedGame.getGamePLAT().get(i).getPlatGAMEs());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getDay(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getDay());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getMonth(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getMonth());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getYear(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getYear());
+            }
+            mysql.closeConnection(mysql.getConnection());
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    @Test
-    public void deleteGame() {
+    @Test //GOOD TO GO
+    public void deleteGame() throws SQLException {
+        mysql.createConnection();
+        gdao.createGame(createGameDB(100,"TEST"));
+        assertTrue(gdao.deleteGame(100));
+        mysql.closeConnection(mysql.getConnection());
+    }
+    public GameDTO createGameDB1(int gameID, String userNAME) {
+        GameDTO game = new GameDTO();
+        DateDTO date = new DateDTO("1","12","2017");
+        DeveloperDTO dev = GAME_createDeveloper1(51,gameID);
+        PublisherDTO pub = GAME_createPublisher1(54,gameID);
+        ComposerDTO comp = GAME_createComposer1(54,gameID,51);
+        List<Integer> maList = new ArrayList<>();
+        maList.add(gameID);
+        SoundtrackDTO ost = GAME_createSoundtrack1(50,gameID,maList);
+
+        List<CharacterDTO>  gameCHARs       = GAME_createCharacterList1(gameID);
+        List<PlatformDTO>   plat            = GAME_createPlatformList1(gameID);
+        List<GenreDTO>      gameGENREs      = GAME_createGenreList1(gameID);
+        List<ActorDTO>      gameACTOR       = GAME_createActorList1(gameID,gameCHARs);
+        List<WriterDTO>     gameWRI         = GAME_createWriterList1(gameID);
+        List<RatingDTO>     gameRATING      = new ArrayList<>();
+        List<GameModeDTO>   gameGAMEMODE    = GAME_createGameModeList1(gameID);
+        List<TrailerDTO>    gameTRAILER     = GAME_createTrailerList1(gameID);
+        List<PictureDTO>    gamePics        = GAME_createPictureList1(gameID);
+
+        game.setGameID(gameID);
+        game.setGameBG("INSERT BACKGROUND URL1");        game.setGameBIO("INSERT DESCRIPTION HERE1");         game.setGameNAME(userNAME);
+        game.setGameCover("INSERT COVER HERE1");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
+        game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
+        game.setGameWRI(gameWRI);                       game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
+        game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
+        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
+        gdao.createGame(game);
+        return game;
+    }
+
+    // Character X Actor insert ( UPDATE )
+    private List<CharacterDTO> GAME_createCharacterList1(int gameID) {
+        List<CharacterDTO> charList = new ArrayList<>();
+        charList.add(GAME_createCharacter1(30,gameID,"test30","PFP31"));
+        charList.add(GAME_createCharacter1(31,gameID,"test31","PFP32"));
+        charList.add(GAME_createCharacter1(32,gameID,"test32","PFP33"));
+        return charList;
+    }
+    private CharacterDTO GAME_createCharacter1 (int charID, int gameID, String name, String PFP) {
+        CharacterDTO character = new CharacterDTO();
+        character.setChID(charID);
+        character.setChNAME(name);
+        character.setChPFP(PFP);
+        character.setChGAME(gameID);
+        return character;
+    }
+    private List<ActorDTO> GAME_createActorList1 (int gameID, List<CharacterDTO> gameCHARs) {
+        List<ActorDTO> actorList = new ArrayList<>();
+        actorList.add(GAME_createActor1(30,gameID,"TEST31","TEST31","TEST31",gameCHARs));
+        actorList.add(GAME_createActor1(31,gameID,"TEST32","TEST32","TEST32",gameCHARs));
+        actorList.add(GAME_createActor1(32,gameID,"TEST33","TEST33","TEST33",gameCHARs));
+        return actorList;
+    }
+    private ActorDTO GAME_createActor1(int actorID, int gameID, String FN, String LN, String PFP, List<CharacterDTO> gameCHARs){
+        ActorDTO actor = new ActorDTO();
+        actor.setAcID(actorID);
+        actor.setAcFN(FN);
+        actor.setAcLN(LN);
+        actor.setAcPFP(PFP);
+        DateDTO DOB = new DateDTO("1","1","2010");
+        actor.setAcBDAY(DOB);
+        List<Integer> charList = new ArrayList<>();
+        for (int i = 0; i < gameCHARs.size(); i++) {
+            charList.add(gameCHARs.get(i).getChID());
+        }
+        actor.setAcCHs(charList);
+        actor.setAcGAME(gameID);
+        return actor;
+    }
+
+    // Genre, GameMode & Platform Insert ( UPDATE )
+    private List<GenreDTO> GAME_createGenreList1(int gameID){
+        List<GenreDTO> genreList = new ArrayList<>();
+        genreList.add(GAME_createGenre1(30,gameID,"test31"));
+        genreList.add(GAME_createGenre1(31,gameID,"test32"));
+        genreList.add(GAME_createGenre1(32,gameID,"test33"));
+        return genreList;
+    }
+    private GenreDTO GAME_createGenre1(int genreID, int gameID, String title){
+        GenreDTO genre = new GenreDTO();
+        genre.setGenID(genreID);
+        genre.setGenTITLE(title);
+        genre.setGenGAME(gameID);
+        return genre;
+    }
+    private List<GameModeDTO> GAME_createGameModeList1(int gameID){
+        List<GameModeDTO> gameModeList = new ArrayList<>();
+        gameModeList.add(GAME_createGameMode1(30,gameID,"test31"));
+        gameModeList.add(GAME_createGameMode1(31,gameID,"test32"));
+        gameModeList.add(GAME_createGameMode1(32,gameID,"test33"));
+        return gameModeList;
+    }
+    private GameModeDTO GAME_createGameMode1(int gmID, int gameID, String title){
+        GameModeDTO gameMode = new GameModeDTO();
+        gameMode.setGmID(gmID);
+        gameMode.setGmTITLE(title);
+        gameMode.setGmGAME(gameID);
+        return gameMode;
+    }
+    private List<PlatformDTO> GAME_createPlatformList1(int gameID) {
+        List<PlatformDTO> platList = new ArrayList<>();
+        platList.add(GAME_createPlatform1(30,gameID));
+        platList.add(GAME_createPlatform1(31,gameID));
+        platList.add(GAME_createPlatform1(32,gameID));
+        return platList;
+    }
+    private PlatformDTO GAME_createPlatform1(int platID, int gameID) {
+        PlatformDTO plat = new PlatformDTO();
+        plat.setPlatID(platID);
+        plat.setPlatTITLE("FILLER");
+        DateDTO date = new DateDTO("1","1","2010");
+        plat.setPlatCREATED(date);
+        plat.setPlatGAMEs(gameID);
+        return plat;
+    }
+
+    // Trailer & pics Insert ( UPDATE )
+    private List<TrailerDTO> GAME_createTrailerList1(int gameID){
+        List<TrailerDTO> trailerList = new ArrayList<>();
+        trailerList.add(GAME_createTrailer1(30,gameID,"TEST31"));
+        trailerList.add(GAME_createTrailer1(31,gameID,"TEST32"));
+        trailerList.add(GAME_createTrailer1(32,gameID,"TEST33"));
+        return trailerList;
+    }
+    private TrailerDTO GAME_createTrailer1(int trailerID, int gameID, String trailerURL){
+        TrailerDTO trailer = new TrailerDTO();
+        trailer.setTrailerID(trailerID);
+        trailer.setTrailerURL(trailerURL);
+        trailer.setTrailerGameID(gameID);
+        return trailer;
+    }
+    private List<PictureDTO> GAME_createPictureList1(int gameID){
+        List<PictureDTO> picList = new ArrayList<>();
+        picList.add(GAME_createPicture1(30,gameID));
+        picList.add(GAME_createPicture1(31,gameID));
+        picList.add(GAME_createPicture1(32,gameID));
+        return picList;
+    }
+    private PictureDTO GAME_createPicture1(int picID, int gmaeID){
+        PictureDTO picture = new PictureDTO();
+        picture.setPicGameID(gmaeID);
+        picture.setPicID(picID);
+        picture.setPicURL("fillerTEXT1");
+        return picture;
+    }
+
+    //Developer, Publisher & ParentCompany Insert ( UPDATE )
+    private DeveloperDTO GAME_createDeveloper1 (int devID, int gameID){
+        DeveloperDTO dev = new DeveloperDTO();
+        dev.setDevID(devID);
+        dev.setDevNAME("FILLER1");
+        dev.setDevCOUNTRY("FILLER1");
+        DateDTO date = new DateDTO("1","1","2010");
+        dev.setDevCREATED(date);
+        dev.setDevSTATUS(true);
+        dev.setDevGAME(gameID);
+        dev.setDevPCOMPANY(GAME_createPCompany1(gameID));
+        return dev;
+    }
+    private ParentCompanyDTO GAME_createPCompany1(int pcompID){
+        ParentCompanyDTO pcomp = new ParentCompanyDTO();
+        pcomp.setParentID(pcompID);
+        pcomp.setParentNAME("FILLER1");
+        pcomp.setParentCOUNTRY("ASD1");
+        pcomp.setParentSTATUS(true);
+        DateDTO date = new DateDTO("1","1","2010");
+        pcomp.setParentCREATED(date);
+        return pcomp;
+    }
+    private PublisherDTO GAME_createPublisher1(int pubID, int gameID){
+        PublisherDTO pub = new PublisherDTO();
+        pub.setPubID(pubID);
+        pub.setPubNAME("FILLER TEXT1");
+        pub.setPubCOUNTRY("FILLER TEXT1");
+        DateDTO date = new DateDTO("1","1","2010");
+        pub.setPubCREATED(date);
+        pub.setPubGAME(gameID);
+        return pub;
+    }
+
+    //Writer Insert ( UPDATE )
+    private List<WriterDTO> GAME_createWriterList1(int gameID){
+        List<WriterDTO> wriList = new ArrayList<>();
+        wriList.add(GAME_createWriter1(41,gameID));
+        wriList.add(GAME_createWriter1(71,gameID));
+        wriList.add(GAME_createWriter1(91,gameID));
+        return wriList;
+    }
+    private WriterDTO GAME_createWriter1(int wriID, int gameID){
+        WriterDTO writer = new WriterDTO();
+        writer.setWriterID(wriID);
+        writer.setWriterFN("FILLER1");
+        writer.setWriterLN("FILLER1");
+        writer.setWriterGAME(gameID);
+        return writer;
+    }
+
+    // Composer & Soundtrack Insert ( UPDATE )
+    private SoundtrackDTO GAME_createSoundtrack1(int ostID, int gameID, List<Integer> maIDs){
+        SoundtrackDTO ost = new SoundtrackDTO();
+        ost.setOstID(ostID);
+        ost.setOstTITLE("FILLER1");
+        ost.setOstURL("FILLER1");
+        ost.setOstCOMP(GAME_createComposer1(42,gameID,ostID));
+        List<MusicArtistDTO> maList = new ArrayList<>();
+        for (int i = 0; i < maIDs.size(); i++) {
+            maList.add(GAME_createMusicalArtist1(maIDs.get(i),ostID));
+        }
+        ost.setOstMA(maList);
+        ost.setOstGAME(gameID);
+        return ost;
+    }
+    private ComposerDTO GAME_createComposer1(int compID, int gameID, int ostID){
+        ComposerDTO comp = new ComposerDTO();
+        comp.setCompID(compID);
+        comp.setCompFN("FILLER1");
+        comp.setCompLN("FILLER1");
+        comp.setCompGAME(gameID);
+        List<Integer> ostList = new ArrayList<>();
+        ostList.add(ostID);
+        comp.setCompOSTs(ostList);
+        return comp;
+    }
+    private MusicArtistDTO GAME_createMusicalArtist1(int maID, int ostID){
+        MusicArtistDTO ma = new MusicArtistDTO();
+        ma.setArtID(maID);
+        ma.setArtNAME("FILLER1");
+        ma.setArtPFP("FILLER1");
+        return ma;
     }
 }
+
