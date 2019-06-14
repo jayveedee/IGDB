@@ -413,6 +413,10 @@ public class GameDAO_TEST {
     }
 
     @Test
-    public void deleteGame() {
+    public void deleteGame() throws SQLException {
+        mysql.createConnection();
+        gdao.createGame(createGameDB(100,"TEST"));
+        assertTrue(gdao.deleteGame(100));
+        mysql.closeConnection(mysql.getConnection());
     }
 }
