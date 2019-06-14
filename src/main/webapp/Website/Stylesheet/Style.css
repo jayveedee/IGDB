@@ -83,11 +83,18 @@ h2{
     text-decoration: none;
 }
 
-.navLinks{
+.navLinks-right{
     float: right;
     margin-top: 6px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.navLinks-left{
+    margin-top: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .createArticle{
@@ -109,7 +116,7 @@ h2{
     border: 0;
     height: 1.8em;
     padding: 6px 0 7px 10px;
-    margin: 10px 0px 0px 480px;
+    margin: 10px 0px 0px 180px;
     box-sizing: content-box;
     background-color: #fafafa;
     -webkit-tap-highlight-color: transparent;
