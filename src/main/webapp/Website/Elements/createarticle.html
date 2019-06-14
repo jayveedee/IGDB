@@ -61,8 +61,7 @@
                 <button class="btn-remove-row8">Remove</button>
                 <div class="element-wrapper8">
                     <div >
-                        <input class="row8 media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
-                        <button class="btn-remove-row8">Remove</button>
+                        <input class="row8 media-input" id="row8-0" type="text" placeholder="Insert URL of game trailer">
                     </div>
                 </div>
             </li>
@@ -71,8 +70,8 @@
                 <button class="btn-add-row9" type="button">Add</button>
                 <button class="btn-remove-row9">Remove</button>
                 <div class="element-wrapper9">
-                    <div class="row9">
-                        <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
+                    <div>
+                        <input class="row9 media-input" id="row9-0" type="text" placeholder="Insert URL of pictures">
                     </div>
                 </div>
             </li>
@@ -96,9 +95,9 @@
                 <button class="btn-add-row5" type="button">Add</button>
                 <button class ="btn-remove-row5">Remove</button>
                 <div class="element-wrapper5">
-                    <div class="row5">
-                        <input class="media-input" type="text" placeholder="Insert name of musical artist">
-                        <input class="media-input" type="text" placeholder="Insert image URL of the artist">
+                    <div>
+                        <input id="row5name-0" class="row5name media-input" type="text" placeholder="Insert name of musical artist">
+                        <input id="row5URL-0" class="row5URL media-input" type="text" placeholder="Insert image URL of the artist">
                     </div>
                 </div>
             </li>
@@ -107,8 +106,8 @@
                 <button class="btn-add-row6" type="button">Add</button>
                 <button class ="btn-remove-row6">Remove</button>
                 <div class="element-wrapper6">
-                    <div class="row6">
-                        <input class="media-input" type="text" placeholder="Insert name of composers">
+                    <div>
+                        <input id="row6-0" class="row6 media-input" type="text" placeholder="Insert name of composers">
                     </div>
                 </div>
             </li>
@@ -117,8 +116,8 @@
                 <button class="btn-add-row7" type="button">Add</button>
                 <button class ="btn-remove-row7">Remove</button>
                 <div class ="element-wrapper7">
-                    <div class="row7">
-                        <input class="media-input" type="text" placeholder="Insert name of writers">
+                    <div>
+                        <input id="row7-0" class="row7 media-input" type="text" placeholder="Insert name of writers">
                     </div>
                 </div>
             </li>
@@ -204,21 +203,21 @@
         <button class="btn-add-row" type="button">Add</button>
         <button class ="btn-remove-row">Remove</button>
         <div class="element-wrapper">
-            <div class="row">
-                <ul>
-                    <li class="media-list">
+            <div>
+                <!--<ul>-->
+                    <!--<li class="media-list">-->
                         <h5 class="media-headers">Name of Actor</h5>
-                        <input class="media-input" type="text" placeholder="Insert name of Actor">
-                    </li>
-                    <li class="media-list">
+                        <input id="rowName-0" class="rowName media-input" type="text" placeholder="Insert name of Actor">
+                    <!--</li>-->
+                    <!--<li class="media-list">-->
                         <h5 class="media-headers">Image of Actor</h5>
-                        <input class="media-input" type="text" placeholder="Insert image URL of Actor">
-                    </li>
-                    <li class="media-list">
+                        <input id="rowURL-0" class="rowURL media-input" type="text" placeholder="Insert image URL of Actor">
+                    <!--</li>-->
+                    <!--<li class="media-list">-->
                         <h5 class="media-headers">Date of Birth of Actor</h5>
-                        <input class="dateInput" type="date">
-                    </li>
-                </ul>
+                        <input id="rowBirthDay-0" class="rowBirthDay dateInput" type="date">
+                    <!--</li>-->
+                <!--</ul>-->
             </div>
         </div>
     </div>
@@ -228,15 +227,15 @@
         <button id="btn11" class="add-button" type="button">Add</button>
         <button class="btn-remove-row11">Remove</button>
         <div class="element-wrapper11">
-            <div class="list-rows row11">
+            <div class="list-rows">
                 <ul>
                     <li class="media-list">
                         <h5 class="media-headers">Name of character</h5>
-                        <input class="media-input" type="text" placeholder="Insert name of character">
+                        <input id="row11Name-0" class="row11Name media-input" type="text" placeholder="Insert name of character">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Character Image</h5>
-                        <input class="media-input" type="text" placeholder="Insert image URL of character">
+                        <input id="row11URL-0" class="row11URL media-input" type="text" placeholder="Insert image URL of character">
                     </li>
                 </ul>
             </div>
@@ -248,8 +247,8 @@
         <button class="btn-add-row2" type="button">Add</button>
         <button class ="btn-remove-row2">Remove</button>
         <div class="element-wrapper2">
-            <div class="row2">
-                <select>
+            <div>
+                <select class="row2" id="row2-0">
                     <option selected disabled>Choose a platform</option>
                     <optgroup label="Sony">
                         <option value="PlayStation 1">PlayStation 1</option>
@@ -273,8 +272,8 @@
         <button class ="btn-remove-row3">Remove</button>
 
         <div class="element-wrapper3">
-            <div class="row3">
-                <select>
+            <div>
+                <select class="row3" id="row3-0">
                     <option selected disabled>Choose a genre</option>
                     <option value="First Person Shooter">First Person Shooter</option>
                     <option value="MMO">MMO</option>
