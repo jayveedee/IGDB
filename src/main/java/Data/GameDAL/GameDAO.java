@@ -59,7 +59,7 @@ public class GameDAO implements IGameDAO {
         handleINSERTDeveloperXParentCompany     (gameID, gameDEV);
         handleINSERTPublisher                   (gameID, gamePUB);
         handleINSERTWriter                      (gameID, gameWRI);
-        handleINSERTPlatform(gameID, gamePLAT);
+        handleINSERTPlatform                    (gameID, gamePLAT);
         if (gameOST != null){
             handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
             handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
@@ -101,7 +101,7 @@ public class GameDAO implements IGameDAO {
                     "VALUES (?, ?, ?, ?, ?, ?)";
             int                         ostID           = gameOST.getOstID();
             String                      ostTITLE        = gameOST.getOstTITLE();
-            String                      ostPFP          = gameOST.getOstPFP();
+            String                      ostPFP          = gameOST.getOstURL();
             List<MusicArtistDTO>        malist          = gameOST.getOstMA();
             try {
                 mySql.getConnection().setAutoCommit(false);
@@ -213,8 +213,8 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?)";
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
-            DateDTO parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
-                String  parentCREATEDstring         = parentCREATED.getDay() + "/" + parentCREATED.getMonth() + "/" + parentCREATED.getYear();
+            DateDTO parentCREATED                   = gameDEV.getDevPCOMPANY().getParentCREATED();
+                String  parentCREATEDstring         = parentCREATED.getDateString();
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
@@ -224,7 +224,7 @@ public class GameDAO implements IGameDAO {
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
             DateDTO     devCREATED          = gameDEV.getDevCREATED();
-                String  devCREATEDstring    = devCREATED.getDay() + "/" + devCREATED.getMonth() + "/" + devCREATED.getYear();
+                String  devCREATEDstring    = devCREATED.getDateString();
             String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
             boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
@@ -583,7 +583,7 @@ public class GameDAO implements IGameDAO {
             while (rs12.next()){
                 ost.setOstID(rs12.getInt("ostID"));
                 ost.setOstTITLE(rs12.getString("ostTITLE"));
-                ost.setOstPFP(rs12.getString("ostPFP"));
+                ost.setOstURL(rs12.getString("ostPFP"));
                 ost.setOstGAME(rs12.getInt("ostGameID"));
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(ostMa));
                 mySql.getPrepStatement().setInt(1,rs12.getInt("ostArtistID"));
@@ -909,7 +909,7 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
             PreparedStatement prepStatement3 = mySql.getPrepStatement();
             prepStatement3.setString(1,updatedOST.getOstTITLE());
-            prepStatement3.setString(2,updatedOST.getOstPFP());
+            prepStatement3.setString(2,updatedOST.getOstURL());
             prepStatement3.setInt(3,oldOstID);
             prepStatement3.setInt(4,gameID);
             prepStatement3.setInt(5,oldComposerID);
@@ -945,27 +945,43 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame (int gameID) {
-        String query1 = "DELETE From Game WHERE gameID = ?";
-        String query2 = "DELETE FROM TrailerList WHERE trailerGameID = ?";
-        String query3 = "DELETE FROM ";
+        String query1 = "DELETE FROM UserGameList WHERE gameID = ?";
+        handleDeleteByID(gameID, query1);
+        String query2 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
+        handleDeleteByID(gameID,query2);
+        String query3 = "DELETE FROM GenreList WHERE genreGameID = ? ";
+        handleDeleteByID(gameID,query3);
+        String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
+        handleDeleteByID(gameID,query4);
+        String query5 = "DELETE FROM TrailerList WHERE trailerGameID = ?";
+        handleDeleteByID(gameID,query5);
+        String query6 = "DELETE FROM PictureList WHERE pictureGameID = ? ";
+        handleDeleteByID(gameID,query6);
+        String query7 = "DELETE FROM PublisherList WHERE pubGameID = ?";
+        handleDeleteByID(gameID,query7);
+        String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
+        handleDeleteByID(gameID,query8);
 
-
-
-
-
+        String query111 = "DELETE FROM SoundtrackList WHERE ostGameID = ? ";
+        String query222 = "DELETE FROM MusicalArtistList WHERE artistID = ?" ;
+        String query333 = "DELETE FROM ComposerList WHERE compGameID = ? ";
+        String query444 = "DELETE FROM ActorList WHERE actorGameID = ? AND actorCharID = ? AND actorID = ?";
+        String query555 = "DELETE FROM CharacterList WHERE charGameID = ?";
+        String query666 = "DELETE From Game WHERE gameID = ?";
 
         return true;
     }
 
-    private boolean handleDeleteGame(String gameTITLE, String query) {
+    private boolean handleDeleteByID(int gameID, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setString(1,gameTITLE);
+            mySql.getPrepStatement().setInt(1,gameID);
             mySql.getPrepStatement().executeUpdate();
             mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         return true;
     }

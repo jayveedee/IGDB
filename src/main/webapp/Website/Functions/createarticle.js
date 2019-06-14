@@ -29,16 +29,7 @@ $(document).on("click", ".btn-remove-row3", function(){
     var index3 = $(".btn-remove-row3").index(this);
     $(".row3").eq(index3).remove();
 });
-/*--------------------------------------------------------------------------bt4*/
-$(document).on("click", "#btn4", function(){
-    var row4 = $(".row4").eq(0).clone().show();
-    $(".element-wrapper4").append(row4)
-});
 
-$(document).on("click", ".btn-remove-row4", function(){
-    var index4 = $(".btn-add-row4").index(this);
-    $(".row4").eq(index4).remove();
-});
 /*--------------------------------------------------------------------------bt5*/
 $(document).on("click", ".btn-add-row5", function(){
     var row5 = $(".row5").eq(0).clone().show();
@@ -72,6 +63,7 @@ $(document).on("click", ".btn-remove-row7", function(){
 /*--------------------------------------------------------------------------bt8*/
 $(document).on("click", ".btn-add-row8", function(){
     var row8 = $(".row8").eq(0).clone().show();
+    row8.attr("id","hejsa");
     $(".element-wrapper8").append(row8)
 });
 
@@ -110,12 +102,160 @@ $(document).on("click", ".btn-remove-row11", function() {
     $(".row11").eq(index11).remove();
 });
 
+
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
+    //initializing game
+
+    var parentCompany = {
+        parentID : 0,
+        parentNAME : $("#companyNameField").val(),
+        parentCREATED : $("#creationOfCompanyField").val(),
+        parentCountry : $("#companyOriginField").val(),
+        parentSTATUS : $("#companyStatusField").val()
+    };
+
+    var developer = {
+        devID : 0,
+        devNAME : $("#developerNameField").val(),
+        devCREATED : $("#developerCreationField").val(),
+        devSTATUS : $("#developerStatusField").val(),
+        devCOUNTRY : $("#developerOriginField").val(),
+        devPCOMPANY : parentCompany,
+        devGAME : null
+    };
+
+    var publisher = {
+        pubID : 0,
+        pubNAME : $("#publisherNameField").val(),
+        pubCREATED : $("#publisherCreationField").val(),
+        pubCOUNTRY : $("#publisherOriginField").val(),
+        pubSTATUS : $("#publisherStatusField").val(),
+        pubGAME : null
+    };
+
+    var soundtrack = {
+        ostID : 0,
+        ostTITLE : $("#soundtrackNameField").val(),
+        ostCOMP : null,
+        ostMA : null,
+        ostGAME : 0,
+        ostURL : $("#soundtrackURLField").val()
+    };
+
+    var game ={
+        gameID : 0,
+        gameNAME : $("#titlefield").val(),
+        gameCHs : [],
+        gameACs : [],
+        gameGENREs : [],
+        gameGMs : [],
+        gameRATINGs : [],
+        gameRELEASEDATE : $("#releaseDateField").val(),
+        gameWRI : [],
+        gameCOMP : parentCompany,
+        gameDEV : developer,
+        gamePUB : publisher,
+        gameOST : soundtrack,
+        gamePLAT : [],
+        gameCOVER : $("#picturefield").val(),
+        gameBG : $("#backpicfield").val(),
+        gameBIO : $("#gameDescfield").val(),
+        gameTRAILERs : [],
+        gamePICs : []
+    };
+
+    var platform={
+        platID : 0,
+        platTITLE : "placeholder",
+        platGAME : 0,
+        platCREATED : "placeholder"
+    };
+
+    var trailer = {
+        trailerID : 0,
+        trailerURL : "placeholder",
+        trailerGameID : 0
+    };
+
+    var picture = {
+        picID : 0,
+        picURL : "placeholder",
+        picGameID : 0
+    };
+
+    var composer = {
+        compID : 0,
+        compFN : "placeholder",
+        compLN : "placeholder",
+        compOSTs : null,
+        compGAME : null
+    };
+
+    var musician = {
+        artID : 0,
+        artNAME : "placeholder",
+        artPFP : "placeholder"
+    };
+
+    var writers = {
+        writerID : 0,
+        writerFN : "placeholder",
+        writerLN : "placeholder",
+        writerGAME : "placeholder"
+    };
+
+    var actor = {
+        acID : 0,
+        acFN : "placeholder",
+        acLN : "placeholder",
+        acBDAY : "placeholder",
+        acCHs : "placeholder",
+        acGAME : 0,
+        acPFP : "placeholder"
+    };
+
+    var character = {
+        chID : 0,
+        chNAME : "placeholder",
+        chGAME : 0
+    };
+
+    var genre = {
+        genID : 0,
+        genTITLE : "placeholder",
+        genGAME : 0
+    };
+
+
+
+
+    game.gameNAME.push("hey");
+    game.gameNAME.push("omg");
+    for (var i = 0; i < game.gameNAME.length; i++) {
+        alert(game.gameNAME[i]);
+    }
+
+    alert(game.gameNAME);
+
+});
+
+//FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
+/*$("#createGameForm").submit(function (event) {
+    event.preventDefault();
+    var data = $(this).serializeArray();
+    var newArray = new Array();
+    newArray.push("hey");
+    newArray.push("hi");
+    //var newArraySerialized =JSON.stringify(newArray) ;
+    //newArraySerialized.push({name : "newValueFromNewArray", value : "OMG BRO Hvis Det Her virker så køber jeg en lotto plade"});
+    data.push({name : "newValue", value : "detHerErDenNyeValueOgDetKanVæreSejtHvisDetteVirkede"});
+    data.push({name : "list", value : newArray});
+    //data = data.concat(newArraySerialized);
     $.ajax({
         type : $(this).attr("method"),
         url : $(this).attr("action"),
-        data : $(this).serialize(),
+        data : $.param(data),
         success : function (data) {
             alert("success");
         },
@@ -123,7 +263,7 @@ $("#createGameForm").submit(function (event) {
             alert("error");
         }
     });
-});
+});*/
 
 /*$("#registerForm").submit(function (event) {
     event.preventDefault();
