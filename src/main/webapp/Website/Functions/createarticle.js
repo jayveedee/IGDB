@@ -29,16 +29,7 @@ $(document).on("click", ".btn-remove-row3", function(){
     var index3 = $(".btn-remove-row3").index(this);
     $(".row3").eq(index3).remove();
 });
-/*--------------------------------------------------------------------------bt4*/
-$(document).on("click", "#btn4", function(){
-    var row4 = $(".row4").eq(0).clone().show();
-    $(".element-wrapper4").append(row4)
-});
 
-$(document).on("click", ".btn-remove-row4", function(){
-    var index4 = $(".btn-add-row4").index(this);
-    $(".row4").eq(index4).remove();
-});
 /*--------------------------------------------------------------------------bt5*/
 $(document).on("click", ".btn-add-row5", function(){
     var row5 = $(".row5").eq(0).clone().show();
