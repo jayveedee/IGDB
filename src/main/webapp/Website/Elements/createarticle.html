@@ -41,7 +41,7 @@
         <h3 id="headertitle">Title</h3>
         <input id="titlefield" type="text" placeholder="Insert the title" name="titleField">
         <h3 id="headerRD">Release Date</h3>
-        <input class="dateInput" type="date" name="releaseDate">
+        <input class="dateInput" type="date" name="releaseDate" id="releaseDateField">
     </div>
 
     <div id="mediaInput" class="container">
@@ -59,8 +59,8 @@
                 <h5 class="media-headers">Game Trailer</h5>
                 <button class="btn-add-row8" type="button">Add</button>
                 <div class="element-wrapper8">
-                    <div class="row8">
-                        <input class="media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
+                    <div >
+                        <input class="row8 media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
                         <button class="btn-remove-row8">Remove</button>
                     </div>
                 </div>
@@ -83,12 +83,10 @@
         <ul>
             <li class="media-list">
                 <h5 class="media-headers">Soundtrack</h5>
-                <button class="add-button" id="btn4" type="button">Add</button>
                 <div class="element-wrapper4">
                     <div class="row4">
-                        <input class="media-input" type="text" placeholder="Insert name of soundtrack ">
-                        <input class="media-input" type="text" placeholder="Insert image URL of soundtrack">
-                        <button class ="btn-remove-row4">Remove</button>
+                        <input id="soundtrackNameField" class="media-input" type="text" placeholder="Insert name of soundtrack ">
+                        <input id="soundtrackURLField" class="media-input" type="text" placeholder="Insert image URL of soundtrack">
                     </div>
                 </div>
             </li>
@@ -131,19 +129,19 @@
         <ul id="media-list">
             <li class ="media-list">
                 <h5 class ="media-headers">Company Name</h5>
-                <input class="media-input" type="text" placeholder="Insert Company Name">
+                <input id="companyNameField" class="media-input" type="text" placeholder="Insert Company Name">
             </li>
             <li class ="media-list">
                 <h5 class ="media-headers">Origin of Company</h5>
-                <input class="media-input" type="text" placeholder="Insert origin of company">
+                <input id="companyOriginField" class="media-input" type="text" placeholder="Insert origin of company">
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Company Status</h5>
-                <input class="media-input" type="text" placeholder="Insert status of developer">
+                <input id="companyStatusField" class="media-input" type="text" placeholder="Insert status of company">
             </li>
             <li class="media-list">
                 <h5 class="media-headers">Creation of Company</h5>
-                <input class="media-input" type="date">
+                <input id="creationOfCompanyField" class="media-input" type="date">
             </li>
         </ul>
     </div>
@@ -155,19 +153,19 @@
                 <ul>
                     <li class="media-list">
                         <h5 class="media-headers">Developer Name</h5>
-                        <input class="media-input" type="text" placeholder="Insert name of developer">
+                        <input id="developerNameField" class="media-input" type="text" placeholder="Insert name of developer">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Date of Developer Creation</h5>
-                        <input class="media-input" type="date">
+                        <input id="developerCreationField" class="media-input" type="date">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Origin of Developer</h5>
-                        <input class="media-input" type="text" placeholder="Insert origin of Developer">
+                        <input id="developerOriginField" class="media-input" type="text" placeholder="Insert origin of Developer">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Developer Status</h5>
-                        <input class="media-input" type="text" placeholder="Insert status of developer">
+                        <input id="developerStatusField" class="media-input" type="text" placeholder="Insert status of developer">
                     </li>
                 </ul>
             </div>
@@ -181,19 +179,19 @@
                 <ul>
                     <li class="media-list">
                         <h5 class="media-headers">Publisher Name</h5>
-                        <input class="media-input" type="text" placeholder="Insert name of publisher">
+                        <input id="publisherNameField" class="media-input" type="text" placeholder="Insert name of publisher">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Date of Publisher Creation</h5>
-                        <input class="media-input" type="date">
+                        <input id="publisherCreationField" class="media-input" type="date">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Origin of Publisher</h5>
-                        <input class="media-input" type="text" placeholder="Insert origin of publisher">
+                        <input id="publisherOriginField" class="media-input" type="text" placeholder="Insert origin of publisher">
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Publisher Status</h5>
-                        <input class="media-input" type="text" placeholder="Insert status of publisher">
+                        <input id="publisherStatusField" class="media-input" type="text" placeholder="Insert status of publisher">
                     </li>
                 </ul>
             </div>

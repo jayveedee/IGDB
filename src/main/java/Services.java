@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @Path("services")
@@ -169,13 +170,21 @@ public class Services {
         return jsonString;
     }
 
-    @POST
+
+
+
+    //FØRSTE VERSION AF CREATEGAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET BLEV FOR KOMPLICERET
+    /*@POST
     @Path("game/createGame")
-    public String createGame(@FormParam("titleField") String title, @FormParam("gameCover") String gameCover, @FormParam("gameDescription") String gameDescription, @FormParam("releaseDate") String releaseDate){
+    public String createGame(@FormParam("titleField") String title, @FormParam("gameCover") String gameCover, @FormParam("gameDescription") String gameDescription, @FormParam("releaseDate") String releaseDate, @FormParam("newValue") String newValue){
         System.out.println(title);
         System.out.println(gameCover);
         System.out.println(gameDescription);
         System.out.println(releaseDate);
+        System.out.println(newValue);
+        /*for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
         return "hey";
-    }
+    }*/
 }
