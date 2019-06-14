@@ -60,7 +60,7 @@ public class GameDAO_TEST {
         game.setGameWRI(gameWRI);                       game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
-        //gdao.createGame(game);
+        gdao.createGame(game);
         return game;
     }
 
@@ -405,7 +405,6 @@ public class GameDAO_TEST {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Test
