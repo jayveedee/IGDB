@@ -31,20 +31,6 @@
     text-decoration: none;
 }
 
-.submit {
-    width: 50% !important;
-    border: 0;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: rgba(30,144,255,0.6);
-    border-radius: 4px;
-}
-
-.submit:hover{
-    background-color: #1E90FF !important;
-}
-
 .tab{
     font-size: 31px;
     list-style-type: none;
