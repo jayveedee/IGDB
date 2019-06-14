@@ -21,6 +21,7 @@ import Data.UserDTO.RatingDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class GameDAO_TEST {
         game.setGameWRI(gameWRI);                       game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
         game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);                  game.setGamePLAT(plat);
-        gdao.createGame(game);
+        //gdao.createGame(game);
         return game;
     }
 
@@ -236,7 +237,7 @@ public class GameDAO_TEST {
         SoundtrackDTO ost = new SoundtrackDTO();
         ost.setOstID(ostID);
         ost.setOstTITLE("FILLER");
-        ost.setOstPFP("FILLER");
+        ost.setOstURL("FILLER");
         ost.setOstCOMP(GAME_createComposer(4,gameID,ostID));
         List<MusicArtistDTO> maList = new ArrayList<>();
         for (int i = 0; i < maIDs.size(); i++) {
@@ -272,6 +273,9 @@ public class GameDAO_TEST {
         GameDTO testGame2 = createGameDB(71,"COD2");
         GameDTO testGame3 = createGameDB(72,"COD3");
         GameDTO testGame4 = createGameDB(99,"COD4");
+        assertTrue(gdao.createGame(testGame1));
+        assertTrue(gdao.createGame(testGame2));
+        assertTrue(gdao.createGame(testGame3));
         assertTrue(gdao.createGame(testGame4));
         mysql.closeConnection(mysql.getConnection());
     }
@@ -306,7 +310,7 @@ public class GameDAO_TEST {
             assertEquals(compOstList1.get(i),compOstList1DB.get(i));
         }
         assertEquals(testGame1.getGameOST().getOstID(),testGame1DB.getGameOST().getOstID());
-        assertEquals(testGame1.getGameOST().getOstPFP(),testGame1DB.getGameOST().getOstPFP());
+        assertEquals(testGame1.getGameOST().getOstURL(),testGame1DB.getGameOST().getOstURL());
         assertEquals(testGame1.getGameOST().getOstGAME(),testGame1DB.getGameOST().getOstGAME());
         assertEquals(testGame1.getGameOST().getOstTITLE(),testGame1DB.getGameOST().getOstTITLE());
         List<MusicArtistDTO> ostMaList1     = testGame1.getGameOST().getOstMA();

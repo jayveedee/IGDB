@@ -101,7 +101,7 @@ public class GameDAO implements IGameDAO {
                     "VALUES (?, ?, ?, ?, ?, ?)";
             int                         ostID           = gameOST.getOstID();
             String                      ostTITLE        = gameOST.getOstTITLE();
-            String                      ostPFP          = gameOST.getOstPFP();
+            String                      ostPFP          = gameOST.getOstURL();
             List<MusicArtistDTO>        malist          = gameOST.getOstMA();
             try {
                 mySql.getConnection().setAutoCommit(false);
@@ -213,8 +213,8 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?)";
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
-            DateDTO parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
-                String  parentCREATEDstring         = parentCREATED.getDay() + "/" + parentCREATED.getMonth() + "/" + parentCREATED.getYear();
+            DateDTO parentCREATED                   = gameDEV.getDevPCOMPANY().getParentCREATED();
+                String  parentCREATEDstring         = parentCREATED.getDateString();
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
@@ -224,7 +224,7 @@ public class GameDAO implements IGameDAO {
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
             DateDTO     devCREATED          = gameDEV.getDevCREATED();
-                String  devCREATEDstring    = devCREATED.getDay() + "/" + devCREATED.getMonth() + "/" + devCREATED.getYear();
+                String  devCREATEDstring    = devCREATED.getDateString();
             String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
             boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
@@ -583,7 +583,7 @@ public class GameDAO implements IGameDAO {
             while (rs12.next()){
                 ost.setOstID(rs12.getInt("ostID"));
                 ost.setOstTITLE(rs12.getString("ostTITLE"));
-                ost.setOstPFP(rs12.getString("ostPFP"));
+                ost.setOstURL(rs12.getString("ostPFP"));
                 ost.setOstGAME(rs12.getInt("ostGameID"));
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(ostMa));
                 mySql.getPrepStatement().setInt(1,rs12.getInt("ostArtistID"));
@@ -909,7 +909,7 @@ public class GameDAO implements IGameDAO {
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query3));
             PreparedStatement prepStatement3 = mySql.getPrepStatement();
             prepStatement3.setString(1,updatedOST.getOstTITLE());
-            prepStatement3.setString(2,updatedOST.getOstPFP());
+            prepStatement3.setString(2,updatedOST.getOstURL());
             prepStatement3.setInt(3,oldOstID);
             prepStatement3.setInt(4,gameID);
             prepStatement3.setInt(5,oldComposerID);
