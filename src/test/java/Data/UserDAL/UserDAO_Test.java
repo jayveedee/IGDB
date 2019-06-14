@@ -1,5 +1,6 @@
 package Data.UserDAL;
 
+import Data.*;
 import Data.GameDAL.GameDAO;
 import Data.GameDTO.Character.CharacterDTO;
 import Data.GameDTO.DateDTO;
@@ -10,8 +11,6 @@ import Data.GameDTO.Development.ComposerDTO;
 import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
-import Data.IMysqlConnection;
-import Data.MysqlConnection;
 import Data.UserDTO.RatingDTO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
@@ -25,35 +24,25 @@ import static org.junit.Assert.*;
 
 public class UserDAO_Test {
 
-    private IMysqlConnection mySql = new MysqlConnection();
-    private UserDAO udao = new UserDAO(mySql);
-    private RoleDAO rdao = new RoleDAO(mySql);
-    private GameDAO gdao = new GameDAO(mySql);
+    private GenAccessMethods_UserDAO_TEST   a                   = new GenAccessMethods_UserDAO_TEST();
+    private GenAccessMethods_GameDAO_TEST   g                   = new GenAccessMethods_GameDAO_TEST();
+    private GenAccessDeleteAllTables del             = new GenAccessDeleteAllTables();
+    private IMysqlConnection                mySql               = new MysqlConnection();
+    private UserDAO                         udao                = new UserDAO(mySql);
+    private RoleDAO                         rdao                = new RoleDAO(mySql);
+    private GameDAO                         gdao                = new GameDAO(mySql);
 
-
-    private List<RoleDTO> createRoleList() {
-        RoleDTO test1 = new RoleDTO(1,"TEST");
-        RoleDTO test2 = new RoleDTO(2,"TEST");
-        RoleDTO test3 = new RoleDTO(3,"TEST");
-        rdao.createRole(test1);
-        rdao.createRole(test2);
-        rdao.createRole(test3);
-        List<RoleDTO> roleList = new ArrayList<>();
-        roleList.add(test1);
-        roleList.add(test2);
-        roleList.add(test3);
-        return roleList;
-    }
 
     @Test // GOOD TO GO
     public void createUserDB() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         List<Integer> gameList = null;
-        List<RoleDTO> roleList = createRoleList();
+        List<RoleDTO> roleList = a.createRoleList();
 
-        UserDTO user = createUserDB(gameList, roleList);
-        RoleDTO role = createRoleDB();
+        UserDTO user = a.createUserDB(gameList, roleList);
+        RoleDTO role = a.createRoleDB();
         rdao.createRole(role);
         udao.createUser(user);
         UserDTO testUser = udao.getUser(user.getUserNAME());
@@ -73,37 +62,19 @@ public class UserDAO_Test {
         for (int i = 0; i < roleList.size(); i++) {
             assertTrue(rdao.deleteRole(roleList.get(i).getRoleID()));
         }
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
-    }
-
-          // Hjælpe metoder
-    private RoleDTO createRoleDB() {
-        RoleDTO role = new RoleDTO();
-        role.setRoleNAME("TEST");
-        role.setRoleID(100);
-        return role;
-    }
-
-          // Hjælpe metoder
-    private UserDTO createUserDB(List<Integer> gameList, List<RoleDTO> roleList) {
-        UserDTO user = new UserDTO();
-        user.setUserNAME("TEST");
-        user.setUserPASS("TEST");
-        user.setUserEMAIL("YEST@TEST.TEST");
-        user.setUserPFP("www.TEST.com/TEST.png");
-        user.setUserGAMEs(gameList);
-        user.setUserROLEs(roleList);
-        return user;
     }
 
     @Test // GOOD TO GO
     public void getUser() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer> gameList = null;
-        List<RoleDTO> roleList = createRoleList();
+        List<RoleDTO> roleList = a.createRoleList();
 
-        UserDTO user = createUserDB(gameList, roleList);
-        RoleDTO role = createRoleDB();
+        UserDTO user = a.createUserDB(gameList, roleList);
+        RoleDTO role = a.createRoleDB();
         rdao.createRole(role);
         udao.createUser(user);
         UserDTO testUser = udao.getUser(user.getUserNAME());
@@ -123,19 +94,21 @@ public class UserDAO_Test {
         for (int i = 0; i < roleList.size(); i++) {
             assertTrue(rdao.deleteRole(roleList.get(i).getRoleID()));
         }
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test   // GOOD TO GO %%
     public void addToUserGameList() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
-        List<Integer>GameList = new ArrayList<>();
+        List<Integer> GameList = new ArrayList<>();
         List<RoleDTO> RoleList = new ArrayList<>();
 
         RoleDTO Role1 = new RoleDTO();
         RoleDTO Role2 = new RoleDTO();
-        GameDTO g1 = createGameDB(90);
+        GameDTO g1 = g.createGameDBNULL(90);
 
 
         Role1.setRoleID(100);       Role1.setRoleNAME("YAJ");
@@ -165,21 +138,14 @@ public class UserDAO_Test {
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
         gdao.deleteGame(g1.getGameID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
-    }
-
-    private UserDTO createUserGameList(List<Integer> gameList, List<RoleDTO> roleList) {
-        UserDTO user = createUserDB(gameList, roleList);
-        gameList.add(1);
-        gameList.add(2);
-        gameList.add(3);
-        user.setUserGAMEs(gameList);
-        return user;
     }
 
     @Test // GOOD TO GO
     public void getUserList() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
         RoleDTO Role1 = new RoleDTO();
@@ -256,12 +222,14 @@ public class UserDAO_Test {
 
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void getUserRoleList() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
         RoleDTO Role1 = new RoleDTO();
@@ -298,12 +266,14 @@ public class UserDAO_Test {
         udao.deleteUser(user1.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void getUserGameList() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         List<RoleDTO> rlist = new ArrayList<>();
         List<Integer> gmlist = new ArrayList<>();
@@ -314,9 +284,9 @@ public class UserDAO_Test {
         rlist.add(r1);
         rlist.add(r2);
         UserDTO u1 = new UserDTO();
-        GameDTO g1 = createGameDB(50);
-        GameDTO g2 = createGameDB(51);
-        GameDTO g3 = createGameDB(52);
+        GameDTO g1 = g.createGameDBNULL(50);
+        GameDTO g2 = g.createGameDBNULL(51);
+        GameDTO g3 = g.createGameDBNULL(52);
         gmlist.add(g1.getGameID());
         gmlist.add(g2.getGameID());
         gmlist.add(g3.getGameID());
@@ -348,13 +318,14 @@ public class UserDAO_Test {
         gdao.deleteGame(g1.getGameID());
         gdao.deleteGame(g2.getGameID());
         gdao.deleteGame(g3.getGameID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void updateUserInfo() throws SQLException {
-
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
         RoleDTO Role1 = new RoleDTO();
@@ -396,12 +367,14 @@ public class UserDAO_Test {
         udao.deleteUser(newUser.getUserNAME());
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void updateSpecificUserRole() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
         RoleDTO Role1 = new RoleDTO();
@@ -440,12 +413,14 @@ public class UserDAO_Test {
         rdao.deleteRole(Role2.getRoleID());
         rdao.deleteRole(newRole.getRoleID());
         udao.deleteUser(user1.getUserNAME());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void deleteUser() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
@@ -486,12 +461,14 @@ public class UserDAO_Test {
 
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void deleteAllUserRoles() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer>GameLIST = new ArrayList<>();
         List<RoleDTO>RoleLIST = new ArrayList<>();
         RoleDTO Role1 = new RoleDTO();
@@ -521,18 +498,20 @@ public class UserDAO_Test {
         assertTrue(udao.deleteUser(user1.getUserNAME()));
         rdao.deleteRole(Role1.getRoleID());
         rdao.deleteRole(Role2.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test  // GOOD TO GO
     public void deleteAllUserGameLists() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         List<Integer> GameList = new ArrayList<>();
         List<RoleDTO> RoleList = new ArrayList<>();
 
         RoleDTO R1 = new RoleDTO();
         RoleDTO R2 = new RoleDTO();
-        GameDTO G1 = createGameDB(101);
+        GameDTO G1 = g.createGameDBNULL(101);
 
 
         R1.setRoleID(200);     R1.setRoleNAME("JUJ");
@@ -561,35 +540,8 @@ public class UserDAO_Test {
         rdao.deleteRole(R1.getRoleID());
         rdao.deleteRole(R2.getRoleID());
         gdao.deleteGame(G1.getGameID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
-    }
-
-    public GameDTO createGameDB(int gameID) {
-        GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2019");
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
-
-        List<CharacterDTO>  gameCHARs       = new ArrayList<>();
-        List<GenreDTO>      gameGENREs      = new ArrayList<>();
-        List<WriterDTO>     writer          = new ArrayList<>();
-        List<ActorDTO>      gameACTOR       = new ArrayList<>();
-        List<RatingDTO>     gameRATING      = new ArrayList<>();
-        List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();
-        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
-        List<PictureDTO>    gamePics        = new ArrayList<>();
-
-        game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
-        game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
-        game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
-        game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
-        game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
-        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
-        gdao.createGame(game);
-        return game;
     }
 
 }

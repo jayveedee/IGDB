@@ -1,5 +1,6 @@
 package Data.UserDAL;
 
+import Data.GenAccessDeleteAllTables;
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
 import Data.UserDTO.RoleDTO;
@@ -13,12 +14,14 @@ import static org.junit.Assert.*;
 
 public class RoleDAO_TEST {
 
+    private GenAccessDeleteAllTables del             = new GenAccessDeleteAllTables();
     private IMysqlConnection mySql = new MysqlConnection();
     private IRoleDAO rdao = new RoleDAO(mySql);
 
     @Test //GOOD TO GO
     public void createRole() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         RoleDTO role = new RoleDTO(1,"Admin");
 
@@ -28,12 +31,14 @@ public class RoleDAO_TEST {
         assertEquals(role.getRoleID(),test.getRoleID());
         assertEquals(role.getRoleNAME(),test.getRoleNAME());
         rdao.deleteRole(1);
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test //GOOD TO GO
     public void getRole() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         RoleDTO role = new RoleDTO(1,"Admin");
         rdao.createRole(role);
@@ -43,12 +48,14 @@ public class RoleDAO_TEST {
         assertEquals(role.getRoleID(),test.getRoleID());
         assertEquals(role.getRoleNAME(),test.getRoleNAME());
         rdao.deleteRole(role.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void getRoleList() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         List<RoleDTO> rlist = new ArrayList<>();
         RoleDTO r1 = new RoleDTO(1,"Admin");
@@ -74,12 +81,14 @@ public class RoleDAO_TEST {
         rdao.deleteRole(r1.getRoleID());
         rdao.deleteRole(r2.getRoleID());
         rdao.deleteRole(r3.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test // GOOD TO GO
     public void updateRole() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
         rdao.deleteRole(1);
 
         RoleDTO role = new RoleDTO(1,"Admin");
@@ -96,12 +105,14 @@ public class RoleDAO_TEST {
         assertEquals(newRole.getRoleNAME(),t2.getRoleNAME());
 
         rdao.deleteRole(role.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 
     @Test //GOOD TO GO
     public void deleteRole() throws SQLException {
         mySql.createConnection();
+        del.deleteAllTables();
 
         RoleDTO role = new RoleDTO(1,"Admin");
         rdao.createRole(role);
@@ -116,6 +127,7 @@ public class RoleDAO_TEST {
 
         assertNull(test.getRoleNAME());
         assertEquals(0, test.getRoleID());
+        del.deleteAllTables();
         mySql.closeConnection(mySql.getConnection());
     }
 }
