@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         //DETTE KODE KILLER ALLE ACTIVE CONNECTIONS!!
-        /*IMysqlConnection mysqlConnection = new MysqlConnection();
+        IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
             mysqlConnection.setConnection(mysqlConnection.createConnection());
             String query = "SHOW FULL processlist";
@@ -24,7 +24,7 @@ public class Main {
             mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
         //TESTER OM LISTEN AF GAME NAMES FRA SERVER FUNGERE ORDENTLIGT. TEST STATUS = INGEN PROBLEMER. KRÆVER AT GAMENAMESERVICE RETURNERE ET ARRAYLIST
         /*

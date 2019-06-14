@@ -1,5 +1,8 @@
 import Data.IMysqlConnection;
 import Data.MysqlConnection;
+import Data.UserDAL.IUserDAO;
+import Data.UserDAL.UserDAO;
+import Data.UserDTO.UserDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @Path("services")
@@ -113,7 +117,6 @@ public class Services {
     }
 
     @POST
-    //@Produces(MediaType.APPLICATION_JSON)
     @Path("game/getGameNames/{input}")
     public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
@@ -122,11 +125,21 @@ public class Services {
         }
 
         ArrayList<String> answer = null;
-        System.out.println(characters);
 
-        GameService service = new GameService(mysqlConnection);
+        //IMysqlConnection mysqlConnection = new MysqlConnection();
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            answer = service.getGameNames(characters);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        answer = service.getGameNames(characters);
 
         class JSONObject{
             private ArrayList<String> gameNames;
@@ -156,4 +169,22 @@ public class Services {
         }
         return jsonString;
     }
+
+
+
+
+    //FØRSTE VERSION AF CREATEGAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET BLEV FOR KOMPLICERET
+    /*@POST
+    @Path("game/createGame")
+    public String createGame(@FormParam("titleField") String title, @FormParam("gameCover") String gameCover, @FormParam("gameDescription") String gameDescription, @FormParam("releaseDate") String releaseDate, @FormParam("newValue") String newValue){
+        System.out.println(title);
+        System.out.println(gameCover);
+        System.out.println(gameDescription);
+        System.out.println(releaseDate);
+        System.out.println(newValue);
+        /*for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        return "hey";
+    }*/
 }
