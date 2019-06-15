@@ -141,7 +141,7 @@ $(document).on("click", ".btn-remove-row8", function(){
 $(document).on("click", ".btn-add-row9", function(){
     row9counter++;
     var row9 = $(".row9").eq(0).clone().show();
-    row9.attr("id","row9-",row9counter);
+    row9.attr("id","row9-" + row9counter);
     $(".element-wrapper9").append(row9)
 });
 
@@ -187,20 +187,20 @@ $("#createGameForm").submit(function (event) {
     event.preventDefault();
 
     var id = generateRandomID();
-    var game ={
+    var GameDTO ={
         gameID : id,
         gameNAME : $("#titlefield").val(),
-        gameCHs : getCharacterList(id),
-        gameACs : getActors(id),
+        //gameCHs : getCharacterList(id),
+        //gameACs : getActors(id),
         gameGENREs : getGenres(id),
-        gameGMs : null,
-        gameRATINGs : null,
+        //gameGMs : null,
+        //gameRATINGs : null,
         gameRELEASEDATE : $("#releaseDateField").val(),
         gameWRI : getWriters(id),
-        gameCOMP : getComposer(id),
-        gameDEV : getDevelper(id),
+        //gameCOMP : getComposer(id),
+        //gameDEV : getDevelper(id),
         gamePUB : getPublisher(id),
-        gameOST : getSountrack(id),
+        //gameOST : getSountrack(id),
         gamePLAT : getPlatforms(id),
         gameCover : $("#picturefield").val(),
         gameBG : $("#backpicfield").val(),
@@ -209,7 +209,7 @@ $("#createGameForm").submit(function (event) {
         gamePICs : getPictures(id)
     };
 
-    var TestJSONObjekt ={
+    /*var TestJSONObjekt ={
         gameNAME : $("#titlefield").val(),
         gameID : id,
         gameBIO : $("#gameDescfield").val(),
@@ -217,12 +217,12 @@ $("#createGameForm").submit(function (event) {
         gamePUB : getPublisher(),
         gameWRI : getWriters(id),
         status : "true"
-    };
+    };*/
 
     $.ajax({
         type : "post",
         url : "/rest/services/game/createGame/test",
-        data : JSON.stringify(TestJSONObjekt),
+        data : JSON.stringify(GameDTO),
         contentType : "application/json; charset=utf-8",
         success : function (data) {
             if (data === "true") {

@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GameDAO_TEST {
 
-    IMysqlConnection mysql = new MysqlConnection();
+    /*IMysqlConnection mysql = new MysqlConnection();
     IUserDAO udao = new UserDAO(mysql);
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
@@ -755,6 +755,6 @@ public class GameDAO_TEST {
         ma.setArtNAME("FILLER1");
         ma.setArtPFP("FILLER1");
         return ma;
-    }
+    }*/
 }
 

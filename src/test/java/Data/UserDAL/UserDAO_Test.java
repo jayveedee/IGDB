@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 
 public class UserDAO_Test {
 
-    private IMysqlConnection mySql = new MysqlConnection();
+    /*private IMysqlConnection mySql = new MysqlConnection();
     private UserDAO udao = new UserDAO(mySql);
     private RoleDAO rdao = new RoleDAO(mySql);
     private GameDAO gdao = new GameDAO(mySql);
@@ -590,7 +590,7 @@ public class UserDAO_Test {
         game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
         gdao.createGame(game);
         return game;
-    }
+    }*/
 
 }
 

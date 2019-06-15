@@ -26,7 +26,7 @@ public class GameDTO {
     private String                  gameBIO;        private List<TrailerDTO>        gameTRAILERs;
     private List<PictureDTO>        gamePICs;
 
-    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, String gameRELEASEDATE, List<WriterDTO> gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
+    /*public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, String gameRELEASEDATE, List<WriterDTO> gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -46,7 +46,7 @@ public class GameDTO {
         this.gameBIO = gameBIO;
         this.gameTRAILERs = gameTRAILERs;
         this.gamePICs = gamePICs;
-    }
+    }*/
 
     public GameDTO() {
     }

@@ -136,19 +136,28 @@ public class Services {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame/test")
-    public boolean createGameTest(TestJSONObjekt testJSONObjekt){
+    public boolean createGameTest(GameDTO gameDTO){
         boolean answer = true;
-
+        System.out.println(" ");
         System.out.println("#### the game data received is the following ####");
-        System.out.println("gameID: " + testJSONObjekt.getGameID());
-        System.out.println("gameNAME: " + testJSONObjekt.getGameNAME());
-        System.out.println("gameBIO: " + testJSONObjekt.getGameBIO());
-        System.out.println("game releasedate is: " + testJSONObjekt.getGameRELEASEDATE());
-        System.out.println("publisher name: " + testJSONObjekt.getGamePUB().getPubNAME());
-        System.out.println("writer 1 name: " + testJSONObjekt.getGameWRI().get(0).getWriterFN());
-        System.out.println("writer 2 name: " + testJSONObjekt.getGameWRI().get(1).getWriterFN());
-        System.out.println("status is: " + testJSONObjekt.isStatus());
-        //System.out.println("gameBIO: " + gameDTO.getGameRELEASEDATE());
+        System.out.println("gameID: " + gameDTO.getGameID());
+        System.out.println("gameNAME: " + gameDTO.getGameNAME());
+        System.out.println("gameBIO: " + gameDTO.getGameBIO());
+        System.out.println("game releasedate is: " + gameDTO.getGameRELEASEDATE());
+        System.out.println("publisher name: " + gameDTO.getGamePUB().getPubNAME());
+        System.out.println("writer 1 name: " + gameDTO.getGameWRI().get(0).getWriterFN());
+        System.out.println("writer 2 name: " + gameDTO.getGameWRI().get(1).getWriterFN());
+        System.out.println("background: " + gameDTO.getGameBG());
+        System.out.println("cover: " + gameDTO.getGameCover());
+        System.out.println("picture 1: " + gameDTO.getGamePICs().get(0).getPicURL());
+        System.out.println("picture 2: " + gameDTO.getGamePICs().get(1).getPicURL());
+        System.out.println("trailer 1: " + gameDTO.getGameTRAILERs().get(0).getTrailerURL());
+        System.out.println("trailer 2: " + gameDTO.getGameTRAILERs().get(1).getTrailerURL());
+        System.out.println("genre 1: " + gameDTO.getGameGENREs().get(0).getGenTITLE());
+        System.out.println("genre 2: " + gameDTO.getGameGENREs().get(1).getGenTITLE());
+        System.out.println("platform 1: " + gameDTO.getGamePLAT().get(0).getPlatTITLE());
+        System.out.println("platform 1: " + gameDTO.getGamePLAT().get(1).getPlatTITLE());
+
         return answer;
     }
 
