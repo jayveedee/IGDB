@@ -8,6 +8,17 @@ var row3Counter = 0;
 var row2Counter = 0;
 var row1Counter = 0;
 
+
+function generateRandomID(){
+    var randomNumber = Math.floor(Math.random()*2000000000);
+    return randomNumber;
+    //DETTE ER DEN FØRSTE VERSON AF DENNE METODE. DEN ER BASERET PÅ ANTAL MILLISEKUNDER SIDEN 1970. PROBLEMET ER AT TALLET ER FOR STORT TIL AT VÆRE EN INT
+    /*var dateObjekt = new Date();
+    var milliseconds = dateObjekt.getTime();
+
+    return milliseconds;*/
+}
+
 /*--------------------------------------------------------------------------bt1*/
 $(document).on("click", ".btn-add-row", function(){
     row1Counter++;
@@ -174,30 +185,60 @@ $(document).on("click", ".btn-remove-row11", function() {
 
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
-    //initializing game and getting random id
 
     var id = generateRandomID();
     var game ={
         gameID : id,
         gameNAME : $("#titlefield").val(),
         gameCHs : getCharacterList(id),
-        gameACs : [],
-        gameGENREs : [],
-        gameGMs : [],
-        gameRATINGs : [],
+        gameACs : getActors(id),
+        gameGENREs : getGenres(id),
+        gameGMs : null,
+        gameRATINGs : null,
         gameRELEASEDATE : $("#releaseDateField").val(),
-        gameWRI : [],
-        gameCOMP : null,
-        gameDEV : null,
-        gamePUB : null,
-        gameOST : null,
-        gamePLAT : [],
-        gameCOVER : $("#picturefield").val(),
+        gameWRI : getWriters(id),
+        gameCOMP : getComposer(id),
+        gameDEV : getDevelper(id),
+        gamePUB : getPublisher(id),
+        gameOST : getSountrack(id),
+        gamePLAT : getPlatforms(id),
+        gameCover : $("#picturefield").val(),
         gameBG : $("#backpicfield").val(),
         gameBIO : $("#gameDescfield").val(),
-        gameTRAILERs : [],
-        gamePICs : []
+        gameTRAILERs : getTrailers(id),
+        gamePICs : getPictures(id)
     };
+
+    var TestJSONObjekt ={
+        gameNAME : $("#titlefield").val(),
+        gameID : id,
+        gameBIO : $("#gameDescfield").val(),
+        gameRELEASEDATE: $("#releaseDateField").val(),
+        gamePUB : getPublisher(),
+        gameWRI : getWriters(id),
+        status : "true"
+    };
+
+    $.ajax({
+        type : "post",
+        url : "/rest/services/game/createGame/test",
+        data : JSON.stringify(TestJSONObjekt),
+        contentType : "application/json; charset=utf-8",
+        success : function (data) {
+            if (data === "true") {
+                alert("Game created successfully!")
+            }else {
+                alert("Something went wrong on the server side. Possibly an SQL error")
+            }
+        },
+        error : function () {
+            alert("Could not create game. Ajax call not successful");
+        }
+    });
+
+});
+
+function getDevelper(id) {
 
     var parentCompany = {
         parentID : generateRandomID(),
@@ -214,110 +255,57 @@ $("#createGameForm").submit(function (event) {
         devSTATUS : $("#developerStatusField").val(),
         devCOUNTRY : $("#developerOriginField").val(),
         devPCOMPANY : parentCompany,
-        devGAME : game.gameID
+        devGAME : id
     };
 
+    return developer;
+}
+
+function getPublisher(id) {
     var publisher = {
         pubID : generateRandomID(),
         pubNAME : $("#publisherNameField").val(),
         pubCREATED : $("#publisherCreationField").val(),
         pubCOUNTRY : $("#publisherOriginField").val(),
         pubSTATUS : $("#publisherStatusField").val(),
-        pubGAME : game.gameID
+        pubGAME : id
     };
+    return publisher;
+}
 
-    var soundtrack = {
-        ostID : generateRandomID(),
-        ostTITLE : $("#soundtrackNameField").val(),
-        ostCOMP : null,
-        ostMA : null,
-        ostGAME : game.gameID,
-        ostURL : $("#soundtrackURLField").val()
-    };
-
-    var platform={
-        platID : 0,
-        platTITLE : "placeholder",
-        platGAME : 0,
-        platCREATED : "placeholder"
-    };
-
-    var trailer = {
-        trailerID : 0,
-        trailerURL : "placeholder",
-        trailerGameID : 0
-    };
-
-    var picture = {
-        picID : 0,
-        picURL : "placeholder",
-        picGameID : 0
-    };
-
+function getComposer(id) {
     var composer = {
         compID : generateRandomID(),
         compFN : $("#row6-0").val(),
         compLN : null,
         compOSTs : null,
-        compGAME : game.gameID
+        compGAME : id
     };
+    return composer;
+}
 
-    var musician = {
-        artID : 0,
-        artNAME : "placeholder",
-        artPFP : "placeholder"
+function getSountrack (id){
+    var soundtrack = {
+        ostID : generateRandomID(),
+        ostTITLE : $("#soundtrackNameField").val(),
+        ostCOMP : getComposer(id),
+        ostMA : getMusicArtists(),
+        ostGAME : id,
+        ostURL : $("#soundtrackURLField").val()
     };
-
-    var writers = {
-        writerID : 0,
-        writerFN : "placeholder",
-        writerLN : "placeholder",
-        writerGAME : "placeholder"
-    };
-
-    var actor = {
-        acID : 0,
-        acFN : "placeholder",
-        acLN : "placeholder",
-        acBDAY : "placeholder",
-        acCHs : "placeholder",
-        acGAME : 0,
-        acPFP : "placeholder"
-    };
-
-    var genre = {
-        genID : 0,
-        genTITLE : "placeholder",
-        genGAME : 0
-    };
-
-
-
-
-    game.gameNAME.push("hey");
-    game.gameNAME.push("omg");
-    for (var i = 0; i < game.gameNAME.length; i++) {
-        alert(game.gameNAME[i]);
-    }
-
-    alert(game.gameNAME);
-    alert(getCharacter());
-
-});
+    return soundtrack;
+}
 
 function getCharacterList (id){
     var characterList = [];
     row11counter = 0;
     while ($("#row11Name-" + row11counter).val() !== undefined) {
-        alert("we went through the while loop");
         if ($("#row11Name-" + row11counter).val() === ""){
-            continue;
         }else {
-            alert("we went through the if statement");
             var character = {
                 chID : generateRandomID(),
-                chNAME : $("#row11Name-"+row11counter),
-                chPFP : $("#row11URL-"+row11counter),
+                chNAME :$("#row11Name-"+row11counter).val(),
+                chPFP : $("#row11URL-"+row11counter).val(),
                 chGAME : id
             };
             characterList.push(character);
@@ -327,44 +315,149 @@ function getCharacterList (id){
     return characterList;
 }
 
-function generateRandomID(){
-    var dateObjekt = new Date();
-    var milliseconds = dateObjekt.getTime();
-
-    return milliseconds;
-}
-
 function getMusicArtists(){
-
+    var musicArtistList = [];
+    row5counter = 0;
+    while ($("#row5Name-" + row5counter).val() !== undefined) {
+        if ($("#row5Name-" + row5counter).val() === ""){
+        }else {
+            var musician = {
+                artID : generateRandomID(),
+                artNAME : $("#row5name-"+row5counter).val(),
+                artPFP : $("#row5URL-"+row5counter).val()
+            };
+            musicArtistList.push(musician);
+        }
+        row5counter++;
+    }
+    return musicArtistList;
 }
 
-$("#testButton").click(function () {
-    /*row11counter = 0;
-    var character ={
-        chID : generateRandomID(),
-        chNAME : $("#row11Name-"+row11counter).val(),
-        chPFP : $("#row11URL-"+row11counter).val(),
-        chGAME : 50
-    };
-
-    row11counter++;
-
-    var character2 ={
-        chID : generateRandomID(),
-        chNAME : $("#row11Name-"+row11counter).val(),
-        chPFP : $("#row11URL-"+row11counter).val(),
-        chGAME : 50
-    };
-
-    alert(JSON.stringify(character, null, 4));
-    alert(JSON.stringify(character2, null, 4));*/
-
-    var list = getCharacterList(50);
-    for (var i = 0; i < row11counter; i++) {
-        var json = JSON.stringify(list[i], null, 4);
-        alert(json);
+function getPlatforms(id){
+    var platformList = [];
+    row2Counter = 0;
+    while ($("#row2-" + row2Counter).val() !== undefined) {
+        if ($("#row2-" + row2Counter).val() === ""){
+        }else {
+            var platform={
+                platID : generateRandomID(),
+                platTITLE : $("#row2-"+row2Counter).val(),
+                platGAME : id,
+                platCREATED : null
+            };
+            platformList.push(platform);
+        }
+        row2Counter++;
     }
-});
+    return platformList;
+}
+
+function getTrailers(id){
+    var trailerList = [];
+    row8counter = 0;
+    while ($("#row8-" + row8counter).val() !== undefined) {
+        if ($("#row8-" + row8counter).val() === ""){
+        }else {
+            var trailer = {
+                trailerID : generateRandomID(),
+                trailerURL : $("#row8-"+row8counter).val(),
+                trailerGameID : id
+            };
+            trailerList.push(trailer);
+        }
+        row8counter++;
+    }
+    return trailerList;
+}
+
+function getPictures(id){
+    var pictureList = [];
+    row9counter = 0;
+    while ($("#row9-" + row9counter).val() !== undefined) {
+        if ($("#row9-" + row9counter).val() === ""){
+        }else {
+            var picture = {
+                picID : generateRandomID(),
+                picURL : $("#row9-"+row9counter).val(),
+                picGameID : id
+            };
+            pictureList.push(picture);
+        }
+        row9counter++;
+    }
+    return pictureList;
+}
+
+function getWriters(id){
+    var writerList = [];
+    row7counter = 0;
+    while ($("#row7-" + row7counter).val() !== undefined) {
+        if ($("#row7-" + row7counter).val() === ""){
+        }else {
+            var writer = {
+                writerID : generateRandomID(),
+                writerFN : $("#row7-"+row7counter).val(),
+                writerLN : null,
+                writerGAME : id
+            };
+            writerList.push(writer);
+        }
+        row7counter++;
+    }
+    return writerList;
+}
+
+function getActors(id){
+    var actorList = [];
+    row1Counter = 0;
+    while ($("#rowName-" + row1Counter).val() !== undefined) {
+        if ($("#rowName-" + row1Counter).val() === ""){
+        }else {
+            var actor = {
+                acID : generateRandomID(),
+                acFN : $("#rowName-"+row1Counter).val(),
+                acLN : null,
+                acBDAY : $("#rowBirthDay-"+row1Counter).val(),
+                acCHs : null,
+                acGAME : id,
+                acPFP : $("#rowURL-"+row1Counter).val()
+            };
+            actorList.push(actor);
+        }
+        row1Counter++;
+    }
+    return actorList;
+}
+
+function getGenres(id){
+    var genreList = [];
+    row3Counter = 0;
+    while ($("#row3-" + row3Counter).val() !== undefined) {
+        if ($("#row3-" + row3Counter).val() === ""){
+        }else {
+            var genre = {
+                genID : generateRandomID(),
+                genTITLE : $("#row3-"+row3Counter).val(),
+                genGAME : id
+            };
+            genreList.push(genre);
+        }
+        row3Counter++;
+    }
+    return genreList;
+}
+
+
+
+/*$("#testButton").click(function () {
+    var list = getCharacterList(50);
+
+    for (var i = 0; i < row11counter; i++) {
+        alert(JSON.stringify(list[i]));
+    }
+});*/
+
+
 //FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
 /*$("#createGameForm").submit(function (event) {
     event.preventDefault();

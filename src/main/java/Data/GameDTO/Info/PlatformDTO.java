@@ -7,9 +7,9 @@ public class PlatformDTO {
     private int                 platID;
     private String              platTITLE;
     private int                 platGAME;
-    private DateDTO             platCREATED;
+    private String              platCREATED;
 
-    public PlatformDTO(int platID, String platTITLE, int platGAME, DateDTO platCREATED) {
+    public PlatformDTO(int platID, String platTITLE, int platGAME, String platCREATED) {
         this.platID = platID;
         this.platTITLE = platTITLE;
         this.platGAME = platGAME;
@@ -43,11 +43,11 @@ public class PlatformDTO {
         this.platGAME = platGAMEs;
     }
 
-    public DateDTO getPlatCREATED() {
+    public String getPlatCREATED() {
         return platCREATED;
     }
 
-    public void setPlatCREATED(DateDTO platCREATED) {
+    public void setPlatCREATED(String platCREATED) {
         this.platCREATED = platCREATED;
     }
 }

@@ -39,8 +39,8 @@ public class GameDAO implements IGameDAO {
         String      gameDESC        = game.getGameBIO();
         String      gameCOV         = game.getGameCover();
         String      gameBG          = game.getGameBG();
-        DateDTO     gameRD          = game.getGameRELEASEDATE();
-        String      gameRDstring    = gameRD.getDateString();
+        String      gameRD          = game.getGameRELEASEDATE();
+        String      gameRDstring    = gameRD;
 
         List<ActorDTO>      gameACTOR   = game.getGameACs();        List<CharacterDTO>  gameCHAR    = game.getGameCHs();
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
@@ -77,10 +77,10 @@ public class GameDAO implements IGameDAO {
                 for (int i = 0; i < gamePLAT.size(); i++) {
                     mySql.getPrepStatement().setInt(1,gamePLAT.get(i).getPlatID());
                     mySql.getPrepStatement().setString(2,gamePLAT.get(i).getPlatTITLE());
-                        String day      = gamePLAT.get(i).getPlatCREATED().getDay();
+                        /*String day      = gamePLAT.get(i).getPlatCREATED().getDay();
                         String month    = gamePLAT.get(i).getPlatCREATED().getMonth();
-                        String year     = gamePLAT.get(i).getPlatCREATED().getYear();
-                    mySql.getPrepStatement().setString(3,day + "/" + month + "/" + year);
+                        String year     = gamePLAT.get(i).getPlatCREATED().getYear();*/
+                    mySql.getPrepStatement().setString(3,gamePLAT.get(i).getPlatCREATED());
                     mySql.getPrepStatement().setInt(4,gameID);
                     mySql.getPrepStatement().addBatch();
                 }
@@ -191,8 +191,8 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?, ?)";
             int             pubID               = gamePUB.getPubID();
             String          pubNAME             = gamePUB.getPubNAME();
-            DateDTO pubCREATED          = gamePUB.getPubCREATED();
-                String      pubCREATEDstring    = pubCREATED.getDay() + "/" + pubCREATED.getMonth() + "/" +pubCREATED.getYear();
+            String          pubCREATED          = gamePUB.getPubCREATED();
+            String          pubCREATEDstring    = pubCREATED;
             String          pubCOUNTRY          = gamePUB.getPubCOUNTRY();
             boolean         pubSTATUS           = gamePUB.isPubSTATUS();
 
@@ -213,8 +213,8 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?)";
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
-            DateDTO parentCREATED                   = gameDEV.getDevPCOMPANY().getParentCREATED();
-                String  parentCREATEDstring         = parentCREATED.getDateString();
+            String      parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
+            String      parentCREATEDstring         = parentCREATED;
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
@@ -223,8 +223,8 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
-            DateDTO     devCREATED          = gameDEV.getDevCREATED();
-                String  devCREATEDstring    = devCREATED.getDateString();
+            String      devCREATED          = gameDEV.getDevCREATED();
+            String      devCREATEDstring    = devCREATED;
             String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
             boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
@@ -358,9 +358,7 @@ public class GameDAO implements IGameDAO {
                         mySql.getPrepStatement().setInt(1,gameACTOR.get(i).getAcID());
                         mySql.getPrepStatement().setString(2,gameACTOR.get(i).getAcFN());
                         mySql.getPrepStatement().setString(3,gameACTOR.get(i).getAcLN());
-                        String actorDOBstring =
-                                gameACTOR.get(i).getAcBDAY().getDay() + "/" +
-                                gameACTOR.get(i).getAcBDAY().getMonth() + "/" + gameACTOR.get(i).getAcBDAY().getYear();
+                        String actorDOBstring = gameACTOR.get(i).getAcBDAY();
                         mySql.getPrepStatement().setString(4,actorDOBstring);
                         mySql.getPrepStatement().setString(5,gameACTOR.get(i).getAcPFP());
                         mySql.getPrepStatement().setInt(6,gameACTOR.get(i).getAcCHs().get(j));
@@ -424,10 +422,7 @@ public class GameDAO implements IGameDAO {
                 game.setGameCover(rs1.getString("gameCOVER"));
                 game.setGameNAME(rs1.getString("gameTITLE"));
                 game.setGameBIO(rs1.getString("gameDESC"));
-                String gameRDstring = rs1.getString("gameRD");
-                String [] stringSplit = gameRDstring.split("/");
-                DateDTO date = new DateDTO(stringSplit[0],stringSplit[1],stringSplit[2]);
-                game.setGameRELEASEDATE(date);
+                game.setGameRELEASEDATE(rs1.getString("gameRD"));
                 game.setGameBG(rs1.getString("gameBACKGROUND"));
                 game.setGameID(rs1.getInt("gameID"));
             }

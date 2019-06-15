@@ -16,7 +16,7 @@ public class GameDTO {
     private int                     gameID;         private String                  gameNAME;
     private List<CharacterDTO>      gameCHs;        private List<ActorDTO>          gameACs;
     private List<GenreDTO>          gameGENREs;     private List<GameModeDTO>       gameGMs;
-    private List<RatingDTO>         gameRATINGs;    private DateDTO                 gameRELEASEDATE;
+    private List<RatingDTO>         gameRATINGs;    private String                  gameRELEASEDATE;
     private List<WriterDTO>         gameWRI;
     private DeveloperDTO            gameDEV;        private PublisherDTO            gamePUB;
     private ComposerDTO             gameCOMP;       private SoundtrackDTO           gameOST;
@@ -26,7 +26,7 @@ public class GameDTO {
     private String                  gameBIO;        private List<TrailerDTO>        gameTRAILERs;
     private List<PictureDTO>        gamePICs;
 
-    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, DateDTO gameRELEASEDATE, List<WriterDTO> gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
+    public GameDTO(int gameID, String gameNAME, List<CharacterDTO> gameCHs, List<ActorDTO> gameACs, List<GenreDTO> gameGENREs, List<GameModeDTO> gameGMs, List<RatingDTO> gameRATINGs, String gameRELEASEDATE, List<WriterDTO> gameWRI, DeveloperDTO gameDEV, PublisherDTO gamePUB, ComposerDTO gameCOMP, SoundtrackDTO gameOST, String gameCover, String gameBG, String gameBIO, List<TrailerDTO> gameTRAILERs, List<PictureDTO> gamePICs, List<PlatformDTO> gamePLAT) {
         this.gameID = gameID;
         this.gameNAME = gameNAME;
         this.gameCHs = gameCHs;
@@ -107,11 +107,11 @@ public class GameDTO {
         this.gameRATINGs = gameRATINGs;
     }
 
-    public DateDTO getGameRELEASEDATE() {
+    public String getGameRELEASEDATE() {
         return gameRELEASEDATE;
     }
 
-    public void setGameRELEASEDATE(DateDTO gameRELEASEDATE) {
+    public void setGameRELEASEDATE(String gameRELEASEDATE) {
         this.gameRELEASEDATE = gameRELEASEDATE;
     }
 
@@ -121,14 +121,6 @@ public class GameDTO {
 
     public void setGameWRI(List<WriterDTO> gameWRI) {
         this.gameWRI = gameWRI;
-    }
-
-    public ComposerDTO getGameCOMP() {
-        return gameCOMP;
-    }
-
-    public void setGameCOMP(ComposerDTO gameCOMP) {
-        this.gameCOMP = gameCOMP;
     }
 
     public DeveloperDTO getGameDEV() {
@@ -145,6 +137,14 @@ public class GameDTO {
 
     public void setGamePUB(PublisherDTO gamePUB) {
         this.gamePUB = gamePUB;
+    }
+
+    public ComposerDTO getGameCOMP() {
+        return gameCOMP;
+    }
+
+    public void setGameCOMP(ComposerDTO gameCOMP) {
+        this.gameCOMP = gameCOMP;
     }
 
     public SoundtrackDTO getGameOST() {

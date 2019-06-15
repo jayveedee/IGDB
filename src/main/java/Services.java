@@ -1,7 +1,5 @@
-import Data.IMysqlConnection;
+import Data.GameDTO.GameDTO;
 import Data.MysqlConnection;
-import Data.UserDAL.IUserDAO;
-import Data.UserDAL.UserDAO;
 import Data.UserDTO.UserDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,13 +10,10 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Singleton
 @Path("services")
@@ -115,6 +110,48 @@ public class Services {
         }
         return answer;
     }
+
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("game/createGame")
+    public boolean createGame(GameDTO gameDTO){
+        boolean answer = true;
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            answer = service.createGame(gameDTO);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return answer;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("game/createGame/test")
+    public boolean createGameTest(TestJSONObjekt testJSONObjekt){
+        boolean answer = true;
+
+        System.out.println("#### the game data received is the following ####");
+        System.out.println("gameID: " + testJSONObjekt.getGameID());
+        System.out.println("gameNAME: " + testJSONObjekt.getGameNAME());
+        System.out.println("gameBIO: " + testJSONObjekt.getGameBIO());
+        System.out.println("game releasedate is: " + testJSONObjekt.getGameRELEASEDATE());
+        System.out.println("publisher name: " + testJSONObjekt.getGamePUB().getPubNAME());
+        System.out.println("writer 1 name: " + testJSONObjekt.getGameWRI().get(0).getWriterFN());
+        System.out.println("writer 2 name: " + testJSONObjekt.getGameWRI().get(1).getWriterFN());
+        System.out.println("status is: " + testJSONObjekt.isStatus());
+        //System.out.println("gameBIO: " + gameDTO.getGameRELEASEDATE());
+        return answer;
+    }
+
 
     @POST
     @Path("game/getGameNames/{input}")
