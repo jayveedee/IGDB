@@ -2,6 +2,7 @@
 .container{
     margin-left: 350px;
     margin-right: 350px;
+    padding-bottom: 80px;
 }
 
 .profile-container li{
@@ -14,6 +15,8 @@
     list-style-type: none;
     width: 50%;
     height: 10px;
+    margin: 0;
+    padding: 0;
 }
 
 .profile-search{

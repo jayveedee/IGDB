@@ -7,30 +7,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
+<!-- ------------------Navbar START------------------ -->
     <nav class="standart-nav">
-            <div class="logo">
-                <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
+        <div class="logo">
+            <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
+        </div>
+        <ul class="navigation-list">
+            <div class="navLinks-left">
+                <a id="#" class="not-active" href="UserList.html">User List</a>
             </div>
-            <ul class="navigation-list">
-                <div class="autocomplete" style="display: inline;">
-                    <div style="display: inline;">
-                        <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
-                            <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
-                            <input type="submit" value="Search">
-                        </form>
-                        <datalist id="dataList"></datalist>
-                    </div>
+            <div class="navLinks-left">
+                <a id="#" class="not-active" href="CMBU.html">User Changes</a>
+            </div>
+            <div class="autocomplete" style="display: inline;">
+                <div style="display: inline;">
+                    <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
+                        <input type="submit" value="Search">
+                    </form>
+                    <datalist id="dataList"></datalist>
                 </div>
-                <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
-                <div class="navLinks">
-                    <a id="profileBtn" class="not-active" href="User.html">Profile</a>
-                </div>
-                <div class="navLinks">
-                    <a id="createArticle" class="createArticle" href="createarticle.html">Create article </a>
-                </div>
-            </ul>
-        </nav>
-
+            </div>
+            <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
+            <div class="navLinks-right">
+                <a id="profileBtn" class="not-active" href="User.html">Profile</a>
+            </div>
+            <div class="navLinks-right">
+                <a id="createArticle" class="createArticle" href="createarticle.html">Create article </a>
+            </div>
+        </ul>
+    </nav>
+<!-- ------------------Navbar END------------------ -->
     <div class="container">
         <h2>New Games</h2>
         <div class="top-container">
