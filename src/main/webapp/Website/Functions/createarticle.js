@@ -174,12 +174,13 @@ $(document).on("click", ".btn-remove-row11", function() {
 
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
-    //initializing game
+    //initializing game and getting random id
 
+    var id = generateRandomID();
     var game ={
-        gameID : generateRandomID(),
+        gameID : id,
         gameNAME : $("#titlefield").val(),
-        gameCHs : [],
+        gameCHs : getCharacterList(id),
         gameACs : [],
         gameGENREs : [],
         gameGMs : [],
@@ -254,11 +255,11 @@ $("#createGameForm").submit(function (event) {
     };
 
     var composer = {
-        compID : 0,
-        compFN : "placeholder",
-        compLN : "placeholder",
+        compID : generateRandomID(),
+        compFN : $("#row6-0").val(),
+        compLN : null,
         compOSTs : null,
-        compGAME : null
+        compGAME : game.gameID
     };
 
     var musician = {
@@ -304,22 +305,26 @@ $("#createGameForm").submit(function (event) {
 
 });
 
-function getCharacterList (){
+function getCharacterList (id){
     var characterList = [];
     row11counter = 0;
     while ($("#row11Name-" + row11counter).val() !== undefined) {
+        alert("we went through the while loop");
         if ($("#row11Name-" + row11counter).val() === ""){
             continue;
         }else {
+            alert("we went through the if statement");
             var character = {
-                chID : 0,
+                chID : generateRandomID(),
                 chNAME : $("#row11Name-"+row11counter),
                 chPFP : $("#row11URL-"+row11counter),
-                chGAME : null
+                chGAME : id
             };
+            characterList.push(character);
         }
         row11counter++;
     }
+    return characterList;
 }
 
 function generateRandomID(){
@@ -328,6 +333,38 @@ function generateRandomID(){
 
     return milliseconds;
 }
+
+function getMusicArtists(){
+
+}
+
+$("#testButton").click(function () {
+    /*row11counter = 0;
+    var character ={
+        chID : generateRandomID(),
+        chNAME : $("#row11Name-"+row11counter).val(),
+        chPFP : $("#row11URL-"+row11counter).val(),
+        chGAME : 50
+    };
+
+    row11counter++;
+
+    var character2 ={
+        chID : generateRandomID(),
+        chNAME : $("#row11Name-"+row11counter).val(),
+        chPFP : $("#row11URL-"+row11counter).val(),
+        chGAME : 50
+    };
+
+    alert(JSON.stringify(character, null, 4));
+    alert(JSON.stringify(character2, null, 4));*/
+
+    var list = getCharacterList(50);
+    for (var i = 0; i < row11counter; i++) {
+        var json = JSON.stringify(list[i], null, 4);
+        alert(json);
+    }
+});
 //FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
 /*$("#createGameForm").submit(function (event) {
     event.preventDefault();
