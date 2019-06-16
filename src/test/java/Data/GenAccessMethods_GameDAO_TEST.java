@@ -25,7 +25,7 @@ public class GenAccessMethods_GameDAO_TEST {
     // Create Game Object til tests
     public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2019");
+        String date = "2019-12-12";
         DeveloperDTO dev = GAME_createDeveloper(1,gameID);
         PublisherDTO pub = GAME_createPublisher(14,gameID);
         ComposerDTO comp = GAME_createComposer(4,gameID,50);
@@ -56,7 +56,7 @@ public class GenAccessMethods_GameDAO_TEST {
     // Update Game Object til tests
     public GameDTO createGameDB1(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2017");
+        String date = "2001-01-01";
         DeveloperDTO dev = GAME_createDeveloper1(51,gameID);
         PublisherDTO pub = GAME_createPublisher1(54,gameID);
         ComposerDTO comp = GAME_createComposer1(54,gameID,51);
@@ -114,7 +114,7 @@ public class GenAccessMethods_GameDAO_TEST {
         actor.setAcFN(FN);
         actor.setAcLN(LN);
         actor.setAcPFP(PFP);
-        DateDTO DOB = new DateDTO("1","1","2001");
+        String DOB = "2002-01-02";
         actor.setAcBDAY(DOB);
         List<Integer> charList = new ArrayList<>();
         for (int i = 0; i < gameCHARs.size(); i++) {
@@ -165,9 +165,9 @@ public class GenAccessMethods_GameDAO_TEST {
         PlatformDTO plat = new PlatformDTO();
         plat.setPlatID(platID);
         plat.setPlatTITLE("FILLER");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "2003-09-11";
         plat.setPlatCREATED(date);
-        plat.setPlatGAMEs(gameID);
+        plat.setPlatGAME(gameID);
         return plat;
     }
 
@@ -207,7 +207,7 @@ public class GenAccessMethods_GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER");
         dev.setDevCOUNTRY("FILLER");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "2005-12-24";
         dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
         dev.setDevGAME(gameID);
@@ -220,7 +220,7 @@ public class GenAccessMethods_GameDAO_TEST {
         pcomp.setParentNAME("FILLER");
         pcomp.setParentCOUNTRY("ASD");
         pcomp.setParentSTATUS(true);
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "2100-11-31";
         pcomp.setParentCREATED(date);
         return pcomp;
     }
@@ -229,7 +229,7 @@ public class GenAccessMethods_GameDAO_TEST {
         pub.setPubID(pubID);
         pub.setPubNAME("FILLER TEXT");
         pub.setPubCOUNTRY("FILLER TEXT");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "1996-10-05";
         pub.setPubCREATED(date);
         pub.setPubGAME(gameID);
         return pub;
@@ -315,7 +315,7 @@ public class GenAccessMethods_GameDAO_TEST {
         actor.setAcFN(FN);
         actor.setAcLN(LN);
         actor.setAcPFP(PFP);
-        DateDTO DOB = new DateDTO("1","1","2010");
+        String DOB = "2009-11-27";
         actor.setAcBDAY(DOB);
         List<Integer> charList = new ArrayList<>();
         for (int i = 0; i < gameCHARs.size(); i++) {
@@ -366,9 +366,9 @@ public class GenAccessMethods_GameDAO_TEST {
         PlatformDTO plat = new PlatformDTO();
         plat.setPlatID(platID);
         plat.setPlatTITLE("FILLER");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "2003-07-6";
         plat.setPlatCREATED(date);
-        plat.setPlatGAMEs(gameID);
+        plat.setPlatGAME(gameID);
         return plat;
     }
 
@@ -408,7 +408,7 @@ public class GenAccessMethods_GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER1");
         dev.setDevCOUNTRY("FILLER1");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "2008-03-13";
         dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
         dev.setDevGAME(gameID);
@@ -421,7 +421,7 @@ public class GenAccessMethods_GameDAO_TEST {
         pcomp.setParentNAME("FILLER1");
         pcomp.setParentCOUNTRY("ASD1");
         pcomp.setParentSTATUS(true);
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "1939-05-25";
         pcomp.setParentCREATED(date);
         return pcomp;
     }
@@ -430,7 +430,7 @@ public class GenAccessMethods_GameDAO_TEST {
         pub.setPubID(pubID);
         pub.setPubNAME("FILLER TEXT1");
         pub.setPubCOUNTRY("FILLER TEXT1");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "2002-02-11";
         pub.setPubCREATED(date);
         pub.setPubGAME(gameID);
         return pub;
