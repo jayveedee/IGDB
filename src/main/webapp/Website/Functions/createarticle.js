@@ -190,17 +190,17 @@ $("#createGameForm").submit(function (event) {
     var GameDTO ={
         gameID : id,
         gameNAME : $("#titlefield").val(),
-        //gameCHs : getCharacterList(id),
-        //gameACs : getActors(id),
+        gameCHs : getCharacterList(id),
+        gameACs : getActors(id),
         gameGENREs : getGenres(id),
         //gameGMs : null,
         //gameRATINGs : null,
         gameRELEASEDATE : $("#releaseDateField").val(),
         gameWRI : getWriters(id),
-        //gameCOMP : getComposer(id),
-        //gameDEV : getDevelper(id),
+        gameCOMP : getComposer(id),
+        gameDEV : getDeveloper(id),
         gamePUB : getPublisher(id),
-        //gameOST : getSountrack(id),
+        gameOST : getSountrack(id),
         gamePLAT : getPlatforms(id),
         gameCover : $("#picturefield").val(),
         gameBG : $("#backpicfield").val(),
@@ -209,6 +209,15 @@ $("#createGameForm").submit(function (event) {
         gamePICs : getPictures(id)
     };
 
+    /*alert(GameDTO.gameOST.ostMA[0].artNAME);
+    alert(GameDTO.gameOST.ostMA[0].artPFP);
+    alert(GameDTO.gameOST.ostMA[0].artID);
+    alert(GameDTO.gameOST.ostMA[1].artNAME);
+    alert(GameDTO.gameOST.ostMA[1].artPFP);
+    alert(GameDTO.gameOST.ostMA[1].artID);*/
+
+    //var developer = getDeveloper(50);
+
     /*var TestJSONObjekt ={
         gameNAME : $("#titlefield").val(),
         gameID : id,
@@ -216,12 +225,21 @@ $("#createGameForm").submit(function (event) {
         gameRELEASEDATE: $("#releaseDateField").val(),
         gamePUB : getPublisher(),
         gameWRI : getWriters(id),
-        status : "true"
+        status : "true",
+        gamePLAT : getPlatforms(id)
     };*/
+
+    /*var platform = {
+        platID: generateRandomID(),
+        platTITLE: $("#row2-0").val(),
+        platGAME: id,
+        platCREATED: "heysa"
+    };*/
+
 
     $.ajax({
         type : "post",
-        url : "/rest/services/game/createGame/test",
+        url : "/rest/services/game/createGame",
         data : JSON.stringify(GameDTO),
         contentType : "application/json; charset=utf-8",
         success : function (data) {
@@ -238,13 +256,13 @@ $("#createGameForm").submit(function (event) {
 
 });
 
-function getDevelper(id) {
+function getDeveloper(id) {
 
     var parentCompany = {
         parentID : generateRandomID(),
         parentNAME : $("#companyNameField").val(),
         parentCREATED : $("#creationOfCompanyField").val(),
-        parentCountry : $("#companyOriginField").val(),
+        parentCOUNTRY : $("#companyOriginField").val(),
         parentSTATUS : $("#companyStatusField").val()
     };
 
@@ -318,8 +336,8 @@ function getCharacterList (id){
 function getMusicArtists(){
     var musicArtistList = [];
     row5counter = 0;
-    while ($("#row5Name-" + row5counter).val() !== undefined) {
-        if ($("#row5Name-" + row5counter).val() === ""){
+    while ($("#row5name-" + row5counter).val() !== undefined) {
+        if ($("#row5name-" + row5counter).val() === ""){
         }else {
             var musician = {
                 artID : generateRandomID(),
@@ -343,7 +361,7 @@ function getPlatforms(id){
                 platID : generateRandomID(),
                 platTITLE : $("#row2-"+row2Counter).val(),
                 platGAME : id,
-                platCREATED : null
+                platCREATED : "hello"
             };
             platformList.push(platform);
         }
@@ -449,13 +467,12 @@ function getGenres(id){
 
 
 
-/*$("#testButton").click(function () {
-    var list = getCharacterList(50);
-
-    for (var i = 0; i < row11counter; i++) {
-        alert(JSON.stringify(list[i]));
-    }
-});*/
+$("#testButton").click(function () {
+    var artists = getMusicArtists();
+    alert(JSON.stringify(artists));
+    alert(JSON.stringify(artists[0].artNAME));
+    alert(JSON.stringify(artists[1].artNAME));
+});
 
 
 //FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET

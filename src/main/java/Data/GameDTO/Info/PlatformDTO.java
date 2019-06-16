@@ -17,6 +17,7 @@ public class PlatformDTO {
     }
 
     public PlatformDTO() {
+
     }
 
     public int getPlatID() {
@@ -35,12 +36,12 @@ public class PlatformDTO {
         this.platTITLE = platTITLE;
     }
 
-    public int getPlatGAMEs() {
+    public int getPlatGAME() {
         return platGAME;
     }
 
-    public void setPlatGAMEs(int platGAMEs) {
-        this.platGAME = platGAMEs;
+    public void setPlatGAME(int platGAME) {
+        this.platGAME = platGAME;
     }
 
     public String getPlatCREATED() {

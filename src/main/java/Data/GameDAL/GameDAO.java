@@ -452,7 +452,7 @@ public class GameDAO implements IGameDAO {
                     //String[] platStringSplit = platCreatedstring.split("/");
                     //DateDTO date = new DateDTO(platStringSplit[0], platStringSplit[1], platStringSplit[2]);
                 plat.setPlatCREATED(platCreatedstring);
-                plat.setPlatGAMEs(rs3.getInt("platGameID"));
+                plat.setPlatGAME(rs3.getInt("platGameID"));
                 platformList.add(plat);
             }
             game.setGamePLAT(platformList);

@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GameDAO_TEST {
 
-    /*IMysqlConnection mysql = new MysqlConnection();
+    IMysqlConnection mysql = new MysqlConnection();
     IUserDAO udao = new UserDAO(mysql);
     IRoleDAO rdao = new RoleDAO(mysql);
     IGameDAO gdao = new GameDAO(mysql);
@@ -37,7 +37,7 @@ public class GameDAO_TEST {
     // Create Game Object til tests
     public GameDTO createGameDB(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2019");
+        String date = "12-12-2019";
         DeveloperDTO dev = GAME_createDeveloper(1,gameID);
         PublisherDTO pub = GAME_createPublisher(14,gameID);
         ComposerDTO comp = GAME_createComposer(4,gameID,50);
@@ -95,7 +95,7 @@ public class GameDAO_TEST {
         actor.setAcFN(FN);
         actor.setAcLN(LN);
         actor.setAcPFP(PFP);
-        DateDTO DOB = new DateDTO("1","1","2001");
+        String DOB = "12-12-2019";
         actor.setAcBDAY(DOB);
         List<Integer> charList = new ArrayList<>();
         for (int i = 0; i < gameCHARs.size(); i++) {
@@ -146,9 +146,9 @@ public class GameDAO_TEST {
         PlatformDTO plat = new PlatformDTO();
         plat.setPlatID(platID);
         plat.setPlatTITLE("FILLER");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "12-12-2019";
         plat.setPlatCREATED(date);
-        plat.setPlatGAMEs(gameID);
+        plat.setPlatGAME(gameID);
         return plat;
     }
 
@@ -188,7 +188,7 @@ public class GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER");
         dev.setDevCOUNTRY("FILLER");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "12-12-2019";
         dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
         dev.setDevGAME(gameID);
@@ -201,7 +201,7 @@ public class GameDAO_TEST {
         pcomp.setParentNAME("FILLER");
         pcomp.setParentCOUNTRY("ASD");
         pcomp.setParentSTATUS(true);
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "12-12-2019";
         pcomp.setParentCREATED(date);
         return pcomp;
     }
@@ -210,7 +210,7 @@ public class GameDAO_TEST {
         pub.setPubID(pubID);
         pub.setPubNAME("FILLER TEXT");
         pub.setPubCOUNTRY("FILLER TEXT");
-        DateDTO date = new DateDTO("1","1","2001");
+        String date = "12-12-2019";
         pub.setPubCREATED(date);
         pub.setPubGAME(gameID);
         return pub;
@@ -292,15 +292,11 @@ public class GameDAO_TEST {
         assertEquals(testGame1.getGameBIO(),testGame1DB.getGameBIO());
         assertEquals(testGame1.getGameCover(),testGame1DB.getGameCover());
         assertEquals(testGame1.getGameNAME(),testGame1DB.getGameNAME());
-        assertEquals(testGame1.getGameRELEASEDATE().getDay(),testGame1DB.getGameRELEASEDATE().getDay());
-        assertEquals(testGame1.getGameRELEASEDATE().getMonth(),testGame1DB.getGameRELEASEDATE().getMonth());
-        assertEquals(testGame1.getGameRELEASEDATE().getYear(),testGame1DB.getGameRELEASEDATE().getYear());
+        assertEquals(testGame1.getGameRELEASEDATE(),testGame1DB.getGameRELEASEDATE());
         assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentID(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentID());
         assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentCOUNTRY(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentCOUNTRY());
         assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentNAME(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentNAME());
-        assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay());
-        assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth());
-        assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear());
+        assertEquals(testGame1.getGameDEV().getDevPCOMPANY().getParentCREATED(),testGame1DB.getGameDEV().getDevPCOMPANY().getParentCREATED());
         assertEquals(testGame1.getGameOST().getOstCOMP().getCompID(),testGame1DB.getGameOST().getOstCOMP().getCompID());
         assertEquals(testGame1.getGameOST().getOstCOMP().getCompFN(),testGame1DB.getGameOST().getOstCOMP().getCompFN());
         assertEquals(testGame1.getGameOST().getOstCOMP().getCompLN(),testGame1DB.getGameOST().getOstCOMP().getCompLN());
@@ -321,9 +317,7 @@ public class GameDAO_TEST {
             assertEquals(ostMaList1.get(i).getArtNAME(),ostMaList1DB.get(i).getArtNAME());
             assertEquals(ostMaList1.get(i).getArtPFP(),ostMaList1DB.get(i).getArtPFP());
         }
-        assertEquals(testGame1.getGamePUB().getPubCREATED().getDay(),testGame1DB.getGamePUB().getPubCREATED().getDay());
-        assertEquals(testGame1.getGamePUB().getPubCREATED().getMonth(),testGame1DB.getGamePUB().getPubCREATED().getMonth());
-        assertEquals(testGame1.getGamePUB().getPubCREATED().getYear(),testGame1DB.getGamePUB().getPubCREATED().getYear());
+        assertEquals(testGame1.getGamePUB().getPubCREATED(),testGame1DB.getGamePUB().getPubCREATED());
         assertEquals(testGame1.getGamePUB().getPubCOUNTRY(),testGame1DB.getGamePUB().getPubCOUNTRY());
         assertEquals(testGame1.getGamePUB().getPubID(),testGame1DB.getGamePUB().getPubID());
         assertEquals(testGame1.getGamePUB().getPubNAME(),testGame1DB.getGamePUB().getPubNAME());
@@ -338,9 +332,7 @@ public class GameDAO_TEST {
         List<ActorDTO> actTest1     = testGame1.getGameACs();
         List<ActorDTO> actTest1DB   = testGame1DB.getGameACs();
         for (int i = 0; i < testGame1.getGameACs().size(); i++) {
-            assertEquals(actTest1.get(i).getAcBDAY().getDay(),actTest1DB.get(i).getAcBDAY().getDay());
-            assertEquals(actTest1.get(i).getAcBDAY().getMonth(),actTest1DB.get(i).getAcBDAY().getMonth());
-            assertEquals(actTest1.get(i).getAcBDAY().getYear(),actTest1DB.get(i).getAcBDAY().getYear());
+            assertEquals(actTest1.get(i).getAcBDAY(),actTest1DB.get(i).getAcBDAY());
             assertEquals(actTest1.get(i).getAcFN(),actTest1DB.get(i).getAcFN());
             assertEquals(actTest1.get(i).getAcLN(),actTest1DB.get(i).getAcLN());
             assertEquals(actTest1.get(i).getAcID(),actTest1DB.get(i).getAcID());
@@ -388,10 +380,8 @@ public class GameDAO_TEST {
         for (int i = 0; i < testGame1.getGamePLAT().size(); i++) {
             assertEquals(testGame1.getGamePLAT().get(i).getPlatID(),testGame1DB.getGamePLAT().get(i).getPlatID());
             assertEquals(testGame1.getGamePLAT().get(i).getPlatTITLE(),testGame1DB.getGamePLAT().get(i).getPlatTITLE());
-            assertEquals(testGame1.getGamePLAT().get(i).getPlatGAMEs(),testGame1DB.getGamePLAT().get(i).getPlatGAMEs());
-            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getDay(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getDay());
-            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getMonth(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getMonth());
-            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED().getYear(),testGame1DB.getGamePLAT().get(i).getPlatCREATED().getYear());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatGAME(),testGame1DB.getGamePLAT().get(i).getPlatGAME());
+            assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED(),testGame1DB.getGamePLAT().get(i).getPlatCREATED());
         }
         mysql.closeConnection(mysql.getConnection());
     }
@@ -410,15 +400,11 @@ public class GameDAO_TEST {
             assertEquals(testUpdateGame.getGameBIO(),updatedGame.getGameBIO());
             assertEquals(testUpdateGame.getGameCover(),updatedGame.getGameCover());
             assertEquals(testUpdateGame.getGameNAME(),updatedGame.getGameNAME());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getDay(),updatedGame.getGameRELEASEDATE().getDay());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getMonth(),updatedGame.getGameRELEASEDATE().getMonth());
-            assertEquals(testUpdateGame.getGameRELEASEDATE().getYear(),updatedGame.getGameRELEASEDATE().getYear());
+            assertEquals(testUpdateGame.getGameRELEASEDATE(),updatedGame.getGameRELEASEDATE());
             assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentID(),updatedGame.getGameDEV().getDevPCOMPANY().getParentID());
             assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCOUNTRY());
             assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentNAME(),updatedGame.getGameDEV().getDevPCOMPANY().getParentNAME());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getDay());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getMonth());
-            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED().getYear());
+            assertEquals(testUpdateGame.getGameDEV().getDevPCOMPANY().getParentCREATED(),updatedGame.getGameDEV().getDevPCOMPANY().getParentCREATED());
             assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompID(),updatedGame.getGameOST().getOstCOMP().getCompID());
             assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompFN(),updatedGame.getGameOST().getOstCOMP().getCompFN());
             assertEquals(testUpdateGame.getGameOST().getOstCOMP().getCompLN(),updatedGame.getGameOST().getOstCOMP().getCompLN());
@@ -439,9 +425,7 @@ public class GameDAO_TEST {
                 assertEquals(ostMaList1.get(i).getArtNAME(),ostMaList1DB.get(i).getArtNAME());
                 assertEquals(ostMaList1.get(i).getArtPFP(),ostMaList1DB.get(i).getArtPFP());
             }
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getDay(),updatedGame.getGamePUB().getPubCREATED().getDay());
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getMonth(),updatedGame.getGamePUB().getPubCREATED().getMonth());
-            assertEquals(testUpdateGame.getGamePUB().getPubCREATED().getYear(),updatedGame.getGamePUB().getPubCREATED().getYear());
+            assertEquals(testUpdateGame.getGamePUB().getPubCREATED(),updatedGame.getGamePUB().getPubCREATED());
             assertEquals(testUpdateGame.getGamePUB().getPubCOUNTRY(),updatedGame.getGamePUB().getPubCOUNTRY());
             assertEquals(testUpdateGame.getGamePUB().getPubID(),updatedGame.getGamePUB().getPubID());
             assertEquals(testUpdateGame.getGamePUB().getPubNAME(),updatedGame.getGamePUB().getPubNAME());
@@ -456,9 +440,7 @@ public class GameDAO_TEST {
             List<ActorDTO> actTest1     = testUpdateGame.getGameACs();
             List<ActorDTO> actTest1DB   = updatedGame.getGameACs();
             for (int i = 0; i < testUpdateGame.getGameACs().size(); i++) {
-                assertEquals(actTest1.get(i).getAcBDAY().getDay(),actTest1DB.get(i).getAcBDAY().getDay());
-                assertEquals(actTest1.get(i).getAcBDAY().getMonth(),actTest1DB.get(i).getAcBDAY().getMonth());
-                assertEquals(actTest1.get(i).getAcBDAY().getYear(),actTest1DB.get(i).getAcBDAY().getYear());
+                assertEquals(actTest1.get(i).getAcBDAY(),actTest1DB.get(i).getAcBDAY());
                 assertEquals(actTest1.get(i).getAcFN(),actTest1DB.get(i).getAcFN());
                 assertEquals(actTest1.get(i).getAcLN(),actTest1DB.get(i).getAcLN());
                 assertEquals(actTest1.get(i).getAcID(),actTest1DB.get(i).getAcID());
@@ -506,10 +488,8 @@ public class GameDAO_TEST {
             for (int i = 0; i < testUpdateGame.getGamePLAT().size(); i++) {
                 assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatID(),updatedGame.getGamePLAT().get(i).getPlatID());
                 assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatTITLE(),updatedGame.getGamePLAT().get(i).getPlatTITLE());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatGAMEs(),updatedGame.getGamePLAT().get(i).getPlatGAMEs());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getDay(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getDay());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getMonth(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getMonth());
-                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED().getYear(),updatedGame.getGamePLAT().get(i).getPlatCREATED().getYear());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatGAME(),updatedGame.getGamePLAT().get(i).getPlatGAME());
+                assertEquals(testUpdateGame.getGamePLAT().get(i).getPlatCREATED(),updatedGame.getGamePLAT().get(i).getPlatCREATED());
             }
             mysql.closeConnection(mysql.getConnection());
 
@@ -527,7 +507,7 @@ public class GameDAO_TEST {
     }
     public GameDTO createGameDB1(int gameID, String userNAME) {
         GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2017");
+        String date = "12-12-2019";
         DeveloperDTO dev = GAME_createDeveloper1(51,gameID);
         PublisherDTO pub = GAME_createPublisher1(54,gameID);
         ComposerDTO comp = GAME_createComposer1(54,gameID,51);
@@ -585,7 +565,7 @@ public class GameDAO_TEST {
         actor.setAcFN(FN);
         actor.setAcLN(LN);
         actor.setAcPFP(PFP);
-        DateDTO DOB = new DateDTO("1","1","2010");
+        String DOB = "12-12-2019";
         actor.setAcBDAY(DOB);
         List<Integer> charList = new ArrayList<>();
         for (int i = 0; i < gameCHARs.size(); i++) {
@@ -636,9 +616,9 @@ public class GameDAO_TEST {
         PlatformDTO plat = new PlatformDTO();
         plat.setPlatID(platID);
         plat.setPlatTITLE("FILLER");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "12-12-2019";
         plat.setPlatCREATED(date);
-        plat.setPlatGAMEs(gameID);
+        plat.setPlatGAME(gameID);
         return plat;
     }
 
@@ -678,7 +658,7 @@ public class GameDAO_TEST {
         dev.setDevID(devID);
         dev.setDevNAME("FILLER1");
         dev.setDevCOUNTRY("FILLER1");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "12-12-2019";
         dev.setDevCREATED(date);
         dev.setDevSTATUS(true);
         dev.setDevGAME(gameID);
@@ -691,7 +671,7 @@ public class GameDAO_TEST {
         pcomp.setParentNAME("FILLER1");
         pcomp.setParentCOUNTRY("ASD1");
         pcomp.setParentSTATUS(true);
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "12-12-2019";
         pcomp.setParentCREATED(date);
         return pcomp;
     }
@@ -700,7 +680,7 @@ public class GameDAO_TEST {
         pub.setPubID(pubID);
         pub.setPubNAME("FILLER TEXT1");
         pub.setPubCOUNTRY("FILLER TEXT1");
-        DateDTO date = new DateDTO("1","1","2010");
+        String date = "12-12-2019";
         pub.setPubCREATED(date);
         pub.setPubGAME(gameID);
         return pub;
@@ -755,6 +735,6 @@ public class GameDAO_TEST {
         ma.setArtNAME("FILLER1");
         ma.setArtPFP("FILLER1");
         return ma;
-    }*/
+    }
 }
 
