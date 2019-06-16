@@ -9,12 +9,12 @@ public class ActorDTO {
     private int                     acID;
     private String                  acFN;
     private String                  acLN;
-    private DateDTO                 acBDAY;
+    private String                 acBDAY;
     private List<Integer>           acCHs;
     private int                     acGAME;
     private String                  acPFP;
 
-    public ActorDTO(int acID, String acFN, String acLN, DateDTO acBDAY, List<Integer> acCHs, int acGAME, String acPFP) {
+    public ActorDTO(int acID, String acFN, String acLN, String acBDAY, List<Integer> acCHs, int acGAME, String acPFP) {
         this.acID = acID;
         this.acFN = acFN;
         this.acLN = acLN;
@@ -51,11 +51,11 @@ public class ActorDTO {
         this.acLN = acLN;
     }
 
-    public DateDTO getAcBDAY() {
+    public String getAcBDAY() {
         return acBDAY;
     }
 
-    public void setAcBDAY(DateDTO acBDAY) {
+    public void setAcBDAY(String acBDAY) {
         this.acBDAY = acBDAY;
     }
 

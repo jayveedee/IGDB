@@ -8,12 +8,12 @@ public class PublisherDTO {
 
     private int                 pubID;
     private String              pubNAME;
-    private DateDTO             pubCREATED;
+    private String             pubCREATED;
     private String              pubCOUNTRY;
     private boolean             pubSTATUS;
     private int                 pubGAME;
 
-    public PublisherDTO(int pubID, String pubNAME, DateDTO pubCREATED, String pubCOUNTRY, boolean pubSTATUS, int pubGAME) {
+    public PublisherDTO(int pubID, String pubNAME, String pubCREATED, String pubCOUNTRY, boolean pubSTATUS, int pubGAME) {
         this.pubID = pubID;
         this.pubNAME = pubNAME;
         this.pubCREATED = pubCREATED;
@@ -41,11 +41,11 @@ public class PublisherDTO {
         this.pubNAME = pubNAME;
     }
 
-    public DateDTO getPubCREATED() {
+    public String getPubCREATED() {
         return pubCREATED;
     }
 
-    public void setPubCREATED(DateDTO pubCREATED) {
+    public void setPubCREATED(String pubCREATED) {
         this.pubCREATED = pubCREATED;
     }
 

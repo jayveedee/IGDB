@@ -40,4 +40,5 @@ public class GenreDTO {
     public void setGenGAME(int genGAME) {
         this.genGAME = genGAME;
     }
+
 }

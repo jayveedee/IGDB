@@ -6,13 +6,13 @@ public class DeveloperDTO {
 
     private int                 devID;
     private String              devNAME;
-    private DateDTO             devCREATED;
+    private String             devCREATED;
     private boolean             devSTATUS;
     private String              devCOUNTRY;
     private ParentCompanyDTO    devPCOMPANY;
     private int                 devGAME;
 
-    public DeveloperDTO(int devID, String devNAME, DateDTO devCREATED, boolean devSTATUS, String devCOUNTRY, ParentCompanyDTO devPCOMPANY, int devGAME) {
+    public DeveloperDTO(int devID, String devNAME, String devCREATED, boolean devSTATUS, String devCOUNTRY, ParentCompanyDTO devPCOMPANY, int devGAME) {
         this.devID = devID;
         this.devNAME = devNAME;
         this.devCREATED = devCREATED;
@@ -41,11 +41,11 @@ public class DeveloperDTO {
         this.devNAME = devNAME;
     }
 
-    public DateDTO getDevCREATED() {
+    public String getDevCREATED() {
         return devCREATED;
     }
 
-    public void setDevCREATED(DateDTO devCREATED) {
+    public void setDevCREATED(String devCREATED) {
         this.devCREATED = devCREATED;
     }
 
