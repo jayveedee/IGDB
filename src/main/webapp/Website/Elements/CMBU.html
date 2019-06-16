@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IGDB - List of Users</title>
+    <title>IGDB - Changes Made By Users</title>
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
-    <link rel="stylesheet" type="text/css" href="../Stylesheet/UserList.css">
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/CMBU.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
@@ -15,10 +15,10 @@
         </div>
         <ul class="navigation-list">
             <div class="navLinks-left">
-                <a id="userList" class="nav-active" href="UserList.html">User List</a>
+                <a id="userList" class="not-active" href="UserList.html">User List</a>
             </div>
             <div class="navLinks-left">
-                <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
+                <a id="changeLog" class="nav-active" href="CMBU.html">User Changes</a>
             </div>
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
@@ -39,25 +39,37 @@
         </ul>
     </nav>
 <!-- ------------------Navbar END------------------ -->
+<!-- ------------------Content START------------------ -->
     <div class="container">
-        <div class="UL-H">
-            <h2>
-                Username
-            </h2>
-            <h2 style="float: right;">
-                Remove Ability
-            </h2>
-        </div>
-        <form class="UL-form" id="showUserList" method="post" action="/rest/services/user/getUser/{username}">
-            <div class="UL">
-                <div id="sul-1" class="sul-1">
-                    <input name="username" type="text" class="uos-1" id="UserNames" disabled="true  ">
-                    <button class="euos-1">Remove Edit Permission</button>
+        <div class="ChangesContent">
+            <div class="CTGC">
+                <div class="CTGC-H">
+                <h2 style="float: left;">
+                    Game Name
+                </h2>
+                <h2>
+                    Username
+                </h2>
+                <h2 style="float: right;">
+                    Date of Change
+                </h2>
                 </div>
+                <div class="CTGC-container">
+                    <div class="CTGC-GN">
+                        <a id="" href="">Game Name</a>
+                    </div>
+                    <div class="CTGC-UN" >
+                        <a id=""href="">Username</a>
+                    </div>
+                    <div class="CTGC-DoC">
+                        <a>Date of Change</a>
+                    </div>
+                </div>
+
             </div>
-        </form>
+        </div>
     </div>
-    <script src="../Functions/NavBar.js"></script>
-    <script src="../Functions/UserList.js"></script>
+
+
 </body>
 </html>

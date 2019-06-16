@@ -1,0 +1,34 @@
+.CTGC{
+    text-align: center;
+}
+
+.CTGC a{
+    text-decoration: none;
+    color: white;
+}
+
+.CTGC-H h2{
+    display: inline-block;
+    margin: 0px 0px 20px 0px;
+}
+
+.CTGC-container{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+.CTGC-GN{
+    display: inline-block;
+    float: left;
+}
+
+.CTGC-UN{
+    display: inline-block;
+}
+
+
+.CTGC-DoC{
+    display: inline-block;
+    float: right;
+}

@@ -3,11 +3,16 @@ $(document).ready(function () {
     if (username === null || username === "null"){
         $("#profileBtn").css('display', 'none');
         $("#createArticle").css('display', 'none');
+        $("#userList").css('display', 'none');
+        $("#changeLog").css('display', 'none');
+        $("#searchBar").css('margin-left', '300px');
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);
         $("#profileBtn").css('display', 'block');
         $("#createArticle").css('display', 'block');
+        $("#userList").css('display', 'block');
+        $("#changeLog").css('display', 'block');
         document.getElementById("loginRegisterButton").innerHTML = "Logout";
     }
 });
