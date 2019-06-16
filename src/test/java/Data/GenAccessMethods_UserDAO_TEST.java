@@ -4,6 +4,7 @@ import Data.UserDAL.RoleDAO;
 import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class GenAccessMethods_UserDAO_TEST {
     private IMysqlConnection mySql = new MysqlConnection();
     private RoleDAO rdao = new RoleDAO(mySql);
 
-    public List<RoleDTO> createRoleList() {
+    public List<RoleDTO> createRoleList() throws SQLException {
+        mySql.createConnection();
         RoleDTO test1 = new RoleDTO(1,"TEST");
         RoleDTO test2 = new RoleDTO(2,"TEST");
         RoleDTO test3 = new RoleDTO(3,"TEST");

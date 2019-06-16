@@ -1,12 +1,14 @@
 package Data;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GenAccessDeleteAllTables {
+public class GenAccessTestMethods {
 
     private IMysqlConnection mySql = new MysqlConnection();
 
-    public void deleteAllTables(){
+    public void deleteAllTables() throws SQLException {
+        mySql.createConnection();
         String query01 = "DELETE FROM ActorList";           String query02 = "DELETE FROM CharacterList";
         String query03 = "DELETE FROM SoundtrackList";      String query04 = "DELETE FROM MusicalArtistList";
         String query05 = "DELETE FROM ComposerList";        String query06 = "DELETE FROM WriterList";
@@ -23,6 +25,7 @@ public class GenAccessDeleteAllTables {
         handleDeleteALL(query10);handleDeleteALL(query11);handleDeleteALL(query12);handleDeleteALL(query13);handleDeleteALL(query14);
         handleDeleteALL(query15);handleDeleteALL(query16);handleDeleteALL(query17);handleDeleteALL(query18);handleDeleteALL(query19);
         handleDeleteALL(query20);handleDeleteALL(query21);
+        mySql.closeConnection(mySql.getConnection());
     }
 
     private boolean handleDeleteALL(String query){
@@ -36,5 +39,23 @@ public class GenAccessDeleteAllTables {
             return false;
         }
         return true;
+    }
+
+    public void killAllConnections(){
+        try {
+            mySql.setConnection(mySql.createConnection());
+            String query = "SHOW FULL processlist";
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            ResultSet resultSet = mySql.getPrepStatement().executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("Id");
+                System.out.println(id);
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement("KILL " + id));
+                mySql.getPrepStatement().execute();
+            }
+            mySql.closeConnection(mySql.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -486,32 +486,4 @@ public class GenAccessMethods_GameDAO_TEST {
         ma.setArtPFP("FILLER1");
         return ma;
     }
-
-    public GameDTO createGameDBNULL(int gameID) {
-        GameDTO game = new GameDTO();
-        DateDTO date = new DateDTO("1","12","2019");
-        DeveloperDTO dev = null;
-        PublisherDTO pub = null;
-        ComposerDTO comp = null;
-        SoundtrackDTO ost = null;
-
-        List<CharacterDTO>  gameCHARs       = new ArrayList<>();
-        List<GenreDTO>      gameGENREs      = new ArrayList<>();
-        List<WriterDTO>     writer          = new ArrayList<>();
-        List<ActorDTO>      gameACTOR       = new ArrayList<>();
-        List<RatingDTO>     gameRATING      = new ArrayList<>();
-        List<GameModeDTO>   gameGAMEMODE    = new ArrayList<>();
-        List<TrailerDTO>    gameTRAILER     = new ArrayList<>();
-        List<PictureDTO>    gamePics        = new ArrayList<>();
-
-        game.setGameID(gameID);
-        game.setGameBG("INSERT BACKGROUND URL");        game.setGameBIO("INSERT DESCRIPTION HERE");         game.setGameNAME("INSERT GAME TITLE HERE");
-        game.setGameCover("INSERT COVER HERE");         game.setGameCOMP(comp);                             game.setGameDEV(dev);
-        game.setGameOST(ost);                           game.setGamePUB(pub);                               game.setGameRELEASEDATE(date);
-        game.setGameWRI(writer);                        game.setGameACs(gameACTOR);                         game.setGamePICs(gamePics);
-        game.setGameCHs(gameCHARs);                     game.setGameGENREs(gameGENREs);                     game.setGameGMs(gameGAMEMODE);
-        game.setGameRATINGs(gameRATING);                game.setGameTRAILERs(gameTRAILER);
-        gdao.createGame(game);
-        return game;
-    }
 }
