@@ -40,6 +40,7 @@
 
 .gamedatahead{
     color: #FFFFFF;
+    margin: 20px 0px 10px 0px;
 }
 
 .dataoutput{
@@ -150,4 +151,19 @@
 
 .underheader{
     color: #FFFFFF;
+}
+
+.img-container{
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.vid-container{
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.slideshow-container iframe{
+    height: 200px;
+    width: 400px;
 }
