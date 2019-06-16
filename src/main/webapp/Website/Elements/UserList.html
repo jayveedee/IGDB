@@ -15,10 +15,10 @@
         </div>
         <ul class="navigation-list">
             <div class="navLinks-left">
-                <a id="#" class="nav-active" href="UserList.html">User List</a>
+                <a id="userList" class="nav-active" href="UserList.html">User List</a>
             </div>
             <div class="navLinks-left">
-                <a id="#" class="not-active" href="CMBU.html">User Changes</a>
+                <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
             </div>
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
@@ -40,16 +40,24 @@
     </nav>
 <!-- ------------------Navbar END------------------ -->
     <div class="container">
-        <div>
-            <div id="sul-1" class="sul-1">
-                <li class="uos-1">hej</li>
-                <button class="euos-1">Remove Edit Permission</button>
-            </div>
+        <div class="UL-H">
+            <h2>
+                Username
+            </h2>
+            <h2 style="float: right;">
+                Remove Ability
+            </h2>
         </div>
+        <form class="UL-form" id="showUserList" method="post" action="/rest/services/user/getUser/{username}">
+            <div class="UL">
+                <div id="sul-1" class="sul-1">
+                    <input name="username" type="text" class="uos-1" id="UserNames" disabled="true  ">
+                    <button class="euos-1">Remove Edit Permission</button>
+                </div>
+            </div>
+        </form>
     </div>
-
     <script src="../Functions/NavBar.js"></script>
     <script src="../Functions/UserList.js"></script>
-<!-- <script src="../Functions/Index.js"></script> -->
 </body>
 </html>
