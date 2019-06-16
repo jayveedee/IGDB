@@ -126,10 +126,8 @@ public class Services {
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
             }
-            IGameDAO gameDAO = new GameDAO(MysqlConnection.getInstance());
-            //GameService service = new GameService(MysqlConnection.getInstance());
-            //answer = service.createGame(gameDTO);
-            answer = gameDAO.createGame(gameDTO);
+            GameService service = new GameService(MysqlConnection.getInstance());
+            answer = service.createGame(gameDTO);
             MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
             //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
@@ -139,7 +137,7 @@ public class Services {
         return answer;
     }
 
-    @POST
+    /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame/test")
     public boolean createGameTest(GameDTO gameDTO){
@@ -246,7 +244,7 @@ public class Services {
         System.out.println("gameBIO: " + gameDTO.getGameBIO());
 
         return answer;
-    }
+    }*/
 
 
     @POST
