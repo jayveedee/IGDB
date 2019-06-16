@@ -60,7 +60,18 @@
                 <input class="dataoutput gameplatform" type="text" readonly>
             </div>
             <div class="containerout piclist">
-                <h4 class="gamedatahead">Picture List</h4>
+                <h4 class="gamedatahead">Pictures</h4>
+                <div class="top-container img-container">
+                    <button onclick="plusVids(-1)" id="prevBtn"></button>
+                    <button onclick="plusVids(1)" id="nextBtn"></button>
+                    <div class="slideshow-container">
+                        <img src="https://imgur.com/i0EPevF.png" class="slideImages">
+                        <img src="https://imgur.com/ppgaX7V.png" class="slideImages">
+                        <img src="https://imgur.com/2qUQXbs.png" class="slideImages">
+                        <img src="https://imgur.com/ksaSiV4.png" class="slideImages">
+                        <img src="https://imgur.com/Y4xklgY.png" class="slideImages">
+                    </div>
+                </div>
             </div>
         </ul>
         <ul class="intro-ul">
@@ -70,26 +81,162 @@
             </div>
             <div class="containerout vidlist">
                 <h4 class="gamedatahead">Trailers</h4>
+                <div class="top-container vid-container">
+                    <button onclick="plusVids(-1)" id="prevBtn2"></button>
+                    <button onclick="plusVids(1)" id="nextBtn2"></button>
+                    <div class="slideshow-container">
+                        <iframe src="https://www.youtube.com/embed/Gu8X7vM3Avw"class="slideVids" width="1271" height="715" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/kMaxrryH0es" class="slideVids" width="1271" height="715" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </ul>
-
-            <div class="containerout actorslist">
-                <h4 class="gamedatahead">Characters</h4>
+        <div class="groupcontainer actorslist">
+            <h4 class="gamedatahead">Characters</h4>
+            <ul class="list-container">
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gamecharacter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gamecharacter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gamecharacter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gamecharacter" type="text" readonly>
+                </div>
+            </ul>
+        </div>
+        <div class="groupcontainer actorslist">
+            <h4 class="gamedatahead">Actors</h4>
+            <ul class="list-container">
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameactor" type="text" readonly>
+                    <input class="dataoutput gameactordate" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameactor" type="text" readonly>
+                    <input class="dataoutput gameactordate" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameactor" type="text" readonly>
+                    <input class="dataoutput gameactordate" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameactor" type="text" readonly>
+                    <input class="dataoutput gameactordate" type="text" readonly>
+                </div>
+            </ul>
+        </div>
+        <div class="groupcontainer artistlist">
+            <h4 class="gamedatahead">Music Artists</h4>
+            <ul class="list-container">
+                <div class="info-list">
+                    <img class="infopic" src="https://m.media-amazon.com/images/M/MV5BMTcyMTU5MzgxMF5BMl5BanBnXkFtZTYwMDI0NjI1._V1_UX214_CR0,0,214,317_AL_.jpg">
+                    <input class="dataoutput gameartist" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AACOPy2.img?h=351&w=624&m=6&q=60&o=f&l=f&x=593&y=358">
+                    <input class="dataoutput gameartist" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameartist" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameartist" type="text" readonly>
+                </div>
+            </ul>
+        </div>
+        <div class="groupcontainer writerlist">
+            <h4 class="gamedatahead">Writers</h4>
+            <ul class="list-container">
+                <div class="info-list">
+                    <input class="dataoutput gamewriter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamewriter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamewriter" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamewriter" type="text" readonly>
+                </div>
+            </ul>
+        </div>
+        <div class="groupcontainer composerlist">
+            <h4 class="gamedatahead">Composers</h4>
+            <ul class="list-container">
+                <div class="info-list">
+                    <input class="dataoutput gamecomposer" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamecomposer" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamecomposer" type="text" readonly>
+                </div>
+                <div class="info-list">
+                    <input class="dataoutput gamecomposer" type="text" readonly>
+                </div>
+            </ul>
+        </div>
+        <div class="singlecontainer">
+            <div class="individualcontainer gamedeveloper">
+                <h4 class="gamedatahead">Developer</h4>
+                <div class="singlewrapper">
+                    <h5 class="underheader">Developer Name</h5>
+                    <input class="dataoutput dev-name" type="text" readonly>
+                    <h5 class="underheader">Developer Origin</h5>
+                    <input class="dataoutput dev-origin" type="text" readonly>
+                    <h5 class="underheader">Developer Status</h5>
+                    <input class="dataoutput dev-status" type="text" readonly>
+                    <h5 class="underheader">Established Date</h5>
+                    <input class="dataoutput dev-date" type="text" readonly>
+                </div>
             </div>
-            <div class="containerout actorslist">
-                <h4 class="gamedatahead">Characters</h4>
-                <ul>
-                    <li>
-                        <img src="">
-                    </li>
-                </ul>
+            <div class="individualcontainer gamepublisher">
+                <h4 class="gamedatahead">Publisher</h4>
+                <div class="singlewrapper">
+                    <h5 class="underheader">Publisher Name</h5>
+                    <input class="dataoutput pub-name" type="text" readonly>
+                    <h5 class="underheader">Publisher Origin</h5>
+                    <input class="dataoutput pub-origin" type="text" readonly>
+                    <h5 class="underheader">Publisher Status</h5>
+                    <input class="dataoutput pub-status" type="text" readonly>
+                    <h5 class="underheader">Established Date</h5>
+                    <input class="dataoutput pub-date" type="text" readonly>
+                </div>
             </div>
-
+            <div class="individualcontainer gamecompany">
+                <h4 class="gamedatahead">Company</h4>
+                <div class="singlewrapper">
+                    <h5 class="underheader">Company Name</h5>
+                    <input class="dataoutput comp-name" type="text" readonly>
+                    <h5 class="underheader">Company Origin</h5>
+                    <input class="dataoutput comp-origin" type="text" readonly>
+                    <h5 class="underheader">Company Status</h5>
+                    <input class="dataoutput comp-status" type="text" readonly>
+                    <h5 class="underheader">Established Date</h5>
+                    <input class="dataoutput comp-date" type="text" readonly>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <script src="../Functions/createarticle.js"></script>
-<script src="../Functions/Index.js"></script>
+<script src="../Functions/ArticleReview.js"></script>
 <script src="../Functions/ConnectionScript.js"></script>
 </body>
 </html>
