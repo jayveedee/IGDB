@@ -1,3 +1,14 @@
+.UL-H h2{
+    display: inline-block;
+}
+
+.sul-1{
+    /* background: rgba(255,255,255,0.2); */
+    border-radius: 4px;
+    margin: 20px;
+    border: 1px solid #194d7f91;
+}
+
 .uos-1 {
     padding: 20px;
     display: inline-block;
@@ -10,10 +21,6 @@
     cursor: pointer;
     outline: 0;
     background-color: red;
-}
-
-.sul-1{
-    background: rgba(255,255,255,0.5);
-    border-radius: 4px;
-    margin: 20px;
+    float: right;
+    margin: 8px 8px 0px 0px;
 }
