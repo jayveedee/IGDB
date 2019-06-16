@@ -21,6 +21,7 @@ public interface IGameDAO {
 
     //READ
     GameDTO getGame                 (int gameID);
+    int getGameID                   (String gameName);
     ArrayList<String> getGameNames  (String characters);
 
     //UPDATE

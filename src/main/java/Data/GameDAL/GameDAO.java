@@ -666,6 +666,25 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
+    public int getGameID(String gameName) {
+        String query = "SELECT * FROM Game WHERE gameTITLE = ?";
+        int gameID = 0;
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setString(1,gameName);
+            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            if (rs.next()){
+                gameID = rs.getInt("gameID");
+            }
+            return gameID;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gameID;
+    }
+
+    @Override
     public ArrayList<String> getGameNames(String characters){
         String query = "SELECT gameTITLE FROM Game WHERE gameTITLE LIKE ? LIMIT 10";
         ArrayList<String> list = new ArrayList<>();
