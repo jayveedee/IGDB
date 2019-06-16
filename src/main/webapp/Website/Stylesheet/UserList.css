@@ -12,6 +12,9 @@
 .uos-1 {
     padding: 20px;
     display: inline-block;
+    background: transparent;
+    border: 0;
+    color: white;
 }
 
 .euos-1{
