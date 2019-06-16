@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Game</title>
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/ArticleInStyle.css">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"></script>
+
+</head>
+<body>
+<!-- ------------------Navbar START------------------ -->
+<nav class="standart-nav">
+    <div class="logo">
+        <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
+    </div>
+    <ul class="navigation-list">
+        <div class="navLinks-left">
+            <a id="userList" class="not-active" href="UserList.html">User List</a>
+        </div>
+        <div class="navLinks-left">
+            <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
+        </div>
+        <div class="autocomplete" style="display: inline;">
+            <div style="display: inline;">
+                <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                    <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
+                    <input type="submit" value="Search">
+                </form>
+                <datalist id="dataList"></datalist>
+            </div>
+        </div>
+        <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
+        <div class="navLinks-right">
+            <a id="profileBtn" class="not-active" href="User.html">Profile</a>
+        </div>
+        <div class="navLinks-right">
+            <a id="createArticle" class="createArticle" href="createarticle.html">Create article </a>
+        </div>
+    </ul>
+</nav>
+<!-- ------------------Navbar END------------------ -->
+
+<form id="createGameForm" method="post" action="/rest/services/game/createGame">
+    <div id="container" class="container">
+        <h1 id="headerarticle">Edit Game</h1>
+
+        <div id="titleInput" class="container">
+            <h3 id="headertitle">Title</h3>
+            <input id="titlefield" type="text" placeholder="Insert the title" name="titleField">
+            <h3 id="headerRD">Release Date</h3>
+            <input class="dateInput" type="date" name="releaseDate" id="releaseDateField">
+        </div>
+
+        <div id="mediaInput" class="container">
+            <h3 id="headerMedia">Media</h3>
+            <ul>
+                <li class="media-list">
+                    <h5 class="media-headers">Game Cover</h5>
+                    <input id="picturefield" type="text" placeholder="Insert URL of game cover" name="gameCover">
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Background Image</h5>
+                    <input class="media-input" id="backpicfield" type="text" placeholder="Insert URL of background image">
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Game Trailer</h5>
+                    <button class="btn-add-row8" type="button">Add</button>
+                    <button class="btn-remove-row8">Remove</button>
+                    <div class="element-wrapper8">
+                        <div >
+                            <input class="row8 media-input" id="trailerfield" type="text" placeholder="Insert URL of game trailer">
+                            <button class="btn-remove-row8">Remove</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Picture List</h5>
+                    <button class="btn-add-row9" type="button">Add</button>
+                    <button class="btn-remove-row9">Remove</button>
+                    <div class="element-wrapper9">
+                        <div class="row9">
+                            <input class="media-input" id="piclistfield" type="text" placeholder="Insert URL of pictures">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="artInput" class="container">
+            <h3 id="headerArt">Art</h3>
+            <ul>
+                <li class="media-list">
+                    <h5 class="media-headers">Soundtrack</h5>
+                    <div class="element-wrapper4">
+                        <div class="row4">
+                            <input id="soundtrackNameField" class="media-input" type="text" placeholder="Insert name of soundtrack ">
+                            <input id="soundtrackURLField" class="media-input" type="text" placeholder="Insert image URL of soundtrack">
+                        </div>
+                    </div>
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Musical Artists</h5>
+                    <button class="btn-add-row5" type="button">Add</button>
+                    <button class ="btn-remove-row5">Remove</button>
+                    <div class="element-wrapper5">
+                        <div class="row5">
+                            <input class="media-input" type="text" placeholder="Insert name of musical artist">
+                            <input class="media-input" type="text" placeholder="Insert image URL of the artist">
+                        </div>
+                    </div>
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Composers</h5>
+                    <button class="btn-add-row6" type="button">Add</button>
+                    <button class ="btn-remove-row6">Remove</button>
+                    <div class="element-wrapper6">
+                        <div class="row6">
+                            <input class="media-input" type="text" placeholder="Insert name of composers">
+                        </div>
+                    </div>
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Writers</h5>
+                    <button class="btn-add-row7" type="button">Add</button>
+                    <button class ="btn-remove-row7">Remove</button>
+                    <div class ="element-wrapper7">
+                        <div class="row7">
+                            <input class="media-input" type="text" placeholder="Insert name of writers">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="companyInput" class="container">
+            <h3 id="headercompany">Company Details</h3>
+            <ul id="media-list">
+                <li class ="media-list">
+                    <h5 class ="media-headers">Company Name</h5>
+                    <input id="companyNameField" class="media-input" type="text" placeholder="Insert Company Name">
+                </li>
+                <li class ="media-list">
+                    <h5 class ="media-headers">Origin of Company</h5>
+                    <input id="companyOriginField" class="media-input" type="text" placeholder="Insert origin of company">
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Company Status</h5>
+                    <input id="companyStatusField" class="media-input" type="text" placeholder="Insert status of company">
+                </li>
+                <li class="media-list">
+                    <h5 class="media-headers">Creation of Company</h5>
+                    <input id="creationOfCompanyField" class="media-input" type="date">
+                </li>
+            </ul>
+        </div>
+
+        <div id="developerInput" class="container">
+            <h3 class="introheader">Developers</h3>
+            <div class="element-wrapper12">
+                <div class="list-rows row12">
+                    <ul>
+                        <li class="media-list">
+                            <h5 class="media-headers">Developer Name</h5>
+                            <input id="developerNameField" class="media-input" type="text" placeholder="Insert name of developer">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Date of Developer Creation</h5>
+                            <input id="developerCreationField" class="media-input" type="date">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Origin of Developer</h5>
+                            <input id="developerOriginField" class="media-input" type="text" placeholder="Insert origin of Developer">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Developer Status</h5>
+                            <input id="developerStatusField" class="media-input" type="text" placeholder="Insert status of developer">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="publisherInput" class="container">
+            <h3 class="introheader">Publisher details</h3>
+            <div class="element-wrapper13">
+                <div class="list-rows row13">
+                    <ul>
+                        <li class="media-list">
+                            <h5 class="media-headers">Publisher Name</h5>
+                            <input id="publisherNameField" class="media-input" type="text" placeholder="Insert name of publisher">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Date of Publisher Creation</h5>
+                            <input id="publisherCreationField" class="media-input" type="date">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Origin of Publisher</h5>
+                            <input id="publisherOriginField" class="media-input" type="text" placeholder="Insert origin of publisher">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Publisher Status</h5>
+                            <input id="publisherStatusField" class="media-input" type="text" placeholder="Insert status of publisher">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="actorInput" class="container">
+            <h3 id="headeractor">Actors</h3>
+            <button class="btn-add-row" type="button">Add</button>
+            <button class ="btn-remove-row">Remove</button>
+            <div class="element-wrapper">
+                <div class="row">
+                    <ul>
+                        <li class="media-list">
+                            <h5 class="media-headers">Name of Actor</h5>
+                            <input class="media-input" type="text" placeholder="Insert name of Actor">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Image of Actor</h5>
+                            <input class="media-input" type="text" placeholder="Insert image URL of Actor">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Date of Birth of Actor</h5>
+                            <input class="dateInput" type="date">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="charInput" class="container">
+            <h3 class="introheader">Ingame Characters</h3>
+            <button id="btn11" class="add-button" type="button">Add</button>
+            <button class="btn-remove-row11">Remove</button>
+            <div class="element-wrapper11">
+                <div class="list-rows row11">
+                    <ul>
+                        <li class="media-list">
+                            <h5 class="media-headers">Name of character</h5>
+                            <input class="media-input" type="text" placeholder="Insert name of character">
+                        </li>
+                        <li class="media-list">
+                            <h5 class="media-headers">Character Image</h5>
+                            <input class="media-input" type="text" placeholder="Insert image URL of character">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="platformInput" class="container">
+            <h3 id="headerplatform">Eligible Game Platforms</h3>
+            <button class="btn-add-row2" type="button">Add</button>
+            <button class ="btn-remove-row2">Remove</button>
+            <div class="element-wrapper2">
+                <div class="row2">
+                    <select>
+                        <option selected disabled>Choose a platform</option>
+                        <optgroup label="Sony">
+                            <option value="PlayStation 1">PlayStation 1</option>
+                            <option value="PlayStation 2">PlayStation 2</option>
+                            <option value="PlayStation 3">PlayStation 3</option>
+                            <option value="PlayStation Portable">PlayStation Portable</option>
+                            <option value="PlayStation Vita">PlayStation Vita</option>
+                        </optgroup>
+                        <optgroup label="Microsoft">
+                            <option value="Xbox">Xbox</option>
+                            <option value="Xbox 360">Xbox 360</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="genreInput" class="container">
+            <h3 id="headergenre">Game genre</h3>
+            <button class="btn-add-row3" type="button">Add</button>
+            <button class ="btn-remove-row3">Remove</button>
+
+            <div class="element-wrapper3">
+                <div class="row3">
+                    <select>
+                        <option selected disabled>Choose a genre</option>
+                        <option value="First Person Shooter">First Person Shooter</option>
+                        <option value="MMO">MMO</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Indie">Indie</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="gamedescInput" class="container">
+            <h3 id="headergameDesc">Game Description</h3>
+            <textarea id="gameDescfield" rows = "10" name="gameDescription"></textarea>
+        </div>
+        <input type="submit" id="save-article" value="Save Game">
+        <!--<button id="save-article">Save Game ;)</button>-->
+    </div>
+</form>
+<!--<script src="../Functions/ConnectionScript.js"></script>-->
+<script src="../Functions/NavBar.js"></script>
+
+</body>
+</html>
