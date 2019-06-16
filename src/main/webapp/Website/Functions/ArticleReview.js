@@ -33,7 +33,7 @@ function showSlides2(video){
     if (video > videos.length){slideIndex2 = 1}
     if (video < 1){slideIndex2 = videos.length}
 
-    for(i2 = 0; i2 < images.length; i2++){
+    for(i2 = 0; i2 < videos.length; i2++){
         videos[i2].style.display = "none";
     }
     videos[slideIndex2 - 1].style.display = "block";
