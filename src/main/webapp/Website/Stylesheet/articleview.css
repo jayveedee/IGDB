@@ -165,5 +165,9 @@
 
 .slideshow-container iframe{
     height: 200px;
-    width: 400px;
+    width: 390px;
 }
+.slideshow-container{
+    display: block;
+}
+

@@ -175,7 +175,15 @@ h2{
     left: 2%;
 }
 
+#prevBtn2{
+    left: 2%;
+}
+
 #nextBtn{
+    right: 2%;
+}
+
+#nextBtn2{
     right: 2%;
 }
 
