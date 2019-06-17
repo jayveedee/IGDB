@@ -85,6 +85,7 @@ public class GameService {
         System.out.println("publisher id: " + gameDTO.getGamePUB().getPubID());
         System.out.println("publisher gameid: " + gameDTO.getGamePUB().getPubGAME());
         System.out.println(" ");
+        //asdasdasd
 
         System.out.println("### Actors ###");
         System.out.println("actor 1 name: " + gameDTO.getGameACs().get(0).getAcFN());
