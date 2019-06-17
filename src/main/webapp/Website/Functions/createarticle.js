@@ -292,11 +292,12 @@ function getPublisher(id) {
 }
 
 function getComposer(id) {
+    randomintlist = [1,2,3];
     var composer = {
         compID : generateRandomID(),
         compFN : $("#row6-0").val(),
-        compLN : null,
-        compOSTs : null,
+        compLN : "placeholder",
+        compOSTs : randomintlist,
         compGAME : id
     };
     return composer;
@@ -415,7 +416,7 @@ function getWriters(id){
             var writer = {
                 writerID : generateRandomID(),
                 writerFN : $("#row7-"+row7counter).val(),
-                writerLN : null,
+                writerLN : "placeholder",
                 writerGAME : id
             };
             writerList.push(writer);
@@ -426,6 +427,8 @@ function getWriters(id){
 }
 
 function getActors(id){
+    var randomIntegerList = [1,2,3];
+
     var actorList = [];
     row1Counter = 0;
     while ($("#rowName-" + row1Counter).val() !== undefined) {
@@ -434,9 +437,9 @@ function getActors(id){
             var actor = {
                 acID : generateRandomID(),
                 acFN : $("#rowName-"+row1Counter).val(),
-                acLN : null,
+                acLN : "placeholder",
                 acBDAY : $("#rowBirthDay-"+row1Counter).val(),
-                acCHs : null,
+                acCHs : randomIntegerList,
                 acGAME : id,
                 acPFP : $("#rowURL-"+row1Counter).val()
             };

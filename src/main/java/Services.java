@@ -120,6 +120,8 @@ public class Services {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame")
     public boolean createGame(GameDTO gameDTO){
+        System.out.println("TUSSE");
+        System.out.println(gameDTO.getGamePUB());
         boolean answer = true;
         try {
             //mysqlConnection.setConnection(mysqlConnection.createConnection());

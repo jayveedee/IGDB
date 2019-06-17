@@ -53,7 +53,7 @@ public class GameDAO implements IGameDAO {
         handleINSERTCharacters                  (gameID, gameCHAR);
         handleINSERTActors                      (gameID, gameACTOR, gameCHAR);
         handleINSERTGenres                      (gameID, gameGENRE);
-        handleINSERTGameModes                   (gameID, gameGM);
+        //handleINSERTGameModes                   (gameID, gameGM);
         handleINSERTPictures                    (gameID, gamePIC);
         handleINSERTTrailers                    (gameID, gameTRAILER);
         handleINSERTDeveloperXParentCompany     (gameID, gameDEV);
@@ -350,6 +350,8 @@ public class GameDAO implements IGameDAO {
             String queryACTOR =
                 "INSERT INTO ActorList (actorID, actorFN, actorLN, actorDOB, actorPFP, actorCHARID, actorGameID) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+
             try {
                 mySql.getConnection().setAutoCommit(false);
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryACTOR));
