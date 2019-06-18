@@ -89,13 +89,13 @@ public class UserDAO implements IUserDAO {
         String query =
             "INSERT INTO RatingList (ratingID, ratingUSER, ratingGameID) " +
             "VALUES (?, ?, ?)";
-        int         ratingID        = rating.getRatingID();
-        String      ratingUSER      = rating.getRatingUSER().getUserNAME();
+        double      ratingID        = rating.getRatingID();
+        String      ratingUSER      = rating.getRatingUSER();
 
         try {
             mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setInt(1,ratingID);
+            mySql.getPrepStatement().setDouble(1,ratingID);
             mySql.getPrepStatement().setString(2,ratingUSER);
             mySql.getPrepStatement().setInt(3,gameID);
             mySql.getPrepStatement().executeUpdate();

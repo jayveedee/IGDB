@@ -1,7 +1,5 @@
 package Data.GameDTO.Info;
 
-import Data.GameDTO.DateDTO;
-
 public class PlatformDTO {
 
     private int                 platID;

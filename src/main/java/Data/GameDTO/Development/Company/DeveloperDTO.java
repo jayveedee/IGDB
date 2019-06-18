@@ -1,7 +1,5 @@
 package Data.GameDTO.Development.Company;
 
-import Data.GameDTO.DateDTO;
-
 public class DeveloperDTO {
 
     private int                 devID;

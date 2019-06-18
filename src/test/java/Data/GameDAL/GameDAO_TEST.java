@@ -28,7 +28,6 @@ public class GameDAO_TEST {
     @Test // GOOD TO GO
     public void createGame() {
         try (Connection c = mysql.createConnection()) {
-            mysql.createConnection();
             del.deleteAllTables();
             GameDTO testGame1 = a.createGameDB(70, "COD1");
             GameDTO testGame2 = a.createGameDB(71, "COD2");
@@ -47,7 +46,6 @@ public class GameDAO_TEST {
     @Test // GOOD TO GO
     public void getGame() {
         try (Connection c = mysql.createConnection()) {
-            mysql.createConnection();
             del.deleteAllTables();
             GameDTO testGame1 = a.createGameDB(70, "COD1");
             assertTrue(gdao.createGame(testGame1));
@@ -149,6 +147,20 @@ public class GameDAO_TEST {
                 assertEquals(testGame1.getGamePLAT().get(i).getPlatGAME(), testGame1DB.getGamePLAT().get(i).getPlatGAME());
                 assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED(), testGame1DB.getGamePLAT().get(i).getPlatCREATED());
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getGameID() {
+        try (Connection c = mysql.createConnection()){
+            del.deleteAllTables();
+            GameDTO testG = a.createGameDB(777,"TESTSSS");
+            gdao.createGame(testG);
+            int gameID = gdao.getGameID(testG.getGameNAME());
+            assertEquals(777,gameID);
+            gdao.deleteGame(777);
         } catch (SQLException e) {
             e.printStackTrace();
         }

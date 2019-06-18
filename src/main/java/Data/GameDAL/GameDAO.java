@@ -1,7 +1,6 @@
 package Data.GameDAL;
 
 import Data.GameDTO.Character.CharacterDTO;
-import Data.GameDTO.DateDTO;
 import Data.GameDTO.Development.ActorDTO;
 import Data.GameDTO.Development.Company.DeveloperDTO;
 import Data.GameDTO.Development.Company.ParentCompanyDTO;
@@ -39,8 +38,7 @@ public class GameDAO implements IGameDAO {
         String      gameDESC        = game.getGameBIO();
         String      gameCOV         = game.getGameCover();
         String      gameBG          = game.getGameBG();
-        String      gameRD          = game.getGameRELEASEDATE();
-        String      gameRDstring    = gameRD;
+        String      gameRDstring    = game.getGameRELEASEDATE();
 
         List<ActorDTO>      gameACTOR   = game.getGameACs();        List<CharacterDTO>  gameCHAR    = game.getGameCHs();
         List<GenreDTO>      gameGENRE   = game.getGameGENREs();     List<GameModeDTO>   gameGM      = game.getGameGMs();
@@ -53,7 +51,7 @@ public class GameDAO implements IGameDAO {
         handleINSERTCharacters                  (gameID, gameCHAR);
         handleINSERTActors                      (gameID, gameACTOR, gameCHAR);
         handleINSERTGenres                      (gameID, gameGENRE);
-        //handleINSERTGameModes                   (gameID, gameGM);
+        handleINSERTGameModes                   (gameID, gameGM);
         handleINSERTPictures                    (gameID, gamePIC);
         handleINSERTTrailers                    (gameID, gameTRAILER);
         handleINSERTDeveloperXParentCompany     (gameID, gameDEV);
@@ -77,9 +75,6 @@ public class GameDAO implements IGameDAO {
                 for (int i = 0; i < gamePLAT.size(); i++) {
                     mySql.getPrepStatement().setInt(1,gamePLAT.get(i).getPlatID());
                     mySql.getPrepStatement().setString(2,gamePLAT.get(i).getPlatTITLE());
-                        /*String day      = gamePLAT.get(i).getPlatCREATED().getDay();
-                        String month    = gamePLAT.get(i).getPlatCREATED().getMonth();
-                        String year     = gamePLAT.get(i).getPlatCREATED().getYear();*/
                     mySql.getPrepStatement().setString(3,gamePLAT.get(i).getPlatCREATED());
                     mySql.getPrepStatement().setInt(4,gameID);
                     mySql.getPrepStatement().addBatch();
@@ -191,8 +186,7 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?, ?)";
             int             pubID               = gamePUB.getPubID();
             String          pubNAME             = gamePUB.getPubNAME();
-            String          pubCREATED          = gamePUB.getPubCREATED();
-            String          pubCREATEDstring    = pubCREATED;
+            String          pubCREATEDstring    = gamePUB.getPubCREATED();
             String          pubCOUNTRY          = gamePUB.getPubCOUNTRY();
             boolean         pubSTATUS           = gamePUB.isPubSTATUS();
 
@@ -213,8 +207,7 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?)";
             int         parentID                    = gameDEV.getDevPCOMPANY().getParentID();
             String      parentNAME                  = gameDEV.getDevPCOMPANY().getParentNAME();
-            String      parentCREATED               = gameDEV.getDevPCOMPANY().getParentCREATED();
-            String      parentCREATEDstring         = parentCREATED;
+            String      parentCREATEDstring         = gameDEV.getDevPCOMPANY().getParentCREATED();
             String      parentCOUNTRY               = gameDEV.getDevPCOMPANY().getParentCOUNTRY();
             boolean     parentSTATUS                = gameDEV.getDevPCOMPANY().isParentSTATUS();
 
@@ -223,8 +216,7 @@ public class GameDAO implements IGameDAO {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
             int         devID               = gameDEV.getDevID();
             String      devNAME             = gameDEV.getDevNAME();
-            String      devCREATED          = gameDEV.getDevCREATED();
-            String      devCREATEDstring    = devCREATED;
+            String      devCREATEDstring    = gameDEV.getDevCREATED();
             String      devCOUNTRY          = gameDEV.getDevCOUNTRY();
             boolean     devSTATUS           = gameDEV.isDevSTATUS();
             try {
@@ -450,10 +442,7 @@ public class GameDAO implements IGameDAO {
                 PlatformDTO plat = new PlatformDTO();
                 plat.setPlatID(rs3.getInt("platID"));
                 plat.setPlatTITLE(rs3.getString("platTITLE"));
-                    String platCreatedstring = rs3.getString("platCREATED");
-                    //String[] platStringSplit = platCreatedstring.split("/");
-                    //DateDTO date = new DateDTO(platStringSplit[0], platStringSplit[1], platStringSplit[2]);
-                plat.setPlatCREATED(platCreatedstring);
+                plat.setPlatCREATED(rs3.getString("platCREATED"));
                 plat.setPlatGAME(rs3.getInt("platGameID"));
                 platformList.add(plat);
             }
@@ -529,10 +518,7 @@ public class GameDAO implements IGameDAO {
                 act.setAcLN(rs8.getString("ANY_VALUE(actorLN)"));
                 act.setAcPFP(rs8.getString("ANY_VALUE(actorPFP)"));
                 act.setAcGAME(rs8.getInt("actorGameID"));
-                    String actDOB           = rs8.getString("ANY_VALUE(actorDOB)");
-                    //String[] actDOBsplit    = actDOB.split("/");
-                    //DateDTO actDate         = new DateDTO(actDOBsplit[0],actDOBsplit[1],actDOBsplit[2]);
-                act.setAcBDAY(actDOB);
+                act.setAcBDAY(rs8.getString("ANY_VALUE(actorDOB)"));
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(actCharList1));
                 mySql.getPrepStatement().setInt(1,gameID);
                 ResultSet rs0 = mySql.getPrepStatement().executeQuery();
@@ -620,10 +606,7 @@ public class GameDAO implements IGameDAO {
                 pub.setPubID(rs16.getInt("pubID"));
                 pub.setPubNAME(rs16.getString("pubNAME"));
                 pub.setPubCOUNTRY(rs16.getString("pubCOUNTRY"));
-                    String pubDate      = rs16.getString("pubCREATED");
-                    //String[] pubDATE    = pubDate.split("/");
-                    //DateDTO pubDaTe     = new DateDTO(pubDATE[0],pubDATE[1],pubDATE[2]);
-                pub.setPubCREATED(pubDate);
+                pub.setPubCREATED(rs16.getString("pubCREATED"));
                 pub.setPubSTATUS(rs16.getBoolean("pubSTATUS"));
                 pub.setPubGAME(rs16.getInt("pubGameID"));
             }
@@ -639,10 +622,7 @@ public class GameDAO implements IGameDAO {
                 dev.setDevNAME(rs17.getString("devNAME"));
                 dev.setDevCOUNTRY(rs17.getString("devCOUNTRY"));
                 dev.setDevGAME(rs17.getInt("devGameID"));
-                    String devDate          = rs17.getString("devCREATED");
-                    //String[] devDateSplit   = devDate.split("/");
-                    //DateDTO devDATE = new DateDTO(devDateSplit[0],devDateSplit[1],devDateSplit[2]);
-                dev.setDevCREATED(devDate);
+                dev.setDevCREATED(rs17.getString("devCREATED"));
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(devPcompanyQuery));
                 mySql.getPrepStatement().setInt(1,rs17.getInt("devParentID"));
                 ResultSet rs18 = mySql.getPrepStatement().executeQuery();
@@ -652,10 +632,7 @@ public class GameDAO implements IGameDAO {
                     parent.setParentNAME(rs18.getString("parentNAME"));
                     parent.setParentCOUNTRY(rs18.getString("parentCOUNTRY"));
                     parent.setParentSTATUS(rs18.getBoolean("parentSTATUS"));
-                        String parentDate           = rs18.getString("parentCREATED");
-                        //String[] parentDateSplit    = parentDate.split("/");
-                        //DateDTO parentDATE          = new DateDTO(parentDateSplit[0],parentDateSplit[1],parentDateSplit[2]);
-                    parent.setParentCREATED(parentDate);
+                    parent.setParentCREATED(rs18.getString("parentCREATED"));
                 }
                 dev.setDevPCOMPANY(parent);
             }
@@ -961,44 +938,26 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame (int gameID) {
-        String query1 = "DELETE FROM UserGameList " +
-                "WHERE gameID = ?";
-        handleDeleteByID(gameID, query1);
-        String query2 = "DELETE FROM GameModeList " +
-                "WHERE gmGameID = ? ";
-        handleDeleteByID(gameID,query2);
-        String query3 = "DELETE FROM GenreList " +
-                "WHERE genreGameID = ? ";
-        handleDeleteByID(gameID,query3);
-        String query4 = "DELETE FROM PlatformList " +
-                "WHERE platGameID = ?";
-        handleDeleteByID(gameID,query4);
-        String query5 = "DELETE FROM TrailerList " +
-                "WHERE trailerGameID = ?";
-        handleDeleteByID(gameID,query5);
-        String query6 = "DELETE FROM PictureList " +
-                "WHERE pictureGameID = ? ";
-        handleDeleteByID(gameID,query6);
-        String query7 = "DELETE FROM PublisherList " +
-                "WHERE pubGameID = ?";
-        handleDeleteByID(gameID,query7);
-        String query8 = "DELETE FROM WriterList " +
-                "WHERE writerGameID = ?";
-        handleDeleteByID(gameID,query8);
-        String query9  = "DELETE FROM ActorList " +
-                "WHERE actorGameID = ?";
-        handleDeleteByID(gameID,query9);
-        String query10 = "DELETE FROM CharacterList " +
-                "WHERE charGameID = ?";
-        handleDeleteByID(gameID,query10);
-        String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c " +
-                "WHERE ostGameID = ? AND artistID = ostArtistID AND compGameID = ostGameID";
-        handleDeleteByID(gameID,query11);
+        String query1 = "DELETE FROM UserGameList WHERE gameID = ?";        String query2 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
+        String query3 = "DELETE FROM GenreList WHERE genreGameID = ? ";     String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
+        String query5 = "DELETE FROM TrailerList WHERE trailerGameID = ?";  String query6 = "DELETE FROM PictureList WHERE pictureGameID = ?";
+        String query7 = "DELETE FROM PublisherList WHERE pubGameID = ?";    String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
+        String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";     String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
+        String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c WHERE ostGameID = ? AND artistID = ostArtistID AND compGameID = ostGameID";
         String query14 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
-        handleDeleteByID(gameID,query14);
-        String query15 = "DELETE From Game " +
-                "WHERE gameID = ?";
-        handleDeleteByID(gameID,query15);
+        String query15 = "DELETE From Game WHERE gameID = ?";
+        return handleDeleteGameFromAllTables(gameID, query1, query2, query3, query4, query5, query6) &&
+                handleDeleteGameFromAllTables(gameID, query7, query8, query9, query10, query11, query14) &&
+                handleDeleteByID(gameID,query15);
+    }
+
+    private boolean handleDeleteGameFromAllTables(int gameID, String query1, String query2, String query3, String query4, String query5, String query6) {
+        handleDeleteByID(gameID,query1);
+        handleDeleteByID(gameID,query2);
+        handleDeleteByID(gameID,query3);
+        handleDeleteByID(gameID,query4);
+        handleDeleteByID(gameID,query5);
+        handleDeleteByID(gameID,query6);
         return true;
     }
     private boolean handleDeleteByID(int gameID, String query) {

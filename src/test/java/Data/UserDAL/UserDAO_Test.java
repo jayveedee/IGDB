@@ -21,8 +21,8 @@ public class UserDAO_Test {
     private IMysqlConnection                mySql               = new MysqlConnection();
 
     private GenAccessTestMethods del                 = new GenAccessTestMethods();
-    private UserDAO                         udao                = new UserDAO(mySql);
-    private RoleDAO                         rdao                = new RoleDAO(mySql);
+    private UserDAO udao                = new UserDAO(mySql);
+    private RoleDAO rdao                = new RoleDAO(mySql);
     private GameDAO                         gdao                = new GameDAO(mySql);
 
 
@@ -33,7 +33,7 @@ public class UserDAO_Test {
             List<Integer> gameList = new ArrayList<>();
             List<RoleDTO> roleList = a.createRoleList();
 
-            UserDTO user = a.createUserDB(gameList, roleList);
+            UserDTO user = a.createUserDB("KEK",gameList, roleList);
             RoleDTO role = a.createRoleDB();
             rdao.createRole(role);
             udao.createUser(user);
@@ -66,7 +66,7 @@ public class UserDAO_Test {
             List<Integer> gameList = new ArrayList<>();
             List<RoleDTO> roleList = a.createRoleList();
 
-            UserDTO user = a.createUserDB(gameList, roleList);
+            UserDTO user = a.createUserDB("KEKKKER",gameList, roleList);
             udao.createUser(user);
             UserDTO testUser = udao.getUser(user.getUserNAME());
             assertEquals(user.getUserNAME(),testUser.getUserNAME());

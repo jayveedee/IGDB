@@ -1,15 +1,13 @@
 package Data.UserDTO;
 
-import Data.GameDTO.DateDTO;
-
 public class ChangesDTO {
 
     private int         changeID;
     private String      changeVER;
     private UserDTO     changeUSERNAME;
-    private DateDTO changeDATE;
+    private String      changeDATE;
 
-    public ChangesDTO(int changeID, String changeVER, UserDTO changeUSERNAME, DateDTO changeDATE) {
+    public ChangesDTO(int changeID, String changeVER, UserDTO changeUSERNAME, String changeDATE) {
         this.changeID = changeID;
         this.changeVER = changeVER;
         this.changeUSERNAME = changeUSERNAME;
@@ -43,11 +41,11 @@ public class ChangesDTO {
         this.changeUSERNAME = changeUSERNAME;
     }
 
-    public DateDTO getChangeDATE() {
+    public String getChangeDATE() {
         return changeDATE;
     }
 
-    public void setChangeDATE(DateDTO changeDATE) {
+    public void setChangeDATE(String changeDATE) {
         this.changeDATE = changeDATE;
     }
 }
