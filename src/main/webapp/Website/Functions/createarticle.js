@@ -244,9 +244,11 @@ $("#createGameForm").submit(function (event) {
         contentType : "application/json; charset=utf-8",
         success : function (data) {
             if (data === "true") {
-                alert("Game created successfully!")
+                alert("Game created successfully!");
+                localStorage.setItem("currentGameID", GameDTO.gameID);
+                window.location.href = "articleview.html";
             }else {
-                alert("Something went wrong on the server side. Possibly an SQL error")
+                alert("Something went wrong on the server side. Possibly an SQL error");
             }
         },
         error : function () {

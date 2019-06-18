@@ -26,9 +26,15 @@ public class GameService {
 
     public boolean createGame (GameDTO gameDTO){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
-        testObject(gameDTO);
+        //testObject(gameDTO);
         boolean answer = gameDAO.createGame(gameDTO);
         return answer;
+    }
+
+    public GameDTO getGame (int gameID){
+        IGameDAO gameDAO = new GameDAO(mysqlConnection);
+        GameDTO gameDTO = gameDAO.getGame(gameID);
+        return gameDTO;
     }
 
     public void testObject (GameDTO gameDTO){

@@ -120,8 +120,6 @@ public class Services {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame")
     public boolean createGame(GameDTO gameDTO){
-        System.out.println("TUSSE");
-        System.out.println(gameDTO.getGamePUB());
         boolean answer = true;
         try {
             //mysqlConnection.setConnection(mysqlConnection.createConnection());
@@ -137,6 +135,35 @@ public class Services {
         }
 
         return answer;
+    }
+
+    @POST
+    @Path("game/getGame/{gameID}")
+    public String getGame (@PathParam("gameID") int gameID){
+        GameDTO gameDTO = new GameDTO();
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            gameDTO = service.getGame(gameID);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = "placeHolder";
+
+        try {
+            jsonString = objectMapper.writeValueAsString(gameDTO);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return jsonString;
     }
 
     /*@POST
