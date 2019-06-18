@@ -669,13 +669,14 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public int getGameID(String gameName) {
-        String query = "SELECT * FROM Game WHERE gameTITLE = ?";
+        String query = "SELECT gameID FROM Game WHERE gameTITLE = ?";
         int gameID = 0;
         try {
-            mySql.getConnection().setAutoCommit(false);
+            //mySql.getConnection().setAutoCommit(false);
             mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
             mySql.getPrepStatement().setString(1,gameName);
-            ResultSet rs = mySql.getPrepStatement().executeQuery();
+            mySql.getPrepStatement().execute();
+            ResultSet rs = mySql.getPrepStatement().getResultSet();
             if (rs.next()){
                 gameID = rs.getInt("gameID");
             }

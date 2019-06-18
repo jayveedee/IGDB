@@ -63,21 +63,17 @@ function loadAddresses() {
 //FIXME ikke færdig kodet
 $("#searchBar").submit(function (event) {
     event.preventDefault();
-    location.href="createarticle.html";
-    /*$.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $(this).serialize(),
+    var gameName = $("#searchInput").val();
+
+    $.ajax({
+        type : "post",
+        url : "/rest/services/game/getGameID/" + gameName,
         success : function (data) {
-            if (data == "null"){
-                alert("Could not log in. Something is wrong with the password or the username");
-            }else{
-                localStorage.setItem("username", data);
-                location.href = "Index.html";
-            }
+            localStorage.setItem("currentGameID",data);
+            window.location.href = "articleview.html"
         },
         error : function () {
-            alert("Couldn't log in, try again");
+            alert("Couldn't search for game, ajax not successful, try again");
         }
-    });*/
+    });
 });

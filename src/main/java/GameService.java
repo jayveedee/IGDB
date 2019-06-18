@@ -24,6 +24,14 @@ public class GameService {
         return gameNames;
     }
 
+    public String getGameId(String gameName){
+        IGameDAO gameDAO = new GameDAO(mysqlConnection);
+        int gameID = gameDAO.getGameID(gameName);
+        System.out.println(gameID);
+        String idString = ""+gameID;
+        return idString;
+    }
+
     public boolean createGame (GameDTO gameDTO){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
         //testObject(gameDTO);

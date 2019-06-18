@@ -166,6 +166,26 @@ public class Services {
         return jsonString;
     }
 
+    @POST
+    @Path("game/getGameID/{gameName}")
+    public String getGameID(@PathParam("gameName") String gameName){
+        System.out.println("###############33denne metode bliver kørt##3############");
+            String gameID = "placeholder";
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            gameID = service.getGameId(gameName);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gameID;
+    }
+
     /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame/test")
