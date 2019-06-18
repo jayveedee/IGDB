@@ -1,9 +1,5 @@
 package Data.GameDTO.Development.Company;
 
-import Data.GameDTO.DateDTO;
-
-import java.util.List;
-
 public class PublisherDTO {
 
     private int                 pubID;

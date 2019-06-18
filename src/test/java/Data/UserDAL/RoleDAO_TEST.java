@@ -18,7 +18,7 @@ public class RoleDAO_TEST {
     private IMysqlConnection mySql                  = new MysqlConnection();
     private IRoleDAO rdao = new RoleDAO(mySql);
 
-    private GenAccessTestMethods del             = new GenAccessTestMethods();
+    private GenAccessTestMethods del                 = new GenAccessTestMethods();
 
     @Test //GOOD TO GO
     public void createRole() {
