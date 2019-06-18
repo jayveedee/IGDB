@@ -186,6 +186,8 @@ public class Services {
         return gameID;
     }
 
+    //dette er literally en ligegyldig kommentar som bruges til at pushe noget, lol
+
     @POST
     @Path("game/getGameNames/{input}")
     public String GameNamesService(@PathParam("input") String characters){
