@@ -7,6 +7,7 @@ import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     IMysqlConnection mySQL;
@@ -49,6 +50,12 @@ public class UserService {
         UserDTO user;
         user = userDAO.getUser(username);
         return user;
+    }
+
+    public List<UserDTO> getUserList(){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        List<UserDTO> userList = userDAO.getUserList();
+        return userList;
     }
 
     public boolean updateUser(UserDTO user){
