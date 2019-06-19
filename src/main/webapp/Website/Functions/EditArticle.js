@@ -36,12 +36,12 @@ $(document).on("click", ".btn-add-row", function(){
 });
 
 $(document).on("click", ".btn-remove-row", function(){
-   if (row1Counter !== 0){
-       $(".rowName").eq(row1Counter).remove();
-       $(".rowURL").eq(row1Counter).remove();
-       $(".rowBirthDay").eq(row1Counter).remove();
-       row1Counter--;
-   }
+    if (row1Counter !== 0){
+        $(".rowName").eq(row1Counter).remove();
+        $(".rowURL").eq(row1Counter).remove();
+        $(".rowBirthDay").eq(row1Counter).remove();
+        row1Counter--;
+    }
 });
 
 /*--------------------------------------------------------------------------bt2*/
@@ -182,8 +182,47 @@ $(document).on("click", ".btn-remove-row11", function() {
     }
 });
 
+$(document).ready(function () {
+    var gameID = parseInt(localStorage.getItem("currentGameID"));
+    var action = "/rest/services/game/getGame/" + gameID;
+    $.ajax({
+        type : "post",
+        url : action,
+        success : function (data) {
+            var gameDTO = JSON.parse(data);
 
-$("#createGameForm").submit(function (event) {
+            //handling all simpel data
+            $("#titlefield").val(gameDTO.gameNAME);
+            $("#releaseDateField").val(gameDTO.gameRELEASEDATE);
+            $("#picturefield").val(gameDTO.gameCover);
+            $("#backpicfield").val(gameDTO.gameBG);
+            $("#soundtrackURLField").val(gameDTO.gameOST.ostURL);
+            $("#soundtrackNameField").val(gameDTO.gameOST.ostTITLE);
+            $("#row6-0").val(gameDTO.gameCOMP.compFN);
+            $("#companyNameField").val(gameDTO.gameDEV.devPCOMPANY.parentNAME);
+            $("#companyOriginField").val(gameDTO.gameDEV.devPCOMPANY.parentCOUNTRY);
+            $("#companyStatusField").val(gameDTO.gameDEV.devPCOMPANY.parentSTATUS);
+            $("#creationOfCompanyField").val(gameDTO.gameDEV.devPCOMPANY.parentCREATED);
+            $("#developerNameField").val(gameDTO.gameDEV.devNAME);
+            $("#developerCreationField").val(gameDTO.gameDEV.devCREATED);
+            $("#developerOriginField").val(gameDTO.gameDEV.devCOUNTRY);
+            $("#developerStatusField").val(gameDTO.gameDEV.devSTATUS);
+            $("#publisherNameField").val(gameDTO.gamePUB.pubNAME);
+            $("#publisherCreationField").val(gameDTO.gamePUB.pubCREATED);
+            $("#publisherOriginField").val(gameDTO.gamePUB.pubCOUNTRY);
+            $("#publisherStatusField").val(gameDTO.gamePUB.pubSTATUS);
+            $("#gameDescfield").val(gameDTO.gameBIO);
+
+            //
+
+        },
+        error : function () {
+            alert("Could not get user. Ajax call not successful");
+        }
+    });
+});
+
+$("#updateGameForm").submit(function (event) {
     event.preventDefault();
 
     var id = generateRandomID();
@@ -441,58 +480,3 @@ function getGenres(id){
     }
     return genreList;
 }
-
-
-
-$("#testButton").click(function () {
-    var artists = getMusicArtists();
-    alert(JSON.stringify(artists));
-    alert(JSON.stringify(artists[0].artNAME));
-    alert(JSON.stringify(artists[1].artNAME));
-});
-
-
-//FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
-/*$("#createGameForm").submit(function (event) {
-    event.preventDefault();
-    var data = $(this).serializeArray();
-    var newArray = new Array();
-    newArray.push("hey");
-    newArray.push("hi");
-    //var newArraySerialized =JSON.stringify(newArray) ;
-    //newArraySerialized.push({name : "newValueFromNewArray", value : "OMG BRO Hvis Det Her virker så køber jeg en lotto plade"});
-    data.push({name : "newValue", value : "detHerErDenNyeValueOgDetKanVæreSejtHvisDetteVirkede"});
-    data.push({name : "list", value : newArray});
-    //data = data.concat(newArraySerialized);
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $.param(data),
-        success : function (data) {
-            alert("success");
-        },
-        error : function () {
-            alert("error");
-        }
-    });
-});*/
-
-/*$("#registerForm").submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $(this).serialize(),
-        success : function (data) {
-            if (data == "true"){
-                alert("Your new account has been created successfully!");
-                location.href = "Login_Signup.html"
-            }else{
-                alert("Couldn't create user. This username might be taken. Try again.")
-            }
-        },
-        error : function () {
-            alert("Couldn't create user, try again");
-        }
-    });
-});*/

@@ -1,3 +1,7 @@
+$("#editButton").click(function () {
+    window.location.href = "EditArticlePage.html"
+});
+
 $(document).ready(function () {
     //alert(localStorage.getItem("currentGameID"));
     var gameID = parseInt(localStorage.getItem("currentGameID"));
