@@ -14,8 +14,11 @@ $(document).ready(function loadUsers () {
             var userListHTMLString = "";
 
             for (var i = 0; i < userList.length; i++) {
-                userListHTMLString+= '<div class="UL"><div id="sul-1" class="sul-1"><input name="username" type="text" class="uos-1" id="UserNames" disabled="true" value="'+ userList[i].userNAME+'"><button type="button" class="euos-1" id="'+i+'">Remove user\'s permission to edit and create articles</button></div></div>';
-                //alert(userList[i].userNAME);
+                if (userList[i].userNAME === localStorage.getItem("username")) {
+                    userListHTMLString+= userListHTMLString+= '<div class="UL"><div id="sul-1" class="sul-1"><input name="username" type="text" class="uos-1" id="UserNames" disabled="true" value="'+ userList[i].userNAME+'"></div></div>';
+                }else {
+                    userListHTMLString+= '<div class="UL"><div id="sul-1" class="sul-1"><input name="username" type="text" class="uos-1" id="UserNames" disabled="true" value="'+ userList[i].userNAME+'"><button type="button" class="euos-1" id="'+i+'">Remove user\'s permission to edit and create articles</button><button type="button" class="promotoPermissions" id="'+i+'">promote user to moderator</button> </div></div>';
+                }
             }
             $("#showUserList").html(userListHTMLString);
         },
@@ -28,6 +31,7 @@ $(document).ready(function loadUsers () {
 $(document).ready(function () {
     $(document).on('click',':button',function () {
         var index = $(this).attr("id");
+        var text = $(this).text();
         $.ajax({
             type: "post",
             url: "/rest/services/user/getUser/"+localStorage.getItem("username"),
@@ -43,11 +47,18 @@ $(document).ready(function () {
                 }
 
                 if (accessGranted === "true") {
-                    if (window.confirm("are you sure that you want to remove this users Editor Role?")){
-                        //var chosenIndex = $(this).attr("id");
-                        var chosenUser = globalUserList[index];
-                        //alert(JSON.stringify(chosenUser));
-                        removeUserPermission(chosenUser);
+                    if (text === "promote user to moderator") {
+                        if (window.confirm("are you sure that you want to promote this user to a moderator?")) {
+                            var chosenUser = globalUserList[index];
+                            promotoUserPermissions(chosenUser);
+                        }
+                    }else {
+                        if (window.confirm("are you sure that you want to remove this users Editor Role?")){
+                            //var chosenIndex = $(this).attr("id");
+                            var chosenUser = globalUserList[index];
+                            //alert(JSON.stringify(chosenUser));
+                            removeUserPermission(chosenUser);
+                        }
                     }
 
                 }else {
@@ -62,19 +73,14 @@ $(document).ready(function () {
 });
 
 function removeUserPermission(object) {
-    alert("this method is called");
     var Role ={
         roleID : 2,
         roleNAME : "User"
     };
-    alert("so far so good");
 
     var userRoles = [];
     userRoles.push(Role);
 
-    alert("hmmm");
-
-    alert(JSON.stringify(object));
     var userDTO = {
         userNAME : object.userNAME,
         userPASS : object.userPASS,
@@ -84,13 +90,9 @@ function removeUserPermission(object) {
         userPFP : object.userPFP
     };
 
-    alert("anyone there?");
-
-    alert(JSON.stringify(userDTO));
-
     $.ajax({
         type : "post",
-        url : "/rest/services/user/updateUserPermissions",
+        url : "/rest/services/user/removeUserPermissions",
         data : JSON.stringify(userDTO),
         contentType : "application/json; charset=utf-8",
         success : function (data) {
@@ -104,6 +106,52 @@ function removeUserPermission(object) {
             alert("ajax call not successful")
         }
     });
+}
 
+function promotoUserPermissions(object) {
+    var Role ={
+        roleID : 2,
+        roleNAME : "User"
+    };
 
+    var Role1 = {
+        roleID : 1,
+        roleNAME : "Editor"
+    };
+
+    var Role2 = {
+        roleID : 3,
+        roleNAME : "Moderator"
+    };
+
+    var userRoles = [];
+    userRoles.push(Role);
+    userRoles.push(Role1);
+    userRoles.push(Role2);
+
+    var userDTO = {
+        userNAME : object.userNAME,
+        userPASS : object.userPASS,
+        userEMAIL : object.userEMAIL,
+        userGAMEs : object.userGAMEs,
+        userROLEs : userRoles,
+        userPFP : object.userPFP
+    };
+
+    $.ajax({
+        type : "post",
+        url : "/rest/services/user/promoteUserPermissions",
+        data : JSON.stringify(userDTO),
+        contentType : "application/json; charset=utf-8",
+        success : function (data) {
+            if (data === "true"){
+                alert("The user has been promoted to a moderator");
+            } else {
+                alert("The method returned false")
+            }
+        },
+        error : function () {
+            alert("ajax call not successful")
+        }
+    });
 }

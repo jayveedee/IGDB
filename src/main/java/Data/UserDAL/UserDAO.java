@@ -210,6 +210,34 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public boolean promoteUserPermissions(UserDTO userDTO){
+        String removeOldRolesQuery = "DELETE FROM UserRoleList WHERE userNAME = ?";
+        String insertNewRolesQuery = "INSERT INTO UserRoleList(roleID, userNAME) values (?,?)";
+
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(removeOldRolesQuery));
+            mySql.getPrepStatement().setString(1,userDTO.getUserNAME());
+            mySql.getPrepStatement().execute();
+
+            List<RoleDTO> roleList = userDTO.getUserROLEs();
+            for (int i = 0; i < roleList.size(); i++) {
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(insertNewRolesQuery));
+                mySql.getPrepStatement().setInt(1,roleList.get(i).getRoleID());
+                mySql.getPrepStatement().setString(2, userDTO.getUserNAME());
+                mySql.getPrepStatement().execute();
+            }
+
+            mySql.getConnection().commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public boolean updateSpecificUserRole(String userNAME, int roleID) {
         String query = "UPDATE UserRoleList SET roleID = ? WHERE userNAME = ? AND roleID = ?";
         RoleDAO rdao = new RoleDAO(mySql);

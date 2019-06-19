@@ -141,15 +141,34 @@ public class Services {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("user/updateUserPermissions")
-    public boolean updateUserPermissions(UserDTO userDTO){
+    @Path("user/removeUserPermissions")
+    public boolean removeUserPermissions(UserDTO userDTO){
         boolean answer = false;
         try {
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
             }
             UserService service = new UserService(MysqlConnection.getInstance());
-            answer = service.updateUser(userDTO);
+            answer = service.removeUserPermissions(userDTO);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("user/promoteUserPermissions")
+    public boolean promoteUserPermissions(UserDTO userDTO){
+        boolean answer = false;
+        try {
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
+            answer = service.promoteUserPermissions(userDTO);
             MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
             //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
