@@ -39,10 +39,22 @@ public class GameService {
         return answer;
     }
 
+    public boolean updateGame (GameDTO gameDTO){
+        IGameDAO gameDAO = new GameDAO(mysqlConnection);
+        boolean answer = gameDAO.updateGame(gameDTO.getGameID(), gameDTO);
+        return answer;
+    }
+
     public GameDTO getGame (int gameID){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
         GameDTO gameDTO = gameDAO.getGame(gameID);
         return gameDTO;
+    }
+
+    public boolean deleteGame (int gameID){
+        IGameDAO gameDAO = new GameDAO(mysqlConnection);
+        boolean answer = gameDAO.deleteGame(gameID);
+        return answer;
     }
 
     public void testObject (GameDTO gameDTO){

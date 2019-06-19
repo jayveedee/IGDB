@@ -1,5 +1,61 @@
+var accessGranted = "false";
+
 $("#editButton").click(function () {
-    window.location.href = "EditArticlePage.html"
+    if (accessGranted === "true") {
+        window.location.href = "EditArticlePage.html";
+    }else {
+        alert("you do not have the permission to edit a game");
+    }
+});
+
+$("#deleteButton").click(function () {
+    if (accessGranted === "true") {
+        if (window.confirm("are you sure you want to delete this game")){
+            $.ajax({
+                type : "post",
+                url : "/rest/services/game/deleteGame",
+                success : function (data) {
+                    if (data === "true") {
+                        alert("game deleted successfully");
+                        window.location.href = "Index.html";
+                    }else {
+                        alert("Game was not deleted. Possibly due to server error");
+                    }
+                },
+                error : function () {
+                    alert("ajax call not successful");
+                }
+            })
+        }
+    }else {
+        alert("you do not have the permission to delete the game");
+    }
+
+});
+
+$(document).ready(function () {
+    var username = localStorage.getItem("username");
+    if (username === null || username === "null") {
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "/rest/services/user/getUser/"+localStorage.getItem("username"),
+        success : function (data) {
+            var object = JSON.parse(data);
+            var userRoles = object.userROLEs;
+            accessGranted = "false";
+            //alert(JSON.stringify(object));
+            for (var i = 0; i < userRoles.length; i++) {
+                if (userRoles[i].roleNAME === "Administrator" || userRoles[i].roleNAME === "Moderator"){
+                    accessGranted = "true";
+                }
+            }
+        },
+        error : function () {
+            alert("ajax call not successful")
+        }
+    });
 });
 
 $(document).ready(function () {

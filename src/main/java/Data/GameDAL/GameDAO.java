@@ -993,7 +993,7 @@ public class GameDAO implements IGameDAO {
                 "WHERE charGameID = ?";
         handleDeleteByID(gameID,query10);
         String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c " +
-                "WHERE ostGameID = ? AND artistID = ostArtistID AND compGameID = ostGameID";
+                "WHERE ostGameID = ? AND artistID = ostArtistID AND compID = ostComposerID";
         handleDeleteByID(gameID,query11);
         String query14 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
         handleDeleteByID(gameID,query14);

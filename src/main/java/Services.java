@@ -268,6 +268,27 @@ public class Services {
     }
 
     //dette er literally en ligegyldig kommentar som bruges til at pushe noget, lol
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("game/updateGame")
+    public boolean updateGame(GameDTO gameDTO){
+        boolean answer = true;
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            System.out.println("########################" + gameDTO.getGameCOMP().getCompID() + "##################");
+            answer = service.updateGame(gameDTO);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return answer;
+    }
 
     @POST
     @Path("game/getGameNames/{input}")
@@ -321,5 +342,24 @@ public class Services {
             e.printStackTrace();
         }
         return jsonString;
+    }
+
+    @POST
+    @Path("game/deleteGame/{gameID}")
+    public boolean deleteGame(@PathParam("gameID") int gameID){
+        boolean answer = false;
+        try {
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            answer = service.deleteGame(gameID);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return answer;
     }
 }
