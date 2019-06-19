@@ -7,6 +7,7 @@ import Data.UserDTO.RoleDTO;
 import Data.UserDTO.UserDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     IMysqlConnection mySQL;
@@ -51,9 +52,27 @@ public class UserService {
         return user;
     }
 
-    public boolean updateUser(UserDTO user){
+    public boolean updateUser(UserDTO userDTO){
         IUserDAO userDAO = new UserDAO(mySQL);
-        boolean answer = userDAO.updateUserInfo(user);
+        boolean answer = userDAO.updateUserInfo(userDTO);
+        return answer;
+    }
+
+    public List<UserDTO> getUserList(){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        List<UserDTO> userList = userDAO.getUserList();
+        return userList;
+    }
+
+    public boolean removeUserPermissions(UserDTO user){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        boolean answer = userDAO.deleteAllUserRoles(user.getUserNAME());
+        return answer;
+    }
+
+    public boolean promoteUserPermissions(UserDTO user){
+        IUserDAO userDAO = new UserDAO(mySQL);
+        boolean answer = userDAO.promoteUserPermissions(user);
         return answer;
     }
 

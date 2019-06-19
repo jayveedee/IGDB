@@ -16,8 +16,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.StreamingOutput;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 @Path("services")
@@ -71,6 +73,47 @@ public class Services {
         return jsonString;
     }
 
+    @POST
+    @Path("user/getUserList")
+    public String getUserList(){
+        try {
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
+            List<UserDTO> userList = service.getUserList();
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+
+            class JSONObject{
+                List<UserDTO> userList;
+
+                public JSONObject() {
+                }
+
+                public List<UserDTO> getUserList() {
+                    return userList;
+                }
+
+                public void setUserList(List<UserDTO> userList) {
+                    this.userList = userList;
+                }
+            }
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.setUserList(userList);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonString = objectMapper.writeValueAsString(jsonObject);
+            return jsonString;
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+        return "true";
+    }
+
     //FIXME useren mangler at kunne se sine roller på user-hjemmesiden. Man kan også gøre så man kan ændre sit billede igennem user-siden, men dette er ikke nødvendigt. Desuden mangler userGames også.
     @POST
     @Path("user/updateUser")
@@ -93,6 +136,44 @@ public class Services {
             e.printStackTrace();
         }
 
+        return answer;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("user/removeUserPermissions")
+    public boolean removeUserPermissions(UserDTO userDTO){
+        boolean answer = false;
+        try {
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
+            answer = service.removeUserPermissions(userDTO);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("user/promoteUserPermissions")
+    public boolean promoteUserPermissions(UserDTO userDTO){
+        boolean answer = false;
+        try {
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+            }
+            UserService service = new UserService(MysqlConnection.getInstance());
+            answer = service.promoteUserPermissions(userDTO);
+            MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return answer;
     }
 

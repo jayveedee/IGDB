@@ -22,6 +22,7 @@ public interface IUserDAO {
     //UPDATE
     boolean updateUserInfo              (UserDTO newUser);
     boolean updateSpecificUserRole      (String userNAME, int roleID);
+    boolean promoteUserPermissions      (UserDTO userDTO);
 
     //DELETE
     boolean deleteUser                  (String userNAME);

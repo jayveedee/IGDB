@@ -10,9 +10,19 @@ $(document).ready(function () {
             var object = JSON.parse(data);
             var email = object.userEMAIL;
             var password = object.userPASS;
+            var roleList = object.userROLEs;
+            var roleString = "";
+            for (var i = 0; i < roleList.length; i++) {
+                if (i === 0) {
+                    roleString += roleList[i].roleNAME;
+                }else {
+                    roleString += ", " + roleList[i].roleNAME;
+                }
+            }
 
             $("#emailInput").val(email);
             $("#showAndHide").val(password);
+            $("#userRoleInput").val(roleString);
         },
         error : function () {
             alert("Could not get user. Ajax call not successful");
@@ -25,7 +35,6 @@ $(document).ready(function () {
     $("#submitChanges").css("display", "none");
     $("#confirmPasswordText").css("display","none");
 });
-
 
 $("#changeUserInfoButton").click(function () {
     $("#confirmPassword").css("display","inline");
