@@ -46,7 +46,7 @@
     box-sizing: border-box;
     padding: 5px 0px 5px 20px;
     background-color: #cccccc;
-    margin: 5px 0px 5px 100px;
+    margin: 0px 0px 20px 100px;
 }
 /*!--------------------------------Media details--------------------------------------!*/
 #headerMedia{
@@ -100,10 +100,6 @@
 
 .btn-remove-row5{
     float: right;
-}
-
-.element.style{
-    display: block;
 }
 
 .btn-remove-row7{
@@ -189,7 +185,7 @@
 }
 
 .row4{
-    padding: 0px 0px 10px 100px;
+    padding: 0px 0px 10px 0px;
 }
 
 .row5{
@@ -298,7 +294,11 @@
 /*----Buttons----*/
 
 .list-rows{
-    padding: 0px 0px 10px 100px;
+    padding: 0px 0px 0px 0px;
+}
+
+ul{
+    padding: 0px 0px 0px 0px;
 }
 
 .row{
@@ -306,11 +306,19 @@
 }
 
 .row2{
-    padding: 0px 0px 10px 100px;
+    padding: 0px 0px 10px 0px;
+    margin: 0px 0px 5px 0px;
+    display: block !important;
 }
 
 .row3{
-    padding: 0px 0px 10px 100px;
+    padding: 0px 0px 10px 0px;
+    margin: 0px 0px 5px 0px;
+    display: block !important;
+}
+
+#element-div1{
+    display: inline-block;
 }
 
 .btn-add-row{
@@ -338,6 +346,10 @@
 }
 .element-wrapper5{
     display: block;
+}
+
+.element-wrapper11{
+    margin: 0px 0px 0px 0px;
 }
 
 
