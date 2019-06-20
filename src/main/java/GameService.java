@@ -33,6 +33,8 @@ public class GameService {
     }
 
     public boolean createGame (GameDTO gameDTO){
+        System.out.println("the games id is the following: " + gameDTO.getGameID());
+        System.out.println("the games composers games id is: " + gameDTO.getGameCOMP().getCompGAME());
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
         //testObject(gameDTO);
         boolean answer = gameDAO.createGame(gameDTO);
@@ -53,7 +55,7 @@ public class GameService {
 
     public boolean deleteGame (int gameID){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
-        boolean answer = gameDAO.deleteGame(gameID);
+        boolean answer = gameDAO.updateGame(gameID,null);
         return answer;
     }
 

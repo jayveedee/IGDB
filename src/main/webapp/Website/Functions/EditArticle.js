@@ -529,7 +529,7 @@ function getPlatforms(id){
     var platformList = [];
     row2Counter = 0;
     while ($("#row2-" + row2Counter).val() !== undefined) {
-        if ($("#row2-" + row2Counter).val() === ""){
+        if ($("#row2-" + row2Counter).val() === null){
         }else {
             var platform={
                 platID : generateRandomID(),
@@ -627,7 +627,7 @@ function getGenres(id){
     var genreList = [];
     row3Counter = 0;
     while ($("#row3-" + row3Counter).val() !== undefined) {
-        if ($("#row3-" + row3Counter).val() === ""){
+        if ($("#row3-" + row3Counter).val() === null){
         }else {
             var genre = {
                 genID : generateRandomID(),

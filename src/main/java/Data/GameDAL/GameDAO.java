@@ -34,6 +34,9 @@ public class GameDAO implements IGameDAO {
     }
 
     private boolean handleINSERT_AND_UPDATEentireGame(String query, GameDTO game){
+        if(game == null){
+            return true;
+        }
         int         gameID          = game.getGameID();
         String      gameTitle       = game.getGameNAME();
         String      gameDESC        = game.getGameBIO();
@@ -74,6 +77,9 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().setAutoCommit(false);
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryPLAT));
                 for (int i = 0; i < gamePLAT.size(); i++) {
+                    if (gamePLAT.get(i).getPlatTITLE() == null){
+                        continue;
+                    }
                     mySql.getPrepStatement().setInt(1,gamePLAT.get(i).getPlatID());
                     mySql.getPrepStatement().setString(2,gamePLAT.get(i).getPlatTITLE());
                     mySql.getPrepStatement().setString(3,gamePLAT.get(i).getPlatCREATED());
@@ -315,6 +321,9 @@ public class GameDAO implements IGameDAO {
                 mySql.getConnection().setAutoCommit(false);
                 mySql.setPrepStatment(mySql.getConnection().prepareStatement(queryGENRE));
                 for (int i = 0; i < gameGENRE.size(); i++) {
+                    if (gameGENRE.get(i).getGenTITLE() == null){
+                        continue;
+                    }
                     mySql.getPrepStatement().setInt(1,gameGENRE.get(i).getGenID());
                     mySql.getPrepStatement().setString(2,gameGENRE.get(i).getGenTITLE());
                     mySql.getPrepStatement().setInt(3,gameID);
@@ -689,24 +698,28 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame (int gameID) {
+        System.out.println("the gameID is the following: " + gameID);
         String query1  = "DELETE FROM UserGameList WHERE gameID = ?";        String query2 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
         String query3  = "DELETE FROM GenreList WHERE genreGameID = ? ";     String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
         String query5  = "DELETE FROM TrailerList WHERE trailerGameID = ?";  String query6 = "DELETE FROM PictureList WHERE pictureGameID = ?";
         String query7  = "DELETE FROM PublisherList WHERE pubGameID = ?";    String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
-        String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";     String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
-        String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c WHERE ostGameID = ? AND artistID = ostArtistID AND compID = ostComposerID";
-        String query14 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
-        String query15 = "DELETE From Game WHERE gameID = ?";
+        String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";      String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
+        String query11 = "DELETE s.*, m.* FROM SoundtrackList s, MusicalArtistList m WHERE ostGameID = ? AND artistID = ostArtistID";
+        String query12 = "DELETE FROM ComposerList WHERE compGameID = ?";
+        String query13 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
+        String query14 = "DELETE From Game WHERE gameID = ?";
         return handleDeleteGameFromAllTables(gameID, query1, query2, query3, query4, query5, query6) &&
-                    handleDeleteGameFromAllTables(gameID, query7, query8, query9, query10, query11, query14) &&
-                         mySql.handleDeleteByID(gameID,query15,mySql);
+                    handleDeleteGameFromAllTables(gameID, query7, query8, query9, query10, query11, query12) &&
+                        mySql.handleDeleteByID(gameID,query13,mySql) &&
+                            mySql.handleDeleteByID(gameID,query14,mySql);
     }
     private boolean handleDeleteGameFromAllTables(int gameID, String query1, String query2, String query3, String query4, String query5, String query6) {
         try {
-            mySql.getConnection().setAutoCommit(false);
+            mySql.getConnection().setAutoCommit(true);
             boolean status = mySql.handleDeleteByID(gameID,query1,mySql) && mySql.handleDeleteByID(gameID,query2,mySql) &&
                                 mySql.handleDeleteByID(gameID,query3,mySql) && mySql.handleDeleteByID(gameID,query4,mySql) &&
                                     mySql.handleDeleteByID(gameID,query5,mySql) && mySql.handleDeleteByID(gameID,query6,mySql);
+            //mySql.getConnection().commit();
             return status;
         } catch (SQLException e) {
             e.printStackTrace();
