@@ -2,12 +2,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;
-    -webkit-filter: blur(4px);
+    border-radius: 1px;
     width: 100%;
     height: 500px;
     background-size: cover;
-    position:relative;
+    position: relative;
 }
 
 .coverimage{
@@ -21,6 +20,7 @@
     top: 480px;
     border-radius: 20px;
     margin: 0px 0px 0px 120px;
+    border: 1px solid black;
 }
 
 .intro-info{
@@ -86,6 +86,7 @@
     margin: 10px;
     width: 100%;
     height: 320px;
+    margin-top: 20px;
 }
 
 .singlecontainer{
@@ -119,7 +120,7 @@
 }
 
 .list-container{
-    display: block;
+    padding: 0;
 }
 
 .gamewriter{
@@ -134,7 +135,6 @@
     list-style-type: none;
     display: inline-block;
     max-width: 400px;
-    width: 300px;
 }
 
 .infopic{
@@ -180,6 +180,7 @@
     padding: 14px;
     color: white;
     border-radius: 6px;
+    margin: 8px;
 }
 
 textarea{
@@ -227,4 +228,8 @@ textarea{
 .verticalGameInfo{
     height: 100%;
     width: 40%;
+}
+
+.container{
+    padding: 0;
 }
