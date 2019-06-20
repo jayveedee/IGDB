@@ -186,6 +186,28 @@ $(document).on("click", ".btn-remove-row11", function() {
 $("#createGameForm").submit(function (event) {
     event.preventDefault();
 
+    if ($("#companyStatusField").val() !== "") {
+        if ($("#companyStatusField").val() !== "true" || $("#companyStatusField").val() !== "false") {
+            alert("Status Fields has to be either true or false");
+            return;
+        }
+    }
+
+    if ($("#developerStatusField").val() !== "") {
+        if ($("#developerStatusField").val() !== "true" || $("#developerStatusField").val() !== "false") {
+            alert("Status Fields has to be either true or false");
+            return;
+        }
+    }
+
+    if ($("#publisherStatusField").val() !== "") {
+        if ($("#publisherStatusField").val() !== "true" || $("#publisherStatusField").val() !== "false") {
+            alert("Status Fields has to be either true or false");
+            return;
+        }
+    }
+
+
     var id = generateRandomID();
     var GameDTO ={
         gameID : id,
@@ -220,7 +242,7 @@ $("#createGameForm").submit(function (event) {
                 localStorage.setItem("currentGameID", GameDTO.gameID);
                 window.location.href = "articleview.html";
             }else {
-                alert("Something went wrong on the server side. Possibly an SQL error");
+                alert("Something went wrong on the server side. Possibly an SQL error or you have chosen a game name that already exist");
             }
         },
         error : function () {

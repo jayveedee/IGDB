@@ -17,6 +17,7 @@ import Data.UserDTO.RatingDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,11 @@ public class GameDAO implements IGameDAO {
         if(game == null){
             return true;
         }
+
+        if (game.getGameNAME().equals("")){
+            return false;
+        }
+
         int         gameID          = game.getGameID();
         String      gameTitle       = game.getGameNAME();
         String      gameDESC        = game.getGameBIO();
@@ -52,7 +58,7 @@ public class GameDAO implements IGameDAO {
         List<WriterDTO>     gameWRI     = game.getGameWRI();        List<PlatformDTO>   gamePLAT    = game.getGamePLAT();
         SoundtrackDTO       gameOST     = game.getGameOST();
 
-        handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
+        boolean answer = handleINSERTGame                        (query, gameID, gameTitle, gameDESC, gameRDstring, gameCOV, gameBG);
         handleINSERTCharacters                  (gameID, gameCHAR);
         handleINSERTActors                      (gameID, gameACTOR, gameCHAR);
         handleINSERTGenres                      (gameID, gameGENRE);
@@ -67,7 +73,7 @@ public class GameDAO implements IGameDAO {
             handleINSERTComposer                    (gameID, gameOST.getOstCOMP());
             handleINSERTSoundtrackxMusicalArtists   (gameID, gameOST);
         }
-        return true;
+        return answer;
     }
     private void handleINSERTPlatform(int gameID, List<PlatformDTO> gamePLAT) {
         if (!gamePLAT.isEmpty()){
@@ -337,7 +343,7 @@ public class GameDAO implements IGameDAO {
             }
         }
     }
-    private void handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
+    private boolean handleINSERTGame(String query1, int gameID, String gameTitle, String gameDESC, String gameReleaseString, String gameCOV, String gameBG) {
         try {
             handleINSERTDuplicateCode(query1, gameID, gameTitle, gameReleaseString, gameDESC);
             mySql.getPrepStatement().setString(5,gameCOV);
@@ -346,7 +352,9 @@ public class GameDAO implements IGameDAO {
             mySql.getConnection().commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
     private void handleINSERTActors(int gameID, List<ActorDTO> gameACTOR, List<CharacterDTO> gameCHAR) {
         if (!gameACTOR.isEmpty() && !gameCHAR.isEmpty()) {
