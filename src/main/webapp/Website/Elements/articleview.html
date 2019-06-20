@@ -59,10 +59,15 @@
     <div class="infowrapper">
         <div class="intro-ul">
             <div class="containerout">
-                <h4 class="gamedatahead">Genre(s):</h4>
-                <textarea class="gamegenreout" rows="3" id="gameGenre"  readonly></textarea>
-                <h4 class="gamedatahead">Platform(s):</h4>
-                <textarea class="gameplatformout" rows="3" id="gamePlatforms" readonly></textarea>
+                <div class="verticalGameInfo" style="float: right;">
+                    <h4 class="gamedatahead">Genre(s):</h4>
+                    <textarea class="gamegenreout" rows="3" id="gameGenre"  readonly></textarea>
+                </div>
+                <div class="verticalGameInfo" style="float: left;">
+                    <h4 class="gamedatahead">Platform(s):</h4>
+                    <textarea class="gameplatformout" rows="3" id="gamePlatforms" readonly></textarea>
+                </div>
+
             </div>
             <div class="containerout piclist">
                 <h4 class="gamedatahead">Pictures</h4>
@@ -70,11 +75,6 @@
                     <button onclick="plusSlides(-1)" id="prevBtn"><</button>
                     <button onclick="plusSlides(1)" id="nextBtn">></button>
                     <div class="slideshow-container" id="slideShow">
-                        <!--<img src="https://imgur.com/i0EPevF.png" class="slideImages">
-                        <img src="https://imgur.com/ppgaX7V.png" class="slideImages">
-                        <img src="https://imgur.com/2qUQXbs.png" class="slideImages">
-                        <img src="https://imgur.com/ksaSiV4.png" class="slideImages">
-                        <img src="https://imgur.com/Y4xklgY.png" class="slideImages">-->
                     </div>
                 </div>
             </div>
@@ -90,11 +90,6 @@
                     <button onclick="plusVideos(-1)" id="prevBtn2"><</button>
                     <button onclick="plusVideos(1)" id="nextBtn2">></button>
                     <div class="slideshow-container" id="trailerSlideShow">
-                        <!--<iframe class="slideVids" src="https://www.youtube.com/embed/Gu8X7vM3Avw"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <iframe class="slideVids" src="https://www.youtube.com/embed/kMaxrryH0es"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <iframe class="slideVids" src="https://www.youtube.com/embed/Gu8X7vM3Avw"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <iframe class="slideVids" src="https://www.youtube.com/embed/kMaxrryH0es"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <iframe class="slideVids" src="https://www.youtube.com/embed/Gu8X7vM3Avw"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
                     </div>
                 </div>
             </div>
@@ -120,7 +115,7 @@
             <ul class="list-container" id="musicArtistList">
                 <div class="info-list" >
                     <img class="infopic" src="">
-                    <input class="dataoutput gameartist" type="text" readonly value="">
+                     <input class="dataoutput gameartist" type="text" readonly value="">
                 </div>
             </ul>
         </div>
