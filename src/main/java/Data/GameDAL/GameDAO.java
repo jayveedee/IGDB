@@ -39,6 +39,11 @@ public class GameDAO implements IGameDAO {
         if(game == null){
             return true;
         }
+
+        if (game.getGameNAME().equals("")){
+            return false;
+        }
+
         int         gameID          = game.getGameID();
         String      gameTitle       = game.getGameNAME();
         String      gameDESC        = game.getGameBIO();
