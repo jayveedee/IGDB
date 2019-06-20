@@ -68,7 +68,6 @@ $("#loginForm").submit(function (event) {
                 //alert(JSON.stringify(userObject));
                 localStorage.setItem("username", userObject.userNAME);
                 localStorage.setItem("currentUser", JSON.stringify(userObject));
-                alert(localStorage.getItem("currentUser"));
                 location.href = "Index.html";
             }
         },

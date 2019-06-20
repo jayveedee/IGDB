@@ -450,23 +450,3 @@ $("#testButton").click(function () {
     alert(JSON.stringify(artists[0].artNAME));
     alert(JSON.stringify(artists[1].artNAME));
 });
-
-$(document).ready(function () {
-    alert("sker der G");
-
-   if ($("#row6-0").val() === ""){
-       alert('et tomt composer felt er lig med ""');
-   }
-   
-   if ($("#row2-0").val() === " "){
-       alert('et tomt platform felt er lig med " " altså med et mellemrum')
-   }
-
-    if ($("#row2-0").val() === null){
-        alert('et tomt platform felt er lig med null')
-    }
-
-    if ($("#row2-0").val() === "null"){
-        alert('et tomt platform felt er lig med "null " altså med null-string')
-    }
-});
