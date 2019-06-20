@@ -4,6 +4,7 @@ import Data.GameDTO.GameDTO;
 import Data.IMysqlConnection;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameService {
 
@@ -52,6 +53,7 @@ public class GameService {
         GameDTO gameDTO = gameDAO.getGame(gameID);
         return gameDTO;
     }
+
 
     public boolean deleteGame (int gameID){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);
