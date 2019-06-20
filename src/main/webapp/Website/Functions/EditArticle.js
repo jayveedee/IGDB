@@ -322,7 +322,6 @@ $(document).ready(function () {
                 increaseRow5();
             }
             for (var i = 0; i < musicArtistList.length; i++) {
-                alert(musicArtistList[i].artNAME);
                 $("#row5name-"+i).val(musicArtistList[i].artNAME);
                 $("#row5URL-"+i).val(musicArtistList[i].artPFP);
             }
@@ -384,9 +383,6 @@ $(document).ready(function () {
 
 $("#updateGameForm").submit(function (event) {
     event.preventDefault();
-
-    alert("hola");
-    alert(globalGameObjekt.gameID);
     var id = globalGameObjekt.gameID;
     var GameDTO ={
         gameID : id,

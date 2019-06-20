@@ -59,10 +59,17 @@ $("#loginForm").submit(function (event) {
         url : $(this).attr("action"),
         data : $(this).serialize(),
         success : function (data) {
-            if (data == "null"){
-                alert("Could not log in. Something is wrong with the password or the username");
-            }else{
-                localStorage.setItem("username", data);
+            var userObject = JSON.parse(data);
+            if (userObject.userNAME === "usernameDoesNotExist"){
+                alert("Could not log in. This username does not exist");
+            }else if(userObject.userNAME === "passwordIsWrong"){
+                alert("Could not log in. Password is wrong")
+            } else{
+                //alert(JSON.stringify(userObject));
+                localStorage.setItem("username", userObject.userNAME);
+                //alert(localStorage.getItem("username"));
+                localStorage.setItem("currentUser", JSON.stringify(userObject));
+                //alert(localStorage.getItem("currentUser"));
                 location.href = "Index.html";
             }
         },

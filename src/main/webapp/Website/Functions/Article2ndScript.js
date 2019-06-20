@@ -1,65 +1,4 @@
-var accessGranted = "false";
-
-$("#editButton").click(function () {
-    if (accessGranted === "true") {
-        window.location.href = "EditArticlePage.html";
-    }else {
-        alert("you do not have the permission to edit a game");
-    }
-});
-
-$("#deleteButton").click(function () {
-    if (accessGranted === "true") {
-        if (window.confirm("are you sure you want to delete this game")){
-            $.ajax({
-                type : "post",
-                url : "/rest/services/game/deleteGame",
-                success : function (data) {
-                    if (data === "true") {
-                        alert("game deleted successfully");
-                        window.location.href = "Index.html";
-                    }else {
-                        alert("Game was not deleted. Possibly due to server error");
-                    }
-                },
-                error : function () {
-                    alert("ajax call not successful");
-                }
-            })
-        }
-    }else {
-        alert("you do not have the permission to delete the game");
-    }
-
-});
-
 $(document).ready(function () {
-    var username = localStorage.getItem("username");
-    if (username === null || username === "null") {
-        return;
-    }
-    $.ajax({
-        type: "post",
-        url: "/rest/services/user/getUser/"+localStorage.getItem("username"),
-        success : function (data) {
-            var object = JSON.parse(data);
-            var userRoles = object.userROLEs;
-            accessGranted = "false";
-            //alert(JSON.stringify(object));
-            for (var i = 0; i < userRoles.length; i++) {
-                if (userRoles[i].roleNAME === "Administrator" || userRoles[i].roleNAME === "Moderator"){
-                    accessGranted = "true";
-                }
-            }
-        },
-        error : function () {
-            alert("ajax call not successful")
-        }
-    });
-});
-
-$(document).ready(function () {
-    //alert(localStorage.getItem("currentGameID"));
     var gameID = parseInt(localStorage.getItem("currentGameID"));
     var action = "/rest/services/game/getGame/" + gameID;
     $.ajax({
@@ -67,9 +6,6 @@ $(document).ready(function () {
         url : action,
         success : function (data) {
             var gameDTO = JSON.parse(data);
-            //alert(gameDTO.gameNAME);
-            //alert(gameDTO.gameID);
-            //alert(gameDTO.gameACs[0].acFN);
 
             $("#coverImage").attr("src",gameDTO.gameCover);
 
@@ -184,22 +120,75 @@ $(document).ready(function () {
             $("#companyOrigin").attr("value", company.parentCOUNTRY);
             $("#companyStatus").attr("value", company.parentSTATUS);
             $("#companyDate").attr("value", company.parentCREATED);
-
-            //var backgroundImageURL = gameDTO.gameBG;
-
-            //$("#backgroundImage").attr("style", "background-image:url("+backgroundImageURL+");");
-
-
-            //hvordan det blev gjort i user scriptet
-            //var object = JSON.parse(data);
-            //var email = object.userEMAIL;
-            //var password = object.userPASS;
-
-            //$("#emailInput").val(email);
-            //$("#showAndHide").val(password);
         },
         error : function () {
             alert("Could not get user. Ajax call not successful");
         }
     });
 });
+
+$("#editButton").click(function () {
+    var permission = checkPermissions();
+    if (permission === "Edit Games" || permission === "Delete and Edit Games" ) {
+        window.location.href = "EditArticlePage.html";
+    }else {
+        alert("you do not have the permission to edit a game");
+    }
+});
+
+$("#deleteButton").click(function () {
+    var permission = checkPermissions();
+    if (permission === "Delete and Edit Games") {
+        if (window.confirm("are you sure you want to delete this game")){
+            $.ajax({
+                type : "post",
+                url : "/rest/services/game/deleteGame/"+localStorage.getItem("currentGameID"),
+                success : function (data) {
+                    if (data === "true") {
+                        alert("game deleted successfully");
+                        window.location.href = "Index.html";
+                    }else {
+                        alert("Game was not deleted. Possibly due to server error");
+                    }
+                },
+                error : function () {
+                    alert("ajax call not successful");
+                }
+            })
+        }
+    }else {
+        alert("you do not have the permission to delete the game");
+    }
+});
+
+function checkPermissions(){
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser === null || currentUser === "null"){
+        return "noPermissions";
+    }
+    var roleList = currentUser.userROLEs;
+
+    var permissionToDeleteGame = "false";
+    var permissionToEditGame = "false";
+    var permissions = "noPermissions";
+
+    for (var i = 0; i < roleList.length; i++) {
+        if (roleList[i].roleNAME === "Moderator" || roleList[i].roleNAME === "Administrator" || roleList[i].roleNAME === "Editor") {
+            permissionToEditGame = "true";
+        }
+
+        if (roleList[i].roleNAME === "Moderator" || roleList[i].roleNAME === "Administrator") {
+            permissionToDeleteGame = "true";
+        }
+    }
+
+    if (permissionToDeleteGame === "true") {
+        permissions = "Delete and Edit Games";
+        return permissions;
+    }else if (permissionToEditGame === "true"){
+        permissions = "Edit Games";
+        return permissions;
+    }
+
+    return permissions;
+}

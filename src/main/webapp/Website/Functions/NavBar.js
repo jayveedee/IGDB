@@ -23,8 +23,9 @@ $(document).ready(function () {
         var username = localStorage.getItem("username");
         if (username === null || username === "null"){
             location.href = "Login_Signup.html"
-        }else if (username !== null || username === "null") {
+        }else if (username !== null || username !== "null") {
             localStorage.setItem("username", "null");
+            localStorage.setItem("currentUser", "null");
             location.href ="Index.html"
         }
     });
@@ -60,7 +61,6 @@ function loadAddresses() {
     });
 });
 
-//FIXME ikke færdig kodet
 $("#searchBar").submit(function (event) {
     event.preventDefault();
     var gameName = $("#searchInput").val();
@@ -77,3 +77,45 @@ $("#searchBar").submit(function (event) {
         }
     });
 });
+
+$("#createArticle").click(function (event) {
+    event.preventDefault();
+    var permission = checkPermissions();
+    if (permission === "Edit Games" || permission === "Delete and Edit Games" ) {
+        window.location.href = "createarticle.html";
+    }else {
+        alert("you do not have the permission to create a game");
+    }
+});
+
+function checkPermissions(){
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser === null || currentUser === "null"){
+        return "noPermissions";
+    }
+    var roleList = currentUser.userROLEs;
+
+    var permissionToDeleteGame = "false";
+    var permissionToEditGame = "false";
+    var permissions = "noPermissions";
+
+    for (var i = 0; i < roleList.length; i++) {
+        if (roleList[i].roleNAME === "Moderator" || roleList[i].roleNAME === "Administrator" || roleList[i].roleNAME === "Editor") {
+            permissionToEditGame = "true";
+        }
+
+        if (roleList[i].roleNAME === "Moderator" || roleList[i].roleNAME === "Administrator") {
+            permissionToDeleteGame = "true";
+        }
+    }
+
+    if (permissionToDeleteGame === "true") {
+        permissions = "Delete and Edit Games";
+        return permissions;
+    }else if (permissionToEditGame === "true"){
+        permissions = "Edit Games";
+        return permissions;
+    }
+
+    return permissions;
+}
