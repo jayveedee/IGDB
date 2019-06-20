@@ -12,6 +12,7 @@ import Data.GameDTO.Development.WriterDTO;
 import Data.GameDTO.GameDTO;
 import Data.GameDTO.Info.*;
 import Data.IMysqlConnection;
+import Data.UserDTO.RatingDTO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -687,6 +688,59 @@ public class GameDAO implements IGameDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public List<GameDTO> getGameList() {
+        List<GameDTO> gameList = new ArrayList<>();
+        String query1 = "SELECT * FROM Game";
+        String query2 = "SELECT * FROM DeveloperList WHERE devGameID = ?";
+
+        try {
+            mySql.getConnection().setAutoCommit(false);
+            mySql.setStatement(mySql.getConnection().createStatement());
+            ResultSet rs1 = mySql.getStatement().executeQuery(query1);
+            while (rs1.next()){
+                GameDTO game = new GameDTO();
+
+                game.setGameNAME(rs1.getString("gameTITLE"));
+                game.setGameRELEASEDATE(rs1.getString("gameRD"));
+                game.setGameCover(rs1.getString("gameCOVER"));
+                game.setGameBIO(rs1.getString("gameDESC"));
+                game.setGameBG(rs1.getString("gameBACKGROUND"));
+                game.setGameID(rs1.getInt("gameID"));
+
+                mySql.setPrepStatment(mySql.getConnection().prepareStatement(query2));
+                mySql.getPrepStatement().setInt(1,rs1.getInt("gameID"));
+                ResultSet rs2 = mySql.getPrepStatement().executeQuery();
+                DeveloperDTO dev = new DeveloperDTO();
+                while (rs2.next()){
+                    dev.setDevGAME(rs2.getInt("devGameID"));
+                    dev.setDevPCOMPANY(null);
+                    dev.setDevCOUNTRY(rs2.getString("devCOUNTRY"));
+                    dev.setDevID(rs2.getInt("devID"));
+                    dev.setDevNAME(rs2.getString("devNAME"));
+                    dev.setDevSTATUS(rs2.getBoolean("devSTATUS"));
+                    dev.setDevCREATED(rs2.getString("devCREATED"));
+                }
+
+                game.setGamePUB(null);          game.setGameCOMP(null);         game.setGameOST(null);          game.setGameDEV(dev);
+
+                List<ActorDTO> aclist           = new ArrayList<>();        List<CharacterDTO> chlist       = new ArrayList<>();
+                List<GameModeDTO> gmlist        = new ArrayList<>();        List<PlatformDTO> platlist      = new ArrayList<>();
+                List<PictureDTO> piclist        = new ArrayList<>();        List<RatingDTO> rlist           = new ArrayList<>();
+                List<WriterDTO> wlist           = new ArrayList<>();        List<GenreDTO> genlist          = new ArrayList<>();
+                List<TrailerDTO> tlist          = new ArrayList<>();
+
+                game.setGameACs(aclist);        game.setGameCHs(chlist);        game.setGameGMs(gmlist);        game.setGamePLAT(platlist);
+                game.setGamePICs(piclist);      game.setGameRATINGs(rlist);     game.setGameGENREs(genlist);    game.setGameWRI(wlist);
+                game.setGameTRAILERs(tlist);
+                gameList.add(game);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gameList;
     }
 
     @Override

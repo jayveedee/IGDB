@@ -264,6 +264,31 @@ public class Services {
         return jsonString;
     }
 
+
+    //FIXME not færdig
+    @POST
+    @Path("/game/getGameList")
+    public String getGameList(){
+        List<GameDTO> answer = null;
+        try {
+            System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
+            //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
+            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+            if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
+                MysqlConnection.getInstance().createConnection();
+                System.out.println("created at getGameID");
+            }
+            GameService service = new GameService(MysqlConnection.getInstance());
+            //answer = service.getGameList();
+            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
+            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //return gameID;
+        return "hi";
+    }
+
     @POST
     @Path("game/getGameID/{gameName}")
     public String getGameID(@PathParam("gameName") String gameName){
