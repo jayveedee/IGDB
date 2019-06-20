@@ -164,7 +164,6 @@ button{
     position: relative;
 }
 
-
 .slideshow-container{
     display: flex;
     height: 100%;
@@ -301,6 +300,21 @@ button{
     width: 350px;
 }
 
+.articleTextArea{
+    resize: none;
+    width: 95%;
+    height: 90%;
+    background: none;
+    border: 0;
+    outline: none;
+    padding: 10px;
+}
+
+.divTextArea{
+    width: 75%;
+    height: 80%;
+}
+
 /* ------------------ Submit button START ------------------*/
 .submit {
     width: 50% !important;
@@ -317,3 +331,24 @@ button{
     background-color: #1E90FF !important;
 }
 /* ------------------ Submit button END ------------------*/
+
+/* ------------------ Scrollbar custom START ------------------ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #F5F5F5;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* ------------------ Scrollbar custom END ------------------ */
