@@ -32,6 +32,7 @@
     border-radius: 8px;
     margin-bottom: 8px;
     overflow: auto;
+    cursor: pointer;
 }
 
 

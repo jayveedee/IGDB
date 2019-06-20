@@ -54,6 +54,11 @@ public class GameService {
         return gameDTO;
     }
 
+    public List<GameDTO> getGameList(){
+        IGameDAO gameDAO = new GameDAO(mysqlConnection);
+        List<GameDTO> gameList = gameDAO.getGameList();
+        return gameList;
+    }
 
     public boolean deleteGame (int gameID){
         IGameDAO gameDAO = new GameDAO(mysqlConnection);

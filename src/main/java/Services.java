@@ -267,9 +267,10 @@ public class Services {
 
     //FIXME not færdig
     @POST
-    @Path("/game/getGameList")
+    @Path("game/getGameList")
     public String getGameList(){
         List<GameDTO> answer = null;
+        String json = "placeholder";
         try {
             System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
             //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
@@ -279,14 +280,37 @@ public class Services {
                 System.out.println("created at getGameID");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
-            //answer = service.getGameList();
+            answer = service.getGameList();
+
+            class JSONObject{
+                List<GameDTO> gameList;
+
+                public JSONObject() {
+                }
+
+                public List<GameDTO> getGameList() {
+                    return gameList;
+                }
+
+                public void setGameList(List<GameDTO> gameList) {
+                    this.gameList = gameList;
+                }
+            }
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.setGameList(answer);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            json = objectMapper.writeValueAsString(jsonObject);
             //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
             //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (JsonProcessingException e){
+            e.printStackTrace();
         }
         //return gameID;
-        return "hi";
+        return json;
     }
 
     @POST
