@@ -242,7 +242,7 @@ $("#createGameForm").submit(function (event) {
                 localStorage.setItem("currentGameID", GameDTO.gameID);
                 window.location.href = "articleview.html";
             }else {
-                alert("Something went wrong on the server side. Possibly an SQL error");
+                alert("Something went wrong on the server side. Possibly an SQL error or you have chosen a game name that already exist");
             }
         },
         error : function () {
