@@ -7,6 +7,7 @@ var row5counter = 0;
 var row3Counter = 0;
 var row2Counter = 0;
 var row1Counter = 0;
+var globalGameObjekt;
 
 
 function generateRandomID(){
@@ -35,13 +36,28 @@ $(document).on("click", ".btn-add-row", function(){
     $(".element-wrapper").append(rowBirthDay);
 });
 
+function increaseRow1(){
+    row1Counter++;
+    var rowName = $(".rowName").eq(0).clone().show();
+    rowName.attr("id","rowName-"+row1Counter);
+    $(".element-wrapper").append(rowName);
+
+    var rowURL = $(".rowURL").eq(0).clone().show();
+    rowURL.attr("id","rowURL-"+row1Counter);
+    $(".element-wrapper").append(rowURL);
+
+    var rowBirthDay = $(".rowBirthDay").eq(0).clone().show();
+    rowBirthDay.attr("id","rowBirthDay-"+row1Counter);
+    $(".element-wrapper").append(rowBirthDay);
+}
+
 $(document).on("click", ".btn-remove-row", function(){
-   if (row1Counter !== 0){
-       $(".rowName").eq(row1Counter).remove();
-       $(".rowURL").eq(row1Counter).remove();
-       $(".rowBirthDay").eq(row1Counter).remove();
-       row1Counter--;
-   }
+    if (row1Counter !== 0){
+        $(".rowName").eq(row1Counter).remove();
+        $(".rowURL").eq(row1Counter).remove();
+        $(".rowBirthDay").eq(row1Counter).remove();
+        row1Counter--;
+    }
 });
 
 /*--------------------------------------------------------------------------bt2*/
@@ -51,6 +67,13 @@ $(document).on("click", ".btn-add-row2", function(){
     row2.attr("id","row2-"+row2Counter);
     $(".element-wrapper2").append(row2);
 });
+
+function increaseRow2(){
+    row2Counter++;
+    var row2 = $(".row2").eq(0).clone().show();
+    row2.attr("id","row2-"+row2Counter);
+    $(".element-wrapper2").append(row2);
+}
 
 $(document).on("click", ".btn-remove-row2", function(){
     if (row2Counter !== 0) {
@@ -65,6 +88,13 @@ $(document).on("click", ".btn-add-row3", function(){
     row3.attr("id","row3-"+row3Counter);
     $(".element-wrapper3").append(row3);
 });
+
+function increaseRow3(){
+    row3Counter++;
+    var row3 = $(".row3").eq(0).clone().show();
+    row3.attr("id","row3-"+row3Counter);
+    $(".element-wrapper3").append(row3);
+}
 
 $(document).on("click", ".btn-remove-row3", function(){
     if (row3Counter !== 0) {
@@ -86,6 +116,17 @@ $(document).on("click", ".btn-add-row5", function(){
     $(".element-wrapper5").append(row5URL);
 });
 
+function increaseRow5(){
+    row5counter++;
+    var row5name = $(".row5name").eq(0).clone().show();
+    row5name.attr("id","row5name-"+row5counter);
+    $(".element-wrapper5").append(row5name);
+
+    var row5URL = $(".row5URL").eq(0).clone().show();
+    row5URL.attr("id","row5URL-"+row5counter);
+    $(".element-wrapper5").append(row5URL);
+}
+
 $(document).on("click", ".btn-remove-row5", function(){
     if (row5counter !== 0){
         $(".row5name").eq(row5counter).remove();
@@ -102,6 +143,13 @@ $(document).on("click", ".btn-add-row6", function(){
     $(".element-wrapper6").append(row6);
 });
 
+function increaseRow6(){
+    row6counter++;
+    var row6 = $(".row6").eq(0).clone().show();
+    row6.attr("id","row6-"+row6counter);
+    $(".element-wrapper6").append(row6);
+}
+
 $(document).on("click", ".btn-remove-row6", function(){
     if (row6counter !== 0) {
         $(".row6").eq(row6counter).remove();
@@ -116,6 +164,13 @@ $(document).on("click", ".btn-add-row7", function(){
     $(".element-wrapper7").append(row7);
 });
 
+function increaseRow7(){
+    row7counter++;
+    var row7 = $(".row7").eq(0).clone().show();
+    row7.attr("id","row7-"+row7counter);
+    $(".element-wrapper7").append(row7);
+}
+
 $(document).on("click", ".btn-remove-row7", function(){
     if (row7counter !== 0) {
         $(".row7").eq(row7counter).remove();
@@ -123,17 +178,24 @@ $(document).on("click", ".btn-remove-row7", function(){
     }
 });
 /*--------------------------------------------------------------------------bt8*/
-$(document).on("click", ".btn-add-row8", function(){
+$(document).on("click", ".btn-add-row8", function increaseRow8(){
     row8counter++;
     var row8 = $(".row8").eq(0).clone().show();
     row8.attr("id","row8-"+row8counter);
     $(".element-wrapper8").append(row8);
 });
 
+function increaseRow8(){
+    row8counter++;
+    var row8 = $(".row8").eq(0).clone().show();
+    row8.attr("id","row8-"+row8counter);
+    $(".element-wrapper8").append(row8);
+}
+
 $(document).on("click", ".btn-remove-row8", function(){
-    var index8 = $(".btn-remove-row8").index(this);
-    $(".row8").eq(row8counter).remove();
     if (row8counter !== 0){
+        var index8 = $(".btn-remove-row8").index(this);
+        $(".row8").eq(row8counter).remove();
         row8counter--;
     }
 });
@@ -144,6 +206,13 @@ $(document).on("click", ".btn-add-row9", function(){
     row9.attr("id","row9-" + row9counter);
     $(".element-wrapper9").append(row9)
 });
+
+function increaseRow9(){
+    row9counter++;
+    var row9 = $(".row9").eq(0).clone().show();
+    row9.attr("id","row9-" + row9counter);
+    $(".element-wrapper9").append(row9)
+}
 
 $(document).on("click", ".btn-remove-row9", function() {
     if (row9counter !== 0) {
@@ -157,6 +226,11 @@ $(document).on("click", "#btn10", function(){
     var row10 = $(".row10").eq(0).clone().show();
     $(".element-wrapper10").append(row10)
 });
+
+function increaseRow10(){
+    var row10 = $(".row10").eq(0).clone().show();
+    $(".element-wrapper10").append(row10)
+}
 
 $(document).on("click", ".btn-remove-row10", function() {
     var index10 = $(".btn-remove-row10").index(this);
@@ -174,6 +248,17 @@ $(document).on("click", "#btn11", function(){
     $(".element-wrapper11").append(row11URL);
 });
 
+function increaseRow11(){
+    row11counter++;
+    var row11Name = $(".row11Name").eq(0).clone().show();
+    row11Name.attr("id","row11Name-"+row11counter);
+    $(".element-wrapper11").append(row11Name);
+
+    var row11URL = $(".row11URL").eq(0).clone().show();
+    row11URL.attr("id","row11URL-"+row11counter);
+    $(".element-wrapper11").append(row11URL);
+}
+
 $(document).on("click", ".btn-remove-row11", function() {
     if (row11counter !== 0) {
         $(".row11Name").eq(row11counter).remove();
@@ -182,11 +267,125 @@ $(document).on("click", ".btn-remove-row11", function() {
     }
 });
 
+$(document).ready(function () {
+    var gameID = parseInt(localStorage.getItem("currentGameID"));
+    var action = "/rest/services/game/getGame/" + gameID;
+    $.ajax({
+        type : "post",
+        url : action,
+        success : function (data) {
+            var gameDTO = JSON.parse(data);
+            globalGameObjekt = gameDTO;
+            //handling all simpel data
+            $("#titlefield").val(gameDTO.gameNAME);
+            $("#releaseDateField").val(gameDTO.gameRELEASEDATE);
+            $("#picturefield").val(gameDTO.gameCover);
+            $("#backpicfield").val(gameDTO.gameBG);
+            $("#soundtrackURLField").val(gameDTO.gameOST.ostURL);
+            $("#soundtrackNameField").val(gameDTO.gameOST.ostTITLE);
+            $("#row6-0").val(gameDTO.gameCOMP.compFN);
+            $("#companyNameField").val(gameDTO.gameDEV.devPCOMPANY.parentNAME);
+            $("#companyOriginField").val(gameDTO.gameDEV.devPCOMPANY.parentCOUNTRY);
+            $("#companyStatusField").val(gameDTO.gameDEV.devPCOMPANY.parentSTATUS);
+            $("#creationOfCompanyField").val(gameDTO.gameDEV.devPCOMPANY.parentCREATED);
+            $("#developerNameField").val(gameDTO.gameDEV.devNAME);
+            $("#developerCreationField").val(gameDTO.gameDEV.devCREATED);
+            $("#developerOriginField").val(gameDTO.gameDEV.devCOUNTRY);
+            $("#developerStatusField").val(gameDTO.gameDEV.devSTATUS);
+            $("#publisherNameField").val(gameDTO.gamePUB.pubNAME);
+            $("#publisherCreationField").val(gameDTO.gamePUB.pubCREATED);
+            $("#publisherOriginField").val(gameDTO.gamePUB.pubCOUNTRY);
+            $("#publisherStatusField").val(gameDTO.gamePUB.pubSTATUS);
+            $("#gameDescfield").val(gameDTO.gameBIO);
 
-$("#createGameForm").submit(function (event) {
+            //game trailers
+            var gameTrailerList = gameDTO.gameTRAILERs;
+            for (var i = 0; i < gameTrailerList.length-1; i++) {
+                increaseRow8();
+            }
+            for (var i = 0; i < gameTrailerList.length; i++) {
+                $("#row8-"+i).val(gameTrailerList[i].trailerURL);
+            }
+
+            //Picture List
+            var pictureList = gameDTO.gamePICs;
+            for (var i = 0; i < pictureList.length-1; i++) {
+                increaseRow9();
+            }
+            for (var i = 0; i < pictureList.length; i++) {
+                $("#row9-" + i).val(pictureList[i].picURL);
+            }
+
+            //Music Artists
+            var musicArtistList = gameDTO.gameOST.ostMA;
+            for (var i = 0; i < musicArtistList.length - 1; i++) {
+                increaseRow5();
+            }
+
+            //oki
+            for (var i = 0; i < musicArtistList.length; i++) {
+                $("#row5name-"+i).val(musicArtistList[i].artNAME);
+                $("#row5URL-"+i).val(musicArtistList[i].artPFP);
+            }
+
+            //Writers
+            var writerList = gameDTO.gameWRI;
+            for (var i = 0; i < writerList.length - 1; i++) {
+                increaseRow7();
+            }
+            for (var i = 0; i < writerList.length; i++) {
+                $("#row7-"+i).val(writerList[i].writerFN);
+            }
+
+            //Actors
+            var actorList = gameDTO.gameACs;
+            for (var i = 0; i < actorList.length - 1; i++) {
+                increaseRow1();
+            }
+            for (var i = 0; i < actorList.length; i++) {
+                $("#rowName-"+i).val(actorList[i].acFN);
+                $("#rowURL-"+i).val(actorList[i].acPFP);
+                $("#rowBirthDay-"+i).val(actorList[i].acBDAY);
+            }
+
+            //characters
+            var characterList = gameDTO.gameCHs;
+            for (var i = 0; i < characterList.length - 1; i++) {
+                increaseRow11();
+            }
+            for (var i = 0; i < characterList.length; i++) {
+                $("#row11Name-"+i).val(characterList[i].chNAME);
+                $("#row11URL-"+i).val(characterList[i].chPFP);
+            }
+
+            //Platforms
+            var platformList = gameDTO.gamePLAT;
+            for (var i = 0; i < platformList.length - 1; i++) {
+                increaseRow2();
+            }
+            for (var i = 0; i < platformList.length; i++) {
+                $("#row2-"+i).val(platformList[i].platTITLE);
+            }
+
+            //genre
+            var genreList = gameDTO.gameGENREs;
+            for (var i = 0; i < genreList.length - 1; i++) {
+                increaseRow3();
+            }
+            for (var i = 0; i < genreList.length; i++) {
+                $("#row3-" + i).val(genreList[i].genTITLE);
+            }
+
+        },
+        error : function () {
+            alert("Could not get user. Ajax call not successful");
+        }
+    });
+});
+
+$("#updateGameForm").submit(function (event) {
     event.preventDefault();
-
-    var id = generateRandomID();
+    var id = globalGameObjekt.gameID;
     var GameDTO ={
         gameID : id,
         gameNAME : $("#titlefield").val(),
@@ -211,12 +410,12 @@ $("#createGameForm").submit(function (event) {
 
     $.ajax({
         type : "post",
-        url : "/rest/services/game/createGame",
+        url : "/rest/services/game/updateGame",
         data : JSON.stringify(GameDTO),
         contentType : "application/json; charset=utf-8",
         success : function (data) {
             if (data === "true") {
-                alert("Game created successfully!");
+                alert("Game updated successfully!");
                 localStorage.setItem("currentGameID", GameDTO.gameID);
                 window.location.href = "articleview.html";
             }else {
@@ -224,7 +423,7 @@ $("#createGameForm").submit(function (event) {
             }
         },
         error : function () {
-            alert("Could not create game. Ajax call not successful");
+            alert("Could not update game. Ajax call not successful");
         }
     });
 
@@ -441,58 +640,3 @@ function getGenres(id){
     }
     return genreList;
 }
-
-
-
-$("#testButton").click(function () {
-    var artists = getMusicArtists();
-    alert(JSON.stringify(artists));
-    alert(JSON.stringify(artists[0].artNAME));
-    alert(JSON.stringify(artists[1].artNAME));
-});
-
-
-//FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
-/*$("#createGameForm").submit(function (event) {
-    event.preventDefault();
-    var data = $(this).serializeArray();
-    var newArray = new Array();
-    newArray.push("hey");
-    newArray.push("hi");
-    //var newArraySerialized =JSON.stringify(newArray) ;
-    //newArraySerialized.push({name : "newValueFromNewArray", value : "OMG BRO Hvis Det Her virker så køber jeg en lotto plade"});
-    data.push({name : "newValue", value : "detHerErDenNyeValueOgDetKanVæreSejtHvisDetteVirkede"});
-    data.push({name : "list", value : newArray});
-    //data = data.concat(newArraySerialized);
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $.param(data),
-        success : function (data) {
-            alert("success");
-        },
-        error : function () {
-            alert("error");
-        }
-    });
-});*/
-
-/*$("#registerForm").submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $(this).serialize(),
-        success : function (data) {
-            if (data == "true"){
-                alert("Your new account has been created successfully!");
-                location.href = "Login_Signup.html"
-            }else{
-                alert("Couldn't create user. This username might be taken. Try again.")
-            }
-        },
-        error : function () {
-            alert("Couldn't create user, try again");
-        }
-    });
-});*/

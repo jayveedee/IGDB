@@ -76,21 +76,21 @@ public class UserService {
         return answer;
     }
 
-    public String logIn(String username, String password){
+    public UserDTO logIn(String username, String password){
         IUserDAO userDAO = new UserDAO(mySQL);
         UserDTO userDTO = userDAO.getUser(username);
 
         if (userDTO.getUserNAME()==null){
-            System.out.println("hejsa");
-            return "null";
+            userDTO.setUserNAME("usernameDoesNotExist");
+            return userDTO;
         }
 
         if (!password.equals(userDTO.getUserPASS())){
-            System.out.println("halojsa");
-            return "null";
+            userDTO.setUserNAME("passwordIsWrong");
+            return userDTO;
         }
 
-        return userDTO.getUserNAME();
+        return userDTO;
     }
 
 }
