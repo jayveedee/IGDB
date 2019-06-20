@@ -698,13 +698,13 @@ public class GameDAO implements IGameDAO {
 
     @Override
     public boolean deleteGame (int gameID) {
-        System.out.println("the gameID is the following: " + gameID);
         String query1  = "DELETE FROM UserGameList WHERE gameID = ?";        String query2 = "DELETE FROM GameModeList WHERE gmGameID = ? ";
         String query3  = "DELETE FROM GenreList WHERE genreGameID = ? ";     String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
         String query5  = "DELETE FROM TrailerList WHERE trailerGameID = ?";  String query6 = "DELETE FROM PictureList WHERE pictureGameID = ?";
         String query7  = "DELETE FROM PublisherList WHERE pubGameID = ?";    String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
         String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";      String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
         String query11 = "DELETE s.*, m.* FROM SoundtrackList s, MusicalArtistList m WHERE ostGameID = ? AND artistID = ostArtistID";
+        //String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c WHERE ostGameID = ? AND artistID = ostArtistID AND compID = ostComposerID";
         String query12 = "DELETE FROM ComposerList WHERE compGameID = ?";
         String query13 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
         String query14 = "DELETE From Game WHERE gameID = ?";
