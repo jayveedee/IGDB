@@ -208,7 +208,6 @@ public class Services {
         return answer;
     }
 
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("game/createGame")

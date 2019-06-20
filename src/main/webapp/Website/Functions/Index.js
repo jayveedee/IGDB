@@ -38,3 +38,24 @@ function displayImage(size){
   }
   img[firstImage-1].style.display = "block";
 }
+
+$(document).ready(function () {
+    $.ajax({
+        type : "post",
+        url : "/rest/services/game/getGameList",
+        success : function (data) {
+            var jsonObject = JSON.parse(data);
+            var gameList = jsonObject.gameList;
+
+            for (var j = 1; j <= 4; j++) {
+                var randomNumber = Math.floor(Math.random()*gameList.length);
+                $("#article"+j+"name").text(gameList[randomNumber].gameNAME);
+                $("#article"+j+"pic").attr("src", gameList[randomNumber].gameCover);
+                $("#article"+j+"bio").text(gameList[randomNumber].gameBIO);
+            }
+        },
+        error : function () {
+            alert("ajax call failed");
+        }
+    });
+});
