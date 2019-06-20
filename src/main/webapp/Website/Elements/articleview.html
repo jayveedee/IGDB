@@ -27,7 +27,7 @@
                 <div style="display: inline;">
                     <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
                         <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" class="searchButton">
                     </form>
                     <datalist id="dataList"></datalist>
                 </div>
@@ -107,13 +107,20 @@
         <div class="groupcontainer actorslist">
             <h4 class="gamedatahead">Actors</h4>
             <ul class="list-container" id="actorList">
-                <div class="info-list"><img class="infopic" src=""><input class="dataoutput gameactor" type="text" readonly value=""><input class="dataoutput gameactordate" type="text" readonly value=""></div>
+                <div class="info-list">
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameactor" type="text" readonly value="">
+                    <input class="dataoutput gameactordate" type="text" readonly value="">
+                </div>
             </ul>
         </div>
         <div class="groupcontainer artistlist">
             <h4 class="gamedatahead">Music Artists</h4>
             <ul class="list-container" id="musicArtistList">
-                <div class="info-list" ><img class="infopic" src=""><input class="dataoutput gameartist" type="text" readonly value=""></div>
+                <div class="info-list" >
+                    <img class="infopic" src="">
+                    <input class="dataoutput gameartist" type="text" readonly value="">
+                </div>
             </ul>
         </div>
         <div class="groupcontainer writerlist">

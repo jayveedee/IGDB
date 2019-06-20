@@ -138,6 +138,18 @@ button{
 #searchBar {
     display: inline;
 }
+
+.searchButton{
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.searchButton:hover{
+    background-color: #cccccc;
+    border: 1px solid #59adff91;
+}
 /*---------------------Nav-bar END---------------------*/
 /*---------------------Slideshow START---------------------*/
 .top-container{

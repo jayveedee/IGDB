@@ -76,7 +76,7 @@ $(document).ready(function () {
             var actorList = gameDTO.gameACs;
             var actorHTMLString = "";
             for (var i = 0; i < actorList.length; i++) {
-                actorHTMLString += '<div class="info-list"><img class="infopic" src="'+actorList[i].acPFP+'"><input class="dataoutput gameactor" type="text" readonly value="'+actorList[i].acFN+'"><input class="dataoutput gameactordate" type="text" readonly value="'+actorList[i].acBDAY+'"></div>'
+                actorHTMLString += '<div class="info-list"><img class="infopic" src="'+actorList[i].acPFP+'"><br><input class="dataoutput gameactor" type="text" readonly value="'+actorList[i].acFN+'"><br><input class="dataoutput gameactordate" type="text" readonly value="'+actorList[i].acBDAY+'"></div>'
             }
             $("#actorList").html(actorHTMLString);
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
             var musicArtistList = gameDTO.gameOST.ostMA;
             var musicArtistHTMLString = "";
             for (var i = 0; i < musicArtistList.length; i++) {
-                musicArtistHTMLString+='<div class="info-list"><img class="infopic" src="'+musicArtistList[i].artPFP+'"><input class="dataoutput gameartist" type="text" readonly value="'+musicArtistList[i].artNAME+'"></div>'
+                musicArtistHTMLString+='<div class="info-list"><img class="infopic" src="'+musicArtistList[i].artPFP+'"><br><input class="dataoutput gameartist" type="text" readonly value="'+musicArtistList[i].artNAME+'"></div>'
             }
             $("#musicArtistList").html(musicArtistHTMLString);
 
