@@ -18,4 +18,6 @@ public interface IMysqlConnection {
 
     Connection getConnection();
     void setConnection(Connection connection);
+
+    boolean handleDeleteByID(int ID, String query, IMysqlConnection mySql);
 }

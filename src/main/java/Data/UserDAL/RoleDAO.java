@@ -125,19 +125,14 @@ public class RoleDAO implements IRoleDAO {
     public boolean deleteRole(int roleID) {
         String query1 = "DELETE FROM UserRoleList WHERE roleID = ?";
         String query2 = "DELETE FROM Roles WHERE roleID = ?";
-        return handleDeleteByID(roleID, query1) && handleDeleteByID(roleID, query2);
-    }
-    private boolean handleDeleteByID(int roleid, String query) {
         try {
             mySql.getConnection().setAutoCommit(false);
-            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
-            mySql.getPrepStatement().setInt(1,roleid);
-            mySql.getPrepStatement().executeUpdate();
+            boolean status = mySql.handleDeleteByID(roleID, query1, mySql) && mySql.handleDeleteByID(roleID, query2, mySql);
             mySql.getConnection().commit();
+            return status;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
 }

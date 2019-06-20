@@ -77,4 +77,17 @@ public class MysqlConnection implements IMysqlConnection {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public boolean handleDeleteByID(int ID, String query, IMysqlConnection mySql){
+        try {
+            mySql.setPrepStatment(mySql.getConnection().prepareStatement(query));
+            mySql.getPrepStatement().setInt(1,ID);
+            mySql.getPrepStatement().executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

@@ -28,8 +28,7 @@ public class GameDAO_TEST {
     @Test // GOOD TO GO
     public void createGame() {
         try (Connection c = mysql.createConnection()) {
-            mysql.createConnection();
-            del.deleteAllTables();
+            //del.deleteAllTables();
             GameDTO testGame1 = a.createGameDB(70, "COD1");
             GameDTO testGame2 = a.createGameDB(71, "COD2");
             GameDTO testGame3 = a.createGameDB(72, "COD3");
@@ -47,8 +46,7 @@ public class GameDAO_TEST {
     @Test // GOOD TO GO
     public void getGame() {
         try (Connection c = mysql.createConnection()) {
-            mysql.createConnection();
-            del.deleteAllTables();
+            //del.deleteAllTables();
             GameDTO testGame1 = a.createGameDB(70, "COD1");
             assertTrue(gdao.createGame(testGame1));
             GameDTO testGame1DB = gdao.getGame(70);
@@ -157,7 +155,7 @@ public class GameDAO_TEST {
     @Test // GOOD TO GO
     public void updateGame() {
         try (Connection c = mysql.createConnection()) {
-            del.deleteAllTables();
+            //del.deleteAllTables();
             GameDTO insertedGame = a.createGameDB(500, "COD1");
             gdao.createGame(insertedGame);
             GameDTO updatedGame = a.createGameDB1(500, "ZOD1");
@@ -268,6 +266,7 @@ public class GameDAO_TEST {
     @Test //GOOD TO GO
     public void deleteGame() {
         try (Connection c = mysql.createConnection()) {
+            //del.deleteAllTables();
             gdao.createGame(a.createGameDB(100, "TEST"));
             assertTrue(gdao.deleteGame(100));
         } catch (SQLException e) {
