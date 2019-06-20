@@ -1,6 +1,6 @@
 var firstImage  = 1;
 var i;
-var images = document.getElementsByClassName("slideImages");
+var img = document.getElementsByClassName("slideImages");
 var counter;
 //The type is load, because we want it to start with the slideshow as soon as someone goes into the website
 window.addEventListener("load",function() {
@@ -26,15 +26,15 @@ function npImage(size){
 
 function displayImage(size){
   //This if statement does so you loop back to the first image, when you press "next", and the else if does the same for the "prev".
-  if (size > images.length) {
+  if (size > img.length) {
     firstImage = 1;
   }
   if (size < 1) {
-    firstImage = images.length;
+    firstImage = img.length;
   }
   //This does so the images changes from not being displayed to be displayed as a "block".
-  for (i = 0; i < images.length; i++) {
-    images[i].style.display = "none";
+  for (i = 0; i < img.length; i++) {
+    img[i].style.display = "none";
   }
-  images[firstImage-1].style.display = "block";
+  img[firstImage-1].style.display = "block";
 }
