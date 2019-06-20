@@ -152,6 +152,10 @@ button{
 }
 /*---------------------Nav-bar END---------------------*/
 /*---------------------Slideshow START---------------------*/
+.slideImages{
+    cursor: pointer;
+}
+
 .top-container{
     width: 60%;
     margin: auto;

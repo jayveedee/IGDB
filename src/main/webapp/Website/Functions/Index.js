@@ -53,9 +53,21 @@ $(document).ready(function () {
                 $("#article"+j+"pic").attr("src", gameList[randomNumber].gameCover);
                 $("#article"+j+"bio").text(gameList[randomNumber].gameBIO);
             }
+
+            var pictureHTMLString = "";
+            for (var j = 0; j < 5; j++) {
+                var randomNumber = Math.floor(Math.random()*gameList.length);
+                pictureHTMLString +='<img id = "'+ gameList[randomNumber].gameID+'" src="'+gameList[randomNumber].gameBG+'" class="slideImages" alt="wow">';
+            }
+            $("#slideShow").html(pictureHTMLString);
         },
         error : function () {
             alert("ajax call failed");
         }
     });
+});
+
+$(document).on("click", ".slideImages", function () {
+    localStorage.setItem("currentGameID", $(this).attr("id"));
+    window.location.href = "articleview.html";
 });
