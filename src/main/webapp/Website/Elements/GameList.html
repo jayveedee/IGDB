@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IGDB - List of Users</title>
+    <title>IGDB - Game List</title>
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
-    <link rel="stylesheet" type="text/css" href="../Stylesheet/UserList.css">
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/GameList.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
@@ -15,13 +15,13 @@
         </div>
         <ul class="navigation-list">
             <div class="navLinks-left">
-                <a id="userList" class="nav-active" href="UserList.html">User List</a>
+                <a id="userList" class="not-active" href="UserList.html">User List</a>
             </div>
             <div class="navLinks-left">
                 <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
             </div>
             <div class="navLinks-left">
-                <a id="gameList" class="not-active" href="GameList.html">Game List</a>
+                <a id="gameList" class="nav-active" href="GameList.html">Game List</a>
             </div>
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
@@ -41,25 +41,40 @@
             </div>
         </ul>
     </nav>
-<!-- ------------------Navbar END------------------ -->
+    <!-- ------------------Navbar END------------------ -->
+    <!-- ------------------ Header container START ------------------ -->
     <div class="container">
-        <div class="UL-H">
-            <h2>
-                Username
-            </h2>
-            <h2 style="float: right;">
-                Remove Ability
-            </h2>
-        </div>
-        <div class="UL-form" id="showUserList">
-            <div class="UL">
-                <div id="sul-1" class="sul-1">
-                    <input name="username" type="text" class="uos-1" id="UserNames" disabled="true" value="">
-                </div>
+        <div class="gameListHeader">
+            <div class="headerLeft">
+                Game Name
+            </div>
+            <div class="headerRight">
+                Release date
+            </div>
+            <div class="headerCenter">
+                Dev
             </div>
         </div>
+        <!-- ------------------ Header container END ------------------ -->
+        <!-- ------------------ Header Content START ------------------ -->
+        <form class="gameListForm" id="" method="post" action="">
+            <div class="contentContainer">
+                <img class="gameCoverImage" src="https://s.pacn.ws/640/un/assassins-creed-rogue-remastered-spanish-cover-551547.7.jpg?pmt2pe">
+                <div class="gameListContent">
+                    <div class="gameListGameName">
+                        Assassin Greed
+                    </div>
+                    <div class="gameListReleaseDate">
+                        11-12-2014
+                    </div>
+                    <div class="gameListDevName">
+                        Ubisoft
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+    <!-- ------------------ Header Content END ------------------ -->
     <script src="../Functions/NavBar.js"></script>
-    <script src="../Functions/UserList.js"></script>
 </body>
 </html>

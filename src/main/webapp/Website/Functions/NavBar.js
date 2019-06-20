@@ -5,7 +5,7 @@ $(document).ready(function () {
         $("#createArticle").css('display', 'none');
         $("#userList").css('display', 'none');
         $("#changeLog").css('display', 'none');
-        $("#searchBar").css('margin-left', '300px');
+        $("#searchBar").css('margin-left', '246px');
         document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
     }else if (username !== null || username === "null") {
         $("#profileBtn").html(username);

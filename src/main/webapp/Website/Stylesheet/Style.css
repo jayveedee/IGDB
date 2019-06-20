@@ -24,6 +24,13 @@ h2{
     background-color: rgba(255,255,255,0.2);
     border-radius: 4px;
 }
+
+button{
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+
+}
 /*---------------------General END---------------------*/
 /*---------------------Nav-bar START---------------------*/
 .standart-nav{
@@ -130,6 +137,18 @@ h2{
 
 #searchBar {
     display: inline;
+}
+
+.searchButton{
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.searchButton:hover{
+    background-color: #cccccc;
+    border: 1px solid #59adff91;
 }
 /*---------------------Nav-bar END---------------------*/
 /*---------------------Slideshow START---------------------*/

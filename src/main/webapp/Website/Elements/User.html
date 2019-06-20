@@ -20,11 +20,14 @@
             <div class="navLinks-left">
                 <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
             </div>
+            <div class="navLinks-left">
+                <a id="gameList" class="not-active" href="GameList.html">Game List</a>
+            </div>
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
                     <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
                         <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" class="searchButton">
                     </form>
                     <datalist id="dataList"></datalist>
                 </div>
@@ -43,24 +46,26 @@
             <h1 style="text-align: center; color: white; font-size: 40px;">User Profile</h1>
             <div class="profile-container">
                 <form id="userInfoForm" method="post" action="/rest/services/user/updateUser">
-                <ul>
-                    <li><p style="margin: 0;">Username:</p></li>
-                    <input name="username" type="text" class="profile-search" id="usernameInput" disabled="true">
-                    <li><p style="margin: 0;">User Roles:</p></li>
-                    <input name="userRoles" type="text" class="profile-search" id="userRoleInput" disabled="true">
-                    <li><p style="margin: 0;">Email:</p></li>
-                    <input name="email" type="email" class="profile-search" disabled="true" id="emailInput">
-                    <li><p style="margin: 0;">Password:</p></li>
-                    <input name="password" type="password" class="profile-search showAndHide" id="showAndHide" disabled="true">
-                    <li><p style="margin: 0;"id="confirmPasswordText">Confirm Password:</p></li>
-                    <input type="password" class="profile-search showAndHide" id="confirmPassword" disabled="true">
-                    <br>
-                    <input type="checkbox" onclick="showPass()">Show Password
                     <div>
-                    <input type="submit" value="submit changes" id="submitChanges" class="submit">
-                    <input type="button" id="changeUserInfoButton" value="Change user info" class="submit">
+                        <ul>
+                            <li><p style="margin: 0;">Username:</p></li>
+                            <input name="username" type="text" class="disabled-profile-search" id="usernameInput" disabled>
+                            <li><p style="margin: 0;">User Roles:</p></li>
+                            <input name="userRoles" type="text" class="disabled-profile-search" id="userRoleInput" disabled>
+                            <li><p style="margin: 0;">Email:</p></li>
+                            <input name="email" type="email" class="profile-search" disabled="true" id="emailInput">
+                            <li><p style="margin: 0;">Password:</p></li>
+                            <input name="password" type="password" class="profile-search showAndHide" id="showAndHide" disabled="true">
+                            <li><p style="margin: 0;"id="confirmPasswordText">Confirm Password:</p></li>
+                            <input type="password" class="profile-search showAndHide" id="confirmPassword" disabled="true">
+                            <br>
+                            <input type="checkbox" onclick="showPass()">Show Password
+                            <div>
+                            <input type="submit" value="submit changes" id="submitChanges" class="submit">
+                            <input type="button" id="changeUserInfoButton" value="Change user info" class="submit">
+                            </div>
+                        </ul>
                     </div>
-                </ul>
                 </form>
             </div>  
             <img alt="*" id="uploadedPicture" src="https://imgur.com/y6rRbDc.png">

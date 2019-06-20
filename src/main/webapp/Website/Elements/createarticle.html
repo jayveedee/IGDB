@@ -21,11 +21,14 @@
             <div class="navLinks-left">
                 <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
             </div>
+            <div class="navLinks-left">
+                <a id="gameList" class="not-active" href="GameList.html">Game List</a>
+            </div>
             <div class="autocomplete" style="display: inline;">
                 <div style="display: inline;">
                     <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
                         <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" class="searchButton">
                     </form>
                     <datalist id="dataList"></datalist>
                 </div>
@@ -255,7 +258,7 @@
         <button class="btn-add-row2" type="button">Add</button>
         <button class ="btn-remove-row2" type="button">Remove</button>
         <div class="element-wrapper2">
-            <div>
+            <div id="element-div1">
                 <select class="row2" id="row2-0">
                     <option selected disabled>Choose a platform</option>
                     <optgroup label="Sony">
