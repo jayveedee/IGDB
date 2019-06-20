@@ -1,5 +1,7 @@
 package Data;
 
+import org.junit.Test;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +46,7 @@ public class GenAccessTestMethods {
         return true;
     }
 
+    @Test
     public void killAllConnections(){
         try {
             mySql.setConnection(mySql.createConnection());

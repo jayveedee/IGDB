@@ -23,7 +23,7 @@ public class RoleDAO_TEST {
     @Test //GOOD TO GO
     public void createRole() {
         try (Connection c = mySql.createConnection()){
-            del.deleteAllTables();
+            //del.deleteAllTables();
             RoleDTO role = new RoleDTO(1,"Admin");
 
             rdao.createRole(role);
@@ -40,7 +40,8 @@ public class RoleDAO_TEST {
     @Test //GOOD TO GO
     public void getRole() {
         try (Connection c = mySql.createConnection()){
-            del.deleteAllTables();
+            //del.deleteAllTables();
+
             RoleDTO role = new RoleDTO(1,"Admin");
             rdao.createRole(role);
 
@@ -57,7 +58,7 @@ public class RoleDAO_TEST {
     @Test // GOOD TO GO
     public void getRoleList() {
         try (Connection c = mySql.createConnection()){
-            del.deleteAllTables();
+            //del.deleteAllTables();
 
             List<RoleDTO> rlist = new ArrayList<>();
             RoleDTO r1 = new RoleDTO(1,"Admin");
@@ -91,7 +92,7 @@ public class RoleDAO_TEST {
     @Test // GOOD TO GO
     public void updateRole() {
         try (Connection c = mySql.createConnection()){
-            del.deleteAllTables();
+            //del.deleteAllTables();
             rdao.deleteRole(1);
 
             RoleDTO role = new RoleDTO(1,"Admin");
@@ -116,18 +117,18 @@ public class RoleDAO_TEST {
     @Test //GOOD TO GO
     public void deleteRole() {
         try (Connection c = mySql.createConnection()){
-            del.deleteAllTables();
+            //del.deleteAllTables();
 
-            RoleDTO role = new RoleDTO(1,"Admin");
+            RoleDTO role = new RoleDTO(88,"Admin");
             rdao.createRole(role);
 
             RoleDTO test = rdao.getRole(role.getRoleID());
 
-            assertEquals(1,test.getRoleID());
+            assertEquals(88,test.getRoleID());
             assertEquals("Admin",test.getRoleNAME());
 
             rdao.deleteRole(test.getRoleID());
-            test = rdao.getRole(1);
+            test = rdao.getRole(88);
 
             assertNull(test.getRoleNAME());
             assertEquals(0, test.getRoleID());
