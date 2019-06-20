@@ -693,7 +693,7 @@ public class GameDAO implements IGameDAO {
         String query3  = "DELETE FROM GenreList WHERE genreGameID = ? ";     String query4 = "DELETE FROM PlatformList WHERE platGameID = ?";
         String query5  = "DELETE FROM TrailerList WHERE trailerGameID = ?";  String query6 = "DELETE FROM PictureList WHERE pictureGameID = ?";
         String query7  = "DELETE FROM PublisherList WHERE pubGameID = ?";    String query8 = "DELETE FROM WriterList WHERE writerGameID = ?";
-        String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";     String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
+        String query9  = "DELETE FROM ActorList WHERE actorGameID = ?";      String query10 = "DELETE FROM CharacterList WHERE charGameID = ?";
         String query11 = "DELETE s.*, m.*, c.* FROM SoundtrackList s, MusicalArtistList m, ComposerList c WHERE ostGameID = ? AND artistID = ostArtistID AND compID = ostComposerID";
         String query14 = "DELETE d.*, p.* FROM DeveloperList d, ParentCompany p WHERE devGameID = ? AND devParentID = parentID";
         String query15 = "DELETE From Game WHERE gameID = ?";
@@ -707,6 +707,7 @@ public class GameDAO implements IGameDAO {
             boolean status = mySql.handleDeleteByID(gameID,query1,mySql) && mySql.handleDeleteByID(gameID,query2,mySql) &&
                                 mySql.handleDeleteByID(gameID,query3,mySql) && mySql.handleDeleteByID(gameID,query4,mySql) &&
                                     mySql.handleDeleteByID(gameID,query5,mySql) && mySql.handleDeleteByID(gameID,query6,mySql);
+            mySql.getConnection().commit();
             return status;
         } catch (SQLException e) {
             e.printStackTrace();
