@@ -70,8 +70,12 @@ $("#searchBar").submit(function (event) {
         type : "post",
         url : "/rest/services/game/getGameID/" + gameName,
         success : function (data) {
-            localStorage.setItem("currentGameID",data);
-            window.location.href = "articleview.html"
+            if (data = "0"){
+                alert("This game does not exist, please write the complete game name");
+            }else {
+                localStorage.setItem("currentGameID",data);
+                window.location.href = "articleview.html"
+            }
         },
         error : function () {
             alert("Couldn't search for game, ajax not successful, try again");
