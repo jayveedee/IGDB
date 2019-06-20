@@ -119,7 +119,8 @@
     display: flex;
 }
 .infowrapper{
-    display: inline;
+    margin-left: inherit;
+    display: inline-block;
 }
 
 .actorslist{

@@ -330,7 +330,7 @@ function getPlatforms(id){
     var platformList = [];
     row2Counter = 0;
     while ($("#row2-" + row2Counter).val() !== undefined) {
-        if ($("#row2-" + row2Counter).val() === ""){
+        if ($("#row2-" + row2Counter).val() === null){
         }else {
             var platform={
                 platID : generateRandomID(),
@@ -428,7 +428,7 @@ function getGenres(id){
     var genreList = [];
     row3Counter = 0;
     while ($("#row3-" + row3Counter).val() !== undefined) {
-        if ($("#row3-" + row3Counter).val() === ""){
+        if ($("#row3-" + row3Counter).val() === null){
         }else {
             var genre = {
                 genID : generateRandomID(),
@@ -451,48 +451,22 @@ $("#testButton").click(function () {
     alert(JSON.stringify(artists[1].artNAME));
 });
 
+$(document).ready(function () {
+    alert("sker der G");
 
-//FØRSTE VERSION AF CREATE GAME FUNKTIONALITETEN. SAT PÅ PAUSE FORDI DET VAR KOMPLICERET
-/*$("#createGameForm").submit(function (event) {
-    event.preventDefault();
-    var data = $(this).serializeArray();
-    var newArray = new Array();
-    newArray.push("hey");
-    newArray.push("hi");
-    //var newArraySerialized =JSON.stringify(newArray) ;
-    //newArraySerialized.push({name : "newValueFromNewArray", value : "OMG BRO Hvis Det Her virker så køber jeg en lotto plade"});
-    data.push({name : "newValue", value : "detHerErDenNyeValueOgDetKanVæreSejtHvisDetteVirkede"});
-    data.push({name : "list", value : newArray});
-    //data = data.concat(newArraySerialized);
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $.param(data),
-        success : function (data) {
-            alert("success");
-        },
-        error : function () {
-            alert("error");
-        }
-    });
-});*/
+   if ($("#row6-0").val() === ""){
+       alert('et tomt composer felt er lig med ""');
+   }
+   
+   if ($("#row2-0").val() === " "){
+       alert('et tomt platform felt er lig med " " altså med et mellemrum')
+   }
 
-/*$("#registerForm").submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-        type : $(this).attr("method"),
-        url : $(this).attr("action"),
-        data : $(this).serialize(),
-        success : function (data) {
-            if (data == "true"){
-                alert("Your new account has been created successfully!");
-                location.href = "Login_Signup.html"
-            }else{
-                alert("Couldn't create user. This username might be taken. Try again.")
-            }
-        },
-        error : function () {
-            alert("Couldn't create user, try again");
-        }
-    });
-});*/
+    if ($("#row2-0").val() === null){
+        alert('et tomt platform felt er lig med null')
+    }
+
+    if ($("#row2-0").val() === "null"){
+        alert('et tomt platform felt er lig med "null " altså med null-string')
+    }
+});

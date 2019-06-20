@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var username = localStorage.getItem("username");
     if (username === null || username === "null"){
         $("#profileBtn").css('display', 'none');
