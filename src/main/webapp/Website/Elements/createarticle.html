@@ -68,8 +68,8 @@
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Game Trailer</h5>
-                        <button class="btn-add-row8" type="button">Add</button>
-                        <button class="btn-remove-row8" type="button">Remove</button>
+                        <button class="btn-add-row8 addBtn" type="button">Add</button>
+                        <button class="btn-remove-row8 removeBtn" type="button">Remove</button>
                         <div class="element-wrapper8">
                             <div >
                                 <input class="row8 media-input" id="row8-0" type="text" placeholder="Insert URL of game trailer">
@@ -78,8 +78,8 @@
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Picture List</h5>
-                        <button class="btn-add-row9" type="button">Add</button>
-                        <button class="btn-remove-row9" type="button">Remove</button>
+                        <button class="btn-add-row9 addBtn" type="button">Add</button>
+                        <button class="btn-remove-row9 removeBtn" type="button">Remove</button>
                         <div class="element-wrapper9">
                             <div>
                                 <input class="row9 media-input" id="row9-0" type="text" placeholder="Insert URL of pictures">
@@ -103,8 +103,8 @@
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Musical Artists</h5>
-                        <button class="btn-add-row5" type="button">Add</button>
-                        <button class ="btn-remove-row5" type="button">Remove</button>
+                        <button class="btn-add-row5 addBtn" type="button">Add</button>
+                        <button class ="btn-remove-row5 removeBtn" type="button">Remove</button>
                         <div class="element-wrapper5">
                             <div>
                                 <input id="row5name-0" class="row5name media-input" type="text" placeholder="Insert name of musical artist">
@@ -114,8 +114,6 @@
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Composer</h5>
-                        <!--<button class="btn-add-row6" type="button">Add</button>
-                        //<button class ="btn-remove-row6">Remove</button>-->
                         <div class="element-wrapper6">
                             <div>
                                 <input id="row6-0" class="row6 media-input" type="text" placeholder="Insert name of composer">
@@ -124,8 +122,8 @@
                     </li>
                     <li class="media-list">
                         <h5 class="media-headers">Writers</h5>
-                        <button class="btn-add-row7" type="button">Add</button>
-                        <button class ="btn-remove-row7" type="button">Remove</button>
+                        <button class="btn-add-row7 addBtn" type="button">Add</button>
+                        <button class ="btn-remove-row7 removeBtn" type="button">Remove</button>
                         <div class ="element-wrapper7">
                             <div>
                                 <input id="row7-0" class="row7 media-input" type="text" placeholder="Insert name of writers">
@@ -211,8 +209,8 @@
 
             <div id="actorInput" class="container">
                 <h3 id="headeractor">Actors</h3>
-                <button class="btn-add-row" type="button">Add</button>
-                <button class ="btn-remove-row" type="button">Remove</button>
+                <button class="btn-add-row addBtn" type="button">Add</button>
+                <button class ="btn-remove-row removeBtn" type="button">Remove</button>
                 <div class="element-wrapper">
                     <div>
                         <h5 class="media-headers">Name of Actor</h5>
@@ -227,8 +225,8 @@
 
             <div id="charInput" class="container">
                 <h3 class="introheader">Ingame Characters</h3>
-                <button id="btn11" class="add-button" type="button">Add</button>
-                <button class="btn-remove-row11" type="button">Remove</button>
+                <button id="btn11" class="add-button addBtn" type="button">Add</button>
+                <button class="btn-remove-row11 removeBtn" type="button">Remove</button>
                 <div class="element-wrapper11">
                     <div class="list-rows">
                         <ul>
@@ -247,8 +245,8 @@
 
             <div id="platformInput" class="container">
                 <h3 id="headerplatform">Eligible Game Platforms</h3>
-                <button class="btn-add-row2" type="button">Add</button>
-                <button class ="btn-remove-row2" type="button">Remove</button>
+                <button class="btn-add-row2 addBtn" type="button">Add</button>
+                <button class ="btn-remove-row2 removeBtn" type="button">Remove</button>
                 <div class="element-wrapper2">
                     <div id="element-div1">
                         <select class="row2" id="row2-0">
@@ -258,7 +256,8 @@
                                 <option value="PlayStation 2">PlayStation 2</option>
                                 <option value="PlayStation 3">PlayStation 3</option>
                                 <option value="PlayStation 4">PlayStation 4</option>
-                                <option value="PlayStation Portable">PlayStation Portable</option>
+                                <option value="PlayStation 5">PlayStation 5</option>
+                                <option value="PlayStation Portable">PlayStation Portable(PSP)</option>
                                 <option value="PlayStation Vita">PlayStation Vita</option>
                             </optgroup>
                             <optgroup label="Microsoft">
@@ -267,6 +266,28 @@
                                 <option value="Xbox One">Xbox One</option>
                                 <option value="Xbox Scarlett">Xbox Scarlett</option>
                             </optgroup>
+                            <optgroup label="Computer">
+                                <option value="Windows PC">Windows PC</option>
+                                <option value="Mac OS">Mac OS</option>
+                                <option value="Linux">Linux</option>
+                            </optgroup>
+                            <optgroup label="Mobile">
+                                <option value="Andriod">Android</option>
+                                <option value="iOS">iOS</option>
+                            </optgroup>
+                            <optgroup label="Nintendo">
+                                <option value="Nintendo Entertainment System">Nintendo Entertainment System(NES)</option>
+                                <option value="Super Nintendo Entertainment System">Super Nintendo Entertainment System(SNES)</option>
+                                <option value="Wii">Wii</option>
+                                <option value="Nintendo Switch">Nintendo Switch</option>
+                                <option value="Game Boy">Game Boy</option>
+                                <option value="Game Boy Color">Game Boy Color</option>
+                                <option value="Game Boy Advance SP">Game Boy Advance SP</option>
+                                <option value="Nintendo DS">Nintendo DS</option>
+                            </optgroup>
+                            <optgroup label="Atari">
+                                <option value="Atari2600">Atari2600</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
@@ -274,8 +295,8 @@
 
             <div id="genreInput" class="container">
                 <h3 id="headergenre">Game genre</h3>
-                <button class="btn-add-row3" type="button">Add</button>
-                <button class ="btn-remove-row3" type="button">Remove</button>
+                <button class="btn-add-row3 addBtn" type="button">Add</button>
+                <button class ="btn-remove-row3 removeBtn" type="button">Remove</button>
 
         <div class="element-wrapper3">
             <div>

@@ -22,7 +22,11 @@
     margin: 0px 0px 0px 100px;
     width: 100%;
     max-width: 350px;
+    border: 0;
+    outline: none;
 }
+
+
 
 /*!--------------------------------Release date---------------------------------------!*/
 #headerRD{
@@ -43,6 +47,8 @@
     padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 0px 0px 20px 100px;
+    border: 0;
+    outline: none;
 }
 
 /*!--------------------------------Media details--------------------------------------!*/
@@ -78,13 +84,15 @@
 }
 
 .media-input{
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 5px 0px 5px 20px;
     background-color: #cccccc;
     margin: 0px 0px 5px 100px;
     width: 100%;
     max-width: 350px;
     display: block !important;
+    border: 0;
+    outline: none;
 }
 
 .btn-add-row8{
@@ -301,16 +309,16 @@ ul{
     padding: 0px 0px 10px 0px;
     margin: 0px 0px 5px 0px;
     display: block !important;
+    border-radius: 4px;
+    border: 0;
 }
 
 .row3{
     padding: 0px 0px 10px 0px;
     margin: 0px 0px 5px 0px;
     display: block !important;
-}
-
-#element-div1{
-    display: inline-block;
+    border-radius: 4px;
+    border: 0;
 }
 
 .btn-add-row{
@@ -342,6 +350,29 @@ ul{
 
 .element-wrapper11{
     margin: 0px 0px 0px 0px;
+}
+
+button{
+    float: right;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.addBtn {
+    background: #00a000;
+}
+
+.addBtn:hover{
+    background: lightgreen;
+}
+
+.removeBtn{
+    background: coral;
+}
+
+.removeBtn:hover{
+    background: orangered;
 }
 
 /*!--------------------------------Character------------------------------------------------!*/
@@ -379,5 +410,15 @@ ul{
 
 /*!--------------------------------Game Description--------------------------------!*/
 #save-article{
-    padding: 10px 10px 10px 10px;
+    background: rgba(30,144,255,0.6);
+    border: 0;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#save-article:hover{
+    background: #1E90FF;
 }
