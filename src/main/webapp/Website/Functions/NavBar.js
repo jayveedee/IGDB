@@ -70,7 +70,6 @@ $("#searchBar").submit(function (event) {
         type : "post",
         url : "/rest/services/game/getGameID/" + gameName,
         success : function (data) {
-            alert(data);
             if (data === "0"){
                 alert("This game does not exist, please write the complete game name");
             }else {
