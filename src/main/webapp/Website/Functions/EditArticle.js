@@ -321,6 +321,8 @@ $(document).ready(function () {
             for (var i = 0; i < musicArtistList.length - 1; i++) {
                 increaseRow5();
             }
+
+            //oki
             for (var i = 0; i < musicArtistList.length; i++) {
                 $("#row5name-"+i).val(musicArtistList[i].artNAME);
                 $("#row5URL-"+i).val(musicArtistList[i].artPFP);
