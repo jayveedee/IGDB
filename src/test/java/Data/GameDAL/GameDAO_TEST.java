@@ -167,6 +167,7 @@ public class GameDAO_TEST {
             List<GameDTO> dbList = gdao.getGameList();
             for (int i = 0; i < dbList.size(); i++) {
                 if (dbList.get(i).getGameID() == 8787 || dbList.get(i).getGameID() == 8585){
+                    System.out.println("_____GAME______");
                     System.out.println("gameID: " + dbList.get(i).getGameID());
                     System.out.println("gameNAME: " + dbList.get(i).getGameNAME());
                     System.out.println("gameRD: " + dbList.get(i).getGameRELEASEDATE());
