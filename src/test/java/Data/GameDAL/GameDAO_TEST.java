@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameDAO_TEST {
@@ -147,6 +148,58 @@ public class GameDAO_TEST {
                 assertEquals(testGame1.getGamePLAT().get(i).getPlatGAME(), testGame1DB.getGamePLAT().get(i).getPlatGAME());
                 assertEquals(testGame1.getGamePLAT().get(i).getPlatCREATED(), testGame1DB.getGamePLAT().get(i).getPlatCREATED());
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getGameList(){
+        try (Connection c = mysql.createConnection()){
+            //del.deleteAllTables();
+            GameDTO g1 = a.createGameDB(8787, "COD1");
+            GameDTO g2 = a.createGameDB(8585, "COD2");
+            gdao.createGame(g1);
+            gdao.createGame(g2);
+            List<GameDTO> testList = new ArrayList<>();
+            testList.add(g1);
+            testList.add(g2);
+            List<GameDTO> dbList = gdao.getGameList();
+            for (int i = 0; i < dbList.size(); i++) {
+                if (dbList.get(i).getGameID() == 8787 || dbList.get(i).getGameID() == 8585){
+                    System.out.println("gameID: " + dbList.get(i).getGameID());
+                    System.out.println("gameNAME: " + dbList.get(i).getGameNAME());
+                    System.out.println("gameRD: " + dbList.get(i).getGameRELEASEDATE());
+                    System.out.println("gameBIO: " + dbList.get(i).getGameBIO());
+                    System.out.println("gameCOVER: " + dbList.get(i).getGameCover());
+                    System.out.println("gameBG: " + dbList.get(i).getGameBG());
+                    System.out.println("______DEV______");
+                    System.out.println("devID: " + dbList.get(i).getGameDEV().getDevID());
+                    System.out.println("devCOUNTRY: " + dbList.get(i).getGameDEV().getDevCOUNTRY());
+                    System.out.println("devCREATED: " + dbList.get(i).getGameDEV().getDevCREATED());
+                    System.out.println("devNAME: " + dbList.get(i).getGameDEV().getDevNAME());
+                    System.out.println("devGameID: " + dbList.get(i).getGameDEV().getDevGAME());
+                }
+            }
+            /*
+            assertEquals(testList.size(),dbList.size());
+            for (int i = 0; i < testList.size(); i++) {
+                assertEquals(testList.get(i).getGameDEV().getDevID(),dbList.get(i).getGameDEV().getDevID());
+                assertEquals(testList.get(i).getGameDEV().getDevNAME(),dbList.get(i).getGameDEV().getDevNAME());
+                assertEquals(testList.get(i).getGameDEV().getDevCOUNTRY(),dbList.get(i).getGameDEV().getDevCOUNTRY());
+                assertEquals(testList.get(i).getGameDEV().getDevCREATED(),dbList.get(i).getGameDEV().getDevCREATED());
+                assertEquals(testList.get(i).getGameDEV().getDevGAME(),dbList.get(i).getGameDEV().getDevGAME());
+
+                assertEquals(testList.get(i).getGameID(),dbList.get(i).getGameID());
+                assertEquals(testList.get(i).getGameBIO(),dbList.get(i).getGameBIO());
+                assertEquals(testList.get(i).getGameRELEASEDATE(),dbList.get(i).getGameRELEASEDATE());
+                assertEquals(testList.get(i).getGameCover(),dbList.get(i).getGameCover());
+                assertEquals(testList.get(i).getGameNAME(),dbList.get(i).getGameNAME());
+                assertEquals(testList.get(i).getGameBG(),dbList.get(i).getGameBG());
+            }*/
+            gdao.deleteGame(g1.getGameID());
+            gdao.deleteGame(g2.getGameID());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
