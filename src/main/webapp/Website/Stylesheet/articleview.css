@@ -205,3 +205,11 @@ textarea{
 .container{
     padding: 0;
 }
+
+#nextBtn2{
+    right: 2%;
+}
+
+#prevBtn2{
+    left: 2%;
+}

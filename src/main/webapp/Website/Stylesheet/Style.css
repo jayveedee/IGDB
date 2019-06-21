@@ -1,15 +1,19 @@
 /*---------------------General START---------------------*/
 body{
-    margin:10px;
-    padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     background-image: url("https://imgur.com/0WPs2In.png");
-    z-index: -999999;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-repeat: no-repeat;
+}
+
+.container{
+    padding: 20px;
+    margin: 20px 200px 0 200px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
 }
 
 h2{
@@ -18,139 +22,12 @@ h2{
     margin: 20px;
 }
 
-.container{
-    padding: 20px;
-    margin: 20px 200px 0px 200px;
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 4px;
-}
-
 button{
     border: 0;
-    cursor: pointer;
     outline: 0;
-
+    cursor: pointer;
 }
 /*---------------------General END---------------------*/
-/*---------------------Nav-bar START---------------------*/
-.standart-nav{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    border-radius: 15px;
-}
-
-.navigation-list{
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-}
-
-.navigation-list li{
-    list-style-type: none;
-    display: inline-block;
-}
-
-.not-active {
-    padding: 20px;
-    border-radius: 14px;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-
-}
-.not-active:hover{
-    background: #59adff91;
-}
-
-.logo{
-    padding: 0px 50px;
-    color: #FFFFFF;
-    font-size: 22px;
-}
-
-.nav-active{
-    background: #59adff91;
-    padding: 20px;
-    border-radius: 14px;
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.nav-login{
-    float:right;
-    margin-right: 20px;
-    margin-top: 6px;
-}
-.interactive-logo{
-    color:white;
-    text-decoration: none;
-}
-
-.navLinks-right{
-    float: right;
-    margin-top: 6px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.navLinks-left{
-    margin-top: 6px;
-    margin-right: 10px;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.createArticle{
-    background-color: coral;
-    padding: 20px;
-    border-radius: 14px;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-}
-
-.createArticle:hover{
-    background-color: rgb(252, 96, 40);
-}
-
-.searchBar{
-    font: inherit;
-    width: 30%;
-    border: 0;
-    height: 1.8em;
-    padding: 6px 0 7px 10px;
-    margin: 10px 0px 0px 180px;
-    box-sizing: content-box;
-    background-color: #fafafa;
-    -webkit-tap-highlight-color: transparent;
-    border-radius: 4px;
-}
-
-.autocomplete{
-    position: relative;
-    display: inline-block;
-}
-
-#searchBar {
-    display: inline;
-}
-
-.searchButton{
-    padding: 8px;
-    border: 1px solid;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.searchButton:hover{
-    background-color: #cccccc;
-    border: 1px solid #59adff91;
-}
-/*---------------------Nav-bar END---------------------*/
 /*---------------------Slideshow START---------------------*/
 .slideImages{
     cursor: pointer;
@@ -198,25 +75,15 @@ button{
     left: 2%;
 }
 
-#prevBtn2{
-    left: 2%;
-}
-
 #nextBtn{
     right: 2%;
 }
-
-#nextBtn2{
-    right: 2%;
-}
-
-
 /*---------------------Slideshow END---------------------*/
-
 .article-container{
     display: flex;
     position: center;
 }
+
 .article{
     position: center;
     background-color: rgba(0,0,0,0.2);
@@ -226,6 +93,7 @@ button{
     border: 5px solid cornflowerblue;
     border-radius: 15px;
 }
+
 .one h3{
     color: rgba(255,255,255,1);
     margin: 20px 0px 0px 30px;
