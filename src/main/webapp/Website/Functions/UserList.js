@@ -68,6 +68,13 @@ $(document).ready(function () {
 });
 
 function removeUserPermission(object) {
+    for (var i = 0; i < object.userROLEs.length; i++) {
+        if (object.userROLEs[i].roleNAME === "Administrator") {
+            alert("you cannot ban an administrator.");
+            return;
+        }
+    }
+
     var Role ={
         roleID : 2,
         roleNAME : "User"
@@ -104,6 +111,13 @@ function removeUserPermission(object) {
 }
 
 function promotoUserPermissions(object) {
+    for (var i = 0; i < object.userROLEs.length; i++) {
+        if (object.userROLEs[i].roleNAME === "Administrator") {
+            alert("you cannot premote an administrator.");
+            return;
+        }
+    }
+
     var Role ={
         roleID : 2,
         roleNAME : "User"
