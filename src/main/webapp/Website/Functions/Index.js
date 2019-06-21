@@ -46,17 +46,46 @@ $(document).ready(function () {
         success : function (data) {
             var jsonObject = JSON.parse(data);
             var gameList = jsonObject.gameList;
-
+            var inList = false;
+            var numberList = [];
+            var randomNumber = 0;
             for (var j = 1; j <= 4; j++) {
-              var randomNumber = Math.floor(Math.random()*gameList.length);
+              do {
+                inList = false;
+                randomNumber = Math.floor(Math.random()*gameList.length);
+                  for (var k = 0; k < numberList.length; k++) {
+                      if (randomNumber === numberList[k]) {
+                        inList = true;
+                      }
+                  }
+              }while (inList) ;
+
+              numberList.push(randomNumber);
+
+              //var randomNumber = Math.floor(Math.random()*gameList.length);
               $("#article"+j+"name").text(gameList[randomNumber].gameNAME);
               $("#article"+j+"pic").attr("src", gameList[randomNumber].gameCover);
               $("#article"+j+"bio").text(gameList[randomNumber].gameBIO);
             }
 
+            inList = false;
+            numberList = [];
+            randomNumber = 0;
+
             var pictureHTMLString = "";
             for (var j = 0; j < 5; j++) {
-              var randomNumber = Math.floor(Math.random()*gameList.length);
+              do{
+                inList = false;
+                randomNumber = Math.floor(Math.random()*gameList.length);
+                  for (var k = 0; k < numberList.length; k++) {
+                      if (randomNumber === numberList[k]) {
+                        inList = true;
+                      }
+                  }
+              }while (inList) ;
+
+              numberList.push(randomNumber);
+              //var randomNumber = Math.floor(Math.random()*gameList.length);
               pictureHTMLString +='<img id = "'+ gameList[randomNumber].gameID+'" src="'+gameList[randomNumber].gameBG+'" class="slideImages" alt="wow">';
             }
             $("#slideShow").html(pictureHTMLString);
