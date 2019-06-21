@@ -6,7 +6,6 @@ $(document).ready(function () {
         type : "post",
         url : action,
         success : function (data) {
-            // alert("hola!");
             var object = JSON.parse(data);
             var email = object.userEMAIL;
             var password = object.userPASS;

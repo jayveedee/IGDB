@@ -154,8 +154,6 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             answer = service.removeUserPermissions(userDTO);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
