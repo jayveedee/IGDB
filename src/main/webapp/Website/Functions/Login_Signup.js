@@ -21,10 +21,10 @@ $(function () {
 
  //This function is checking if the password and password-confirm is the same
  $(function () {
-    $(".button").click(function () {
+    $("#regi_submit").click(function () {
         var password = $("#pass_txt").val();
         var confirmPassword = $("#confirm_txt").val();
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             alert("Password is not the same");
             return false;
         }
