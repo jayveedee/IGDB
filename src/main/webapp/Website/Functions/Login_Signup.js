@@ -65,7 +65,6 @@ $("#loginForm").submit(function (event) {
             }else if(userObject.userNAME === "passwordIsWrong"){
                 alert("Could not log in. Password is wrong")
             } else{
-                //alert(JSON.stringify(userObject));
                 localStorage.setItem("username", userObject.userNAME);
                 localStorage.setItem("currentUser", JSON.stringify(userObject));
                 location.href = "Index.html";
@@ -76,3 +75,7 @@ $("#loginForm").submit(function (event) {
         }
     });
 });
+
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)

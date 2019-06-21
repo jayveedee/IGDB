@@ -46,12 +46,10 @@ function loadAddresses() {
         type: "post",
         url: action,
         success: function (data) {
-            //alert(data);
             var object = JSON.parse(data);
             var list = object.gameNames;
             var options = "";
             for (var i = 0; i < list.length; i++) {
-                //alert(list[i]);
                 options+='<option value="'+list[i]+'">';
             }
             $('#dataList').html(options);
@@ -121,6 +119,9 @@ function checkPermissions(){
         permissions = "Edit Games";
         return permissions;
     }
-
     return permissions;
 }
+
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)

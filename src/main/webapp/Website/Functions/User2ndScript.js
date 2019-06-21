@@ -6,7 +6,6 @@ $(document).ready(function () {
         type : "post",
         url : action,
         success : function (data) {
-            // alert("hola!");
             var object = JSON.parse(data);
             var email = object.userEMAIL;
             var password = object.userPASS;
@@ -19,7 +18,6 @@ $(document).ready(function () {
                     roleString += ", " + roleList[i].roleNAME;
                 }
             }
-
             $("#emailInput").val(email);
             $("#showAndHide").val(password);
             $("#userRoleInput").val(roleString);
@@ -45,12 +43,6 @@ $("#changeUserInfoButton").click(function () {
     $("#emailInput").attr("disabled",false);
     $("#confirmPassword").attr("disabled",false);
 });
-
-/*$("#submitChanges").click(function () {
-    $("#confirmPassword").css("display","none");
-    $("#submitChanges").css("display", "none");
-    $("#changeUserInfoButton").css("display", "inline");
-});*/
 
 $("#userInfoForm").submit(function (event) {
     event.preventDefault();
@@ -83,20 +75,6 @@ $("#userInfoForm").submit(function (event) {
     }
 });
 
-
-
-
-
-    /*
-    var username = localStorage.getItem("username");
-    if (username === null || username === "null"){
-        $("#profileBtn").css('display', 'none');
-        $("#createArticle").css('display', 'none');
-        document.getElementById("loginRegisterButton").innerHTML = "Login/Registrer";
-    }else if (username !== null || username === "null") {
-        $("#profileBtn").html(username);
-        $("#profileBtn").css('display', 'inline');
-        $("#createArticle").css('display', 'inline');
-        document.getElementById("loginRegisterButton").innerHTML = "Logout";
-    }*/
-
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)
