@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
     <link rel="stylesheet" type="text/css" href="../Stylesheet/ArticleInStyle.css">
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"></script>
-
 </head>
 <body>
 <!-- ------------------Navbar START------------------ -->
@@ -43,11 +42,9 @@
         </ul>
     </nav>
 <!-- ------------------Navbar END------------------ -->
-
     <form id="createGameForm" method="post" action="/rest/services/game/createGame">
         <div id="container" class="container">
             <h1 id="headerarticle">Create a Game</h1>
-
             <div id="titleInput" class="container">
                 <h3 id="headertitle">Title</h3>
                 <input id="titlefield" type="text" placeholder="Insert the title" name="titleField">
@@ -297,94 +294,92 @@
                 <h3 id="headergenre">Game genre</h3>
                 <button class="btn-add-row3 addBtn" type="button">Add</button>
                 <button class ="btn-remove-row3 removeBtn" type="button">Remove</button>
-
-        <div class="element-wrapper3">
-            <div>
-                <select class="row3" id="row3-0">
-                    <option selected disabled>Choose a genre</option>
-                    <optgroup label="Action">
-                        <option value="Platform">Platform</option>
-                        <option value="Shooter">Shooter</option>
-                        <option value="Fighting">Fighting</option>
-                        <option value="Beat 'em up">Beat 'em up</option>
-                        <option value="Stealth">Stealth</option>
-                        <option value="Survival">Survival</option>
-                        <option value="Rythm">Rythm</option>
-                        <option value="">Action</option>
-                    </optgroup>
-                    <optgroup label="Action-Adventure">
-                        <option value="Survival horror">Survival horror</option>
-                        <option value="Metroidvania">Metroidvania</option>
-                        <option value="Action-Adventure">Action-Adventure</option>
-                    </optgroup>
-                    <optgroup label="Adventure">
-                        <option value="Text Adventures">Text Adventures</option>
-                        <option value="Graphic Adventures">Graphic Adventures</option>
-                        <option value="Visual Novels">Visual Novels</option>
-                        <option value="Interactive Movie">Interactive Movie</option>
-                        <option value="Real-Time 3D">Real-Time 3D</option>
-                        <option value="Adventure">Adventure</option>
-                    </optgroup>
-                    <optgroup label="Role-Playing">
-                        <option value="Action RPG">Action RPG</option>
-                        <option value="MMORPG">MMORPG</option>
-                        <option value="Rougelike">Roguelike</option>
-                        <option value="Tactical RPG">Tactical RPG</option>
-                        <option value="Sandbox RPG">Sandbox RPG</option>
-                        <option value="First-person party-based RPG">First-person party-based RPG</option>
-                        <option value="Cultural Differences">Cultural differences</option>
-                        <option value="Choices">Choices</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Role-playing">Role-playing</option>
-                    </optgroup>
-                    <optgroup label="Simulation">
-                        <option value="Construction and management simulation">Construction and Management Simulation</option>
-                        <option value="Life Simulation">Life Simulation</option>
-                        <option value="Vehicle Simulation">Vehicle Simulation</option>
-                        <option value="Simulation">Simulation</option>
-                    </optgroup>
-                    <optgroup label="Strategy">
-                        <option value="4X">4X</option>
-                        <option value="Artillery">Artillery</option>
-                        <option value="Real-time strategy">Real-time strategy</option>
-                        <option value="Real-time tacticts">Real-time tacticts</option>
-                        <option value="MOBA">MOBA</option>
-                        <option value="Tower Defense">Tower Defense</option>
-                        <option value="Turn-based strategy">Turn-based strategy</option>
-                        <option value="Turn-based tactics">Turn-based tactics</option>
-                        <option value="Wargame">Wargame</option>
-                        <option value="Grand Strategy Wargame">Grand Strategy Wargame</option>
-                        <option value="Strategy">Strategy</option>
-                    </optgroup>
-                    <optgroup label="Sports">
-                        <option value="Racing">Racing</option>
-                        <option value="Team Sports">Team Sports</option>
-                        <option value="Competitive">Competitive</option>
-                        <option value="Sports-based fighting">Sports-based fighting</option>
-                        <option value="Sports Game">Sports Game</option>
-                    </optgroup>
-                    <optgroup label="Puzzle">
-                        <option value="Logic">Logic</option>
-                        <option value="Trivia">Trivia</option>
-                        <option value="Puzzle">Puzzle</option>
-                    </optgroup>
-                    <optgroup label="Idle Games">
-                        <option value="Idle">Idle</option>
-                        <option value="Casual">Casual</option>
-                        <option value="Party">Party</option>
-                        <option value="Programming">Programming</option>
-                        <option value="Board/Cards">Board/Cards</option>
-                        <option value="MMO">MMO</option>
-                        <option value="Advergame">Advergame</option>
-                        <option value="Art">Art</option>
-                        <option value="Educational">Educational</option>
-                        <option value="Exergame">Exergame</option>
-                    </optgroup>
-                </select>
-            </div>
-        </div>
-    </div>
-
+                    <div class="element-wrapper3">
+                        <div>
+                            <select class="row3" id="row3-0">
+                                <option selected disabled>Choose a genre</option>
+                                <optgroup label="Action">
+                                    <option value="Platform">Platform</option>
+                                    <option value="Shooter">Shooter</option>
+                                    <option value="Fighting">Fighting</option>
+                                    <option value="Beat 'em up">Beat 'em up</option>
+                                    <option value="Stealth">Stealth</option>
+                                    <option value="Survival">Survival</option>
+                                    <option value="Rythm">Rythm</option>
+                                    <option value="">Action</option>
+                                </optgroup>
+                                <optgroup label="Action-Adventure">
+                                    <option value="Survival horror">Survival horror</option>
+                                    <option value="Metroidvania">Metroidvania</option>
+                                    <option value="Action-Adventure">Action-Adventure</option>
+                                </optgroup>
+                                <optgroup label="Adventure">
+                                    <option value="Text Adventures">Text Adventures</option>
+                                    <option value="Graphic Adventures">Graphic Adventures</option>
+                                    <option value="Visual Novels">Visual Novels</option>
+                                    <option value="Interactive Movie">Interactive Movie</option>
+                                    <option value="Real-Time 3D">Real-Time 3D</option>
+                                    <option value="Adventure">Adventure</option>
+                                </optgroup>
+                                <optgroup label="Role-Playing">
+                                    <option value="Action RPG">Action RPG</option>
+                                    <option value="MMORPG">MMORPG</option>
+                                    <option value="Rougelike">Roguelike</option>
+                                    <option value="Tactical RPG">Tactical RPG</option>
+                                    <option value="Sandbox RPG">Sandbox RPG</option>
+                                    <option value="First-person party-based RPG">First-person party-based RPG</option>
+                                    <option value="Cultural Differences">Cultural differences</option>
+                                    <option value="Choices">Choices</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Role-playing">Role-playing</option>
+                                </optgroup>
+                                <optgroup label="Simulation">
+                                    <option value="Construction and management simulation">Construction and Management Simulation</option>
+                                    <option value="Life Simulation">Life Simulation</option>
+                                    <option value="Vehicle Simulation">Vehicle Simulation</option>
+                                    <option value="Simulation">Simulation</option>
+                                </optgroup>
+                                <optgroup label="Strategy">
+                                    <option value="4X">4X</option>
+                                    <option value="Artillery">Artillery</option>
+                                    <option value="Real-time strategy">Real-time strategy</option>
+                                    <option value="Real-time tacticts">Real-time tacticts</option>
+                                    <option value="MOBA">MOBA</option>
+                                    <option value="Tower Defense">Tower Defense</option>
+                                    <option value="Turn-based strategy">Turn-based strategy</option>
+                                    <option value="Turn-based tactics">Turn-based tactics</option>
+                                    <option value="Wargame">Wargame</option>
+                                    <option value="Grand Strategy Wargame">Grand Strategy Wargame</option>
+                                    <option value="Strategy">Strategy</option>
+                                </optgroup>
+                                <optgroup label="Sports">
+                                    <option value="Racing">Racing</option>
+                                    <option value="Team Sports">Team Sports</option>
+                                    <option value="Competitive">Competitive</option>
+                                    <option value="Sports-based fighting">Sports-based fighting</option>
+                                    <option value="Sports Game">Sports Game</option>
+                                </optgroup>
+                                <optgroup label="Puzzle">
+                                    <option value="Logic">Logic</option>
+                                    <option value="Trivia">Trivia</option>
+                                    <option value="Puzzle">Puzzle</option>
+                                </optgroup>
+                                <optgroup label="Idle Games">
+                                    <option value="Idle">Idle</option>
+                                    <option value="Casual">Casual</option>
+                                    <option value="Party">Party</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="Board/Cards">Board/Cards</option>
+                                    <option value="MMO">MMO</option>
+                                    <option value="Advergame">Advergame</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Educational">Educational</option>
+                                    <option value="Exergame">Exergame</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             <div id="gamedescInput" class="container">
                 <h3 id="headergameDesc">Game Description</h3>
                 <textarea id="gameDescfield" rows = "10" name="gameDescription"></textarea>
