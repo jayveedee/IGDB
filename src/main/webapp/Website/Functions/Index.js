@@ -48,16 +48,16 @@ $(document).ready(function () {
             var gameList = jsonObject.gameList;
 
             for (var j = 1; j <= 4; j++) {
-                var randomNumber = Math.floor(Math.random()*gameList.length);
-                $("#article"+j+"name").text(gameList[randomNumber].gameNAME);
-                $("#article"+j+"pic").attr("src", gameList[randomNumber].gameCover);
-                $("#article"+j+"bio").text(gameList[randomNumber].gameBIO);
+              var randomNumber = Math.floor(Math.random()*gameList.length);
+              $("#article"+j+"name").text(gameList[randomNumber].gameNAME);
+              $("#article"+j+"pic").attr("src", gameList[randomNumber].gameCover);
+              $("#article"+j+"bio").text(gameList[randomNumber].gameBIO);
             }
 
             var pictureHTMLString = "";
             for (var j = 0; j < 5; j++) {
-                var randomNumber = Math.floor(Math.random()*gameList.length);
-                pictureHTMLString +='<img id = "'+ gameList[randomNumber].gameID+'" src="'+gameList[randomNumber].gameBG+'" class="slideImages" alt="wow">';
+              var randomNumber = Math.floor(Math.random()*gameList.length);
+              pictureHTMLString +='<img id = "'+ gameList[randomNumber].gameID+'" src="'+gameList[randomNumber].gameBG+'" class="slideImages" alt="wow">';
             }
             $("#slideShow").html(pictureHTMLString);
         },
