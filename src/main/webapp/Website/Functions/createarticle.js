@@ -12,11 +12,6 @@ var row1Counter = 0;
 function generateRandomID(){
     var randomNumber = Math.floor(Math.random()*2000000000);
     return randomNumber;
-    //DETTE ER DEN FØRSTE VERSON AF DENNE METODE. DEN ER BASERET PÅ ANTAL MILLISEKUNDER SIDEN 1970. PROBLEMET ER AT TALLET ER FOR STORT TIL AT VÆRE EN INT
-    /*var dateObjekt = new Date();
-    var milliseconds = dateObjekt.getTime();
-
-    return milliseconds;*/
 }
 
 /*--------------------------------------------------------------------------bt1*/
