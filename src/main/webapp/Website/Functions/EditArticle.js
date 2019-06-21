@@ -13,11 +13,6 @@ var globalGameObjekt;
 function generateRandomID(){
     var randomNumber = Math.floor(Math.random()*2000000000);
     return randomNumber;
-    //DETTE ER DEN FØRSTE VERSON AF DENNE METODE. DEN ER BASERET PÅ ANTAL MILLISEKUNDER SIDEN 1970. PROBLEMET ER AT TALLET ER FOR STORT TIL AT VÆRE EN INT
-    /*var dateObjekt = new Date();
-    var milliseconds = dateObjekt.getTime();
-
-    return milliseconds;*/
 }
 
 /*--------------------------------------------------------------------------bt1*/
@@ -322,7 +317,6 @@ $(document).ready(function () {
                 increaseRow5();
             }
 
-            //oki
             for (var i = 0; i < musicArtistList.length; i++) {
                 $("#row5name-"+i).val(musicArtistList[i].artNAME);
                 $("#row5URL-"+i).val(musicArtistList[i].artPFP);
@@ -640,3 +634,7 @@ function getGenres(id){
     }
     return genreList;
 }
+
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)

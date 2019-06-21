@@ -2,45 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Game</title>
+    <title>IGDb - Edit Game</title>
     <link rel="stylesheet" type="text/css" href="../Stylesheet/Style.css">
     <link rel="stylesheet" type="text/css" href="../Stylesheet/ArticleInStyle.css">
+    <link rel="stylesheet" type="text/css" href="../Stylesheet/Navbar.css">
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"></script>
 </head>
 <body>
 <!-- ------------------Navbar START------------------ -->
-<nav class="standart-nav">
-    <div class="logo">
-        <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
-    </div>
-    <ul class="navigation-list">
-        <div class="navLinks-left">
-            <a id="userList" class="not-active" href="UserList.html">User List</a>
+    <nav class="standard-nav">
+        <div class="logo">
+            <h1><a href="Index.html" class="interactive-logo">IGDb</a></h1>
         </div>
-        <div class="navLinks-left">
-            <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
-        </div>
-        <div class="navLinks-left">
-            <a id="gameList" class="not-active" href="GameList.html">Game List</a>
-        </div>
-        <div class="autocomplete" style="display: inline;">
-            <div style="display: inline;">
-                <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
-                    <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
-                    <input type="submit" value="Search" class="searchButton">
-                </form>
-                <datalist id="dataList"></datalist>
+        <ul class="navigation-list">
+            <div class="navLinks-left">
+                <a id="userList" class="not-active" href="UserList.html">User List</a>
             </div>
-        </div>
-        <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
-        <div class="navLinks-right">
-            <a id="profileBtn" class="not-active" href="User.html">Profile</a>
-        </div>
-        <div class="navLinks-right">
-            <a id="createArticle" class="createArticle" href="createarticle.html">Create article </a>
-        </div>
-    </ul>
-</nav>
+            <div class="navLinks-left">
+                <a id="changeLog" class="not-active" href="CMBU.html">User Changes</a>
+            </div>
+            <div class="navLinks-left">
+                <a id="gameList" class="not-active" href="GameList.html">Game List</a>
+            </div>
+            <div class="autocomplete" style="display: inline;">
+                <div style="display: inline;">
+                    <form id="searchBar" method="post" action="/rest/services/game/getGameNames">
+                        <input aria-invalid="false" autocomplete="off" name="q" class="searchBar" id="searchInput" placeholder="Search for Games" type="text" value="" list="dataList">
+                        <input type="submit" value="Search" class="searchButton">
+                    </form>
+                    <datalist id="dataList"></datalist>
+                </div>
+            </div>
+            <li class="nav-login"><a href="Login_Signup.html" id="loginRegisterButton" class="not-active">Login/Registrer</a></li>
+            <div class="navLinks-right">
+                <a id="profileBtn" class="not-active" href="User.html">Profile</a>
+            </div>
+            <div class="navLinks-right">
+                <a id="createArticle" class="createArticle" href="createarticle.html">Create article </a>
+            </div>
+        </ul>
+    </nav>
 <!-- ------------------Navbar END------------------ -->
 <form id="updateGameForm" method="post" action="/rest/services/game/updateGame">
     <div id="container" class="container">
@@ -112,8 +113,6 @@
                 </li>
                 <li class="media-list">
                     <h5 class="media-headers">Composer</h5>
-                    <!--<button class="btn-add-row6" type="button">Add</button>
-                    //<button class ="btn-remove-row6">Remove</button>-->
                     <div class="element-wrapper6">
                         <div>
                             <input id="row6-0" class="row6 media-input" type="text" placeholder="Insert name of composer">
@@ -213,20 +212,12 @@
             <button class ="btn-remove-row" type="button">Remove</button>
             <div class="element-wrapper">
                 <div>
-                    <!--<ul>-->
-                    <!--<li class="media-list">-->
                     <h5 class="media-headers">Name of Actor</h5>
                     <input id="rowName-0" class="rowName media-input" type="text" placeholder="Insert name of Actor">
-                    <!--</li>-->
-                    <!--<li class="media-list">-->
                     <h5 class="media-headers">Image of Actor</h5>
                     <input id="rowURL-0" class="rowURL media-input" type="text" placeholder="Insert image URL of Actor">
-                    <!--</li>-->
-                    <!--<li class="media-list">-->
                     <h5 class="media-headers">Date of Birth of Actor</h5>
                     <input id="rowBirthDay-0" class="rowBirthDay dateInput" type="date">
-                    <!--</li>-->
-                    <!--</ul>-->
                 </div>
             </div>
         </div>
@@ -398,10 +389,15 @@
             <textarea id="gameDescfield" rows = "10" name="gameDescription"></textarea>
         </div>
         <input type="submit" id="save-article" value="Save Changes">
-        <!--<button id="save-article">Save Game ;)</button>-->
     </div>
 </form>
 <script src="../Functions/NavBar.js"></script>
 <script src="../Functions/EditArticle.js"></script>
 </body>
 </html>
+
+<!--
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)
+-->

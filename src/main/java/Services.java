@@ -28,7 +28,6 @@ public class Services {
     @POST
     @Path("user/createUser")
     public boolean createUser(@FormParam("username") String username, @FormParam("email") String email, @FormParam("password") String password) {
-//        IMysqlConnection mySQL = new MysqlConnection();
         boolean answer = true;
         try {
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
@@ -37,8 +36,7 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             answer=service.createUser(username, email, password);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //IKKE LUK FORBINDELSEN, BARE HOLD DEN ÅBEN
+            //DONT CLOSE THE CONNECTION, KEEP IT OPEN
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,7 +46,6 @@ public class Services {
     @POST
     @Path("user/getUser/{username}")
     public String getUser(@PathParam("username") String username){
-        //IMysqlConnection mysqlConnection = new MysqlConnection();
         UserDTO user = null;
         try {
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
@@ -57,8 +54,6 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             user = service.getUser(username);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,7 +80,6 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             List<UserDTO> userList = service.getUserList();
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
 
             class JSONObject{
                 List<UserDTO> userList;
@@ -108,7 +102,6 @@ public class Services {
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonString = objectMapper.writeValueAsString(jsonObject);
             return jsonString;
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }catch (JsonProcessingException e){
@@ -133,8 +126,6 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             answer = service.updateUser(user);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -172,8 +163,6 @@ public class Services {
             }
             UserService service = new UserService(MysqlConnection.getInstance());
             answer = service.promoteUserPermissions(userDTO);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -183,7 +172,6 @@ public class Services {
     @POST
     @Path("user/logIn")
     public String logIn(@FormParam("username") String username, @FormParam("password") String password){
-        //IMysqlConnection mysqlConnection = new MysqlConnection();
         UserDTO user = new UserDTO();
         String answer = "placeholder";
         try {
@@ -196,8 +184,7 @@ public class Services {
 
             ObjectMapper objectMapper = new ObjectMapper();
             answer = objectMapper.writeValueAsString(user);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e){
@@ -212,15 +199,12 @@ public class Services {
     public boolean createGame(GameDTO gameDTO){
         boolean answer = true;
         try {
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at createGame");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
             answer = service.createGame(gameDTO);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -235,16 +219,12 @@ public class Services {
         GameDTO gameDTO = new GameDTO();
         try {
             System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
-            //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at getGame");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
             gameDTO = service.getGame(gameID);
-           //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -262,7 +242,7 @@ public class Services {
     }
 
 
-    //FIXME not færdig
+    //FIXME not done
     @POST
     @Path("game/getGameList")
     public String getGameList(){
@@ -270,8 +250,7 @@ public class Services {
         String json = "placeholder";
         try {
             System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
-            //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
+
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at getGameID");
@@ -299,14 +278,11 @@ public class Services {
 
             ObjectMapper objectMapper = new ObjectMapper();
             json = objectMapper.writeValueAsString(jsonObject);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e){
             e.printStackTrace();
         }
-        //return gameID;
         return json;
     }
 
@@ -316,16 +292,12 @@ public class Services {
             String gameID = "placeholder";
         try {
             System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
-            //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at getGameID");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
             gameID = service.getGameId(gameName);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -338,7 +310,6 @@ public class Services {
     public boolean updateGame(GameDTO gameDTO){
         boolean answer = true;
         try {
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at updateGame");
@@ -346,8 +317,6 @@ public class Services {
             GameService service = new GameService(MysqlConnection.getInstance());
             System.out.println("########################" + gameDTO.getGameCOMP().getCompID() + "##################");
             answer = service.updateGame(gameDTO);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -361,24 +330,19 @@ public class Services {
     public String GameNamesService(@PathParam("input") String characters){
         if (characters.equals("empty")){
             return null;
-            //bruges til ikke at sende alle games når der ikke står noget i søgefeltet. (fordi man bruger % i querien)
+            //Used to not send all games when there is typed nothing in the search bar (Because there is used "%" in the query)
         }
 
         ArrayList<String> answer = null;
 
-        //IMysqlConnection mysqlConnection = new MysqlConnection();
         try {
             System.out.println("connection : " + MysqlConnection.getInstance().getConnection());
-            //System.out.println("isClosed : " + MysqlConnection.getInstance().getConnection().isClosed());
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at GameNamesService");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
             answer = service.getGameNames(characters);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -419,18 +383,19 @@ public class Services {
         System.out.println("##########DELETE GAME BLIVER KØRT##############");
         boolean answer = false;
         try {
-            //mysqlConnection.setConnection(mysqlConnection.createConnection());
             if(MysqlConnection.getInstance().getConnection() == null || MysqlConnection.getInstance().getConnection().isClosed()) {
                 MysqlConnection.getInstance().createConnection();
                 System.out.println("created at deleteGame");
             }
             GameService service = new GameService(MysqlConnection.getInstance());
             answer = service.deleteGame(gameID);
-            //MysqlConnection.getInstance().closeConnection(MysqlConnection.getInstance().getConnection());
-            //mysqlConnection.closeConnection(mysqlConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return answer;
     }
 }
+
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)

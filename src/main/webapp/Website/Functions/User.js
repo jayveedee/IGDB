@@ -1,34 +1,33 @@
- //For modal elementet
+//For modal element
 var modal = document.getElementById('simpleModal');
-//for åbne modal knappen
+//For the "open modal" button
 var modalBtn = document.getElementById('modalBtn');
-//for lukke modal knappen
+//For closing the modal
 var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-//Ser om der sker et åben klik
+//Checks if there happened a click
 modalBtn.addEventListener('click', openModal);
-//Ser om der sker et lukke klik
+//Checks if there happened a close click
 closeBtn.addEventListener('click', closeModal);
-//Klikker udenfor boksen
+//Checks if the user clicked outside the modal
 window.addEventListener('click', clickOutSideWindow);
 
-//For at åbne modal
+//To open the Modal
 function openModal(){
     modal.style.display = 'block';
 }
-
-//For at åbne modal
+//To close the modal
 function closeModal(){
     modal.style.display = 'none';
 }
 
-//Lukker boksen hvis man klikker udenfor boksen
+//Closes the modal when user clicks outside the Modal
 function clickOutSideWindow(e){
     if(e.target == modal){
         modal.style.display = 'none';
     }
 }
-//This one does so you can see which avatar you have clicked on
+//This one gives a visual that you have clicked on a avatar (Links to CSS)
 $('img').click(function(){
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
@@ -83,3 +82,6 @@ jQuery(document).ready(function($){
     }
 
 
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)

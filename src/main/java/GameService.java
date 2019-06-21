@@ -120,7 +120,6 @@ public class GameService {
         System.out.println("publisher id: " + gameDTO.getGamePUB().getPubID());
         System.out.println("publisher gameid: " + gameDTO.getGamePUB().getPubGAME());
         System.out.println(" ");
-        //asdasdasd
 
         System.out.println("### Actors ###");
         System.out.println("actor 1 name: " + gameDTO.getGameACs().get(0).getAcFN());
@@ -170,3 +169,7 @@ public class GameService {
         System.out.println("gameBIO: " + gameDTO.getGameBIO());
     }
 }
+
+//Lavet af gruppe 24 til CDIO Final - Specialopgave
+//Medlemmer af gruppe 24:
+//Simon Andersen (s185083), Asama Hayder(s185099), Jákup Viljam Dam(s185095), Christoffer Adrian Detlef(s185117) & Thaer Almalla(s170727)
